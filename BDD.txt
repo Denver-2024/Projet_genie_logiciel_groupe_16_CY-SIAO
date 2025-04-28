@@ -1,0 +1,8 @@
+MCD/MLD de la base de donnée : on a plusieurs choses
+Deja les personnes qui ont leur info dedans et une table sejour comme cela une meme personne
+peut faire plusieurs sejour. Relier sejour au lit ou faire une table disponibilité.
+La table restriction permet de gerer les restrictions qu'une personne a en fonction des salles et les
+memes restrictions sont liées au salles
+Les salles sont reliés au lit qu'elles contiennent et au personnes qui sont dedans
+rajouter aussi une table reliant sejour personne et salles pour savoir qu'elle personne est dans la salle
+a tel date.

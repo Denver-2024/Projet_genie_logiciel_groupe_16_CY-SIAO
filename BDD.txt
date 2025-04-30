@@ -6,3 +6,25 @@ memes restrictions sont liées au salles
 Les salles sont reliés au lit qu'elles contiennent et au personnes qui sont dedans
 rajouter aussi une table reliant sejour personne et salles pour savoir qu'elle personne est dans la salle
 a tel date.
+
+Travailler les types : exemple date non nulle date d'aujourd'hui est le min lors de la creation
+idée a developper si pertinente
+table reservation
+liste de data et non table de donnée
+faire diagramme de classe
+
+où sont stocke les données.
+AlwaysData
+PostGree
+Attention version de java
+Preciser les dependances.
+
+Avec les data et java il y a des infos a donner pour se connecter a la base
+faire les verifications pour creer et seconnecter a la base.
+
+fichier de conf
+
+
+1 qui code 2 qui test
+
+faire un ptit qui marche que tout qui marche moyen

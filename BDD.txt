@@ -28,3 +28,6 @@ fichier de conf
 1 qui code 2 qui test
 
 faire un ptit qui marche que tout qui marche moyen
+
+definir mode degradé et graphique
+mode degradé que ligne de commande

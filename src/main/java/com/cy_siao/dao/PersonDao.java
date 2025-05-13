@@ -44,7 +44,7 @@ public class PersonDao {
      * @param id the ID of the person to retrieve
      * @return the retrieved Person entity, or null if not found
      */
-    public Person readPerson(int id) {
+    public Person getPersonById(int id) {
         String sql = "SELECT * FROM person WHERE id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

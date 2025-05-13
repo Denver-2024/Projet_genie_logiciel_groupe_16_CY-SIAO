@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * PersonDao is a Data Access Object (DAO) class responsible for managing
@@ -15,26 +18,106 @@ import java.sql.SQLException;
  * Create, Read, Update, and Delete (CRUD) operations for Person records.
  */
 public class PersonDao {
-
-    /**
-     * Inserts a new Person into the database.
-     *
-     * @param person the Person entity to create
-     */
+    
     public void createPerson(Person person) {
-        String sql = "INSERT INTO person (first_name, last_name, gender, age, place_of_birth, social_security_number) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person (");
+        List<Object> values = new ArrayList<>();
+        
+        // Construction dynamique de la requête
+        if (person.getFirstName() != null) {
+            sqlBuilder.append("first_name,");
+            values.add(person.getFirstName());
+        }
+        if (person.getLastName() != null) {
+            sqlBuilder.append("last_name,");
+            values.add(person.getLastName());
+        }
+        if (person.getGender() != null) {
+            sqlBuilder.append("gender,");
+            values.add(person.getGender().toString());
+        }
+        if (person.getAge() > 0) {
+            sqlBuilder.append("age,");
+            values.add(person.getAge());
+        }
+        if (person.getPlaceOfBirth() != null) {
+            sqlBuilder.append("place_of_birth,");
+            values.add(person.getPlaceOfBirth());
+        }
+        if (person.getSocialSecurityNumber() > 0) {
+            sqlBuilder.append("social_security_number,");
+            values.add(person.getSocialSecurityNumber());
+        }
+        
+        // Suppression de la dernière virgule
+        String sql = sqlBuilder.substring(0, sqlBuilder.length() - 1) + ") VALUES (" +
+                String.join(",", Collections.nCopies(values.size(), "?")) + ")";
+        
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, person.getFirstName());
-            statement.setString(2, person.getLastName());
-            statement.setString(3, person.getGender().toString());
-            statement.setInt(4, person.getAge());
-            statement.setString(5, person.getPlaceOfBirth());
-            statement.setInt(6, person.getSocialSecurityNumber());
+            
+            // Définition des paramètres
+            for (int i = 0; i < values.size(); i++) {
+                statement.setObject(i + 1, values.get(i));
+            }
+            
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erreur lors de l'insertion de la personne dans la base de données: " + e.getMessage());
+        }
+    }
+
+    /**
+     * The method who update a person in tables
+     * @param person the person to update
+     */
+    public void updatePerson(Person person) {
+        if (person.getId() <= 0) {
+            throw new IllegalArgumentException("L'ID de la personne est requis pour la mise à jour");
+        }
+        
+        StringBuilder sqlBuilder = new StringBuilder("UPDATE person SET ");
+        List<Object> values = new ArrayList<>();
+        
+        if (person.getFirstName() != null) {
+            sqlBuilder.append("first_name = ?,");
+            values.add(person.getFirstName());
+        }
+        if (person.getLastName() != null) {
+            sqlBuilder.append("last_name = ?,");
+            values.add(person.getLastName());
+        }
+        if (person.getGender() != null) {
+            sqlBuilder.append("gender = ?,");
+            values.add(person.getGender().toString());
+        }
+        if (person.getAge() > 0) {
+            sqlBuilder.append("age = ?,");
+            values.add(person.getAge());
+        }
+        if (person.getPlaceOfBirth() != null) {
+            sqlBuilder.append("place_of_birth = ?,");
+            values.add(person.getPlaceOfBirth());
+        }
+        if (person.getSocialSecurityNumber() > 0) {
+            sqlBuilder.append("social_security_number = ?,");
+            values.add(person.getSocialSecurityNumber());
+        }
+        
+        // Suppression de la dernière virgule et ajout de la clause WHERE
+        String sql = sqlBuilder.substring(0, sqlBuilder.length() - 1) + " WHERE id = ?";
+        values.add(person.getId());
+        
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            
+            for (int i = 0; i < values.size(); i++) {
+                statement.setObject(i + 1, values.get(i));
+            }
+            
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la mise à jour de la personne: " + e.getMessage());
         }
     }
 
@@ -62,32 +145,9 @@ public class PersonDao {
                 return person;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erroe in gettign person by id: " + e.getMessage());
         }
         return null;
-    }
-
-    /**
-     * Updates an existing Person in the database.
-     *
-     * @param person the Person entity with updated details
-     */
-    public void updatePerson(Person person) {
-        String sql = "UPDATE person SET first_name = ?, last_name = ?, gender = ?, age = ?, place_of_birth = ?, " +
-                "social_security_number = ? WHERE id = ?";
-        try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, person.getFirstName());
-            statement.setString(2, person.getLastName());
-            statement.setString(3, person.getGender().toString());
-            statement.setInt(4, person.getAge());
-            statement.setString(5, person.getPlaceOfBirth());
-            statement.setInt(6, person.getSocialSecurityNumber());
-            statement.setInt(7, person.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -102,7 +162,7 @@ public class PersonDao {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erreur lors de la suppression de la personne: " + e.getMessage());
         }
     }
 }

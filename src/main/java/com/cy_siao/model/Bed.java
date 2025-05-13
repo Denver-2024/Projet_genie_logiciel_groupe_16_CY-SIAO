@@ -1,74 +1,121 @@
 package com.cy_siao.model;
 
 import com.cy_siao.model.person.Person;
+import com.cy_siao.model.Stay;
 
-import java.io.*;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * 
+ * Represents a bed in a room, with maximum capacity and an ID reference to the room it belongs to.
+ * Handles assignment of persons and availability checking.
  */
 public class Bed {
 
+    private int id; // Unique identifier for the bed
+    private int nbPlacesMax; // Maximum number of people the bed can accommodate
+    private int idRoom; // ID of the room this bed belongs to
+
+    // Internal list of stays — not shown in the diagram but required for methods to work
+    private List<Stay> stays = new ArrayList<>();
+
     /**
-     * Default constructor
+     * Default constructor.
      */
     public Bed() {
     }
 
     /**
-     * 
+     * Constructor with room ID and max occupancy.
+     *
+     * @param idRoom      Room ID
+     * @param nbPlacesMax Maximum number of people
      */
-    private int id;
+    public Bed(int idRoom, int nbPlacesMax) {
+        this.idRoom = idRoom;
+        this.nbPlacesMax = nbPlacesMax;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getNbPlacesMax() {
+        return nbPlacesMax;
+    }
+
+    public void setNbPlacesMax(int nbPlacesMax) {
+        this.nbPlacesMax = nbPlacesMax;
+    }
+
+    public int getIdRoom() {
+        return idRoom;
+    }
+
+    public void setIdRoom(int idRoom) {
+        this.idRoom = idRoom;
+    }
 
     /**
-     * 
-     */
-    private String name;
-
-    /**
-     * 
-     */
-    private int nbPlacesMax;
-
-    /**
-     * 
-     */
-    private int idRoom;
-
-
-
-
-
-
-
-
-    /**
-     * @param dateArrival 
-     * @param dateDeparture 
-     * @return
+     * Returns true if the bed is available for the given date range (no overlap with existing stays).
      */
     public boolean isAvailable(LocalDate dateArrival, LocalDate dateDeparture) {
-        // TODO implement here
-        return false;
+        for (Stay stay : stays) {
+            if (stay.getDateArrival().isBefore(dateDeparture) &&
+                stay.getDateDeparture().isAfter(dateArrival)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
-     * @param person 
-     * @param dateArrival 
-     * @param dateDeparture 
-     * @return
+     * Assigns a person to this bed for a given period, if available.
      */
     public void assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
-        // TODO implement here
+        if (isAvailable(dateArrival, dateDeparture)) {
+            Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
+            stays.add(newStay);
+        } 
+        else {
+            throw new IllegalStateException("Bed is not available during the selected period.");
+        }
     }
 
     /**
-     * @return
+     * Frees the bed for a given person by removing their stays.
+     *
+     * @param person Person to remove from the bed
      */
-    public void free() {
-        // TODO implement here
+    public void free(Person person) {
+        stays.removeIf(stay -> stay.getPerson().equals(person));
     }
 
+    @Override
+    public String toString() {
+        return "Bed{" +
+                "id=" + id +
+                ", nbPlacesMax=" + nbPlacesMax +
+                ", idRoom=" + idRoom +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Bed bed)) return false;
+        return id == bed.id &&
+               nbPlacesMax == bed.nbPlacesMax &&
+               idRoom == bed.idRoom;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nbPlacesMax, idRoom);
+    }
 }

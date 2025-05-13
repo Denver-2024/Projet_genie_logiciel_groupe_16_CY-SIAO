@@ -1,13 +1,11 @@
 package com.cy_siao.dao;
 
+import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -134,15 +132,7 @@ public class PersonDao {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                Person person = new Person();
-                person.setId(resultSet.getInt("id"));
-                person.setFirstName(resultSet.getString("first_name"));
-                person.setLastName(resultSet.getString("last_name"));
-                person.setGender(Gender.valueOf(resultSet.getString("gender")));
-                person.setAge(resultSet.getInt("age"));
-                person.setPlaceOfBirth(resultSet.getString("place_of_birth"));
-                person.setSocialSecurityNumber(resultSet.getInt("social_security_number"));
-                return person;
+                return extractPersonFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             System.err.println("Erroe in gettign person by id: " + e.getMessage());
@@ -150,6 +140,40 @@ public class PersonDao {
         return null;
     }
 
+    /**
+     * Retrieves all Person records from the database.
+     * Iterates through the result set and maps each row to a Person object.
+     *
+     * @return a list of all persons found in the database. Returns an empty list if no records are found.
+     */
+    public List<Person> getAllPersons() {
+        List<Person> persons = new ArrayList<>();
+        String sql = "SELECT * FROM person";
+        try (Connection connection = DatabaseUtil.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                persons.add(extractPersonFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error from getting all persons: " + e.getMessage());
+        }
+        return persons;
+    }
+
+
+    // A method to extract a person from the result set
+    private Person extractPersonFromResultSet(ResultSet rs) throws SQLException {
+        Person person = new Person();
+        person.setId(rs.getInt("id"));
+        person.setFirstName(rs.getString("first_name"));
+        person.setLastName(rs.getString("last_name"));
+        person.setGender(Gender.valueOf(rs.getString("gender")));
+        person.setAge(rs.getInt("age"));
+        person.setPlaceOfBirth(rs.getString("place_of_birth"));
+        person.setSocialSecurityNumber(rs.getInt("social_security_number"));
+        return person;
+    }
     /**
      * Deletes a Person from the database by its ID.
      *

@@ -2,6 +2,8 @@ package com.cy_siao.model.person;
 
 import com.cy_siao.model.RestrictionType;
 
+import java.util.Objects;
+
 /**
  * Represents a person with various personal attributes such as ID, name,
  * gender, age, place of birth, social security number, and an associated address.
@@ -206,5 +208,26 @@ public class Person {
      */
     public void addAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", gender=" + gender +
+                ", age=" + age +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Person person)) return false;
+        return id == person.id && age == person.age && socialSecurityNumber == person.socialSecurityNumber && Objects.equals(lastName, person.lastName) && Objects.equals(firstName, person.firstName) && gender == person.gender && Objects.equals(placeOfBirth, person.placeOfBirth) && Objects.equals(address, person.address) && Objects.equals(restrictionType, person.restrictionType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, lastName, firstName, gender, age, placeOfBirth, socialSecurityNumber, address, restrictionType);
     }
 }

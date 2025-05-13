@@ -3,6 +3,7 @@ Ceci est un projet de géniel logiciel sur java du groupe 16 sur "CY-SIAO" une a
 
 Pour l'execution s'assurer d'avoir Java 21.0.6
 
+## Initialisation du projet et des dépendances
 Generation des dépendances
 
 ``mvn compile``
@@ -17,5 +18,3 @@ Pour lancer le Main, pour l'instant je n'arrive pas encore à l'automatiser alor
 
 ``mvn exec:java -Dexec.mainClass="com.cy_siao.Main"
 ``
-
-

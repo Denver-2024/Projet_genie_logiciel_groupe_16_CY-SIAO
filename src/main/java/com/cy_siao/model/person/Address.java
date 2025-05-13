@@ -1,5 +1,7 @@
 package com.cy_siao.model.person;
 
+import java.util.Objects;
+
 /**
  * Represents a physical address with street information, postal code and city.
  * Used for storing location data for persons in the system.
@@ -112,5 +114,27 @@ public class Address {
      */
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", streetNumber=" + streetNumber +
+                ", streetName='" + streetName + '\'' +
+                ", postalCode=" + postalCode +
+                ", cityName='" + cityName + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Address address)) return false;
+        return id == address.id && streetNumber == address.streetNumber && postalCode == address.postalCode && Objects.equals(streetName, address.streetName) && Objects.equals(cityName, address.cityName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, streetNumber, streetName, postalCode, cityName);
     }
 }

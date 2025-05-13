@@ -1,7 +1,7 @@
 package com.cy_siao.model;
 
-import com.cy_siao.model.person.Person;
 import com.cy_siao.model.Stay;
+import com.cy_siao.model.person.Person;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

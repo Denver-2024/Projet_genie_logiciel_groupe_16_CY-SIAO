@@ -1,102 +1,80 @@
--- Suppression des tables dans l'ordre inverse des dependances
-DROP TABLE IF EXISTS AddressKnown;
-DROP TABLE IF EXISTS RestrictionPerson;
+--Suppression des tables dans l'ordre inverse des dependances
+DROP TABLE IF EXISTS Knows;
 DROP TABLE IF EXISTS RestrictionRoom;
 DROP TABLE IF EXISTS Relationship;
 DROP TABLE IF EXISTS Stay;
-DROP TABLE IF EXISTS Address CASCADE;
-DROP TABLE IF EXISTS Person;
-DROP TABLE IF EXISTS Bed;
+DROP TABLE IF EXISTS Address;
 DROP TABLE IF EXISTS RestrictionType;
+DROP TABLE IF EXISTS Bed;
+DROP TABLE IF EXISTS Person;
 DROP TABLE IF EXISTS Room;
 
--- Room table
-CREATE TABLE Room (
-    Id SERIAL PRIMARY KEY,
-    Name VARCHAR(50) NOT NULL,
-    NbBedsMax INT NOT NULL
-);
+--Creation des tables
 
--- RestrictionType table
-CREATE TABLE RestrictionType (
-    Id SERIAL PRIMARY KEY,
-    Restriction VARCHAR(50) NOT NULL
-);
-
--- Bed table
-CREATE TABLE Bed (
-    Id SERIAL PRIMARY KEY,
-    NbPlacesMax INT NOT NULL,
-    IdRoom INT NOT NULL,
-    FOREIGN KEY (IdRoom) REFERENCES Room(Id) ON DELETE CASCADE
-);
-
--- Person table
-CREATE TABLE Person (
-    Id SERIAL PRIMARY KEY,
-    LastName VARCHAR(50) NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    Age INT CHECK (Age >= 0),
-    Gender CHAR(1) CHECK (Gender IN ('M', 'F')),
-    PlaceOfBirth VARCHAR(50),
-    SocialSecurityNumber BIGINT UNIQUE
-);
-
--- Address table
 CREATE TABLE Address (
-    Id SERIAL PRIMARY KEY,
-    StreetNumber INT,
-    StreetName VARCHAR(50),
-    PostalCode INT,
-    CityName VARCHAR(50),
-    DepartmentName VARCHAR(50),
-    Region VARCHAR(50)
+    Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
+    streetNumber INT CHECK (streetNumber BETWEEN 1 AND 10000) NOT NULL,
+    streetName VARCHAR(50) NOT NULL,
+    postalCode INT CHECK (postalCode > 0 AND LENGTH(postalCode::TEXT) = 5),
+    cityName VARCHAR(50) NOT NULL
 );
 
--- Stay table (many-to-many between Bed and Person)
-CREATE TABLE Stay (
-    IdBed INT NOT NULL,
-    IdPerson INT NOT NULL,
-    DateArrival DATE NOT NULL,
-    DateDeparture DATE,
-    PRIMARY KEY (IdBed, IdPerson),
-    FOREIGN KEY (IdBed) REFERENCES Bed(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdPerson) REFERENCES Person(Id) ON DELETE CASCADE
+CREATE TABLE Person (
+    Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
+    lastName VARCHAR(50) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    age INT CHECK (age BETWEEN 0 AND 200),
+    gender CHAR(1) CHECK (gender IN ('F', 'M')) NOT NULL,
+    placeOfBirth VARCHAR(50),
+    socialSecurityNumber BIGINT CHECK (socialSecurityNumber > 0 AND LENGTH(socialSecurityNumber::TEXT) = 13)
 );
 
--- Relationship table (self-reference on Person)
-CREATE TABLE Relationship (
-    IdPerson1 INT NOT NULL,
-    IdPerson2 INT NOT NULL,
-    RelationType VARCHAR(50),
-    PRIMARY KEY (IdPerson1, IdPerson2),
-    FOREIGN KEY (IdPerson1) REFERENCES Person(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdPerson2) REFERENCES Person(Id) ON DELETE CASCADE
+CREATE TABLE RestrictionType (
+    Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
+    label VARCHAR(50) NOT NULL,
+    minAge INT CHECK (minAge BETWEEN 0 AND 200),
+    maxAge INT CHECK (maxAge BETWEEN 0 AND 200),
+    CHECK(minAge <= maxAge),
+    genderRestriction CHAR(1) CHECK (genderRestriction IN ('F', 'M'))
 );
 
--- RestrictionRoom table (many-to-many)
+CREATE TABLE Room (
+    Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
+    name VARCHAR(50),
+    nbBedsMax INT CHECK (nbBedsMax >= 0 AND nbBedsMax <= 10) DEFAULT 0
+);
+
+CREATE TABLE Bed (
+    Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
+    nbPlacesMax INT CHECK (nbPlacesMax IN (1, 2)) DEFAULT 1,
+    Id INT REFERENCES Room(Id) NOT NULL
+);
+
+
 CREATE TABLE RestrictionRoom (
-    IdRoom INT NOT NULL,
-    IdRestriction INT NOT NULL,
-    PRIMARY KEY (IdRoom, IdRestriction),
-    FOREIGN KEY (IdRoom) REFERENCES Room(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdRestriction) REFERENCES RestrictionType(Id) ON DELETE CASCADE
+    IdRoom INT REFERENCES Room(Id),
+    IdRestriction INT REFERENCES RestrictionType(Id),
+    PRIMARY KEY (IdRoom, IdRestriction)
 );
 
--- RestrictionPerson table (many-to-many)
-CREATE TABLE RestrictionPerson (
-    IdPerson INT NOT NULL,
-    IdRestriction INT NOT NULL,
-    PRIMARY KEY (IdPerson, IdRestriction),
-    FOREIGN KEY (IdPerson) REFERENCES Person(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdRestriction) REFERENCES RestrictionType(Id) ON DELETE CASCADE
+CREATE TABLE Relationship (
+    IdPerson1 INT REFERENCES Person(Id),
+    IdPerson2 INT REFERENCES Person(Id),
+    relationType VARCHAR(50) DEFAULT 'Not Specified',
+    PRIMARY KEY (IdPerson1, IdPerson2)
 );
 
--- AddressKnown table (many-to-many between Person and Address)
-CREATE TABLE AddressKnown (
-    IdPerson INT NOT NULL,
-    IdAddress INT NOT NULL,
-    PRIMARY KEY (IdPerson, IdAddress),
-    FOREIGN KEY (IdPerson) REFERENCES Person(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdAddress) REFERENCES Address(Id) ON DELETE CASCADE
+CREATE TABLE Knows (
+    IdPerson INT REFERENCES Person(Id),
+    IdAddress INT REFERENCES Address(Id),
+    PRIMARY KEY (IdPerson, IdAddress)
 );
+
+CREATE TABLE Stay (
+    Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
+    IdPerson INT REFERENCES Person(Id),
+    IdBed INT REFERENCES Bed(Id),
+    dateArrival DATE CHECK (dateArrival >= CURRENT_DATE),
+    dateDeparture DATE CHECK (dateDeparture > dateArrival)
+);
+

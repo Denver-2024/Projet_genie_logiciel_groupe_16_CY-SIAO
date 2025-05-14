@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Bed {
 
     private int id; // Unique identifier for the bed
-    private int nbPlacesMax; // Maximum number of people the bed can accommodate
+    private boolean isDouble = false; // Boolean to say if the bed is double or single
     private int idRoom; // ID of the room this bed belongs to
 
     // Internal list of stays — not shown in the diagram but required for methods to work
@@ -30,12 +30,10 @@ public class Bed {
     /**
      * Constructor with room ID and max occupancy.
      *
-     * @param idRoom      Room ID
-     * @param nbPlacesMax Maximum number of people
+     * @param idRoom Room ID
      */
-    public Bed(int idRoom, int nbPlacesMax) {
+    public Bed(int idRoom) {
         this.idRoom = idRoom;
-        this.nbPlacesMax = nbPlacesMax;
     }
 
     public int getId() {
@@ -46,12 +44,12 @@ public class Bed {
         this.id = id;
     }
 
-    public int getNbPlacesMax() {
-        return nbPlacesMax;
+    public boolean isItDouble() {
+        return isDouble;
     }
 
-    public void setNbPlacesMax(int nbPlacesMax) {
-        this.nbPlacesMax = nbPlacesMax;
+    public void isDouble() {
+        this.isDouble = true;
     }
 
     public int getIdRoom() {
@@ -68,7 +66,7 @@ public class Bed {
     public boolean isAvailable(LocalDate dateArrival, LocalDate dateDeparture) {
         for (Stay stay : stays) {
             if (stay.getDateArrival().isBefore(dateDeparture) &&
-                stay.getDateDeparture().isAfter(dateArrival)) {
+                    stay.getDateDeparture().isAfter(dateArrival)) {
                 return false;
             }
         }
@@ -82,8 +80,7 @@ public class Bed {
         if (isAvailable(dateArrival, dateDeparture)) {
             Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
             stays.add(newStay);
-        } 
-        else {
+        } else {
             throw new IllegalStateException("Bed is not available during the selected period.");
         }
     }
@@ -97,11 +94,15 @@ public class Bed {
         stays.removeIf(stay -> stay.getPerson().equals(person));
     }
 
+    public boolean isOccupied() {
+        return !stays.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "Bed{" +
                 "id=" + id +
-                ", nbPlacesMax=" + nbPlacesMax +
+                ", isDouble=" + isDouble +
                 ", idRoom=" + idRoom +
                 '}';
     }
@@ -110,12 +111,12 @@ public class Bed {
     public boolean equals(Object o) {
         if (!(o instanceof Bed bed)) return false;
         return id == bed.id &&
-               nbPlacesMax == bed.nbPlacesMax &&
-               idRoom == bed.idRoom;
+                isDouble == bed.isDouble &&
+                idRoom == bed.idRoom;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nbPlacesMax, idRoom);
+        return Objects.hash(id, isDouble, idRoom);
     }
 }

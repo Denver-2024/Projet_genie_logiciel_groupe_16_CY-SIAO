@@ -74,7 +74,7 @@ public class Bed {
         return true;
     }
 
-    public Stay assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
+    public boolean assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
         if (isAvailable(dateArrival, dateDeparture)) {
             Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
             stays.add(newStay);

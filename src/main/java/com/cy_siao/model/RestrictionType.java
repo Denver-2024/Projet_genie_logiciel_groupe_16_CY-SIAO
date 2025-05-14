@@ -1,6 +1,8 @@
-package model;
+package com.cy_siao.model;
 
-import java.util.Set;
+import com.cy_siao.model.person.Person;
+import com.cy_siao.model.person.Gender;
+
 
 /**
  * Represents restriction rules applied to rooms (age and gender).

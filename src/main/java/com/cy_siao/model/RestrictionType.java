@@ -55,10 +55,12 @@ public class RestrictionType {
             if (rule.startsWith("age>=")) {
                 int minAge = Integer.parseInt(rule.substring(5));
                 if (person.getAge() < minAge) return false;
-            } else if (rule.startsWith("age<=")) {
+            } 
+            else if (rule.startsWith("age<=")) {
                 int maxAge = Integer.parseInt(rule.substring(5));
                 if (person.getAge() > maxAge) return false;
-            } else if (rule.startsWith("gender=")) {
+            } 
+            else if (rule.startsWith("gender=")) {
                 String requiredGender = rule.substring(7).toUpperCase();
                 if (!Objects.equals(person.getGender().toString().toUpperCase(), requiredGender)) return false;
             }

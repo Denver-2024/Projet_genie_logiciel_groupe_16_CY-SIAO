@@ -103,17 +103,6 @@ public class Room {
         restrictions.remove(restriction);
     }
 
-    /**
-     * Checks if a person respects all the room's restrictions.
-     */
-    public boolean isCompatible(Person person) {
-        for (RestrictionType restriction : restrictions) {
-            if (!restriction.isRespectedBy(person)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Returns the list of available beds for a given date range.

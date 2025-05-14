@@ -15,7 +15,7 @@ public class AddressDao {
     }
 
     public void create(Address address) throws SQLException {
-        String sql = "INSERT INTO addresses (street_number, street_name, postal_code, city_name) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO address (streetNumber, streetName, postalCode, cityName) VALUES (?, ?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, address.getStreetNumber());
@@ -23,13 +23,20 @@ public class AddressDao {
             pstmt.setInt(3, address.getPostalCode());
             pstmt.setString(4, address.getCityName());
             pstmt.executeUpdate();
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    address.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating address failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             System.err.println("Error in creation of the address: " + e.getMessage());
         }
     }
 
     public Address findById(int id) throws SQLException {
-        String sql = "SELECT * FROM addresses WHERE id = ?";
+        String sql = "SELECT * FROM address WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
@@ -44,7 +51,7 @@ public class AddressDao {
 
     public List<Address> findAll() throws SQLException {
         List<Address> addresses = new ArrayList<>();
-        String sql = "SELECT * FROM addresses";
+        String sql = "SELECT * FROM address";
         try (Connection conn = databaseUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -56,7 +63,7 @@ public class AddressDao {
     }
 
     public void update(Address address) throws SQLException {
-        String sql = "UPDATE addresses SET street_number = ?, street_name = ?, postal_code = ?, city_name = ? WHERE id = ?";
+        String sql = "UPDATE address SET street_number = ?, street_name = ?, postal_code = ?, city_name = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, address.getStreetNumber());
@@ -69,7 +76,7 @@ public class AddressDao {
     }
 
     public void delete(int id) throws SQLException {
-        String sql = "DELETE FROM addresses WHERE id = ?";
+        String sql = "DELETE FROM address WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);

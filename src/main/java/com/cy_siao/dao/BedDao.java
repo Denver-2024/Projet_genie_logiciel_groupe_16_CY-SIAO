@@ -22,6 +22,13 @@ public class BedDao {
             pstmt.setBoolean(2, bed.isOccupied());
             pstmt.setInt(3, bed.getIdRoom());
             pstmt.executeUpdate();
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    bed.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating person failed, no ID obtained.");
+                }
+            }
         }
     }
 

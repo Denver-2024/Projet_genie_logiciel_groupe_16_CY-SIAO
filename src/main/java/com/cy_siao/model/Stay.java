@@ -3,69 +3,75 @@ package com.cy_siao.model;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.person.Person;
 
-import java.io.*;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.Date;
 
-/**
- * 
- */
 public class Stay {
 
-    /**
-     * Default constructor
-     */
+    private Bed bed;
+    private Person person;
+    private Date dateArrival;
+    private Date dateDeparture;
+
     public Stay() {
     }
 
-    /**
-     * 
-     */
-    private Bed bed;
+    public Stay(Bed bed, Person person, Date dateArrival, Date dateDeparture) {
+        this.bed = bed;
+        this.person = person;
+        this.dateArrival = dateArrival;
+        this.dateDeparture = dateDeparture;
+    }
 
-    /**
-     * 
-     */
-    private Person person;
+    public Bed getBed() {
+        return bed;
+    }
 
-    /**
-     * 
-     */
-    private Date dateArrival;
+    public void setBed(Bed bed) {
+        this.bed = bed;
+    }
 
-    /**
-     * 
-     */
-    private Date dateDeparture;
+    public Person getPerson() {
+        return person;
+    }
 
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
+    public Date getDateArrival() {
+        return dateArrival;
+    }
 
+    public void setDateArrival(Date dateArrival) {
+        this.dateArrival = dateArrival;
+    }
 
+    public Date getDateDeparture() {
+        return dateDeparture;
+    }
 
-    /**
-     * @param dateArrival 
-     * @param dateDeparture 
-     * @return
-     */
-    public boolean modifyDates(LocalDate dateArrival, LocalDate dateDeparture) {
-        // TODO implement here
+    public void setDateDeparture(Date dateDeparture) {
+        this.dateDeparture = dateDeparture;
+    }
+
+    public boolean modifyDates(Date newArrival, Date newDeparture) {
+        Date today = new Date();
+        if (!newArrival.before(today) && !newDeparture.before(today)) {
+            this.dateArrival = newArrival;
+            this.dateDeparture = newDeparture;
+            return true;
+        }
         return false;
     }
 
-    /**
-     * @return
-     */
     public boolean isActiveToday() {
-        // TODO implement here
-        return false;
+        Date today = new Date();
+        return (today.equals(dateArrival) || today.after(dateArrival)) &&
+               (today.equals(dateDeparture) || today.before(dateDeparture));
     }
 
-    /**
-     * @return
-     */
     public boolean isEditable() {
-        // TODO implement here
-        return false;
+        Date today = new Date();
+        return !dateArrival.before(today);
     }
-
 }

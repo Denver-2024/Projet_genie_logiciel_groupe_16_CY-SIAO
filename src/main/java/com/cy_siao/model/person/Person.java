@@ -40,6 +40,20 @@ public class Person {
     }
 
     /**
+     * Constructor that initializes a person with their name and gender
+     *
+     * @param lastName  The person's last name
+     * @param firstName The person's first name
+     * @param gender    The person's gender (MALE or FEMALE)
+     * @param age       The person's age in years
+     */
+    public Person(String lastName, String firstName, Gender gender, int age){
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.gender = gender;
+        this.age = age;
+    }
+    /**
      * Gets the person's unique identifier
      *
      * @return The ID of the person

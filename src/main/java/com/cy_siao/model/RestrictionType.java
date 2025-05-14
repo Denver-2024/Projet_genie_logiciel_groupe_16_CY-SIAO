@@ -1,69 +1,46 @@
 package com.cy_siao.model;
 
 import com.cy_siao.model.person.Person;
+import com.cy_siao.model.person.Gender;
 
-import java.util.Objects;
 
+/**
+ * Represents restriction rules applied to rooms (age and gender).
+ */
 public class RestrictionType {
 
     private int id;
-    private String restriction;
-    private int idSalle;
+    private String description;
+    private Gender GenderRestriction;
+    private Integer minAge;
+    private Integer maxAge;
 
-    public RestrictionType() {
-    }
-
-    public RestrictionType(int id, String restriction, int idSalle) {
+    public RestrictionType(int id, String description, Gender GenderRestriction, Integer minAge, Integer maxAge) {
         this.id = id;
-        this.restriction = restriction;
-        this.idSalle = idSalle;
+        this.description = description;
+        this.GenderRestriction = GenderRestriction;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getDescription() {
+        return description;
     }
 
-    public String getRestriction() {
-        return restriction;
+    public Gender getGenderRestriction() {
+        return GenderRestriction;
     }
 
-    public void setRestriction(String restriction) {
-        this.restriction = restriction;
+    public Integer getMinAge() {
+        return minAge;
     }
 
-    public int getIdSalle() {
-        return idSalle;
+    public Integer getMaxAge() {
+        return maxAge;
     }
 
-    public void setIdSalle(int idSalle) {
-        this.idSalle = idSalle;
-    }
-
-    public boolean isRespectedBy(Person person) {
-        if (restriction == null || restriction.isEmpty()) {
-            return true;
-        }
-
-        String[] rules = restriction.split("&&");
-        for (String rule : rules) {
-            rule = rule.trim();
-
-            if (rule.startsWith("age>=")) {
-                int minAge = Integer.parseInt(rule.substring(5));
-                if (person.getAge() < minAge) return false;
-            } else if (rule.startsWith("age<=")) {
-                int maxAge = Integer.parseInt(rule.substring(5));
-                if (person.getAge() > maxAge) return false;
-            } else if (rule.startsWith("gender=")) {
-                String requiredGender = rule.substring(7).toUpperCase();
-                if (!Objects.equals(person.getGender().toString().toUpperCase(), requiredGender)) return false;
-            }
-        }
-
-        return true;
-    }
 }

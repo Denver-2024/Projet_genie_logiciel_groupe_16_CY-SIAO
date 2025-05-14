@@ -31,3 +31,10 @@ faire un ptit qui marche que tout qui marche moyen
 
 definir mode degradé et graphique
 mode degradé que ligne de commande
+
+mode console : faire des commandes pour afficher les donner et modifier
+ls -l etc comme exemple donc ....
+cli et gui
+
+lit double boolean ?
+creer un jeu de test

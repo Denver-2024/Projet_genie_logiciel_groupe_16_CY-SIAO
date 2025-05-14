@@ -3,19 +3,19 @@ package com.cy_siao.model;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.person.Person;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Stay {
 
     private Bed bed;
     private Person person;
-    private Date dateArrival;
-    private Date dateDeparture;
+    private LocalDate dateArrival;
+    private LocalDate dateDeparture;
 
     public Stay() {
     }
 
-    public Stay(Bed bed, Person person, Date dateArrival, Date dateDeparture) {
+    public Stay(Bed bed, Person person, LocalDate dateArrival, LocalDate dateDeparture) {
         this.bed = bed;
         this.person = person;
         this.dateArrival = dateArrival;
@@ -38,25 +38,25 @@ public class Stay {
         this.person = person;
     }
 
-    public Date getDateArrival() {
+    public LocalDate getDateArrival() {
         return dateArrival;
     }
 
-    public void setDateArrival(Date dateArrival) {
+    public void setDateArrival(LocalDate dateArrival) {
         this.dateArrival = dateArrival;
     }
 
-    public Date getDateDeparture() {
+    public LocalDate getDateDeparture() {
         return dateDeparture;
     }
 
-    public void setDateDeparture(Date dateDeparture) {
+    public void setDateDeparture(LocalDate dateDeparture) {
         this.dateDeparture = dateDeparture;
     }
 
-    public boolean modifyDates(Date newArrival, Date newDeparture) {
-        Date today = new Date();
-        if (!newArrival.before(today) && !newDeparture.before(today)) {
+    public boolean modifyDates(LocalDate newArrival, LocalDate newDeparture) {
+        LocalDate today = LocalDate.now();
+        if (!newArrival.isBefore(today) && !newDeparture.isBefore(today)) {
             this.dateArrival = newArrival;
             this.dateDeparture = newDeparture;
             return true;
@@ -65,13 +65,13 @@ public class Stay {
     }
 
     public boolean isActiveToday() {
-        Date today = new Date();
-        return (today.equals(dateArrival) || today.after(dateArrival)) &&
-               (today.equals(dateDeparture) || today.before(dateDeparture));
+        LocalDate today = LocalDate.now();
+        return (today.equals(dateArrival) || today.isAfter(dateArrival)) &&
+                (today.equals(dateDeparture) || today.isBefore(dateDeparture));
     }
 
     public boolean isEditable() {
-        Date today = new Date();
-        return !dateArrival.before(today);
+        LocalDate today = LocalDate.now();
+        return !dateArrival.isBefore(today);
     }
 }

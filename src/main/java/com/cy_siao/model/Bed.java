@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 /**
  * Represents a bed in a room, with maximum capacity and an ID reference to the room it belongs to.
  * Handles assignment of persons and availability checking.

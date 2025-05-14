@@ -1,0 +1,43 @@
+- Salles
++ id PRIMARY KEY
++ intitulé str <= 50
+
+- RestrictionsSalles
++ id Salles PRIMARY KEY
++ restriction       Str <= 30 /
+ou int cela depende de comment sont mis les restrictions dans la BDD
+
+- RestrictionsPersonnes
++ id Personnes PRIMARY KEY
++ restriction       Str <= 30 / ou int
+
+- Lit
++ id PRIMARY KEY
++ idSalle       int
++ nbPlace      int
+
+- Personnes
++ id PRIMARY KEY
++ Nom          Str <= 30
++ Prenom        Str <= 30
++ Age     (0 <= Age <= 120)
++ genre     (M/F)
++ lieuNaissance      str
++ listeAdresseConnue str
++ NumeroDeSecu int
+
+- Planning
++ idPersonne PRIMARY KEY
++ idLit      PRIMARY KEY
++ dateArrive  Aujourd'hui < (date Arrive < dateDepart)
++ dateDepart  Aujourd'hui < (date Arrive < dateDepart)
+
+
+------- Bonus pas donner dans l'enonce
+- lien (force les personnes a etre dans la meme salle)
++ idPersonne1 PRIMARY KEY
++ idPersonne2 PRIMARY KEY
+Definir lien "fort" pour etre dans le meme lit (couple ou parent enfant)
+
+
+Peut etre faire une table historique/archive pour recuperer les elements de planning du passer

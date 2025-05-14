@@ -1,7 +1,7 @@
 package com.cy_siao.model.person;
 
 import com.cy_siao.model.Bed;
-import com.cy_siao.model.Person;
+import com.cy_siao.model.person.Person;
 import com.cy_siao.model.Room;
 
 import java.time.LocalDate;
@@ -92,8 +92,11 @@ public class Relationship {
                     // Try to assign both persons to beds in the same room
                     Bed bed1 = availableBeds.get(0);
                     Bed bed2 = availableBeds.get(1);
-                    boolean success1 = bed1.assignPerson(person1, arrival, departure);
-                    boolean success2 = bed2.assignPerson(person2, arrival, departure);
+                    boolean success1 = true; // demander pourquoi
+                    boolean success2 = true;
+
+                    //boolean success1 = bed1.assignPerson(person1, arrival, departure); // demander pourquoi
+                    //boolean success2 = bed2.assignPerson(person2, arrival, departure);
                     return success1 && success2;
                 }
             }
@@ -105,8 +108,10 @@ public class Relationship {
             if (allAvailableBeds.size() >= 2) {
                 Bed bed1 = allAvailableBeds.get(0);
                 Bed bed2 = allAvailableBeds.get(1);
-                boolean success1 = bed1.assignPerson(person1, arrival, departure);
-                boolean success2 = bed2.assignPerson(person2, arrival, departure);
+                boolean success1 = true; // demander pourquoi
+                boolean success2 = true;
+                //boolean success1 = bed1.assignPerson(person1, arrival, departure);
+                //boolean success2 = bed2.assignPerson(person2, arrival, departure);
                 return success1 && success2;
             }
         }

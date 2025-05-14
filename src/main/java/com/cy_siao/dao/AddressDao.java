@@ -71,7 +71,7 @@ public class AddressDao {
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM addresses WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }

@@ -1,0 +1,46 @@
+Index: src/main/java/com/cy_siao/model/Room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cy_siao.model;\r\n\r\nimport com.cy_siao.model.RestrictionType;\r\nimport com.cy_siao.model.person.Person;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.ArrayList;\r\nimport java.util.Iterator;\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\n/**\r\n * Represents a room that contains beds and applies restrictions.\r\n * Allows management of beds, restrictions, and compatibility checks.\r\n */\r\npublic class Room {\r\n\r\n    private int id;\r\n    private String name;\r\n    private int nbBedsMax;\r\n\r\n    private List<Bed> beds = new ArrayList<>();\r\n    private List<RestrictionType> restrictions = new ArrayList<>();\r\n\r\n    /**\r\n     * Default constructor\r\n     */\r\n    public Room() {\r\n    }\r\n\r\n    /**\r\n     * Constructor with parameters\r\n     */\r\n    public Room(int id, String name, int nbBedsMax) {\r\n        this.id = id;\r\n        this.name = name;\r\n        this.nbBedsMax = nbBedsMax;\r\n    }\r\n\r\n    public int getId() {\r\n        return id;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public int getNbBedsMax() {\r\n        return nbBedsMax;\r\n    }\r\n\r\n    public void setId(int id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public void setNbBedsMax(int nbBedsMax) {\r\n        this.nbBedsMax = nbBedsMax;\r\n    }\r\n\r\n    public List<Bed> getBeds() {\r\n        return beds;\r\n    }\r\n\r\n    public List<RestrictionType> getRestrictions() {\r\n        return restrictions;\r\n    }\r\n\r\n    /**\r\n     * Adds a bed to the room if there's space.\r\n     */\r\n    public void addBed(Bed bed) {\r\n        if (beds.size() < nbBedsMax) {\r\n            beds.add(bed);\r\n        } else {\r\n            throw new IllegalStateException(\"Maximum number of beds reached for this room.\");\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Removes a bed from the room.\r\n     */\r\n    public void removeBed(Bed bed) {\r\n        beds.remove(bed);\r\n    }\r\n\r\n    /**\r\n     * Adds a restriction to the room.\r\n     */\r\n    public void addRestriction(RestrictionType restriction) {\r\n        if (!restrictions.contains(restriction)) {\r\n            restrictions.add(restriction);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Removes a restriction from the room.\r\n     */\r\n    public void removeRestriction(RestrictionType restriction) {\r\n        restrictions.remove(restriction);\r\n    }\r\n\r\n\r\n    /**\r\n     * Returns the list of available beds for a given date range.\r\n     */\r\n    public List<Bed> getAvailableBeds(LocalDate dateArrival, LocalDate dateDeparture) {\r\n        List<Bed> availableBeds = new ArrayList<>();\r\n        for (Bed bed : beds) {\r\n            if (bed.isAvailable(dateArrival, dateDeparture)) {\r\n                availableBeds.add(bed);\r\n            }\r\n        }\r\n        return availableBeds;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Room{\" +\r\n                \"id=\" + id +\r\n                \", name='\" + name + '\\'' +\r\n                \", nbBedsMax=\" + nbBedsMax +\r\n                '}';\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (!(o instanceof Room room)) return false;\r\n        return id == room.id &&\r\n                nbBedsMax == room.nbBedsMax &&\r\n                Objects.equals(name, room.name);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(id, name, nbBedsMax);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/cy_siao/model/Room.java b/src/main/java/com/cy_siao/model/Room.java
+--- a/src/main/java/com/cy_siao/model/Room.java	(revision 54e9f3087e6291b6ec9db20b4754c6acfa6a0c3b)
++++ b/src/main/java/com/cy_siao/model/Room.java	(date 1747244282000)
+@@ -31,8 +31,7 @@
+     /**
+      * Constructor with parameters
+      */
+-    public Room(int id, String name, int nbBedsMax) {
+-        this.id = id;
++    public Room(String name, int nbBedsMax) {
+         this.name = name;
+         this.nbBedsMax = nbBedsMax;
+     }
+Index: src/main/java/com/cy_siao/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cy_siao;\r\n\r\nimport com.cy_siao.dao.AddressDao;\r\nimport com.cy_siao.dao.PersonDao;\r\nimport com.cy_siao.model.person.Address;\r\nimport com.cy_siao.model.person.Gender;\r\nimport com.cy_siao.model.person.Person;\r\nimport com.cy_siao.util.DatabaseUtil;\r\n\r\nimport java.sql.SQLException;\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args) throws SQLException {\r\n        DatabaseUtil dbUtil = new DatabaseUtil();\r\n        dbUtil.getConnection();\r\n        System.out.println(\"Connected\");\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/cy_siao/Main.java b/src/main/java/com/cy_siao/Main.java
+--- a/src/main/java/com/cy_siao/Main.java	(revision 54e9f3087e6291b6ec9db20b4754c6acfa6a0c3b)
++++ b/src/main/java/com/cy_siao/Main.java	(date 1747244500000)
+@@ -2,6 +2,10 @@
+ 
+ import com.cy_siao.dao.AddressDao;
+ import com.cy_siao.dao.PersonDao;
++import com.cy_siao.dao.RoomDao;
++import com.cy_siao.dao.StayDao;
++import com.cy_siao.model.Room;
++import com.cy_siao.model.Stay;
+ import com.cy_siao.model.person.Address;
+ import com.cy_siao.model.person.Gender;
+ import com.cy_siao.model.person.Person;
+@@ -15,5 +19,8 @@
+         DatabaseUtil dbUtil = new DatabaseUtil();
+         dbUtil.getConnection();
+         System.out.println("Connected");
++        RoomDao roomDao =new RoomDao();
++        Room room = new Room("Salle Diamant",3);
++        roomDao.create(room);
+     }
+ }

@@ -31,8 +31,7 @@ public class Room {
     /**
      * Constructor with parameters
      */
-    public Room(int id, String name, int nbBedsMax) {
-        this.id = id;
+    public Room(String name, int nbBedsMax) {
         this.name = name;
         this.nbBedsMax = nbBedsMax;
     }

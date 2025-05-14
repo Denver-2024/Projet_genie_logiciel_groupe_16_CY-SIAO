@@ -74,17 +74,16 @@ public class Bed {
         return true;
     }
 
-    /**
-     * Assigns a person to this bed for a given period, if available.
-     */
-    public void assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
+    public Stay assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
         if (isAvailable(dateArrival, dateDeparture)) {
             Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
             stays.add(newStay);
+            return newStay;
         } else {
             throw new IllegalStateException("Bed is not available during the selected period.");
         }
     }
+
 
     /**
      * Frees the bed for a given person by removing their stays.

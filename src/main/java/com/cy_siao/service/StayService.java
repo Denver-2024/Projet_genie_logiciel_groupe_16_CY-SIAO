@@ -74,10 +74,35 @@ public class StayService {
         return false;
     }
 
-    // faire une fonction pour supprimmer le lien entre une personne et un lit si le lien existe
-    // fonction pour savoir si une personne est assigné a un lit
-    // modifier date arrive
-    // modifier date depart
-    // sejour finis : renvoie vrai si la date de depart est avant aujourd'hui
-    // sejour en cours : renvoie vrai si le sejour est en cours
+    /**
+     * 
+     * @param person
+     * @param bed
+     * @return
+     */
+    public boolean isAssign(Person person, Bed bed){
+        List<Stay> stays;
+            stays = stayDao.findAll(person, bed); // remove person and bed when is corriged
+            for (Stay stay: stays){
+                if (stay.getBed() == bed && stay.getPerson() == person){
+                    return true;
+                }
+            }
+        return false;
+    }
+
+    /**
+     * 
+     * @param person
+     * @param bed
+     * @return
+     */
+    public boolean unassign(Person person, Bed bed){
+        if (isAssign(person, bed)){
+            stayDao.delete(person.getId());
+            return true;
+        }
+        return false;
+    }
+
 }

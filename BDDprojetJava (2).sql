@@ -53,8 +53,9 @@ CREATE TABLE Bed (
 
 CREATE TABLE RestrictionRoom (
     IdRoom INT REFERENCES Room(Id),
-    IdRestriction INT REFERENCES RestrictionType(Id),
-    PRIMARY KEY (IdRoom, IdRestriction)
+    IdRestrictionType INT REFERENCES RestrictionType(Id),
+    logicOperator VARCHAR(3) CHECK (logicOperator IN ('AND', 'OR')),
+    PRIMARY KEY (IdRoom, IdRestrictionType)
 );
 
 CREATE TABLE Relationship (

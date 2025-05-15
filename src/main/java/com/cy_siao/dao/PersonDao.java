@@ -94,7 +94,7 @@ public class PersonDao {
         }
         if (person.getGender() != null) {
             sqlBuilder.append("gender = ?,");
-            values.add(person.getGender().toString());
+            values.add(person.getGender().toString().charAt(0));
         }
         if (person.getAge() > 0) {
             sqlBuilder.append("age = ?,");
@@ -173,12 +173,12 @@ public class PersonDao {
     private Person extractPersonFromResultSet(ResultSet rs) throws SQLException {
         Person person = new Person();
         person.setId(rs.getInt("id"));
-        person.setFirstName(rs.getString("first_name"));
-        person.setLastName(rs.getString("last_name"));
+        person.setFirstName(rs.getString("firstName"));
+        person.setLastName(rs.getString("lastName"));
         person.setGender(Gender.valueOf(rs.getString("gender")));
         person.setAge(rs.getInt("age"));
-        person.setPlaceOfBirth(rs.getString("place_of_birth"));
-        person.setSocialSecurityNumber(rs.getInt("social_security_number"));
+        person.setPlaceOfBirth(rs.getString("placeOfBirth"));
+        person.setSocialSecurityNumber(rs.getInt("socialSecurityNumber"));
         return person;
     }
     /**

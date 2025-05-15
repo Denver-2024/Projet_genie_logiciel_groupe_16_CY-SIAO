@@ -20,7 +20,7 @@ public class StayDao {
         this.databaseUtil = new DatabaseUtil();
     }
 
-    public void create(Stay stay) throws SQLException {
+    public void create(Stay stay) {
         String sql = "INSERT INTO stay (IdPerson, IdBed, dateArrival, dateDeparture) VALUES (?, ?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -35,10 +35,12 @@ public class StayDao {
             if (rs.next()) {
                 stay.setId(rs.getInt(1));
             }
+        } catch (SQLException e) {
+            System.err.println("Error in creating stay: " + e.getMessage());
         }
     }
 
-    public Stay findById(int id) throws SQLException {
+    public Stay findById(int id) {
         String sql = "SELECT * FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -55,7 +57,7 @@ public class StayDao {
         return null;
     }
 
-    public Stay findByPersonId(int id) throws SQLException {
+    public Stay findByPersonId(int id) {
         String sql = "SELECT * FROM stay WHERE IdPerson = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -71,7 +73,7 @@ public class StayDao {
         return null;
     }
 
-    public Stay findByBedId(int id) throws SQLException {
+    public Stay findByBedId(int id) {
         String sql = "SELECT * FROM stay WHERE IdBed = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -87,7 +89,7 @@ public class StayDao {
         return null;
     }
 
-    public List<Stay> findAll() throws SQLException {
+    public List<Stay> findAll() {
         List<Stay> stays = new ArrayList<>();
         String sql = "SELECT * FROM stay";
         try (Connection conn = databaseUtil.getConnection();
@@ -104,7 +106,7 @@ public class StayDao {
         return stays;
     }
 
-    public void update(Stay stay) throws SQLException {
+    public void update(Stay stay) {
         String sql = "UPDATE stay SET IdPerson = ?, IdBed = ?, dateArrival = ?, dateDeparture = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -115,16 +117,20 @@ public class StayDao {
             pstmt.setDate(4, Date.valueOf(stay.getDateDeparture()));
             pstmt.setInt(5, stay.getBed().getId()); // Remplacer si stay a un champ id
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in updating stay: " + e.getMessage());
         }
     }
 
-    public void delete(int id) throws SQLException {
+    public void delete(int id) {
         String sql = "DELETE FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in deleting stay: " + e.getMessage());
         }
     }
 

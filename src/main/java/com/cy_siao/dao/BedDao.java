@@ -15,7 +15,7 @@ public class BedDao {
     }
 
     public void create(Bed bed) throws SQLException {
-        String sql = "INSERT INTO beds (isDouble,isOccupied,idRoom) VALUES (?,?,?)";
+        String sql = "INSERT INTO bed (isDouble,isOccupied,idRoom) VALUES (?,?,?)";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setBoolean(1, bed.isItDouble());
@@ -32,7 +32,7 @@ public class BedDao {
         }
     }
 
-    public Bed findById(int id) throws SQLException {
+    public Bed findById(int id) {
         String sql = "SELECT * FROM beds WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -42,11 +42,13 @@ public class BedDao {
                     return extractBedFromResultSet(rs);
                 }
             }
+        } catch (SQLException e) {
+            System.err.println("Error in finding bed by id: " + e.getMessage());
         }
         return null;
     }
 
-    public List<Bed> findAll() throws SQLException {
+    public List<Bed> findAll() {
         List<Bed> beds = new ArrayList<>();
         String sql = "SELECT * FROM beds";
         try (Connection conn = databaseUtil.getConnection();
@@ -55,11 +57,13 @@ public class BedDao {
             while (rs.next()) {
                 beds.add(extractBedFromResultSet(rs));
             }
+        } catch (SQLException e) {
+            System.err.println("Error in finding all beds: " + e.getMessage());
         }
         return beds;
     }
 
-    public void update(Bed bed) throws SQLException {
+    public void update(Bed bed) {
         String sql = "UPDATE beds SET isDouble = ?,isOccupied = ?, idRoom= ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -68,15 +72,19 @@ public class BedDao {
             pstmt.setInt(3, bed.getIdRoom());
             pstmt.setInt(4, bed.getId());
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in updating bed: " + e.getMessage());
         }
     }
 
-    public void delete(int id) throws SQLException {
+    public void delete(int id) {
         String sql = "DELETE FROM beds WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in deleting bed: " + e.getMessage());
         }
     }
 

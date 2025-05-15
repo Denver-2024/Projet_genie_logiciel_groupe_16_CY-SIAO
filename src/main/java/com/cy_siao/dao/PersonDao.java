@@ -1,6 +1,5 @@
 package com.cy_siao.dao;
 
-import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
@@ -133,7 +132,7 @@ public class PersonDao {
      * @param id the ID of the person to retrieve
      * @return the retrieved Person entity, or null if not found
      */
-    public Person getPersonById(int id) {
+    public Person findById(int id) {
         String sql = "SELECT * FROM person WHERE id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -154,7 +153,7 @@ public class PersonDao {
      *
      * @return a list of all persons found in the database. Returns an empty list if no records are found.
      */
-    public List<Person> getAllPersons() {
+    public List<Person> findAll() {
         List<Person> persons = new ArrayList<>();
         String sql = "SELECT * FROM person";
         try (Connection connection = DatabaseUtil.getConnection();

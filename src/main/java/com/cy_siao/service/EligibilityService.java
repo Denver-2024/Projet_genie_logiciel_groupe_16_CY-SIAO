@@ -9,6 +9,16 @@ import java.util.List;
 
 public class EligibilityService {
 
+    public EligibilityService(){}
+
+    /**
+     * Evaluates whether a given person is allowed in a specified room based on a list of restrictions.
+     *
+     * @param person       The person to evaluate for access.
+     * @param room         The room in question where access is evaluated.
+     * @param restrictions A list of restriction rules to evaluate the person's access.
+     * @return true if the person meets the criteria defined by the restrictions for the room; false otherwise.
+     */
     public boolean isPersonAllowedInRoom(Person person, Room room, List<RestrictionRoom> restrictions) {
         boolean finalResult = (restrictions.get(0).getLogicOperator().equals("AND")) ? true : false;
 
@@ -26,6 +36,9 @@ public class EligibilityService {
         return finalResult;
     }
 
+    /*
+     * Evaluates whether a given person meets the criteria defined by a restriction rule.
+     */
     private boolean matchesRestriction(Person person, RestrictionType restriction) {
         boolean ageOk = true;
         boolean genderOk = true;

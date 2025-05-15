@@ -52,7 +52,7 @@ public class PersonDao {
                 String.join(",", Collections.nCopies(values.size(), "?")) + ")";
         
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             // Définition des paramètres
             for (int i = 0; i < values.size(); i++) {

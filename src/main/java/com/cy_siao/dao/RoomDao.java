@@ -50,8 +50,8 @@ public class RoomDao {
         List<Room> rooms = new ArrayList<>();
         String sql = "SELECT * FROM room";
         try (Connection conn = databaseUtil.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 rooms.add(extractRoomFromResultSet(rs));
@@ -75,7 +75,7 @@ public class RoomDao {
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM room WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();

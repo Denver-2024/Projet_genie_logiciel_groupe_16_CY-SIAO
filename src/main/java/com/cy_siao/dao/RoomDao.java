@@ -18,7 +18,7 @@ public class RoomDao {
     public void create(Room room) throws SQLException {
         String sql = "INSERT INTO room (name, nbbedsmax) VALUES (?, ?)";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, room.getName());
             pstmt.setInt(2, room.getNbBedsMax());
@@ -34,7 +34,7 @@ public class RoomDao {
     public Room findById(int id) throws SQLException {
         String sql = "SELECT * FROM room WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {

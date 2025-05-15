@@ -13,9 +13,13 @@ import java.util.List;
 public class StayDao {
 
     private final DatabaseUtil databaseUtil;
+    private final PersonDao personDao;
+    private final BedDao bedDao;
 
     public StayDao() {
         this.databaseUtil = new DatabaseUtil();
+        this.personDao = new PersonDao();
+        this.bedDao = new BedDao();
     }
 
     public void create(Stay stay) throws SQLException {
@@ -31,26 +35,27 @@ public class StayDao {
 
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                // stay.setId(rs.getInt(1)); // si tu ajoutes un champ id dans Stay
+                // stay.setId(rs.getInt(1)); // si le modèle Stay contient un champ id
             }
         }
     }
 
-    public Stay findById(int id, Person person, Bed bed) throws SQLException {
+    public Stay findById(int id) throws SQLException {
         String sql = "SELECT * FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return extractStayFromResultSet(rs, person, bed);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractStayFromResultSet(rs);
+                }
             }
         }
         return null;
     }
 
-    public List<Stay> findAll(Person person, Bed bed) throws SQLException {
+    public List<Stay> findAll() throws SQLException {
         List<Stay> stays = new ArrayList<>();
         String sql = "SELECT * FROM stay";
         try (Connection conn = databaseUtil.getConnection();
@@ -58,13 +63,13 @@ public class StayDao {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                stays.add(extractStayFromResultSet(rs, person, bed));
+                stays.add(extractStayFromResultSet(rs));
             }
         }
         return stays;
     }
 
-    public void update(Stay stay) throws SQLException {
+    public void update(Stay stay, int stayId) throws SQLException {
         String sql = "UPDATE stay SET idperson = ?, idbed = ?, datearrival = ?, datedeparture = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -73,7 +78,7 @@ public class StayDao {
             pstmt.setInt(2, stay.getBed().getId());
             pstmt.setDate(3, Date.valueOf(stay.getDateArrival()));
             pstmt.setDate(4, Date.valueOf(stay.getDateDeparture()));
-            pstmt.setInt(5, /* stay.getId() */ stay.getBed().getId()); // corriger si tu ajoutes un id à Stay
+            pstmt.setInt(5, stayId);
             pstmt.executeUpdate();
         }
     }
@@ -88,9 +93,16 @@ public class StayDao {
         }
     }
 
-    private Stay extractStayFromResultSet(ResultSet rs, Person person, Bed bed) throws SQLException {
+    private Stay extractStayFromResultSet(ResultSet rs) throws SQLException {
+        int personId = rs.getInt("idperson");
+        int bedId = rs.getInt("idbed");
+
+        Person person = personDao.findById(personId);
+        Bed bed = bedDao.findById(bedId);
+
         LocalDate dateArrival = rs.getDate("datearrival").toLocalDate();
         LocalDate dateDeparture = rs.getDate("datedeparture").toLocalDate();
+
         return new Stay(bed, person, dateArrival, dateDeparture);
     }
 }

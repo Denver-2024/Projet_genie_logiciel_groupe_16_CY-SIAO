@@ -79,5 +79,9 @@ private Knows extractFromResultSet(ResultSet rset){
         int addressId = rset.getInt("IdAddress");
         return new Knows(personId, addressId);
     }
+    catch (SQLException e) {
+        System.err.println("An error occurred: " + e.getMessage());
+    }
+    return null;
 }
 }

@@ -78,9 +78,10 @@ public class Bed {
         if (isAvailable(dateArrival, dateDeparture)) {
             Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
             stays.add(newStay);
-            return newStay;
-        } else {
-            throw new IllegalStateException("Bed is not available during the selected period.");
+            return true;
+        } 
+        else {
+            return false;
         }
     }
 

@@ -31,8 +31,7 @@ public class Room {
     /**
      * Constructor with parameters
      */
-    public Room(int id, String name, int nbBedsMax) {
-        this.id = id;
+    public Room(String name, int nbBedsMax) {
         this.name = name;
         this.nbBedsMax = nbBedsMax;
     }
@@ -103,17 +102,6 @@ public class Room {
         restrictions.remove(restriction);
     }
 
-    /**
-     * Checks if a person respects all the room's restrictions.
-     */
-    public boolean isCompatible(Person person) {
-        for (RestrictionType restriction : restrictions) {
-            if (!restriction.isRespectedBy(person)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Returns the list of available beds for a given date range.

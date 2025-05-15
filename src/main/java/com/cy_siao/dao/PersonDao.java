@@ -23,27 +23,27 @@ public class PersonDao {
         
         // Construction dynamique de la requête
         if (person.getFirstName() != null) {
-            sqlBuilder.append("first_name,");
+            sqlBuilder.append("firstName,");
             values.add(person.getFirstName());
         }
         if (person.getLastName() != null) {
-            sqlBuilder.append("last_name,");
+            sqlBuilder.append("lastName,");
             values.add(person.getLastName());
         }
         if (person.getGender() != null) {
             sqlBuilder.append("gender,");
-            values.add(person.getGender().toString());
+            values.add(person.getGender().toString().charAt(0));
         }
         if (person.getAge() > 0) {
             sqlBuilder.append("age,");
             values.add(person.getAge());
         }
         if (person.getPlaceOfBirth() != null) {
-            sqlBuilder.append("place_of_birth,");
+            sqlBuilder.append("placeOfBirth,");
             values.add(person.getPlaceOfBirth());
         }
         if (person.getSocialSecurityNumber() > 0) {
-            sqlBuilder.append("social_security_number,");
+            sqlBuilder.append("socialSecurityNumber,");
             values.add(person.getSocialSecurityNumber());
         }
         
@@ -52,14 +52,22 @@ public class PersonDao {
                 String.join(",", Collections.nCopies(values.size(), "?")) + ")";
         
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            
+             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
             // Définition des paramètres
             for (int i = 0; i < values.size(); i++) {
                 statement.setObject(i + 1, values.get(i));
             }
-            
+
             statement.executeUpdate();
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    person.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating person failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'insertion de la personne dans la base de données: " + e.getMessage());
         }
@@ -78,11 +86,11 @@ public class PersonDao {
         List<Object> values = new ArrayList<>();
         
         if (person.getFirstName() != null) {
-            sqlBuilder.append("first_name = ?,");
+            sqlBuilder.append("firstName = ?,");
             values.add(person.getFirstName());
         }
         if (person.getLastName() != null) {
-            sqlBuilder.append("last_name = ?,");
+            sqlBuilder.append("lastName = ?,");
             values.add(person.getLastName());
         }
         if (person.getGender() != null) {
@@ -94,11 +102,11 @@ public class PersonDao {
             values.add(person.getAge());
         }
         if (person.getPlaceOfBirth() != null) {
-            sqlBuilder.append("place_of_birth = ?,");
+            sqlBuilder.append("placeOfBirth = ?,");
             values.add(person.getPlaceOfBirth());
         }
         if (person.getSocialSecurityNumber() > 0) {
-            sqlBuilder.append("social_security_number = ?,");
+            sqlBuilder.append("socialSecurityNumber = ?,");
             values.add(person.getSocialSecurityNumber());
         }
         

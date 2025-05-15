@@ -13,8 +13,8 @@ import java.util.List;
 public class StayDao {
 
     private final DatabaseUtil databaseUtil;
-    private final PersonDao personDao;
-    private final BedDao bedDao;
+    private PersonDao personDao = new PersonDao();
+    private BedDao bedDao = new BedDao();
 
     public StayDao() {
         this.databaseUtil = new DatabaseUtil();
@@ -22,8 +22,8 @@ public class StayDao {
         this.bedDao = new BedDao();
     }
 
-    public void create(Stay stay) throws SQLException {
-        String sql = "INSERT INTO stay (idperson, idbed, datearrival, datedeparture) VALUES (?, ?, ?, ?)";
+    public void create(Stay stay) {
+        String sql = "INSERT INTO stay (IdPerson, IdBed, dateArrival, dateDeparture) VALUES (?, ?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -35,27 +35,63 @@ public class StayDao {
 
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                // stay.setId(rs.getInt(1)); // si le modèle Stay contient un champ id
+                stay.setId(rs.getInt(1));
             }
+        } catch (SQLException e) {
+            System.err.println("Error in creating stay: " + e.getMessage());
         }
     }
 
-    public Stay findById(int id) throws SQLException {
+    public Stay findById(int id) {
         String sql = "SELECT * FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return extractStayFromResultSet(rs);
-                }
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return extractStayFromResultSet(rs);
             }
+        } catch (SQLException e) {
+            System.err.println("Error in finding a stay by id: " + e.getMessage());
+            return null;
         }
         return null;
     }
 
-    public List<Stay> findAll() throws SQLException {
+    public Stay findByPersonId(int id) {
+        String sql = "SELECT * FROM stay WHERE IdPerson = ?";
+        try (Connection conn = databaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return extractStayFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error in finding a stay by person id: " + e.getMessage());
+            return null;
+        }
+        return null;
+    }
+
+    public Stay findByBedId(int id) {
+        String sql = "SELECT * FROM stay WHERE IdBed = ?";
+        try (Connection conn = databaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return extractStayFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error in finding a stay by bed id: " + e.getMessage());
+            return null;
+        }
+        return null;
+    }
+
+    public List<Stay> findAll() {
         List<Stay> stays = new ArrayList<>();
         String sql = "SELECT * FROM stay";
         try (Connection conn = databaseUtil.getConnection();
@@ -65,12 +101,15 @@ public class StayDao {
             while (rs.next()) {
                 stays.add(extractStayFromResultSet(rs));
             }
+        } catch (SQLException e) {
+            System.err.println("Error in finding all stays: " + e.getMessage());
+            return null;
         }
         return stays;
     }
 
-    public void update(Stay stay, int stayId) throws SQLException {
-        String sql = "UPDATE stay SET idperson = ?, idbed = ?, datearrival = ?, datedeparture = ? WHERE id = ?";
+    public void update(Stay stay) {
+        String sql = "UPDATE stay SET IdPerson = ?, IdBed = ?, dateArrival = ?, dateDeparture = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -80,29 +119,28 @@ public class StayDao {
             pstmt.setDate(4, Date.valueOf(stay.getDateDeparture()));
             pstmt.setInt(5, stayId);
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in updating stay: " + e.getMessage());
         }
     }
 
-    public void delete(int id) throws SQLException {
+    public void delete(int id) {
         String sql = "DELETE FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in deleting stay: " + e.getMessage());
         }
     }
 
     private Stay extractStayFromResultSet(ResultSet rs) throws SQLException {
-        int personId = rs.getInt("idperson");
-        int bedId = rs.getInt("idbed");
-
-        Person person = personDao.findById(personId);
-        Bed bed = bedDao.findById(bedId);
-
         LocalDate dateArrival = rs.getDate("datearrival").toLocalDate();
         LocalDate dateDeparture = rs.getDate("datedeparture").toLocalDate();
-
+        Bed  bed = bedDao.findById(rs.getInt("idBed"));
+        Person person = personDao.findById(rs.getInt("idPerson"));
         return new Stay(bed, person, dateArrival, dateDeparture);
     }
 }

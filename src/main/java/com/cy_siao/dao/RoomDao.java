@@ -15,7 +15,7 @@ public class RoomDao {
         this.databaseUtil = new DatabaseUtil();
     }
 
-    public void create(Room room) throws SQLException {
+    public void create(Room room) {
         String sql = "INSERT INTO room (name, nbbedsmax) VALUES (?, ?)";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -28,10 +28,12 @@ public class RoomDao {
             if (rs.next()) {
                 room.setId(rs.getInt(1));
             }
+        } catch (SQLException e) {
+            System.err.println("Error in creating room: " + e.getMessage());
         }
     }
 
-    public Room findById(int id) throws SQLException {
+    public Room findById(int id) {
         String sql = "SELECT * FROM room WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -42,11 +44,13 @@ public class RoomDao {
                     return extractRoomFromResultSet(rs);
                 }
             }
+        } catch (SQLException e) {
+            System.err.println("Error in finding room by id: " + e.getMessage());
         }
         return null;
     }
 
-    public List<Room> findAll() throws SQLException {
+    public List<Room> findAll() {
         List<Room> rooms = new ArrayList<>();
         String sql = "SELECT * FROM room";
         try (Connection conn = databaseUtil.getConnection();
@@ -56,11 +60,13 @@ public class RoomDao {
             while (rs.next()) {
                 rooms.add(extractRoomFromResultSet(rs));
             }
+        } catch (SQLException e) {
+            System.err.println("Error in finding all rooms: " + e.getMessage());
         }
         return rooms;
     }
 
-    public void update(Room room) throws SQLException {
+    public void update(Room room) {
         String sql = "UPDATE room SET name = ?, nbbedsmax = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -69,16 +75,20 @@ public class RoomDao {
             pstmt.setInt(2, room.getNbBedsMax());
             pstmt.setInt(3, room.getId());
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in updating room: " + e.getMessage());
         }
     }
 
-    public void delete(int id) throws SQLException {
+    public void delete(int id) {
         String sql = "DELETE FROM room WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error in deleting room: " + e.getMessage());
         }
     }
 

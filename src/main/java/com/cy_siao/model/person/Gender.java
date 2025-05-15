@@ -1,8 +1,8 @@
 package com.cy_siao.model.person;
 
 public enum Gender {
-    MALE("Male"),
-    FEMALE("Female");
+    M("Male"),
+    F("Female");
 
     private final String displayName;
 

@@ -74,6 +74,7 @@ public class Bed {
         return true;
     }
 
+    // remove when is corriged
     public boolean assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
         if (isAvailable(dateArrival, dateDeparture)) {
             Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
@@ -83,6 +84,11 @@ public class Bed {
         else {
             return false;
         }
+    }
+
+    // add stay from other file and allow to check date with isAvaible
+    public void addStay(Stay stay){
+        stays.add(stay);
     }
 
 

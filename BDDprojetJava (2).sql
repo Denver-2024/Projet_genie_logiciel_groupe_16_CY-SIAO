@@ -24,7 +24,7 @@ CREATE TABLE Person (
     lastName VARCHAR(50) NOT NULL,
     firstName VARCHAR(50) NOT NULL,
     age INT CHECK (age BETWEEN 0 AND 200),
-    gender CHAR(1) CHECK (gender IN ('F', 'M')) NOT NULL,
+    gender VARCHAR(6) CHECK (gender IN ('FEMALE', 'MALE')) NOT NULL,
     placeOfBirth VARCHAR(50),
     socialSecurityNumber BIGINT CHECK (socialSecurityNumber > 0 AND LENGTH(socialSecurityNumber::TEXT) = 13)
 );
@@ -53,8 +53,9 @@ CREATE TABLE Bed (
 
 CREATE TABLE RestrictionRoom (
     IdRoom INT REFERENCES Room(Id),
-    IdRestriction INT REFERENCES RestrictionType(Id),
-    PRIMARY KEY (IdRoom, IdRestriction)
+    IdRestrictionType INT REFERENCES RestrictionType(Id),
+    logicOperator VARCHAR(3) CHECK (logicOperator IN ('AND', 'OR')),
+    PRIMARY KEY (IdRoom, IdRestrictionType)
 );
 
 CREATE TABLE Relationship (

@@ -31,7 +31,7 @@ public class StayDao {
 
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                // Tu peux stocker l'ID si tu l'ajoutes dans la classe Stay
+                // You can store the ID if you add it in class
                 // stay.setId(rs.getInt(1));
             }
         }

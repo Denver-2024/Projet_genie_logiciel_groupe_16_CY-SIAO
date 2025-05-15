@@ -19,7 +19,7 @@ public class StayDao {
     }
 
     public void create(Stay stay) throws SQLException {
-        String sql = "INSERT INTO stay (personid, bedid, datearrival, datedeparture) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO stay (idperson, idbed, datearrival, datedeparture) VALUES (?, ?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -31,8 +31,7 @@ public class StayDao {
 
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                // Tu peux stocker l'ID si tu l'ajoutes dans la classe Stay
-                // stay.setId(rs.getInt(1));
+                // stay.setId(rs.getInt(1)); // si tu ajoutes un champ id dans Stay
             }
         }
     }
@@ -66,7 +65,7 @@ public class StayDao {
     }
 
     public void update(Stay stay) throws SQLException {
-        String sql = "UPDATE stay SET personid = ?, bedid = ?, datearrival = ?, datedeparture = ? WHERE id = ?";
+        String sql = "UPDATE stay SET idperson = ?, idbed = ?, datearrival = ?, datedeparture = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -74,7 +73,7 @@ public class StayDao {
             pstmt.setInt(2, stay.getBed().getId());
             pstmt.setDate(3, Date.valueOf(stay.getDateArrival()));
             pstmt.setDate(4, Date.valueOf(stay.getDateDeparture()));
-            pstmt.setInt(5, stay.getBed().getId()); // Remplacer si stay a un champ id
+            pstmt.setInt(5, /* stay.getId() */ stay.getBed().getId()); // corriger si tu ajoutes un id à Stay
             pstmt.executeUpdate();
         }
     }

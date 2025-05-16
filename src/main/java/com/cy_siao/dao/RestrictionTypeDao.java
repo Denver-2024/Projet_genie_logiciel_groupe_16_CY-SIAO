@@ -20,7 +20,7 @@ public class RestrictionTypeDao {
         String sql= "INSERT INTO RestrictionType (label, minAge, maxAge, genderRestriction) VALUES (?, ?, ?, ?)";
         try (Connection connect = databaseUtil.getConnection();
         PreparedStatement pst= connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-        pst.setString(1, restrictionType.getDescription());
+        pst.setString(1, restrictionType.getLabel());
         pst.setInt(2, restrictionType.getMinAge());
         pst.setInt(3, restrictionType.getMaxAge());
         pst.setString(4, restrictionType.getGenderRestriction().name());
@@ -74,7 +74,7 @@ public void update(RestrictionType restrictionType){
     String sql ="UPDATE RestrictionType SET label=?, minAge=?, maxAge=?, genderRestriction=? WHERE Id=?";
     try (Connection connect = databaseUtil.getConnection();
         PreparedStatement pst= connect.prepareStatement(sql)){
-        pst.setString(1, restrictionType.getDescription());
+        pst.setString(1, restrictionType.getLabel());
         pst.setInt(2, restrictionType.getMinAge());
         pst.setInt(3, restrictionType.getMaxAge());
         pst.setString(4, restrictionType.getGenderRestriction().name());
@@ -102,7 +102,7 @@ public void delete(int id){
 private RestrictionType extractRestrictionTypeFromResultSet(ResultSet rset){
     try {RestrictionType restrictionType=new RestrictionType();
     restrictionType.setId(rset.getInt("Id"));
-    restrictionType.setDescription(rset.getString("label"));
+    restrictionType.setLabel(rset.getString("label"));
     restrictionType.setMinAge(rset.getInt("minAge"));
     restrictionType.setMaxAge(rset.getInt("maxAge"));
     restrictionType.setGenderRestriction(Gender.valueOf(rset.getString("genderRestriction")));

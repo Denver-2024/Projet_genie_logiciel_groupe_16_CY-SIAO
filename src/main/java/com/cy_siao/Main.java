@@ -8,12 +8,7 @@ import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Relationship;
 import com.cy_siao.util.DatabaseUtil;
 
-<<<<<<< HEAD
-import com.cy_siao.controller.CLIController;
-
-=======
 import java.sql.Connection;
->>>>>>> origin/DavidService
 import java.sql.SQLException;
 import java.util.List;
 
@@ -194,12 +189,8 @@ public class Main {
         personDao.deletePerson(person.getId());
         System.out.println("Deleted Person: " + person.getId());
 
-<<<<<<< HEAD
-        //cliController.start(); boucle infini je sais pas pourquoi ?
-=======
          */
 
         connexion.close();
->>>>>>> origin/DavidService
     }
 }

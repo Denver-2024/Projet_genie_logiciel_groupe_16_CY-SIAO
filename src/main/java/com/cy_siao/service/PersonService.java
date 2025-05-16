@@ -15,11 +15,18 @@ public class PersonService {
     }
 
     public List<Person> getAllPersons() {
-        return personDao.getAllPersons();
+        return personDao.findAll(); // findAll
     }
 
     public Person getPersonById(int id) {
-        return personDao.getPersonById(id);
+        List<Person> researchIn; // Rechercher l'id dans cette list
+        researchIn = getAllPersons();
+        for (Person p: researchIn){
+            if (p.getId() == id){
+                return p;
+            }
+        }
+        return null;
     }
 
     public void createPerson(Person person) {
@@ -43,13 +50,16 @@ public class PersonService {
         if (person1.getRestrictionType() == null || person2.getRestrictionType() == null) {
             return true; // No restriction blocks
         }
-
+        return false;
+        /*
+        Ecrire les bonnes restrictions et fonction ici car ca ca marche pas
         return person1.getRestrictionType().isRespectedBy(person2)
                 && person2.getRestrictionType().isRespectedBy(person1);
+        */
     }
 
     public void addAddressToPerson(int personId, Address address) {
-        Person person = personDao.getPersonById(personId);
+        Person person = getPersonById(personId);
         if (person == null) {
             throw new IllegalArgumentException("No person found with ID: " + personId);
         }

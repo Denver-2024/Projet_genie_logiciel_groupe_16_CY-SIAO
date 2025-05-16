@@ -23,6 +23,10 @@ public class RestrictionType {
         this.maxAge = maxAge;
     }
 
+    public void setId( int id){ // add seter id
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

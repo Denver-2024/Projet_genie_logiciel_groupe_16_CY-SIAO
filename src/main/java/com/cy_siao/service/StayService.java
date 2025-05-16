@@ -55,7 +55,7 @@ public class StayService {
 
         if (eligibilityService.isPersonAllowedInRoom(person, null, null)){
             List<Stay> stays;
-            stays = stayDao.findAll(person, bed); // remove person and bed when is corriged
+            stays = stayDao.findAll(); // remove person and bed when is corriged
             for (Stay stay: stays){
                 // bed already occuped
                 if (!(stay.getBed().isAvailable(arrival, departure)) && stay.getBed() == bed){
@@ -82,7 +82,7 @@ public class StayService {
      */
     public boolean isAssign(Person person, Bed bed){
         List<Stay> stays;
-            stays = stayDao.findAll(person, bed); // remove person and bed when is corriged
+            stays = stayDao.findAll(); // remove person and bed when is corriged
             for (Stay stay: stays){
                 if (stay.getBed() == bed && stay.getPerson() == person){
                     return true;
@@ -104,5 +104,15 @@ public class StayService {
         }
         return false;
     }
+
+    /**
+     * Frees the bed for a given person by removing their stays.
+     *
+     * @param person Person to remove from the bed
+     */
+    public void free(Bed bed, Person person) {
+        bed.getStays().removeIf(stay -> stay.getPerson().equals(person));
+    }
+
 
 }

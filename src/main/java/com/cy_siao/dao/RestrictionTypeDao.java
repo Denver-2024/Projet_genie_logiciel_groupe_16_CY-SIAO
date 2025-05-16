@@ -21,7 +21,7 @@ public class RestrictionTypeDao {
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            pstmt.setString(1, restriction.getLabel());
+            pstmt.setString(1, restriction.getDescription()); //Label to Description
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
             pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1)); // "M" or "F"
@@ -68,7 +68,7 @@ public class RestrictionTypeDao {
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, restriction.getLabel());
+            pstmt.setString(1, restriction.getDescription()); // Descritpion
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
             pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1)); // "M" or "F"
@@ -94,7 +94,7 @@ public class RestrictionTypeDao {
         Integer maxAge = rs.getObject("maxage") != null ? rs.getInt("maxage") : null;
         String genderCode = rs.getString("genderrestriction");
 
-        Gender gender = "M".equals(genderCode) ? Gender.MALE : Gender.FEMALE;
+        Gender gender = "M".equals(genderCode) ? Gender.M : Gender.F; //MALE -> M and FEMALE -> F
 
         return new RestrictionType(id, label, gender, minAge, maxAge);
     }

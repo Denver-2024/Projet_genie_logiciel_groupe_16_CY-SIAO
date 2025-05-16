@@ -33,7 +33,7 @@ public class BedDao {
     }
 
     public Bed findById(int id) {
-        String sql = "SELECT * FROM beds WHERE id = ?";
+        String sql = "SELECT * FROM bed WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
@@ -50,7 +50,7 @@ public class BedDao {
 
     public List<Bed> findAll() {
         List<Bed> beds = new ArrayList<>();
-        String sql = "SELECT * FROM beds";
+        String sql = "SELECT * FROM bed";
         try (Connection conn = databaseUtil.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)) {
@@ -64,7 +64,7 @@ public class BedDao {
     }
 
     public void update(Bed bed) {
-        String sql = "UPDATE beds SET isDouble = ?,isOccupied = ?, idRoom= ? WHERE id = ?";
+        String sql = "UPDATE bed SET isDouble = ?,isOccupied = ?, idRoom= ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setBoolean(1, bed.isItDouble());
@@ -78,7 +78,7 @@ public class BedDao {
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM beds WHERE id = ?";
+        String sql = "DELETE FROM bed WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);

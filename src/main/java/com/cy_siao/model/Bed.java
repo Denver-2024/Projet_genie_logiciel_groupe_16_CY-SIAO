@@ -61,6 +61,10 @@ public class Bed {
         this.idRoom = idRoom;
     }
 
+    public List<Stay> getStays(){
+        return stays;
+    }
+
     /**
      * Returns true if the bed is available for the given date range (no overlap with existing stays).
      */
@@ -74,31 +78,9 @@ public class Bed {
         return true;
     }
 
-    // remove when is corriged
-    public boolean assignPerson(Person person, LocalDate dateArrival, LocalDate dateDeparture) {
-        if (isAvailable(dateArrival, dateDeparture)) {
-            Stay newStay = new Stay(this, person, dateArrival, dateDeparture);
-            stays.add(newStay);
-            return true;
-        } 
-        else {
-            return false;
-        }
-    }
-
     // add stay from other file and allow to check date with isAvaible
     public void addStay(Stay stay){
         stays.add(stay);
-    }
-
-
-    /**
-     * Frees the bed for a given person by removing their stays.
-     *
-     * @param person Person to remove from the bed
-     */
-    public void free(Person person) {
-        stays.removeIf(stay -> stay.getPerson().equals(person));
     }
 
     public boolean isOccupied() {

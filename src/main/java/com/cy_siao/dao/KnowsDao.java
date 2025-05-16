@@ -34,7 +34,7 @@ public class KnowsDao{
             pst.setInt(2, addressId);
             try (ResultSet rset = pst.executeQuery()) {
                 if (rset.next()) {
-                    return extractKnowsFromResultSet(rset);
+                    return extractFromResultSet(rset);
                 }
             }
         } catch (SQLException e) {
@@ -52,12 +52,12 @@ public class KnowsDao{
             while (rset.next()) {
                 int personId = rset.getInt("IdPerson");
                 int addressId = rset.getInt("IdAddress");
-                list.add(new Knows(personId, addressId));
+                knowledge.add(new Knows(personId, addressId));
             }
         } catch (SQLException e) {
             System.err.println("An error occurred when trying to find all Knows: " + e.getMessage());
         }
-        return list;
+        return knowledge;
     }
 
     public void delete(int personId, int addressId) {

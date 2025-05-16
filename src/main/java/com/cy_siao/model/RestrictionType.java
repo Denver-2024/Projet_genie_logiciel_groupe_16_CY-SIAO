@@ -15,12 +15,13 @@ public class RestrictionType {
     private int minAge;
     private int maxAge;
 
+    public RestrictionType(int id, String description, Gender GenderRestriction, int minAge, int maxAge){
         this.id = id;
         this.description = description;
-        this.GenderRestriction = GenderRestriction;
+        this.genderRestriction = GenderRestriction;
         this.minAge = minAge;
         this.maxAge = maxAge;
-    }*/
+    }
 
     public void setId( int id){ // add seter id
         this.id = id;
@@ -44,10 +45,6 @@ public class RestrictionType {
 
     public Integer getMaxAge() {
         return maxAge;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setDescription(String description) {

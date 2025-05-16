@@ -27,7 +27,7 @@ public class CLIController {
 
             switch (option) {
                 case 1:
-                    personController.start(scanner);// pourquoi entrer la reponse ensuite
+                    personController.start(scanner);// pourquoi entrer la reponse
                     break;
                 case 2:
                     stayController.start(scanner);
@@ -40,6 +40,6 @@ public class CLIController {
             }
         }while(option !=0);
 
-    scanner.close();
+        scanner.close();
     }
 }

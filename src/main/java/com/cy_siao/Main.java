@@ -148,6 +148,6 @@ public class Main {
         personDao.deletePerson(person.getId());
         System.out.println("Deleted Person: " + person.getId());
 
-        cliController.start();
+        //cliController.start(); boucle infini je sais pas pourquoi ?
     }
 }

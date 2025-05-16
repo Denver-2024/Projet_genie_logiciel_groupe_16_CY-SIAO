@@ -10,6 +10,7 @@ import com.cy_siao.model.Bed;
 import com.cy_siao.model.Stay;
 import com.cy_siao.model.Room;
 import com.cy_siao.model.RestrictionRoom;
+import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.person.Person;
 
 public class StayService {
@@ -52,8 +53,9 @@ public class StayService {
         room = roomDao.findById(bed.getIdRoom());
 
         List<RestrictionRoom> restrictions;
+        //restrictions = room.getRestrictions();
 
-        if (eligibilityService.isPersonAllowedInRoom(person, null, null)){
+        if (eligibilityService.isPersonAllowedInRoom(person, room, null)){
             List<Stay> stays;
             stays = stayDao.findAll(); // remove person and bed when is corriged
             for (Stay stay: stays){

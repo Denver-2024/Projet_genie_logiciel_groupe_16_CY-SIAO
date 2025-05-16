@@ -2,12 +2,12 @@ package com.cy_siao.controller;
 
 import java.util.Scanner;
 
-public class CliController {
+public class CLIController {
     private PersonController personController;
     private StayController stayController;
     private Scanner scanner = new Scanner(System.in);
 
-    public CliController() {
+    public CLIController() {
         this.personController = new PersonController();
         this.stayController = new StayController();
     }

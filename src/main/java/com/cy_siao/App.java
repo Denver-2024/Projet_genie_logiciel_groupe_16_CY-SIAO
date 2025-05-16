@@ -1,6 +1,6 @@
 package com.cy_siao;
 
-import com.cy_siao.controller.CliController;
+import com.cy_siao.controller.CLIController;
 
 /**
  * Hello world!
@@ -10,7 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        CliController controller = new CliController();
+        CLIController controller = new CLIController();
         controller.start();
     }
 }

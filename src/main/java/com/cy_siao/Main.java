@@ -8,6 +8,7 @@ import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Relationship;
 import com.cy_siao.util.DatabaseUtil;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,7 +16,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         DatabaseUtil dbUtil = new DatabaseUtil();
-        dbUtil.getConnection();
+        Connection connexion = null;
+        connexion = dbUtil.getConnection();
         System.out.println("Connected");
 
         PersonDao personDao = new PersonDao();
@@ -185,5 +187,7 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
+
+        connexion.close();
     }
 }

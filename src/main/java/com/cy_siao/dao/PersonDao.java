@@ -17,7 +17,7 @@ import java.util.List;
 public class PersonDao {
     
     public void createPerson(Person person) {
-        StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person ()");
+        StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person (");
         List<Object> values = new ArrayList<>();
         
         // Construction dynamique de la requête
@@ -68,7 +68,7 @@ public class PersonDao {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Erreur lors de l'insertion de la personne dans la base de données: " + e.getMessage());
+            System.err.println("Error occurred when trying to insert Person in Database " + e.getMessage());
         }
     }
 
@@ -78,7 +78,7 @@ public class PersonDao {
      */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
-            throw new IllegalArgumentException("L'ID de la personne est requis pour la mise à jour");
+            throw new IllegalArgumentException("The person's ID is required for making any update");
         }
         
         StringBuilder sqlBuilder = new StringBuilder("UPDATE person SET ");

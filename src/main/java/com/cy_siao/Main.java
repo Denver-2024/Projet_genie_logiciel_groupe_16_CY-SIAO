@@ -7,6 +7,7 @@ import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Relationship;
 import com.cy_siao.util.DatabaseUtil;
+import com.cy_siao.controller.CLIController;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,11 +32,11 @@ public class Main {
 
         // Test PersonDao
         Person person = new Person();
-        person.setFirstName("John");
-        person.setLastName("Doe");
+        person.setFirstName("Humpich");
+        person.setLastName("Schmidt");
         person.setGender(Gender.MALE);
-        person.setAge(30);
-        person.setPlaceOfBirth("Paris");
+        person.setAge(25);
+        person.setPlaceOfBirth("Cergy");
         personDao.createPerson(person);
         System.out.println("Created Person: " + person.getId());
 
@@ -45,16 +46,16 @@ public class Main {
         List<Person> allPersons = personDao.findAll();
         System.out.println("All Persons count: " + allPersons.size());
 
-        person.setAge(31);
+        person.setAge(20);
         personDao.updatePerson(person);
         System.out.println("Updated Person age to: " + person.getAge());
 
         // Test AddressDao
         Address address = new Address();
-        address.setStreetNumber(10);
-        address.setStreetName("Main Street");
-        address.setPostalCode(75001);
-        address.setCityName("Paris");
+        address.setStreetNumber(15);
+        address.setStreetName("rue de l'hôtel de ville");
+        address.setPostalCode(95000);
+        address.setCityName("Cergy");
         addressDao.create(address);
         System.out.println("Created Address: " + address.getId());
 
@@ -64,14 +65,14 @@ public class Main {
         List<Address> allAddresses = addressDao.findAll();
         System.out.println("All Addresses count: " + allAddresses.size());
 
-        address.setCityName("Lyon");
+        address.setCityName("Marseille");
         addressDao.update(address);
         System.out.println("Updated Address city to: " + address.getCityName());
 
         // Test RoomDao
         Room room = new Room();
-        room.setName("Room A");
-        room.setNbBedsMax(2);
+        room.setName("Room M");
+        room.setNbBedsMax(1);
         roomDao.create(room);
         System.out.println("Created Room: " + room.getId());
 
@@ -81,7 +82,7 @@ public class Main {
         List<Room> allRooms = roomDao.findAll();
         System.out.println("All Rooms count: " + allRooms.size());
 
-        room.setName("Room B");
+        room.setName("Room N");
         roomDao.update(room);
         System.out.println("Updated Room name to: " + room.getName());
 
@@ -147,16 +148,16 @@ public class Main {
         // Test Relationship
         RelationshipDao relationshipDao = new RelationshipDao();
         Person person2 = new Person();
-        person2.setFirstName("Jane");
-        person2.setLastName("Doe");
+        person2.setFirstName("Chloé");
+        person2.setLastName("Schmidt");
         person2.setGender(Gender.FEMALE);
-        person2.setAge(28);
+        person2.setAge(45);
         personDao.createPerson(person2);
 
         Relationship relationship = new Relationship();
         relationship.addPerson(person);
         relationship.addPerson(person2);
-        relationship.setRelationType("Spouse");
+        relationship.setRelationType("Mère-Enfant");
         relationshipDao.create(relationship);
         System.out.println("Created Relationship between persons");
 

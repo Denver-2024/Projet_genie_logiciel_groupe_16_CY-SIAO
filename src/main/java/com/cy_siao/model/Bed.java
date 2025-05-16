@@ -64,11 +64,11 @@ public class Bed {
     public void setIdRoom(int idRoom) {
         this.idRoom = idRoom;
     }
-
+    /* 
     public List<Stay> getStays(){
         return stays;
     }
-
+*/
     /**
      * Returns true if the bed is available for the given date range (no overlap with existing stays).
      */

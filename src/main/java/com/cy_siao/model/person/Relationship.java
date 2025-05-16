@@ -79,6 +79,7 @@ public class Relationship {
         return matchingBeds;
     }
 
+    // Methode a refaire dans service (stayService)
     /**
      * Assigns the people in the relationship to available beds, respecting room sharing if required.
      */
@@ -95,8 +96,8 @@ public class Relationship {
                     boolean success1 = true; // demander pourquoi
                     boolean success2 = true;
 
-                    boolean success1 = bed1.assignPerson(person1, arrival, departure); // demander pourquoi
-                    boolean success2 = bed2.assignPerson(person2, arrival, departure);
+                    //success1 = bed1.assignPerson(person1, arrival, departure);
+                    //success2 = bed2.assignPerson(person2, arrival, departure);
                     return success1 && success2;
                 }
             }
@@ -108,10 +109,10 @@ public class Relationship {
             if (allAvailableBeds.size() >= 2) {
                 Bed bed1 = allAvailableBeds.get(0);
                 Bed bed2 = allAvailableBeds.get(1);
-                boolean success1 = true; // demander pourquoi
+                boolean success1 = true;
                 boolean success2 = true;
-                boolean success1 = bed1.assignPerson(person1, arrival, departure);
-                boolean success2 = bed2.assignPerson(person2, arrival, departure);
+                //success1 = bed1.assignPerson(person1, arrival, departure);
+                //success2 = bed2.assignPerson(person2, arrival, departure);
                 return success1 && success2;
             }
         }

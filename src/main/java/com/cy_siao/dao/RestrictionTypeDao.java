@@ -1,13 +1,12 @@
 package com.cy_siao.dao;
 
 import com.cy_siao.model.RestrictionType;
+import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 public class RestrictionTypeDao {
     private final DatabaseUtil databaseUtil;
@@ -116,5 +115,3 @@ return null;
         
 }
 }
-
-

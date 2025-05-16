@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class Stay {
 
+    private int id;
     private Bed bed;
     private Person person;
     private LocalDate dateArrival;
@@ -21,6 +22,10 @@ public class Stay {
         this.dateArrival = dateArrival;
         this.dateDeparture = dateDeparture;
     }
+
+    public int getId(){return id;}
+
+    public void setId(int id){this.id = id;}
 
     public Bed getBed() {
         return bed;

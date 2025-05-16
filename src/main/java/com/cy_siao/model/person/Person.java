@@ -17,7 +17,7 @@ public class Person {
     private Gender gender; // Person's gender (MALE or FEMALE)
     private int age; // Person's age in years
     private String placeOfBirth; // Person's birthplace
-    private int socialSecurityNumber; // Person's social security number
+    private long socialSecurityNumber; // Person's social security number
     private Address address; // Person's current address
     private RestrictionType restrictionType; // Any restrictions applicable to this person
 
@@ -39,6 +39,20 @@ public class Person {
         this.firstName = firstName;
     }
 
+    /**
+     * Constructor that initializes a person with their name and gender
+     *
+     * @param lastName  The person's last name
+     * @param firstName The person's first name
+     * @param gender    The person's gender (MALE or FEMALE)
+     * @param age       The person's age in years
+     */
+    public Person(String lastName, String firstName, Gender gender, int age){
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.gender = gender;
+        this.age = age;
+    }
     /**
      * Gets the person's unique identifier
      *
@@ -152,7 +166,7 @@ public class Person {
      *
      * @return The social security number
      */
-    public int getSocialSecurityNumber() {
+    public long getSocialSecurityNumber() {
         return socialSecurityNumber;
     }
 
@@ -161,7 +175,7 @@ public class Person {
      *
      * @param socialSecurityNumber The social security number to set
      */
-    public void setSocialSecurityNumber(int socialSecurityNumber) {
+    public void setSocialSecurityNumber(long socialSecurityNumber) {
         this.socialSecurityNumber = socialSecurityNumber;
     }
 

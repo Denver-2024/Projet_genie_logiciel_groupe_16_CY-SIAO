@@ -168,50 +168,7 @@ public class PersonDao {
         return persons;
     }
 
-    public List<Person> findByFirstName(String firstName){
-        List<Person> persons = new ArrayList<>();
-        List<Person> personsName = new ArrayList<>();
-        persons = findAll();
-        for (Person p : persons){
-            if (p.getFirstName() == firstName){
-                personsName.add(p);
-            }
-        }
-        if (personsName.size() == 0){
-            System.err.println("Error nobody with this first name : " + firstName);
-        }
-        return personsName;
-    }
-
-    public List<Person> findByLastName(String lastName){
-        List<Person> persons = new ArrayList<>();
-        List<Person> personsName = new ArrayList<>();
-        persons = findAll();
-        for (Person p : persons){
-            if (p.getLastName() == lastName){
-                personsName.add(p);
-            }
-        }
-        if (personsName.size() == 0){
-            System.err.println("Error nobody with this last name : " + lastName);
-        }
-        return personsName;
-    }
-
-    public List<Person> findByName(String firstName, String lastName){
-        List<Person> persons = new ArrayList<>();
-        List<Person> personsName = new ArrayList<>();
-        persons = findAll();
-        for (Person p : persons){
-            if (p.getLastName() == lastName  && p.getFirstName() == firstName){
-                personsName.add(p);
-            }
-        }
-        if (personsName.size() == 0){
-            System.err.println("Error nobody with this name : " + firstName + " " + lastName);
-        }
-        return personsName;
-    }
+    
 
 
     // A method to extract a person from the result set

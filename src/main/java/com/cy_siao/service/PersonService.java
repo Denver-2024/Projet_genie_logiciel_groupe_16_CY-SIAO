@@ -4,6 +4,7 @@ import com.cy_siao.dao.PersonDao;
 import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonService {
@@ -27,6 +28,51 @@ public class PersonService {
             }
         }
         return null;
+    }
+
+    public List<Person> getByFirstName(String firstName){
+        List<Person> persons = new ArrayList<>();
+        List<Person> personsName = new ArrayList<>();
+        persons = getAllPersons();
+        for (Person p : persons){
+            if (p.getFirstName() == firstName){
+                personsName.add(p);
+            }
+        }
+        if (personsName.size() == 0){
+            System.err.println("Error nobody with this first name : " + firstName);
+        }
+        return personsName;
+    }
+
+    public List<Person> getByLastName(String lastName){
+        List<Person> persons = new ArrayList<>();
+        List<Person> personsName = new ArrayList<>();
+        persons = getAllPersons();
+        for (Person p : persons){
+            if (p.getLastName() == lastName){
+                personsName.add(p);
+            }
+        }
+        if (personsName.size() == 0){
+            System.err.println("Error nobody with this last name : " + lastName);
+        }
+        return personsName;
+    }
+
+    public List<Person> getByName(String firstName, String lastName){
+        List<Person> persons = new ArrayList<>();
+        List<Person> personsName = new ArrayList<>();
+        persons = getAllPersons();
+        for (Person p : persons){
+            if (p.getLastName() == lastName  && p.getFirstName() == firstName){
+                personsName.add(p);
+            }
+        }
+        if (personsName.size() == 0){
+            System.err.println("Error nobody with this name : " + firstName + " " + lastName);
+        }
+        return personsName;
     }
 
     public void createPerson(Person person) {

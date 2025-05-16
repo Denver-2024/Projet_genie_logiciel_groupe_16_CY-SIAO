@@ -17,7 +17,7 @@ import java.util.List;
 public class PersonDao {
     
     public void createPerson(Person person) {
-        StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person (");
+        StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person ()");
         List<Object> values = new ArrayList<>();
         
         // Construction dynamique de la requête

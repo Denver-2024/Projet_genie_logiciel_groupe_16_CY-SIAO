@@ -11,17 +11,16 @@ public class RestrictionType {
 
     private int id;
     private String description;
-    private Gender GenderRestriction;
-    private Integer minAge;
-    private Integer maxAge;
+    private Gender genderRestriction;
+    private int minAge;
+    private int maxAge;
 
-    public RestrictionType(int id, String description, Gender GenderRestriction, Integer minAge, Integer maxAge) {
         this.id = id;
         this.description = description;
         this.GenderRestriction = GenderRestriction;
         this.minAge = minAge;
         this.maxAge = maxAge;
-    }
+    }*/
 
     public void setId( int id){ // add seter id
         this.id = id;
@@ -36,7 +35,7 @@ public class RestrictionType {
     }
 
     public Gender getGenderRestriction() {
-        return GenderRestriction;
+        return genderRestriction;
     }
 
     public Integer getMinAge() {
@@ -47,4 +46,41 @@ public class RestrictionType {
         return maxAge;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGenderRestriction(Gender genderRestriction) {
+        this.genderRestriction = genderRestriction;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public boolean isRespectedBy(Person person) {
+        int age = person.getAge();
+        return genderRestriction==person.getGender()&&
+               age >= minAge &&
+               age <= maxAge;
+    }
+
+    @Override
+    public String toString() {
+        return "restrictionType{" +
+                "id= " + id +
+                ", description= " + description +
+                ", minAge= " + minAge +
+                ", maxAge= " + maxAge +
+                ", genderRestriction= " + genderRestriction +
+                "}";
+    }
 }

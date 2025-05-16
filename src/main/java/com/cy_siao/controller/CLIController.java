@@ -2,12 +2,12 @@ package com.cy_siao.controller;
 
 import java.util.Scanner;
 
-public class CLIController {
+public class CliController {
     private PersonController personController;
     private StayController stayController;
     private Scanner scanner = new Scanner(System.in);
 
-    public CLIController() {
+    public CliController() {
         this.personController = new PersonController();
         this.stayController = new StayController();
     }
@@ -40,6 +40,6 @@ public class CLIController {
             }
         }while(option !=0);
 
-    scanner.close();
+        scanner.close();
     }
 }

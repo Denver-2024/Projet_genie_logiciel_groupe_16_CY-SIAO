@@ -96,12 +96,8 @@ public class PersonService {
         if (person1.getRestrictionType() == null || person2.getRestrictionType() == null) {
             return true; // No restriction blocks
         }
-        return false;
-        /*
-        Ecrire les bonnes restrictions et fonction ici car ca ca marche pas
         return person1.getRestrictionType().isRespectedBy(person2)
                 && person2.getRestrictionType().isRespectedBy(person1);
-        */
     }
 
     public void addAddressToPerson(int personId, Address address) {

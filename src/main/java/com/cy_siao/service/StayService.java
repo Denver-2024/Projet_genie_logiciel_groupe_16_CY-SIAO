@@ -33,7 +33,7 @@ public class StayService {
         
         if (this.isAssignable(person, bed, arrival, departure)){
             Stay stay = new Stay(bed, person, arrival, departure);
-            //stayDao.create(person, bed, arrival, derparture); // refaire stay object
+            stayDao.create(stay);
             return true;
         }
         return false;

@@ -105,4 +105,14 @@ public class StayService {
         return false;
     }
 
+    /**
+     * Frees the bed for a given person by removing their stays.
+     *
+     * @param person Person to remove from the bed
+     */
+    public void free(Bed bed, Person person) {
+        bed.getStays().removeIf(stay -> stay.getPerson().equals(person));
+    }
+
+
 }

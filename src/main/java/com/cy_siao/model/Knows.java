@@ -12,19 +12,19 @@ public class Knows {
     }
 
     // Getters & Setters
-    public int getPersonId() {
+    public int getIdPerson() {
         return personId;
     }
 
-    public void setPersonId(int personId) {
+    public void setIdPerson(int personId) {
         this.personId = personId;
     }
 
-    public int getAddressId() {
+    public int getIdAddress() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
+    public void setIdAdress(int addressId) {
         this.addressId = addressId;
     }
 

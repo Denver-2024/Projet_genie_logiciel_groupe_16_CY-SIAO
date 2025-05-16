@@ -18,8 +18,8 @@ public class KnowsDao{
         String sql = "INSERT INTO Knows (IdPerson, IdAddress) VALUES (?, ?)";
         try (Connection connect = databaseUtil.getConnection();
              PreparedStatement pst = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            pst.setInt(1, knows.getPersonId());
-            pst.setInt(2, knows.getAddressId());
+            pst.setInt(1, knows.getIdPerson());
+            pst.setInt(2, knows.getIdAddress());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.err.println("An error occurred when trying to create Knows: " + e.getMessage());

@@ -2,34 +2,34 @@ package com.cy_siao.model;
 
 
 public class RestrictionRoom {
-    private int roomId;
-    private int restrictionTypeId;
+    private int idRoom;
+    private int idRestrictionType;
     private String logicOperator; // "AND" ou "OR"
 
     private RestrictionType restrictionType; // relation
     private Room room; // relation
 
-    public RestrictionRoom(int roomId, int restrictionTypeId, String logicOperator) {
-        this.roomId = roomId;
-        this.restrictionTypeId = restrictionTypeId;
+    public RestrictionRoom(int idRoom, int idRestrictionType, String logicOperator) {
+        this.idRoom = idRoom;
+        this.idRestrictionType = idRestrictionType;
         this.logicOperator = logicOperator.toUpperCase();
     }
 
     // Getters & Setters
-    public int getRoomId() {
-        return roomId;
+    public int getIdRoom() {
+        return idRoom;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setIdRoom(int idRoom) {
+        this.idRoom = idRoom;
     }
 
-    public int getRestrictionTypeId() {
-        return restrictionTypeId;
+    public int getIdRestrictionType() {
+        return idRestrictionType;
     }
 
-    public void setRestrictionTypeId(int restrictionTypeId) {
-        this.restrictionTypeId = restrictionTypeId;
+    public void setIdRestrictionType(int idRestrictionType) {
+        this.idRestrictionType = idRestrictionType;
     }
 
     public String getLogicOperator() {
@@ -62,8 +62,8 @@ public class RestrictionRoom {
     @Override
     public String toString() {
         return "RestrictionRoom{" +
-                "roomId=" + roomId +
-                ", restrictionTypeId=" + restrictionTypeId +
+                "roomId=" + idRoom +
+                ", restrictionTypeId=" + idRestrictionType +
                 ", logicOperator='" + logicOperator + '\'' +
                 '}';
     }

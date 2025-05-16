@@ -10,29 +10,43 @@ import com.cy_siao.model.person.Gender;
 public class RestrictionType {
 
     private int id;
-    private String description;
-    private Gender GenderRestriction;
-    private Integer minAge;
-    private Integer maxAge;
+    private String label;
+    private Gender genderRestriction;
+    private int minAge;
+    private int maxAge;
 
-    public RestrictionType(int id, String description, Gender GenderRestriction, Integer minAge, Integer maxAge) {
+    /**
+     * Constructor used for RestrictionTypeDao
+     * @param id l'id
+     * @param label le nom
+     * @param genderRestriction le genre de la restriction (MALE ou FEMALE)
+     * @param minAge l'age minimal autorisé
+     * @param maxAge l'age maximal autorisé
+     */
+    public RestrictionType(int id, String label, Gender genderRestriction, int minAge, int maxAge) {
         this.id = id;
-        this.description = description;
-        this.GenderRestriction = GenderRestriction;
+        this.label = label;
+        this.genderRestriction = genderRestriction;
         this.minAge = minAge;
         this.maxAge = maxAge;
+    }
+
+    /**
+     * Default constructor used for RestrictionTypeDao
+     */
+    public RestrictionType() {
     }
 
     public int getId() {
         return id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLabel() {
+        return label;
     }
 
     public Gender getGenderRestriction() {
-        return GenderRestriction;
+        return genderRestriction;
     }
 
     public Integer getMinAge() {
@@ -43,4 +57,41 @@ public class RestrictionType {
         return maxAge;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setGenderRestriction(Gender genderRestriction) {
+        this.genderRestriction = genderRestriction;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public boolean isRespectedBy(Person person) {
+        int age = person.getAge();
+        return genderRestriction==person.getGender()&&
+                age >= minAge &&
+                age <= maxAge;
+    }
+
+    @Override
+    public String toString() {
+        return "restrictionType{" +
+                "id= " + id +
+                ", description= " + label +
+                ", minAge= " + minAge +
+                ", maxAge= " + maxAge +
+                ", genderRestriction= " + genderRestriction +
+                "}";
+    }
 }

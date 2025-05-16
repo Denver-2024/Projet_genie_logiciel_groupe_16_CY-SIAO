@@ -117,7 +117,7 @@ public class StayDao {
             pstmt.setInt(2, stay.getBed().getId());
             pstmt.setDate(3, Date.valueOf(stay.getDateArrival()));
             pstmt.setDate(4, Date.valueOf(stay.getDateDeparture()));
-            pstmt.setInt(5, stayId);
+            pstmt.setInt(5, stay.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error in updating stay: " + e.getMessage());

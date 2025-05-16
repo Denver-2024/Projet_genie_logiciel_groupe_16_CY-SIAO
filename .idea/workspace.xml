@@ -4,17 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness.">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/KnowsDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionRoomDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Knows.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RelationshipDao" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RelationshipDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/PersonDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Gender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CliController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CliController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/AddressDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/AddressDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/PersonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/PersonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RoomDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RoomDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Bed.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Bed.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/RestrictionRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/RestrictionRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/RestrictionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/RestrictionType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Address.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Gender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Gender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Relationship.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Relationship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/EligibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/EligibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/util/DatabaseUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/util/DatabaseUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CliView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CliView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -51,6 +87,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "David",
+    "last_opened_file_path": "E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -64,6 +101,14 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.Main" />
@@ -103,7 +148,7 @@
       <workItem from="1747238722316" duration="6583000" />
       <workItem from="1747292863290" duration="6233000" />
       <workItem from="1747341718127" duration="6418000" />
-      <workItem from="1747382571819" duration="3383000" />
+      <workItem from="1747382571819" duration="8664000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -129,7 +174,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747348013829</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness.">
+      <option name="closed" value="true" />
+      <created>1747386742951</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747386742951</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness.">
+      <option name="closed" value="true" />
+      <created>1747386981947</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747386981947</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +211,7 @@
     <MESSAGE value="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase." />
     <MESSAGE value="Update StayController to include CLI options menu" />
     <MESSAGE value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
+    <MESSAGE value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
   </component>
 </project>

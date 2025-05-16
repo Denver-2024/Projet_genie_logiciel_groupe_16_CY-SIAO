@@ -141,6 +141,8 @@ public class StayDao {
         LocalDate dateDeparture = rs.getDate("datedeparture").toLocalDate();
         Bed  bed = bedDao.findById(rs.getInt("idBed"));
         Person person = personDao.findById(rs.getInt("idPerson"));
-        return new Stay(bed, person, dateArrival, dateDeparture);
+        Stay stay = new Stay(bed, person, dateArrival, dateDeparture);
+        stay.setId(rs.getInt("id"));
+        return stay;
     }
 }

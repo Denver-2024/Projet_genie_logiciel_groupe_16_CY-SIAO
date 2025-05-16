@@ -1,6 +1,7 @@
 package com.cy_siao.service;
 
 import com.cy_siao.dao.RoomDao;
+import com.cy_siao.dao.BedDao;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.Room;
 import com.cy_siao.model.RestrictionType;
@@ -12,9 +13,11 @@ import java.util.List;
 public class RoomService {
 
     private final RoomDao roomDao;
+    private final BedDao bedDao;
 
     public RoomService() {
         this.roomDao = new RoomDao();
+        this.bedDao = new BedDao();
     }
 
     // CRUD OPERATIONS
@@ -43,18 +46,22 @@ public class RoomService {
 
     public void addBedToRoom(Room room, Bed bed) {
         room.addBed(bed); // already checks max number of beds
+        bedDao.update(bed);
     }
 
     public void removeBedFromRoom(Room room, Bed bed) {
         room.removeBed(bed);
+        bedDao.update(bed);
     }
 
     public void addRestrictionToRoom(Room room, RestrictionType restriction) {
         room.addRestriction(restriction);
+        roomDao.update(room);
     }
 
     public void removeRestrictionFromRoom(Room room, RestrictionType restriction) {
         room.removeRestriction(restriction);
+        roomDao.update(room);
     }
 
     public List<Bed> getAvailableBeds(Room room, LocalDate dateArrival, LocalDate dateDeparture) {

@@ -18,12 +18,14 @@ public class StayDao {
 
     public StayDao() {
         this.databaseUtil = new DatabaseUtil();
+        this.personDao = new PersonDao();
+        this.bedDao = new BedDao();
     }
 
     public void create(Stay stay) {
         String sql = "INSERT INTO stay (IdPerson, IdBed, dateArrival, dateDeparture) VALUES (?, ?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setInt(1, stay.getPerson().getId());
             pstmt.setInt(2, stay.getBed().getId());
@@ -43,7 +45,7 @@ public class StayDao {
     public Stay findById(int id) {
         String sql = "SELECT * FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
@@ -93,8 +95,8 @@ public class StayDao {
         List<Stay> stays = new ArrayList<>();
         String sql = "SELECT * FROM stay";
         try (Connection conn = databaseUtil.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 stays.add(extractStayFromResultSet(rs));
@@ -109,13 +111,13 @@ public class StayDao {
     public void update(Stay stay) {
         String sql = "UPDATE stay SET IdPerson = ?, IdBed = ?, dateArrival = ?, dateDeparture = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, stay.getPerson().getId());
             pstmt.setInt(2, stay.getBed().getId());
             pstmt.setDate(3, Date.valueOf(stay.getDateArrival()));
             pstmt.setDate(4, Date.valueOf(stay.getDateDeparture()));
-            pstmt.setInt(5, stay.getBed().getId()); // Remplacer si stay a un champ id
+            pstmt.setInt(5, stayId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error in updating stay: " + e.getMessage());
@@ -125,7 +127,7 @@ public class StayDao {
     public void delete(int id) {
         String sql = "DELETE FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();

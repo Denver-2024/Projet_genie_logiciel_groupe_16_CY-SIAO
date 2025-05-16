@@ -90,6 +90,7 @@ public class Main {
         bed.isDouble();
         // No setter for occupied, so we skip setting it directly
         bed.setIdRoom(room.getId());
+        bedDao.create(bed);
         System.out.println("Created Bed: " + bed.getId());
 
         Bed foundBed = bedDao.findById(bed.getId());
@@ -127,6 +128,7 @@ public class Main {
         stayDao.update(stay);
         System.out.println("Updated Stay departure date to: " + stay.getDateDeparture());
 
+        /*
         // Cleanup: delete created entities
         stayDao.delete(stay.getId());
         System.out.println("Deleted Stay: " + stay.getId());
@@ -142,5 +144,7 @@ public class Main {
 
         personDao.deletePerson(person.getId());
         System.out.println("Deleted Person: " + person.getId());
+
+         */
     }
 }

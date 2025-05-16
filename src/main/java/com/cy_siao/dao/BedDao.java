@@ -15,27 +15,26 @@ public class BedDao {
     }
 
     public void create(Bed bed) throws SQLException {
-        String sql = "INSERT INTO bed (isDouble,isOccupied,idRoom) VALUES (?,?,?)";
+        String sql = "INSERT INTO Bed (nbPlacesMax, IdRoom) VALUES (?, ?)";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setBoolean(1, bed.isItDouble());
-            pstmt.setBoolean(2, bed.isOccupied());
-            pstmt.setInt(3, bed.getIdRoom());
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setInt(1, bed.isItDouble() ? 2 : 1);
+            pstmt.setInt(2, bed.getIdRoom());
             pstmt.executeUpdate();
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     bed.setId(generatedKeys.getInt(1));
                 } else {
-                    throw new SQLException("Creating person failed, no ID obtained.");
+                    throw new SQLException("Creating bed failed, no ID obtained.");
                 }
             }
         }
     }
 
     public Bed findById(int id) {
-        String sql = "SELECT * FROM beds WHERE id = ?";
+        String sql = "SELECT * FROM Bed WHERE Id = ?";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -50,10 +49,10 @@ public class BedDao {
 
     public List<Bed> findAll() {
         List<Bed> beds = new ArrayList<>();
-        String sql = "SELECT * FROM beds";
+        String sql = "SELECT * FROM Bed";
         try (Connection conn = databaseUtil.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)) {
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 beds.add(extractBedFromResultSet(rs));
             }
@@ -64,13 +63,12 @@ public class BedDao {
     }
 
     public void update(Bed bed) {
-        String sql = "UPDATE beds SET isDouble = ?,isOccupied = ?, idRoom= ? WHERE id = ?";
+        String sql = "UPDATE Bed SET nbPlacesMax = ?, IdRoom = ? WHERE Id = ?";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setBoolean(1, bed.isItDouble());
-            pstmt.setBoolean(2, bed.isOccupied());
-            pstmt.setInt(3, bed.getIdRoom());
-            pstmt.setInt(4, bed.getId());
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, bed.isItDouble() ? 2 : 1);
+            pstmt.setInt(2, bed.getIdRoom());
+            pstmt.setInt(3, bed.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error in updating bed: " + e.getMessage());
@@ -78,9 +76,9 @@ public class BedDao {
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM beds WHERE id = ?";
+        String sql = "DELETE FROM Bed WHERE Id = ?";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -90,9 +88,11 @@ public class BedDao {
 
     private Bed extractBedFromResultSet(ResultSet rs) throws SQLException {
         Bed bed = new Bed();
-        bed.setId(rs.getInt("id"));
-        bed.setIdRoom(rs.getInt("idRoom"));
-        if( rs.getBoolean("isDouble") ){bed.isDouble();}
+        bed.setId(rs.getInt("Id"));
+        bed.setIdRoom(rs.getInt("IdRoom"));
+        if (rs.getInt("nbPlacesMax") == 2) {
+            bed.isDouble();
+        }
         return bed;
     }
 }

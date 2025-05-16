@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.cy_siao.dao.BedDao;
+import com.cy_siao.dao.RestrictionRoomDao;
+import com.cy_siao.dao.RestrictionTypeDao;
 import com.cy_siao.dao.StayDao;
 import com.cy_siao.dao.RoomDao;
 import com.cy_siao.model.Bed;
@@ -52,10 +54,11 @@ public class StayService {
         Room room;
         room = roomDao.findById(bed.getIdRoom());
 
+        RestrictionRoomDao restrictionRoomDao = new RestrictionRoomDao();
         List<RestrictionRoom> restrictions;
-        //restrictions = room.getRestrictions();
+        restrictions = restrictionRoomDao.findAll();
 
-        if (eligibilityService.isPersonAllowedInRoom(person, room, null)){
+        if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
             List<Stay> stays;
             stays = stayDao.findAll(); // remove person and bed when is corriged
             for (Stay stay: stays){

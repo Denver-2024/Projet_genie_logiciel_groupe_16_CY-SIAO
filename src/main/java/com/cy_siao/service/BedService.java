@@ -48,20 +48,6 @@ public class BedService {
     }
 
     /**
-     * Assigns a person to the bed if it's available.
-     */
-    public boolean assignPersonToBed(Bed bed, Person person, LocalDate dateArrival, LocalDate dateDeparture) {
-        return bed.assignPerson(person, dateArrival, dateDeparture);
-    }
-
-    /**
-     * Frees the bed for the given person.
-     */
-    public void freeBed(Bed bed, Person person) {
-        bed.free(person);
-    }
-
-    /**
      * Checks whether a bed is currently occupied.
      */
     public boolean isOccupied(Bed bed) {

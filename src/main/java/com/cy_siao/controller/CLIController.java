@@ -27,7 +27,7 @@ public class CLIController {
 
             switch (option) {
                 case 1:
-                    personController.start(scanner);
+                    personController.start(scanner);// pourquoi entrer la reponse ensuite
                     break;
                 case 2:
                     stayController.start(scanner);

@@ -1,20 +1,19 @@
 package com.cy_siao;
 
-import com.cy_siao.dao.AddressDao;
-import com.cy_siao.dao.BedDao;
-import com.cy_siao.dao.PersonDao;
-import com.cy_siao.dao.RoomDao;
-import com.cy_siao.dao.StayDao;
-import com.cy_siao.model.Bed;
-import com.cy_siao.model.Room;
-import com.cy_siao.model.Stay;
+import com.cy_siao.dao.*;
+import com.cy_siao.model.*;
 import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Person;
+import com.cy_siao.model.person.Relationship;
 import com.cy_siao.util.DatabaseUtil;
 
+<<<<<<< HEAD
 import com.cy_siao.controller.CLIController;
 
+=======
+import java.sql.Connection;
+>>>>>>> origin/DavidService
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,7 +24,8 @@ public class Main {
         CLIController cliController = new CLIController();
 
         DatabaseUtil dbUtil = new DatabaseUtil();
-        dbUtil.getConnection();
+        Connection connexion = null;
+        connexion = dbUtil.getConnection();
         System.out.println("Connected");
 
         PersonDao personDao = new PersonDao();
@@ -38,7 +38,7 @@ public class Main {
         Person person = new Person();
         person.setFirstName("John");
         person.setLastName("Doe");
-        person.setGender(Gender.M);
+        person.setGender(Gender.MALE);
         person.setAge(30);
         person.setPlaceOfBirth("Paris");
         personDao.createPerson(person);
@@ -95,6 +95,7 @@ public class Main {
         bed.isDouble();
         // No setter for occupied, so we skip setting it directly
         bed.setIdRoom(room.getId());
+        bedDao.create(bed);
         System.out.println("Created Bed: " + bed.getId());
 
         Bed foundBed = bedDao.findById(bed.getId());
@@ -132,6 +133,51 @@ public class Main {
         stayDao.update(stay);
         System.out.println("Updated Stay departure date to: " + stay.getDateDeparture());
 
+        // Test RestrictionType
+        RestrictionTypeDao restrictionTypeDao = new RestrictionTypeDao();
+        RestrictionType restrictionType = new RestrictionType();
+        restrictionType.setLabel("Age restriction");
+        restrictionType.setMinAge(18);
+        restrictionType.setMaxAge(65);
+        restrictionType.setGenderRestriction(Gender.MALE);
+        restrictionTypeDao.create(restrictionType);
+        System.out.println("Created RestrictionType: " + restrictionType.getId());
+
+        // Test RestrictionRoom
+        RestrictionRoomDao restrictionRoomDao = new RestrictionRoomDao();
+        RestrictionRoom restrictionRoom = new RestrictionRoom(room.getId(),restrictionType.getId(),"AND");
+        restrictionRoomDao.create(restrictionRoom);
+        System.out.println("Created RestrictionRoom mapping");
+
+        // Test Relationship
+        RelationshipDao relationshipDao = new RelationshipDao();
+        Person person2 = new Person();
+        person2.setFirstName("Jane");
+        person2.setLastName("Doe");
+        person2.setGender(Gender.FEMALE);
+        person2.setAge(28);
+        personDao.createPerson(person2);
+
+        Relationship relationship = new Relationship();
+        relationship.addPerson(person);
+        relationship.addPerson(person2);
+        relationship.setRelationType("Spouse");
+        relationshipDao.create(relationship);
+        System.out.println("Created Relationship between persons");
+
+        // Test Knows
+        KnowsDao knowsDao = new KnowsDao();
+        Knows knows = new Knows(person.getId(),address.getId());
+        knowsDao.create(knows);
+        System.out.println("Created Knows mapping");
+
+        // Print success message in green
+        String ANSI_GREEN = "\u001B[32m";
+        String ANSI_RESET = "\u001B[0m";
+        System.out.println(ANSI_GREEN + "All operations completed successfully!" + ANSI_RESET);
+        
+        
+        /*
         // Cleanup: delete created entities
         stayDao.delete(stay.getId());
         System.out.println("Deleted Stay: " + stay.getId());
@@ -148,6 +194,12 @@ public class Main {
         personDao.deletePerson(person.getId());
         System.out.println("Deleted Person: " + person.getId());
 
+<<<<<<< HEAD
         //cliController.start(); boucle infini je sais pas pourquoi ?
+=======
+         */
+
+        connexion.close();
+>>>>>>> origin/DavidService
     }
 }

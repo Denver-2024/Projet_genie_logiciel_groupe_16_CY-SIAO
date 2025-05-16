@@ -96,7 +96,7 @@ public class Relationship {
                     boolean success1 = true; // demander pourquoi
                     boolean success2 = true;
 
-                    //success1 = bed1.assignPerson(person1, arrival, departure);
+                    //success1 = bed1.assignPerson(person1, arrival, departure); // demander pourquoi
                     //success2 = bed2.assignPerson(person2, arrival, departure);
                     return success1 && success2;
                 }

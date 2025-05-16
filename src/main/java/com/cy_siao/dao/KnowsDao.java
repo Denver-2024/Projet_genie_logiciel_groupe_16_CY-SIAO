@@ -34,7 +34,7 @@ public class KnowsDao{
             pst.setInt(2, addressId);
             try (ResultSet rset = pst.executeQuery()) {
                 if (rset.next()) {
-                    return extractFromResultSet(rset);
+                    return extractKnowsFromResultSet(rset);
                 }
             }
         } catch (SQLException e) {
@@ -73,7 +73,7 @@ public class KnowsDao{
     }
 
 
-private Knows extractFromResultSet(ResultSet rset){
+private Knows extractKnowsFromResultSet(ResultSet rset){
         try {
         int personId = rset.getInt("IdPerson");
         int addressId = rset.getInt("IdAddress");

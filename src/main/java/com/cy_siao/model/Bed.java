@@ -57,6 +57,10 @@ public class Bed {
         return idRoom;
     }
 
+    public List<Stay> getStays() {
+        return stays;
+    }
+
     public void setIdRoom(int idRoom) {
         this.idRoom = idRoom;
     }
@@ -82,6 +86,7 @@ public class Bed {
     public void addStay(Stay stay){
         stays.add(stay);
     }
+
 
     public boolean isOccupied() {
         return !stays.isEmpty();

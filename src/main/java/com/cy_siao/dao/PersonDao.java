@@ -175,7 +175,8 @@ public class PersonDao {
         person.setId(rs.getInt("id"));
         person.setFirstName(rs.getString("firstName"));
         person.setLastName(rs.getString("lastName"));
-        person.setGender(Gender.valueOf(rs.getString("gender")));
+        String genderCode = rs.getString("gender");
+        person.setGender("M".equals(genderCode) ? Gender.MALE : Gender.FEMALE);
         person.setAge(rs.getInt("age"));
         person.setPlaceOfBirth(rs.getString("placeOfBirth"));
         person.setSocialSecurityNumber(rs.getInt("socialSecurityNumber"));

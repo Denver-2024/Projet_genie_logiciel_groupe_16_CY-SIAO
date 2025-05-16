@@ -18,8 +18,8 @@ public class RestrictionRoomDao {
         String sql = "INSERT INTO RestrictionRoom (IdRoom, IdRestrictionType, logicOperator) VALUES (?, ?, ?)";
         try (Connection connect = databaseUtil.getConnection();
              PreparedStatement pst = connect.prepareStatement(sql)) {
-            pst.setInt(1, restrictionRoom.getRoomId());
-            pst.setInt(2, restrictionRoom.getRestrictionTypeId());
+            pst.setInt(1, restrictionRoom.getIdRoom());
+            pst.setInt(2, restrictionRoom.getIdRestrictionType());
             pst.setString(3, restrictionRoom.getLogicOperator());
             pst.executeUpdate();
         } catch (SQLException e) {
@@ -64,8 +64,8 @@ public class RestrictionRoomDao {
         try (Connection connect = databaseUtil.getConnection();
              PreparedStatement pst = connect.prepareStatement(sql)) {
             pst.setString(1, restrictionRoom.getLogicOperator());
-            pst.setInt(2, restrictionRoom.getRoomId());
-            pst.setInt(3, restrictionRoom.getRestrictionTypeId());
+            pst.setInt(2, restrictionRoom.getIdRoom());
+            pst.setInt(3, restrictionRoom.getIdRestrictionType());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.err.println("An error occurred when trying to update RestrictionRoom: " + e.getMessage());

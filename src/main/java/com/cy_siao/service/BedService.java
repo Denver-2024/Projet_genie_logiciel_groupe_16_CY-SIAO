@@ -18,23 +18,23 @@ public class BedService {
 
     // CRUD OPERATIONS
 
-    public void createBed(Bed bed) throws SQLException {
+    public void createBed(Bed bed) {
         bedDao.create(bed);
     }
 
-    public Bed getBedById(int id) throws SQLException {
+    public Bed getBedById(int id) {
         return bedDao.findById(id);
     }
 
-    public List<Bed> getAllBeds() throws SQLException {
+    public List<Bed> getAllBeds() {
         return bedDao.findAll();
     }
 
-    public void updateBed(Bed bed) throws SQLException {
+    public void updateBed(Bed bed) {
         bedDao.update(bed);
     }
 
-    public void deleteBed(int id) throws SQLException {
+    public void deleteBed(int id) {
         bedDao.delete(id);
     }
 

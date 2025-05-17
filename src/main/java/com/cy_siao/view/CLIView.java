@@ -31,6 +31,20 @@ public class CLIView {
         scanner.nextLine();
         return result;
     }
+
+    public int showBedMenu() {
+        System.out.println("Welcome to the bed management");
+        System.out.println("Please select an option:");
+        System.out.println("1. Show all beds");
+        System.out.println("2. add new bed");
+        System.out.println("3. update bed");
+        System.out.println("4. delete bed");
+        System.out.println("0. Return");
+        int result = scanner.nextInt();
+        scanner.nextLine();
+        return result;
+    }
+
     public String askString(String label) {
         System.out.print(label);
         return scanner.nextLine();

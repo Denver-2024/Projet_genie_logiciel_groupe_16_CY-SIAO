@@ -41,8 +41,8 @@ public class PersonController {
         view.showMessage("Enter person details:");
         String firstName = view.askString("First name: ");
         String lastName = view.askString("Last Name :");
-        int age = view.askInt("Age :");
         String genderStr = view.askString("Gender (MALE/FEMALE) :");
+        int age = view.askInt("Age :");
 
         try {
             Gender gender = Gender.fromString(genderStr);

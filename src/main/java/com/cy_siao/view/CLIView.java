@@ -14,7 +14,9 @@ public class CLIView {
         System.out.println("1. Manage a person");
         System.out.println("2. Manage a stay");
         System.out.println("0. Exit");
-        return scanner.nextInt();
+        int result = scanner.nextInt();
+        scanner.nextLine();
+        return result;
     }
 
     public int showPersonMenu() {
@@ -25,18 +27,21 @@ public class CLIView {
         System.out.println("3. update person");
         System.out.println("4. delete person");
         System.out.println("0. Return");
-        return scanner.nextInt();
+        int result = scanner.nextInt();
+        scanner.nextLine();
+        return result;
     }
     public String askString(String label) {
         System.out.print(label);
-        scanner.nextLine(); // pour consommer le \n si nécessaire
         return scanner.nextLine();
     }
 
     public int askInt(String label) {
         System.out.print(label);
-        return scanner.nextInt();
-    }
+        int result = scanner.nextInt();
+        scanner.nextLine();
+    return result;
+}
 
     public LocalDate askDate(String label) {
         System.out.print(label);

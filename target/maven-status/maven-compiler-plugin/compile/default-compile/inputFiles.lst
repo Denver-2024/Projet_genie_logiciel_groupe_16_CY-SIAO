@@ -24,7 +24,7 @@
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/dao/StayDao.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/controller/CLIController.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java
-/home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/view/CliView.java
+/home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/view/CLIView.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/controller/PersonController.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/App.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model/Knows.java

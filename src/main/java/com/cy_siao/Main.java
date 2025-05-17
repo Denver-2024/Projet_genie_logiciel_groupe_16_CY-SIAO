@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.cy_siao.controller.CLIController;
+
 public class Main {
 
     public static void main(String[] args) throws SQLException {
@@ -187,6 +189,9 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
+
+        CLIController cliController = new CLIController();
+        cliController.start();
 
         connexion.close();
     }

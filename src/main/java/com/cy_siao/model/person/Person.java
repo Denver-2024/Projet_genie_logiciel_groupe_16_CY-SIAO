@@ -227,6 +227,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
+                "id=" + id +
                 "lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", gender=" + gender +

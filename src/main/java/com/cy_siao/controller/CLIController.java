@@ -2,6 +2,7 @@ package com.cy_siao.controller;
 
 import com.cy_siao.view.CLIView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CLIController {
@@ -14,7 +15,7 @@ public class CLIController {
         this.stayController = new StayController();
     }
 
-    public void start() {
+    public void start() throws SQLException {
         int option;
         do {
 
@@ -25,8 +26,7 @@ public class CLIController {
                     personController.start(view);
                     break;
                 case 2:
-                    //stayController.start(view);
-                    view.showError("Not yet implemented");
+                    stayController.start(view);
                     break;
                 case 0:
                     view.showMessage("Exiting...");

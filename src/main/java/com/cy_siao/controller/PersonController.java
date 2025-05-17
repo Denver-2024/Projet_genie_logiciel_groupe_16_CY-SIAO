@@ -13,7 +13,7 @@ public class PersonController {
     private CLIView view;
 
     public PersonController(){
-        PersonService personService = new PersonService();
+        this.personService = new PersonService();
     }
 
     public void start(CLIView view) {
@@ -41,10 +41,20 @@ public class PersonController {
         view.showMessage("Enter person details:");
         String firstName = view.askString("First name: ");
         String lastName = view.askString("Last Name :");
-        int age = Integer.parseInt(view.askString("Age :"));
-        Gender gender = Gender.fromString(view.askString("Gender (MALE/FEMALE) :"));
-        personService.createPerson(new Person(lastName,firstName,gender,age));
+        int age = view.askInt("Age :");
+        String genderStr = view.askString("Gender (MALE/FEMALE) :");
+
+        try {
+            Gender gender = Gender.fromString(genderStr);
+            personService.createPerson(new Person(lastName, firstName, gender, age));
+            view.showMessage("Person added successfully");
+        } catch (NumberFormatException e) {
+            view.showError("L'âge doit être un nombre valide");
+        } catch (IllegalArgumentException e) {
+            view.showError("Le genre doit être MALE ou FEMALE");
+        }
     }
+
 
     private void updatePerson(){
         String lastName = view.askString("Last Name :");
@@ -63,7 +73,17 @@ public class PersonController {
     }
 
     private void deletePerson(){
-
+        String lastName = view.askString("Last Name :");
+        String firstName = view.askString("First name: ");
+        List<Person> persons = personService.getByName(lastName,firstName);
+        view.showMessage(persons.toString());
+        int id = Integer.parseInt(view.askString("Enter person id: "));
+        Person person = personService.getPersonById(id);
+        if (person!=null){
+            personService.deletePerson(id);
+        }else{
+            view.showError("No person found with id: "+id);
+        }
     }
 }
 

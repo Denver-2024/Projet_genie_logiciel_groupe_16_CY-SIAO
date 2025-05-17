@@ -1,15 +1,39 @@
 package com.cy_siao.controller;
 
+import com.cy_siao.service.StayService;
 import com.cy_siao.view.CLIView;
 
 import java.util.Scanner;
 
 public class StayController {
-    public void start(CLIView view) {
-        System.out.println("Welcome to the stay management");
-        System.out.println("Please select an option:");
-        System.out.println("1. Show free beds");
-        System.out.println("2. Show current stays");
-        System.out.println("0. Return");
+    private CLIView view;
+    private StayService stayService = new StayService();
+    /*
+    public StayController() {
+        this.stayService = new StayService();
+        this.view = new CLIView();
     }
+
+    public void start(CLIView view) {
+        this.view = view;
+        int option;
+        do{
+            option = view.showStayMenu();
+            switch (option) {
+                case 1:
+                    view.showMessage(personService.getAllPersons().toString());
+                    break;
+                case 2:
+                    this.add();
+                    break;
+                case 3:
+                    this.updatePerson();
+                    break;
+                case 4:
+                    this.deletePerson();
+            }
+        }while(option!=0);
+    }
+
+     */
 }

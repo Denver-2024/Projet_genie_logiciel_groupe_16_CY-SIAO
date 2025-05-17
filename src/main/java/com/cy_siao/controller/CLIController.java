@@ -25,7 +25,8 @@ public class CLIController {
                     personController.start(view);
                     break;
                 case 2:
-                    stayController.start(view);
+                    //stayController.start(view);
+                    view.showError("Not yet implemented");
                     break;
                 case 0:
                     view.showMessage("Exiting...");

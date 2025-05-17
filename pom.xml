@@ -20,7 +20,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version> <!-- ou plus récent -->
         <configuration>
-          <source>17</source>       <!-- ou 8, 11, 17 selon ta version du JDK -->
+          <source>17</source>       <!-- ou 8, 11, 17 depending on your JDK version-->
           <target>17</target>
         </configuration>
       </plugin>

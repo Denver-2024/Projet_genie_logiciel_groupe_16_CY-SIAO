@@ -33,6 +33,11 @@ public class CLIView {
         return scanner.nextLine();
     }
 
+    public int askInt(String label) {
+        System.out.print(label);
+        return scanner.nextInt();
+    }
+
     public LocalDate askDate(String label) {
         System.out.print(label);
         return LocalDate.parse(scanner.nextLine());

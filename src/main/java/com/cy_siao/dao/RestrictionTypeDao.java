@@ -71,7 +71,7 @@ public class RestrictionTypeDao {
             pstmt.setString(1, restriction.getLabel());
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
-            pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1)); // "M" or "F"
+            pstmt.setString(4, String.valueOf(restriction.getGenderRestriction().toString().charAt(0))); // "M" or "F"
             pstmt.setInt(5, restriction.getId());
             pstmt.executeUpdate();
         }

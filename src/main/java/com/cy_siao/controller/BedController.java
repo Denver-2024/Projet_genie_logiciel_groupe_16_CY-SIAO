@@ -51,11 +51,11 @@ public class BedController {
 
     private void createBed(){
         int idRoom = view.askInt("Give id Room where you want to place bed :");
-        bedService.createBed(new Bed(idRoom)); // check id room
+        bedService.createBed(new Bed(idRoom));
     }
 
     private void deleteBed(){
-        int id = Integer.parseInt(view.askString("Enter perbedson id: "));
+        int id = Integer.parseInt(view.askString("Enter bed id: "));
         Bed bed = bedService.getBedById(id);
         if (bed!=null){
             bedService.deleteBed(id);

@@ -8,12 +8,14 @@ public class CLIController {
     private PersonController personController;
     private StayController stayController;
     private BedController bedController;
+    private RoomController roomController;
     private CLIView view = new CLIView();
 
     public CLIController() {
         this.personController = new PersonController();
         this.stayController = new StayController();
         this.bedController = new BedController();
+        this.roomController = new RoomController();
     }
 
     public void start() {
@@ -32,6 +34,10 @@ public class CLIController {
                     break;
                 case 3:
                     bedController.start(view);
+                    break;
+                case 4:
+                    roomController.start(view);
+                    break;
                 case 0:
                     view.showMessage("Exiting...");
                     break;

@@ -4,13 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping.">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add askInt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CliController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CliController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CliController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/BedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/BedController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CLIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CLIController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/PersonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/RoomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/RoomController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/StayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/StayController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RestrictionTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RestrictionTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/BedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/BedService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/PersonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/RoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/RoomService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CLIView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CLIView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/GuiView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/GuiView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/cy_siao/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/cy_siao/AppTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +42,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -44,6 +67,10 @@
     &quot;accountId&quot;: &quot;7f49c3d6-1319-491d-95fc-cfb4e97881dd&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -55,11 +82,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "Application.GuiView.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "David",
+    "git-widget-placeholder": "DavidService",
     "last_opened_file_path": "E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -96,6 +124,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GuiView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.view.GuiView" />
+      <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.Main" />
       <module name="cy_siao" />
@@ -112,6 +153,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.GuiView" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -136,6 +178,10 @@
       <workItem from="1747292863290" duration="6233000" />
       <workItem from="1747341718127" duration="6418000" />
       <workItem from="1747382571819" duration="9017000" />
+      <workItem from="1747462493570" duration="1649000" />
+      <workItem from="1747493827326" duration="944000" />
+      <workItem from="1747502145846" duration="2936000" />
+      <workItem from="1747510602485" duration="5958000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -185,7 +231,39 @@
       <option name="project" value="LOCAL" />
       <updated>1747392126868</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities.">
+      <option name="closed" value="true" />
+      <created>1747464262055</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747464262055</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities.">
+      <option name="closed" value="true" />
+      <created>1747493983661</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747493983661</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Refactor controllers for improved error handling and modularity&#10;&#10;Updated `PersonController` to include robust error handling for invalid age and gender inputs. Enhanced modularity by refactoring methods in `StayController` and integrating `CLIView` for user interactions. Deprecated unfinished features in `CLIController` with relevant error messages to improve user experience.">
+      <option name="closed" value="true" />
+      <created>1747511773507</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747511773507</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add askInt">
+      <option name="closed" value="true" />
+      <created>1747512108592</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747512108592</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +286,9 @@
     <MESSAGE value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
     <MESSAGE value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
     <MESSAGE value="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
+    <MESSAGE value="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities." />
+    <MESSAGE value="Refactor controllers for improved error handling and modularity&#10;&#10;Updated `PersonController` to include robust error handling for invalid age and gender inputs. Enhanced modularity by refactoring methods in `StayController` and integrating `CLIView` for user interactions. Deprecated unfinished features in `CLIController` with relevant error messages to improve user experience." />
+    <MESSAGE value="add askInt" />
+    <option name="LAST_COMMIT_MESSAGE" value="add askInt" />
   </component>
 </project>

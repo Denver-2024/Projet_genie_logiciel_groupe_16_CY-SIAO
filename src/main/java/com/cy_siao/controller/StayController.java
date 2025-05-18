@@ -8,15 +8,12 @@ import com.cy_siao.service.PersonService;
 import com.cy_siao.service.StayService;
 import com.cy_siao.view.CLIView;
 
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-import java.util.Scanner;
-
 public class StayController {
-        private StayService stayService;
+    private StayService stayService;
     private PersonService personService;
     private BedService bedService;
     private CLIView view;
@@ -98,7 +95,7 @@ public class StayController {
     private Person selectPerson() {
         String lastName = view.askString("Nom : ");
         String firstName = view.askString("Prénom : ");
-        List<Person> persons = personService.getByName(lastName, firstName);
+        List<Person> persons = personService.getByName(firstName, lastName);
 
         if (persons.isEmpty()) {
             view.showError("Aucune personne trouvée.");

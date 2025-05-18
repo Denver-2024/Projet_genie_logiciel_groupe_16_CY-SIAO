@@ -21,6 +21,12 @@ public class StayService {
     private RoomDao roomDao;
     private StayDao stayDao;
 
+    public StayService() {
+        this.eligibilityService = new EligibilityService();
+        this.bedDao = new BedDao();
+        this.roomDao = new RoomDao();
+        this.stayDao = new StayDao();
+    }
     /**
      * 
      * @param person personn who need to be assign during arrival - departure

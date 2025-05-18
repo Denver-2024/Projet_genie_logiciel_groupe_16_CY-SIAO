@@ -78,4 +78,3 @@ CREATE TABLE Stay (
     dateArrival DATE CHECK (dateArrival >= CURRENT_DATE),
     dateDeparture DATE CHECK (dateDeparture > dateArrival)
 );
-

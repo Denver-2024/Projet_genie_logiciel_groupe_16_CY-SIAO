@@ -14,22 +14,29 @@ public class BedDao {
         this.databaseUtil = new DatabaseUtil();
     }
 
-    public void create(Bed bed) throws SQLException {
-        String sql = "INSERT INTO Bed (nbPlacesMax, IdRoom) VALUES (?, ?)";
-        try (Connection conn = databaseUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setInt(1, bed.isItDouble() ? 2 : 1);
-            pstmt.setInt(2, bed.getIdRoom());
-            pstmt.executeUpdate();
-            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    bed.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Creating bed failed, no ID obtained.");
-                }
+    public void create(Bed bed) {
+    String sql = "INSERT INTO Bed (nbPlacesMax, IdRoom) VALUES (?, ?)";
+    try (Connection conn = databaseUtil.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        
+        pstmt.setInt(1, bed.isItDouble() ? 2 : 1);
+        pstmt.setInt(2, bed.getIdRoom());
+        pstmt.executeUpdate();
+
+        try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                bed.setId(generatedKeys.getInt(1));
+            } else {
+                throw new SQLException("Creating bed failed, no ID obtained.");
             }
         }
+    } catch (SQLException e) {
+        // Log l'erreur et/ou notifier l'utilisateur
+        System.err.println("Erreur lors de la création du lit: " + e.getMessage());
+        // Optionnel : relancer une RuntimeException pour interrompre le flux
+        throw new RuntimeException("Erreur de base de données", e);
     }
+}
 
     public Bed findById(int id) {
         String sql = "SELECT * FROM Bed WHERE Id = ?";

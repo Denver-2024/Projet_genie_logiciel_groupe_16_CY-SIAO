@@ -22,23 +22,23 @@ public class RoomService {
 
     // CRUD OPERATIONS
 
-    public void createRoom(Room room) throws SQLException {
+    public void createRoom(Room room) {
         roomDao.create(room);
     }
 
-    public Room getRoomById(int id) throws SQLException {
+    public Room getRoomById(int id) {
         return roomDao.findById(id);
     }
 
-    public List<Room> getAllRooms() throws SQLException {
+    public List<Room> getAllRooms() {
         return roomDao.findAll();
     }
 
-    public void updateRoom(Room room) throws SQLException {
+    public void updateRoom(Room room) {
         roomDao.update(room);
     }
 
-    public void deleteRoom(int id) throws SQLException {
+    public void deleteRoom(int id) {
         roomDao.delete(id);
     }
 

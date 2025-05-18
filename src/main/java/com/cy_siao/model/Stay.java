@@ -79,4 +79,15 @@ public class Stay {
         LocalDate today = LocalDate.now();
         return !dateArrival.isBefore(today);
     }
+    
+    @Override
+    public String toString() {
+        return "Stay{" +
+                "id=" + id +
+                ", bed=" + bed +
+                ", person=" + person +
+                ", dateArrival=" + dateArrival +
+                ", dateDeparture=" + dateDeparture +
+                '}';
+    }
 }

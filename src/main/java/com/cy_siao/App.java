@@ -1,17 +1,16 @@
 package com.cy_siao;
 
-import java.sql.SQLException;
+import javafx.application.Application;
+import com.cy_siao.view.GuiView;
+import javafx.stage.Stage;
 
-import com.cy_siao.controller.CLIController;
+public class App extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+        GuiView view = new GuiView();
+    }
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args ) throws SQLException {
-        CLIController controller = new CLIController();
-        controller.start();
+    public static void main(String[] args) {
+        launch(args);
     }
 }

@@ -4,35 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add askInt">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/PersonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/BedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/BedController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CLIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CLIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/PersonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/RoomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/RoomController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/StayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/StayController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RestrictionTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RestrictionTypeDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/BedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/BedService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/PersonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/RoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/RoomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CLIView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CLIView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/GuiView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/GuiView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/cy_siao/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/cy_siao/AppTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +22,7 @@
       <list>
         <option value="Kotlin Class" />
         <option value="Class" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -67,10 +46,10 @@
     &quot;accountId&quot;: &quot;7f49c3d6-1319-491d-95fc-cfb4e97881dd&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -84,6 +63,7 @@
     "Application.App.executor": "Run",
     "Application.GuiView.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Mainfx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -110,7 +90,7 @@
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.Mainfx">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.App" />
       <module name="cy_siao" />
@@ -150,11 +130,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Mainfx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.Mainfx" />
+      <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
-        <item itemvalue="Application.GuiView" />
+        <item itemvalue="Application.Mainfx" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GuiView" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -182,6 +176,7 @@
       <workItem from="1747493827326" duration="944000" />
       <workItem from="1747502145846" duration="2936000" />
       <workItem from="1747510602485" duration="5958000" />
+      <workItem from="1747591948694" duration="2723000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -263,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747512108592</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness.">
+      <option name="closed" value="true" />
+      <created>1747587123627</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747587123627</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,6 +292,7 @@
     <MESSAGE value="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities." />
     <MESSAGE value="Refactor controllers for improved error handling and modularity&#10;&#10;Updated `PersonController` to include robust error handling for invalid age and gender inputs. Enhanced modularity by refactoring methods in `StayController` and integrating `CLIView` for user interactions. Deprecated unfinished features in `CLIController` with relevant error messages to improve user experience." />
     <MESSAGE value="add askInt" />
-    <option name="LAST_COMMIT_MESSAGE" value="add askInt" />
+    <MESSAGE value="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness." />
   </component>
 </project>

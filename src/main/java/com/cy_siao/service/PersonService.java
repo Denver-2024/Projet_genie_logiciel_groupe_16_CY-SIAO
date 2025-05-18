@@ -35,7 +35,7 @@ public class PersonService {
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
         for (Person p : persons){
-            if (p.getFirstName() == firstName){
+            if (p.getFirstName().equals(firstName)){
                 personsName.add(p);
             }
         }
@@ -50,7 +50,7 @@ public class PersonService {
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
         for (Person p : persons){
-            if (p.getLastName() == lastName){
+            if (p.getLastName().equals(lastName)){
                 personsName.add(p);
             }
         }
@@ -65,7 +65,7 @@ public class PersonService {
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
         for (Person p : persons){
-            if (p.getLastName() == lastName  && p.getFirstName() == firstName){
+            if (p.getLastName().equals(lastName)  && p.getFirstName().equals(lastName)){
                 personsName.add(p);
             }
         }

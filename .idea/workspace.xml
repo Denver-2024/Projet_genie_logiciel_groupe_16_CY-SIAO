@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping.">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="ReadMe writing and change on pom.xml comment.&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping.">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/JavaFx.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_05_2025_21_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_05_2025_21_47__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CliController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CliController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CliController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/CLIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/StayController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +47,12 @@
     &quot;accountId&quot;: &quot;7f49c3d6-1319-491d-95fc-cfb4e97881dd&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/maven-4.0.0.xsd" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -52,28 +61,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "David",
-    "last_opened_file_path": "E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.cy_siao [-v].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.cy_siao [exec:java...].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Ulrich&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/javafx/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
@@ -116,14 +132,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
-      </set>
-    </attachedChunks>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="" />
@@ -185,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747392126868</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ReadMe writing and change on pom.xml comment.&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping.">
+      <option name="closed" value="true" />
+      <created>1747504697627</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747504697627</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +225,7 @@
     <MESSAGE value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
     <MESSAGE value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
     <MESSAGE value="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
+    <MESSAGE value="ReadMe writing and change on pom.xml comment.&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
+    <option name="LAST_COMMIT_MESSAGE" value="ReadMe writing and change on pom.xml comment.&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
   </component>
 </project>

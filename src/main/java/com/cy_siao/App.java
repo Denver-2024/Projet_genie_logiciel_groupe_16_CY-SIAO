@@ -1,6 +1,6 @@
 package com.cy_siao;
 
-import com.cy_siao.controller.CLIController;
+import com.cy_siao.controller.cli.CLIController;
 
 /**
  * Hello world!

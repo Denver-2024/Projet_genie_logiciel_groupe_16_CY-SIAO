@@ -2,12 +2,8 @@ package com.cy_siao;
 
 import com.cy_siao.dao.*;
 import com.cy_siao.model.*;
-import com.cy_siao.model.person.Address;
-import com.cy_siao.model.person.Gender;
-import com.cy_siao.model.person.Person;
-import com.cy_siao.model.person.Relationship;
 import com.cy_siao.util.DatabaseUtil;
-import com.cy_siao.controller.CLIController;
+import com.cy_siao.controller.cli.CLIController;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,7 +27,7 @@ public class Main {
         StayDao stayDao = new StayDao();
 
         // Test PersonDao
-        Person person = new Person();
+        /*Person person = new Person();
         person.setFirstName("Humpich");
         person.setLastName("Schmidt");
         person.setGender(Gender.MALE);
@@ -145,6 +141,12 @@ public class Main {
         restrictionRoomDao.create(restrictionRoom);
         System.out.println("Created RestrictionRoom mapping");
 
+        RestrictionRoomDao restrictionRoomDao1= new RestrictionRoomDao();
+        RestrictionRoom restrictionRoom1= new RestrictionRoom(room.getId(), restrictionType.getId(),"AND");
+        restrictionRoomDao1.create(restrictionRoom1);
+        System.out.println("Created RestrictionRoom1 mapping");
+
+
         // Test Relationship
         RelationshipDao relationshipDao = new RelationshipDao();
         Person person2 = new Person();
@@ -157,7 +159,7 @@ public class Main {
         Relationship relationship = new Relationship();
         relationship.addPerson(person);
         relationship.addPerson(person2);
-        relationship.setRelationType("Mère-Enfant");
+        relationship.setRelationType("Mother-Child");
         relationshipDao.create(relationship);
         System.out.println("Created Relationship between persons");
 
@@ -171,7 +173,8 @@ public class Main {
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_RESET = "\u001B[0m";
         System.out.println(ANSI_GREEN + "All operations completed successfully!" + ANSI_RESET);
-        
+        */
+
         
         /*
         // Cleanup: delete created entities
@@ -191,6 +194,13 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
+        List<Stay> allStays = stayDao.findAll();
+        System.out.println("All Stays count: " + (allStays != null ? allStays.size() : "null"));
+        if (allStays!=null){
+        for (Stay stay: allStays){
+           System.out.println("Stay: "+stay.getId()+" ,bed: "+stay.getBed()+" , person: "+stay.getPerson()+" ,arrival: "+stay.getDateArrival()+", departure: "+stay.getDateDeparture());
+        }
+        }
 
         connexion.close();
     }

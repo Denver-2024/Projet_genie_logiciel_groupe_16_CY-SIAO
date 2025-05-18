@@ -1,4 +1,4 @@
-package com.cy_siao.controller;
+package com.cy_siao.controller.cli;
 
 import java.util.Scanner;
 

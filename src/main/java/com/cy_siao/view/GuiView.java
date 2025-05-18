@@ -113,7 +113,4 @@ public class GuiView extends Application {
         alert.showAndWait();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

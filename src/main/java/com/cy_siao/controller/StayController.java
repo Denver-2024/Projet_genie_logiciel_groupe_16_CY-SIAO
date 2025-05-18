@@ -72,15 +72,15 @@ public class StayController {
     }
 
     private void freeBed() throws SQLException {
-        view.showMessage("=== Libérer un lit pour une personne ===");
+        view.showMessage("=== Libérer un lit===");
         Person person = selectPerson();
         if (person == null) return;
 
         Bed bed = selectBed();
         if (bed == null) return;
 
-        stayService.free(bed, person);
-        view.showMessage("Lit libéré pour cette personne (en mémoire).");
+        stayService.free(bed);
+        view.showMessage("Lit libéré.");
     }
 
     private void listAllStays() {

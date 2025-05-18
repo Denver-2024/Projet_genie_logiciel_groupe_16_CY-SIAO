@@ -19,6 +19,7 @@
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model/person/Relationship.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/service/AddressService.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/dao/PersonDao.java
+/home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/controller/RoomController.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/service/RoomService.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/service/BedService.java
 /home/lyxorl/Documents/CYTechCours/ING1/S2/ProjetJava/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model/person/Gender.java

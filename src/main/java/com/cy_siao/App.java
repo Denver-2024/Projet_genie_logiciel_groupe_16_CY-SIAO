@@ -1,5 +1,7 @@
 package com.cy_siao;
 
+import java.sql.SQLException;
+
 import com.cy_siao.controller.CLIController;
 
 /**
@@ -8,7 +10,7 @@ import com.cy_siao.controller.CLIController;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws SQLException
     {
         CLIController controller = new CLIController();
         controller.start();

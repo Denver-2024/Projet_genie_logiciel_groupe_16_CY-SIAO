@@ -39,6 +39,10 @@ public class StayService {
         return false;
     }
 
+    public List<Stay> getAllStays(){
+        return stayDao.findAll();
+    }
+
     /**
      * Check if the person is eligible at the room where the bed is
      * And check if the bed is not assigned during arrival departure

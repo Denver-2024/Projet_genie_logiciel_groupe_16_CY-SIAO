@@ -13,6 +13,8 @@ public class RoomController {
 
     private BedService bedService;
     private RoomService roomService;
+    private BedController bedController;
+    private RoomController roomController;
     private CLIView view;
 
     public RoomController(){

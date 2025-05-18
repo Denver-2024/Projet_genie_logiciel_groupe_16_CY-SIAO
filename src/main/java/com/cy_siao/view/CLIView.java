@@ -60,6 +60,19 @@ public class CLIView {
         return result;
     }
 
+    public int showStayMenu() {
+        System.out.println("Welcome to the stay management");
+        System.out.println("Please select an option:");
+        System.out.println("1. Assign a stay");
+        System.out.println("2. Remove a stay");
+        System.out.println("3. free a bed");
+        System.out.println("4. list all stays");
+        System.out.println("0. Return");
+        int result = scanner.nextInt();
+        scanner.nextLine();
+        return result;
+    }
+
 
     public String askString(String label) {
         System.out.print(label);

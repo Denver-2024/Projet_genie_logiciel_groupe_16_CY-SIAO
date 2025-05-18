@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.cy_siao.controller.CLIController;
+
 public class Main {
 
     public static void main(String[] args) throws SQLException {
@@ -201,6 +203,9 @@ public class Main {
            System.out.println("Stay: "+stay.getId()+" ,bed: "+stay.getBed()+" , person: "+stay.getPerson()+" ,arrival: "+stay.getDateArrival()+", departure: "+stay.getDateDeparture());
         }
         }
+
+        CLIController cliController = new CLIController();
+        cliController.start();
 
         connexion.close();
     }

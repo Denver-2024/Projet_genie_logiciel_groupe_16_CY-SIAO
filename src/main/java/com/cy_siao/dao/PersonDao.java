@@ -168,6 +168,8 @@ public class PersonDao {
         return persons;
     }
 
+    
+
 
     // A method to extract a person from the result set
     private Person extractPersonFromResultSet(ResultSet rs) throws SQLException {

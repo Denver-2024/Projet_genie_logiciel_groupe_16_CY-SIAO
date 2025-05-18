@@ -1,5 +1,6 @@
 package com.cy_siao.service;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +22,12 @@ public class StayService {
     private RoomDao roomDao;
     private StayDao stayDao;
 
+    public StayService() {
+        this.eligibilityService = new EligibilityService();
+        this.bedDao = new BedDao();
+        this.roomDao = new RoomDao();
+        this.stayDao = new StayDao();
+    }
     /**
      * 
      * @param person personn who need to be assign during arrival - departure
@@ -33,10 +40,14 @@ public class StayService {
         
         if (this.isAssignable(person, bed, arrival, departure)){
             Stay stay = new Stay(bed, person, arrival, departure);
-            //stayDao.create(person, bed, arrival, derparture); // refaire stay object
+            stayDao.create(stay);
             return true;
         }
         return false;
+    }
+
+    public List<Stay> getAllStays(){
+        return stayDao.findAll();
     }
 
     /**
@@ -87,9 +98,9 @@ public class StayService {
      */
     public boolean isAssign(Person person, Bed bed){
         List<Stay> stays;
-            stays = stayDao.findAll(); // remove person and bed when is corriged
+            stays = stayDao.findAll();
             for (Stay stay: stays){
-                if (stay.getBed() == bed && stay.getPerson() == person){
+                if (stay.getBed().equals(bed) && stay.getPerson().equals(person)){
                     return true;
                 }
             }
@@ -102,9 +113,9 @@ public class StayService {
      * @param bed
      * @return
      */
-    public boolean unassign(Person person, Bed bed){
+    public boolean unassign(Person person, Bed bed) throws SQLException {
         if (isAssign(person, bed)){
-            stayDao.delete(person.getId());
+            stayDao.delete(stayDao.findByBedPerson(bed.getId(), person.getId()).getId());
             return true;
         }
         return false;
@@ -118,6 +129,5 @@ public class StayService {
     public void free(Bed bed, Person person) {
         bed.getStays().removeIf(stay -> stay.getPerson().equals(person));
     }
-
 
 }

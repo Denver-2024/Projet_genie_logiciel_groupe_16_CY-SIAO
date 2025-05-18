@@ -42,12 +42,12 @@
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-controls</artifactId>
-        <version>17.0.2</version> <!-- Remplacer par la version souhaitée -->
+        <version>21</version> <!-- Remplacer par la version souhaitée -->
     </dependency>
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
-        <version>17.0.2</version> <!-- Optionnel si vous utilisez FXML -->
+        <version>21</version> <!-- Optionnel si vous utilisez FXML -->
     </dependency>
   </dependencies>
 </project>

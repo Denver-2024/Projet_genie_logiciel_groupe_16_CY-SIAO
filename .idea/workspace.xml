@@ -5,34 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add askInt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/BedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/BedController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/RoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/BedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/BedController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CLIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/CLIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/PersonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/RoomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/RoomController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/StayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/controller/StayController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/BedDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RestrictionTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/RestrictionTypeDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/dao/StayDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/Stay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/model/person/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/BedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/BedService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/PersonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/RoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/RoomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/service/StayService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CLIView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/CLIView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cy_siao/view/GuiView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cy_siao/view/GuiView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/cy_siao/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/cy_siao/AppTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,14 +46,17 @@
     &quot;accountId&quot;: &quot;7f49c3d6-1319-491d-95fc-cfb4e97881dd&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2x5cBp8zy6Dr2HHJ7A37d2dDQdT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -87,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "DavidService",
+    "git-widget-placeholder": "Ulrich",
     "last_opened_file_path": "E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

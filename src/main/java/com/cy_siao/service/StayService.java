@@ -128,11 +128,21 @@ public class StayService {
      *
      * @param bed Remove all stay link at this bed
      */
-    public void free(Bed bed) {
+    public void freeBed(Bed bed) {
         List<Stay> stays;
         stays = this.getAllStays();
         for(Stay stay: stays){
             if (stay.getBed().equals(bed)){
+                stayDao.delete(stay.getId());
+            }
+        }
+    }
+
+    public void freePerson(Person person) {
+        List<Stay> stays;
+        stays = this.getAllStays();
+        for(Stay stay: stays){
+            if (stay.getPerson().equals(person)){
                 stayDao.delete(stay.getId());
             }
         }

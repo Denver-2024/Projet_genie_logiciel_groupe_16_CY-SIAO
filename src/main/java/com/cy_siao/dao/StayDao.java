@@ -91,6 +91,23 @@ public class StayDao {
         return null;
     }
 
+    public Stay findByBedPerson(int idBed, int idPerson) throws SQLException {
+        String sql = "SELECT * FROM stay WHERE IdBed = ? AND IdPerson = ?";
+        try(Connection conn = databaseUtil.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql)){
+            pst.setInt(1, idBed);
+            pst.setInt(2, idPerson);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                return extractStayFromResultSet(rs);
+            }
+        }catch (SQLException e) {
+            System.err.println("Error in finding a stay by bed id and person id: " + e.getMessage());
+            return null;
+        }
+        return null;
+    }
+
     public List<Stay> findAll() {
         List<Stay> stays = new ArrayList<>();
         String sql = "SELECT * FROM stay";

@@ -65,7 +65,7 @@ public class PersonService {
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
         for (Person p : persons){
-            if (p.getLastName().equals(lastName)  && p.getFirstName().equals(lastName)){
+            if (p.getLastName().equals(lastName)  && p.getFirstName().equals(firstName)){
                 personsName.add(p);
             }
         }

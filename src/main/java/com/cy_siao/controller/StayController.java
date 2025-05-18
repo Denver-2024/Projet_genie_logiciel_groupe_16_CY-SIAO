@@ -95,7 +95,7 @@ public class StayController {
     private Person selectPerson() {
         String lastName = view.askString("Nom : ");
         String firstName = view.askString("Prénom : ");
-        List<Person> persons = personService.getByName(lastName, firstName);
+        List<Person> persons = personService.getByName(firstName, lastName);
 
         if (persons.isEmpty()) {
             view.showError("Aucune personne trouvée.");

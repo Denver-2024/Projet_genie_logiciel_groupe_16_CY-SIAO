@@ -14,7 +14,7 @@ public class App
     public static void main( String[] args ) throws SQLException {
         CLIController controller = new CLIController();
         GUIController guiController = new GUIController();
-        //guiController.start(args);
-        controller.start();
+        guiController.start(args);
+        //controller.start();
     }
 }

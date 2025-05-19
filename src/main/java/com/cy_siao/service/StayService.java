@@ -16,6 +16,9 @@ import com.cy_siao.model.RestrictionRoom;
 import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.person.Person;
 
+/**
+ * 
+ */
 public class StayService {
     private EligibilityService eligibilityService;
     private BedDao bedDao;
@@ -23,6 +26,9 @@ public class StayService {
     private StayDao stayDao;
     private PersonService personService;
 
+    /**
+     * 
+     */
     public StayService() {
         this.eligibilityService = new EligibilityService();
         this.personService = new PersonService();
@@ -138,6 +144,10 @@ public class StayService {
         }
     }
 
+    /**
+     * 
+     * @param person
+     */
     public void freePerson(Person person) {
         List<Stay> stays;
         stays = this.getAllStays();

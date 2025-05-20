@@ -9,13 +9,26 @@ import com.cy_siao.model.RestrictionRoom;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * 
+ */
 public class EligibilityService {
     private RestrictionTypeDao restrictionTypeDao;
 
+    /**
+     * 
+     */
     public EligibilityService() {
         this.restrictionTypeDao = new RestrictionTypeDao();
     }
 
+    /**
+     * 
+     * @param person
+     * @param room
+     * @param restrictions
+     * @return
+     */
     public boolean isPersonAllowedInRoom(Person person, Room room, List<RestrictionRoom> restrictions) {
         if (restrictions == null || restrictions.isEmpty()) {
             return true; // Pas de restrictions = accès autorisé
@@ -47,6 +60,12 @@ public class EligibilityService {
         return finalResult;
     }
 
+    /**
+     * 
+     * @param person
+     * @param restriction
+     * @return
+     */
     private boolean matchesRestriction(Person person, RestrictionType restriction) {
         if (restriction == null) {
             return true; // Pas de restriction = autorisation accordée

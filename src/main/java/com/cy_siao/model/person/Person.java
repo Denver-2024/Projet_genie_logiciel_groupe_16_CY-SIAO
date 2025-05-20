@@ -224,6 +224,11 @@ public class Person {
         this.address = address;
     }
 
+    /**
+     * Returns the display of the person.
+     *
+     * @return the display of the person and his information about him/her
+     */
     @Override
     public String toString() {
         return "Person{" +
@@ -235,12 +240,23 @@ public class Person {
                 '}';
     }
 
+    /**
+     * Compares this address to the specified object for equality.
+     *
+     * @param o the object to compare with
+     * @return true if the objects are equal (same name, same id, (all private variable)), false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Person person)) return false;
         return id == person.id && age == person.age && socialSecurityNumber == person.socialSecurityNumber && Objects.equals(lastName, person.lastName) && Objects.equals(firstName, person.firstName) && gender == person.gender && Objects.equals(placeOfBirth, person.placeOfBirth) && Objects.equals(address, person.address) && Objects.equals(restrictionType, person.restrictionType);
     }
 
+    /**
+     * Returns a hash code value for the person.
+     *
+     * @return a hash code value for this person
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, lastName, firstName, gender, age, placeOfBirth, socialSecurityNumber, address, restrictionType);

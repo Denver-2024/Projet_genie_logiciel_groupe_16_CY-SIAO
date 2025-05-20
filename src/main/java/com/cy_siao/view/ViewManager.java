@@ -38,3 +38,4 @@ public class ViewManager {
         return primaryStage;
     }
 }
+    

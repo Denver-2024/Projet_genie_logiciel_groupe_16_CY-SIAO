@@ -16,9 +16,9 @@
     </ImageView>
 
     <!-- Logo centré en haut -->
-    <ImageView fitHeight="150" fitWidth="200" layoutX="273.4" layoutY="28.0" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="273.4" AnchorPane.rightAnchor="283.4" AnchorPane.topAnchor="28.0">
+    <ImageView fitHeight="150" fitWidth="200" layoutX="273.4" layoutY="28.0" preserveRatio="true" AnchorPane.leftAnchor="273.4" AnchorPane.rightAnchor="283.4" AnchorPane.topAnchor="28.0">
         <image>
-            <Image url="@Images/Projet_SIAO_logo.png" />
+            <Image url="@Images/Projet_SIAO.png"/>
         </image>
     </ImageView>
 

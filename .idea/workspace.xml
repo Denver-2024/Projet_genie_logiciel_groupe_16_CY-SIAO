@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Projet_SIAO_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/fond.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/person_view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/fond.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/fond.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +70,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging Ulrich",
+    "git-widget-placeholder": "Ulrich",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "H:/Dossiers_utiles/ING1_INFO_Semestre_2/Projet Java/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/resources/fxml/Stay",
@@ -114,11 +98,11 @@
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\Dossiers_utiles\ING1_INFO_Semestre_2\Projet Java\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\resources\Images" />
       <recent name="H:\Dossiers_utiles\ING1_INFO_Semestre_2\Projet Java\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\resources\fxml\person" />
       <recent name="H:\Dossiers_utiles\ING1_INFO_Semestre_2\Projet Java\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main" />
       <recent name="H:\Dossiers_utiles\ING1_INFO_Semestre_2\Projet Java\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao" />
       <recent name="H:\Dossiers_utiles\ING1_INFO_Semestre_2\Projet Java\Projet_genie_logiciel_groupe_16_CY-SIAO\src\Images" />
-      <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
     </key>
   </component>
   <component name="RunManager" selected="Application.App">

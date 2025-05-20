@@ -4,8 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add askInt">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Projet_SIAO_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/fond.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/person_view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +35,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
-        <option value="FxmlFile" />
+        <option value="JavaFXApplication" />
+        <option value="CSS File" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -61,10 +82,11 @@
     "Application.App.executor": "Run",
     "Application.GuiView.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Mainfx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Humpich",
+    "git-widget-placeholder": "Merging Ulrich",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "H:/Dossiers_utiles/ING1_INFO_Semestre_2/Projet Java/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/resources/fxml/Stay",
@@ -130,6 +152,19 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.Main" />
       <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mainfx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.Mainfx" />
+      <module name="cy_siao" />
       <option name="VM_PARAMETERS" value="--module-path /path/to/javafx-sdk-2/lib --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
@@ -142,6 +177,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Mainfx" />
       <item itemvalue="Application.App" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.GUIView" />
@@ -151,6 +187,7 @@
         <item itemvalue="Application.App" />
         <item itemvalue="Application.GUIView" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Mainfx" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +208,12 @@
       <workItem from="1747493827326" duration="944000" />
       <workItem from="1747502145846" duration="2936000" />
       <workItem from="1747510602485" duration="5958000" />
+      <workItem from="1747591948694" duration="2723000" />
+      <workItem from="1747598732391" duration="2449000" />
+      <workItem from="1747646966914" duration="4544000" />
+      <workItem from="1747659948886" duration="748000" />
+      <workItem from="1747717622346" duration="11051000" />
+      <workItem from="1747732258381" duration="12424000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -252,7 +295,71 @@
       <option name="project" value="LOCAL" />
       <updated>1747512108592</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness.">
+      <option name="closed" value="true" />
+      <created>1747587123627</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747587123627</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support.">
+      <option name="closed" value="true" />
+      <created>1747599634779</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747599634782</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`.">
+      <option name="closed" value="true" />
+      <created>1747732469918</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732469918</updated>
+    </task>
+    <task id="LOCAL-00014" summary="CLIView">
+      <option name="closed" value="true" />
+      <created>1747732682644</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732682644</updated>
+    </task>
+    <task id="LOCAL-00015" summary="CLIView">
+      <option name="closed" value="true" />
+      <created>1747732880352</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732880352</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add GUI for person management and implement update/delete logic&#10;&#10;Introduced a JavaFX-based GUI with person-related fields and table view in `person_view.fxml`. Enhanced `PersonControllerFx` to handle person updates and deletions, including validation and clearing selections. Included new image assets for GUI design.">
+      <option name="closed" value="true" />
+      <created>1747735494311</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747735494312</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation.">
+      <option name="closed" value="true" />
+      <created>1747738800711</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747738800711</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut">
+      <option name="closed" value="true" />
+      <created>1747739491304</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747739491304</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +397,13 @@
     <MESSAGE value="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities." />
     <MESSAGE value="Refactor controllers for improved error handling and modularity&#10;&#10;Updated `PersonController` to include robust error handling for invalid age and gender inputs. Enhanced modularity by refactoring methods in `StayController` and integrating `CLIView` for user interactions. Deprecated unfinished features in `CLIController` with relevant error messages to improve user experience." />
     <MESSAGE value="add askInt" />
-    <option name="LAST_COMMIT_MESSAGE" value="add askInt" />
+    <MESSAGE value="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness." />
+    <MESSAGE value="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support." />
+    <MESSAGE value="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`." />
+    <MESSAGE value="CLIView" />
+    <MESSAGE value="Add GUI for person management and implement update/delete logic&#10;&#10;Introduced a JavaFX-based GUI with person-related fields and table view in `person_view.fxml`. Enhanced `PersonControllerFx` to handle person updates and deletions, including validation and clearing selections. Included new image assets for GUI design." />
+    <MESSAGE value="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation." />
+    <MESSAGE value="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut" />
   </component>
 </project>

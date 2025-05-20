@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cy_siao.controller.MainMenuController">
+   <children>
+      <ImageView fitHeight="497.0" fitWidth="806.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/fond.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane prefHeight="497.0" prefWidth="800">
+      
+          <center>
+              <VBox alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
+                  <Label style="-fx-font-size: 24px;" text="Welcome to Emergency Shelter Management" />
+               <Label style="-fx-font-size: 24px;" text="CY-SIAO" />
+                  <Label style="-fx-font-size: 16px;" text="Select a menu item to begin." />
+              </VBox>
+          </center>
+         <right>
+              <VBox spacing="10" BorderPane.alignment="CENTER">
+                  <padding>
+                      <Insets bottom="15" left="15" right="15" top="15" />
+                  </padding>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Menu" />
+                  <Button fx:id="managePersonButton" maxWidth="Infinity" text="Manage Person" />
+                  <Button fx:id="manageStayButton" maxWidth="Infinity" text="Manage Stay" />
+                  <Button fx:id="manageBedButton" maxWidth="Infinity" text="Manage Bed" />
+                  <Button fx:id="manageRoomButton" maxWidth="Infinity" text="Manage Room" />
+               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@Images/Projet_SIAO_logo.png" />
+                  </image>
+               </ImageView>
+              </VBox>
+         </right>
+      
+      </BorderPane>
+   </children>
+</AnchorPane>

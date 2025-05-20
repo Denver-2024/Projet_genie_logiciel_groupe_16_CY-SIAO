@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cy_siao.controller.gui.BedControllerFx"
+            stylesheets="styles/style.css">
+
+    <top>
+        <VBox spacing="10">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="Add a Bed" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+            <HBox spacing="10">
+                <Label text="Room ID:" />
+                <TextField fx:id="idRoomField" promptText="Enter Room ID"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Double Bed:" />
+                <CheckBox fx:id="isDoubleCheckBox"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button fx:id="addButton" text="Add Bed"/>
+                <Button fx:id="deleteButton" text="Delete Selected Bed"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="bedTableView" prefHeight="300" prefWidth="600">
+            <columns>
+                <TableColumn fx:id="idCol" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="idRoomCol" text="Room ID" prefWidth="200"/>
+                <TableColumn fx:id="isDoubleCol" text="Nombre de place" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>

@@ -79,7 +79,7 @@ public class StayController {
         Bed bed = selectBed();
         if (bed == null) return;
 
-        stayService.free(bed, person);
+        stayService.freeBed(bed);
         view.showMessage("Lit libéré pour cette personne (en mémoire).");
     }
 

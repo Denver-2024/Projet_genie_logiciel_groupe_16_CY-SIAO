@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`.">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CliView.java" beforeDir="false" />
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="CLIView">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +18,8 @@
       <list>
         <option value="Kotlin Class" />
         <option value="JavaFXApplication" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -179,7 +179,7 @@
       <workItem from="1747646966914" duration="4544000" />
       <workItem from="1747659948886" duration="748000" />
       <workItem from="1747717622346" duration="11051000" />
-      <workItem from="1747732258381" duration="388000" />
+      <workItem from="1747732258381" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -285,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747732469918</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="CLIView">
+      <option name="closed" value="true" />
+      <created>1747732682644</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732682644</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,6 +322,7 @@
     <MESSAGE value="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness." />
     <MESSAGE value="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support." />
     <MESSAGE value="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`." />
+    <MESSAGE value="CLIView" />
+    <option name="LAST_COMMIT_MESSAGE" value="CLIView" />
   </component>
 </project>

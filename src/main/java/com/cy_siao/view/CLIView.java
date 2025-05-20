@@ -83,8 +83,8 @@ public class CLIView {
         System.out.print(label);
         int result = scanner.nextInt();
         scanner.nextLine();
-    return result;
-}
+        return result;
+    }
 
     public LocalDate askDate(String label) {
         System.out.print(label);

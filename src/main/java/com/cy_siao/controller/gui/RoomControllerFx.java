@@ -87,7 +87,7 @@ public class RoomControllerFx implements Initializable {
             return;
         }
 
-        Room room = new Room(name, nbBedsMax, restriction);
+        Room room = new Room(name, nbBedsMax);
         roomService.createRoom(room);
         roomList.add(room);
 

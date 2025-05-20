@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Gender;
+import com.cy_siao.model.person.Address;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +27,14 @@ public class PersonControllerFx implements Initializable {
     @FXML
     private TextField socialSecurityNumberField;
     @FXML
+    private TextField streetNumberField;
+    @FXML
+    private TextField streetNameField;
+    @FXML
+    private TextField postalCodeField;
+    @FXML
+    private TextField cityNameField;
+    @FXML
     private ComboBox<Gender> genderComboBox;
     @FXML
     private TableView<Person> personTableView;
@@ -35,6 +44,8 @@ public class PersonControllerFx implements Initializable {
     private Button updateButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button addAddressButton;
     @FXML
     private TableColumn<Person, String> firstNameCol;
     @FXML
@@ -48,8 +59,6 @@ public class PersonControllerFx implements Initializable {
     @FXML
     private TableColumn<Person, Long> socialSecurityNumberCol;
 
-
-
     private ObservableList<Person> personList = FXCollections.observableArrayList();
     private PersonService personService = new PersonService();
 
@@ -62,6 +71,7 @@ public class PersonControllerFx implements Initializable {
         addButton.setOnAction(e -> handleAddPerson());
         updateButton.setOnAction(e -> handleUpdatePerson());
         deleteButton.setOnAction(e -> handleDeletePerson());
+        addAddressButton.setOnAction(e -> handleAddAddress());
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
@@ -70,6 +80,39 @@ public class PersonControllerFx implements Initializable {
         socialSecurityNumberCol.setCellValueFactory(new PropertyValueFactory<>("socialSecurityNumber"));
     }
 
+    private void handleAddAddress() {
+        Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            try {
+                Integer streetNumber = Integer.parseInt(streetNumberField.getText());
+                String streetName = streetNameField.getText();
+                Integer postalCode = Integer.parseInt(postalCodeField.getText());
+                String cityName = cityNameField.getText();
+
+                if (streetNumber>0 && streetNumber<1000000000 &&
+                        streetName != null && !streetName.isEmpty() &&
+                        postalCode > 0 && postalCode < 1000000000 &&
+                        cityName != null && !cityName.isEmpty()) {
+
+                    Address address = new Address(streetNumber, streetName, postalCode, cityName);
+                    personService.addAddressToPerson(selectedPerson.getId(), address);
+
+                    streetNumberField.clear();
+                    streetNameField.clear();
+                    postalCodeField.clear();
+                    cityNameField.clear();
+
+                    showAlert("Address added successfully");
+                } else {
+                    showAlert("Please enter valid address details");
+                }
+            } catch (Exception e) {
+                showAlert("Error adding address: " + e.getMessage());
+            }
+        } else {
+            showAlert("Please select a person to add address");
+        }
+    }
 
     private void handleAddPerson() {
         try {
@@ -85,7 +128,7 @@ public class PersonControllerFx implements Initializable {
                 if (placeOfBirth != null && !placeOfBirth.isEmpty()) {
                     person.setPlaceOfBirth(placeOfBirth);
                 }
-                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()){
+                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()) {
                     person.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
                 }
                 personList.add(person);
@@ -123,7 +166,7 @@ public class PersonControllerFx implements Initializable {
                 if (placeOfBirth != null && !placeOfBirth.isEmpty()) {
                     selectedPerson.setPlaceOfBirth(placeOfBirth);
                 }
-                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()){
+                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()) {
                     selectedPerson.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
                 }
             }

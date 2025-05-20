@@ -6,7 +6,6 @@ import com.cy_siao.service.PersonService;
 import com.cy_siao.view.CLIView;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class PersonController {
     private PersonService personService;

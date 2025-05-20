@@ -1,4 +1,4 @@
 package com.cy_siao.controller.gui;
 
-public class PersonFormController {
+public class GUIBedController  {
 }

@@ -4,22 +4,54 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import java.io.IOException;
 
+import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.Objects;
 
-public class GuiView extends Application {
+public class GUIView extends Application {
 
     private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        showMainMenu();
+
+        //Relative path from resources for  adding the icon to our software
+        InputStream stream = getClass().getResourceAsStream("/Images/Projet_SIAO.png");
+        try {
+            if (stream != null) {
+                primaryStage.getIcons().add(new Image(stream));
+            }
+        } catch (Exception e) {
+            System.err.println("Error in loading image: " + e.getMessage());
+        }
+
+        primaryStage.setTitle("CY SIAO Application");
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Gui.fxml")));
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void showMainMenu() {
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
+
+    /*public void showMainMenu() {
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
 
@@ -52,7 +84,6 @@ public class GuiView extends Application {
         Button delete = new Button("Delete person");
         Button back = new Button("Back");
 
-        // Actions à compléter selon ton contrôleur métier
         showAll.setOnAction(e -> showMessage("Listing all persons..."));
         add.setOnAction(e -> {
             String name = askString("Enter name:");
@@ -113,7 +144,5 @@ public class GuiView extends Application {
         alert.showAndWait();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-}
+
+*/

@@ -9,13 +9,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.cy_siao.controller.CLIController;
+import com.cy_siao.controller.cli.CLIController;
+import com.cy_siao.view.GUIView;
+import javafx.stage.Stage;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
 
         CLIController cliController = new CLIController();
+        GUIView guiView=new GUIView();
 
         DatabaseUtil dbUtil = new DatabaseUtil();
         Connection connexion = null;
@@ -201,10 +204,7 @@ public class Main {
         if (allStays!=null){
         for (Stay stay: allStays){
            System.out.println("Stay: "+stay.getId()+" ,bed: "+stay.getBed()+" , person: "+stay.getPerson()+" ,arrival: "+stay.getDateArrival()+", departure: "+stay.getDateDeparture());
-        }
-        }
-
-        CLIController cliController = new CLIController();
+        }}
         cliController.start();
 
         connexion.close();

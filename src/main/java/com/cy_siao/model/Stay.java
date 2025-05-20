@@ -9,6 +9,8 @@ public class Stay {
 
     private int id;
     private Bed bed;
+    private int idBed;
+    private int idPerson;
     private Person person;
     private LocalDate dateArrival;
     private LocalDate dateDeparture;
@@ -19,6 +21,13 @@ public class Stay {
     public Stay(Bed bed, Person person, LocalDate dateArrival, LocalDate dateDeparture) {
         this.bed = bed;
         this.person = person;
+        this.dateArrival = dateArrival;
+        this.dateDeparture = dateDeparture;
+    }
+
+    public Stay(int idBed, int idPerson, LocalDate dateArrival, LocalDate dateDeparture) {
+        this.idBed = idBed;
+        this.idPerson = idPerson;
         this.dateArrival = dateArrival;
         this.dateDeparture = dateDeparture;
     }
@@ -84,8 +93,8 @@ public class Stay {
     public String toString() {
         return "Stay{" +
                 "id=" + id +
-                ", bed=" + bed +
-                ", person=" + person +
+                ", bed=" + idBed +
+                ", person=" + idPerson +
                 ", dateArrival=" + dateArrival +
                 ", dateDeparture=" + dateDeparture +
                 '}';

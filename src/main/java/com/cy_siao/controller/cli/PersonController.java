@@ -1,4 +1,4 @@
-package com.cy_siao.controller;
+package com.cy_siao.controller.cli;
 
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Person;
@@ -6,7 +6,6 @@ import com.cy_siao.service.PersonService;
 import com.cy_siao.view.CLIView;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class PersonController {
     private PersonService personService;

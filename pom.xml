@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.cy_siao</groupId>
@@ -17,7 +18,7 @@
   </properties>
 
   <dependencies>
-    <!-- JavaFX modules : we can add here all modules we may need-->
+    <!-- JavaFX -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
@@ -29,25 +30,25 @@
       <version>${javafx.version}</version>
     </dependency>
 
-    <!-- PostgreSQL -->
+    <!-- PostgreSQL JDBC Driver -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.7.5</version>
     </dependency>
 
-    <!-- JUnit -->
+    <!-- JUnit (attention : version 3.8.1 est très ancienne) -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Compiler plugin -->
+      <!-- Compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -58,25 +59,30 @@
         </configuration>
       </plugin>
 
+      <!-- JavaFX Maven Plugin -->
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.8</version>
         <configuration>
-            <mainClass>com.cy_siao.App</mainClass>
+          <mainClass>com.cy_siao.App</mainClass>
+          <modules>
+            <module>javafx.controls</module>
+            <module>javafx.fxml</module>
+          </modules>
         </configuration>
-    </plugin>
+      </plugin>
 
-      <!-- JavaFX launcher (required for JDK > 11) -->
+      <!-- Exec plugin (utile pour lancer manuellement, mais optionnel si le plugin JavaFX est bien configuré) -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.1.0</version>
         <configuration>
           <mainClass>com.cy_siao.App</mainClass>
-          <!--<commandlineArgs></commandlineArgs>-->
         </configuration>
       </plugin>
     </plugins>
   </build>
+
 </project>

@@ -1,13 +1,9 @@
-package com.cy_siao.controller;
+package com.cy_siao.controller.cli;
 
-import com.cy_siao.model.Bed;
 import com.cy_siao.model.Room;
 import com.cy_siao.service.BedService;
 import com.cy_siao.service.RoomService;
 import com.cy_siao.view.CLIView;
-
-
-import java.util.List;
 
 public class RoomController {
 

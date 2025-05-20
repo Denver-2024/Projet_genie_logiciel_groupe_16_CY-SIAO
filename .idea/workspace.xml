@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation.">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +22,9 @@
       <list>
         <option value="Kotlin Class" />
         <option value="JavaFXApplication" />
+        <option value="CSS File" />
         <option value="Class" />
         <option value="FxmlFile" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -181,7 +185,7 @@
       <workItem from="1747646966914" duration="4544000" />
       <workItem from="1747659948886" duration="748000" />
       <workItem from="1747717622346" duration="11051000" />
-      <workItem from="1747732258381" duration="7011000" />
+      <workItem from="1747732258381" duration="12424000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -319,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747738800711</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut">
+      <option name="closed" value="true" />
+      <created>1747739491304</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747739491304</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,6 +363,7 @@
     <MESSAGE value="CLIView" />
     <MESSAGE value="Add GUI for person management and implement update/delete logic&#10;&#10;Introduced a JavaFX-based GUI with person-related fields and table view in `person_view.fxml`. Enhanced `PersonControllerFx` to handle person updates and deletions, including validation and clearing selections. Included new image assets for GUI design." />
     <MESSAGE value="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation." />
+    <MESSAGE value="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut" />
   </component>
 </project>

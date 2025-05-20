@@ -116,6 +116,11 @@ public class Address {
         this.cityName = cityName;
     }
 
+    /**
+     * Returns a string representation of the address.
+     *
+     * @return a string representation of the address containing all fields
+     */
     @Override
     public String toString() {
         return "Address{" +
@@ -127,12 +132,23 @@ public class Address {
                 '}';
     }
 
+    /**
+     * Compares this address to the specified object for equality.
+     *
+     * @param o the object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Address address)) return false;
         return id == address.id && streetNumber == address.streetNumber && postalCode == address.postalCode && Objects.equals(streetName, address.streetName) && Objects.equals(cityName, address.cityName);
     }
 
+    /**
+     * Returns a hash code value for the address.
+     *
+     * @return a hash code value for this address
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, streetNumber, streetName, postalCode, cityName);

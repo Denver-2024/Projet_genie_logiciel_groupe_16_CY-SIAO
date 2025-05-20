@@ -7,18 +7,33 @@ import com.cy_siao.model.person.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ */
 public class PersonService {
 
     private final PersonDao personDao;
 
+    /**
+     * 
+     */
     public PersonService() {
         this.personDao = new PersonDao();
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<Person> getAllPersons() {
         return personDao.findAll(); // findAll
     }
 
+    /**
+     * 
+     * @param id
+     * @return
+     */
     public Person getPersonById(int id) {
         List<Person> researchIn; // Rechercher l'id dans cette list
         researchIn = getAllPersons();
@@ -30,6 +45,11 @@ public class PersonService {
         return null;
     }
 
+    /**
+     * 
+     * @param firstName
+     * @return
+     */
     public List<Person> getByFirstName(String firstName){
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
@@ -45,6 +65,11 @@ public class PersonService {
         return personsName;
     }
 
+    /**
+     * 
+     * @param lastName
+     * @return
+     */
     public List<Person> getByLastName(String lastName){
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
@@ -60,6 +85,12 @@ public class PersonService {
         return personsName;
     }
 
+    /**
+     * 
+     * @param firstName
+     * @param lastName
+     * @return
+     */
     public List<Person> getByName(String firstName, String lastName){
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
@@ -75,11 +106,19 @@ public class PersonService {
         return personsName;
     }
 
+    /**
+     * 
+     * @param person
+     */
     public void createPerson(Person person) {
         // You could add validation logic here if needed
         personDao.createPerson(person);
     }
 
+    /**
+     * 
+     * @param person
+     */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
             throw new IllegalArgumentException("Invalid ID for update.");
@@ -87,10 +126,20 @@ public class PersonService {
         personDao.updatePerson(person);
     }
 
+    /**
+     * 
+     * @param id
+     */
     public void deletePerson(int id) {
         personDao.deletePerson(id);
     }
 
+    /**
+     * 
+     * @param person1
+     * @param person2
+     * @return
+     */
     public boolean isPersonCompatible(Person person1, Person person2) {
         // Based on the diagram, compatibility is checked via RestrictionType
         if (person1.getRestrictionType() == null || person2.getRestrictionType() == null) {
@@ -100,6 +149,11 @@ public class PersonService {
                 && person2.getRestrictionType().isRespectedBy(person1);
     }
 
+    /**
+     * 
+     * @param personId
+     * @param address
+     */
     public void addAddressToPerson(int personId, Address address) {
         Person person = getPersonById(personId);
         if (person == null) {

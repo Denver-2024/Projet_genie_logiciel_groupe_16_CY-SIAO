@@ -16,14 +16,22 @@ import com.cy_siao.model.RestrictionRoom;
 import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.person.Person;
 
+/**
+ * 
+ */
 public class StayService {
     private EligibilityService eligibilityService;
     private BedDao bedDao;
     private RoomDao roomDao;
     private StayDao stayDao;
+    private PersonService personService;
 
+    /**
+     * 
+     */
     public StayService() {
         this.eligibilityService = new EligibilityService();
+        this.personService = new PersonService();
         this.bedDao = new BedDao();
         this.roomDao = new RoomDao();
         this.stayDao = new StayDao();
@@ -122,12 +130,32 @@ public class StayService {
     }
 
     /**
-     * Frees the bed for a given person by removing their stays.
+     * Frees the bed for all his stay.
      *
-     * @param person Person to remove from the bed
+     * @param bed Remove all stay link at this bed
      */
-    public void free(Bed bed, Person person) {
-        bed.getStays().removeIf(stay -> stay.getPerson().equals(person));
+    public void freeBed(Bed bed) {
+        List<Stay> stays;
+        stays = this.getAllStays();
+        for(Stay stay: stays){
+            if (stay.getBed().equals(bed)){
+                stayDao.delete(stay.getId());
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param person
+     */
+    public void freePerson(Person person) {
+        List<Stay> stays;
+        stays = this.getAllStays();
+        for(Stay stay: stays){
+            if (stay.getPerson().equals(person)){
+                stayDao.delete(stay.getId());
+            }
+        }
     }
 
 }

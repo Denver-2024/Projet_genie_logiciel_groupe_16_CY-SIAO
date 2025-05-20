@@ -1,27 +1,24 @@
 package com.cy_siao.view;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.time.LocalDate;
+import com.cy_siao.controller.GUIController;
 
-public class GuiView extends Application {
-
+public class GuiView {
     private Stage primaryStage;
-
-    @Override
-    public void start(Stage primaryStage) {
+    private GUIController controller;
+    
+    public GuiView(Stage primaryStage, GUIController controller) {
         this.primaryStage = primaryStage;
-        showMainMenu();
+        this.controller = controller;
     }
 
     public void showMainMenu() {
         VBox layout = new VBox(10);
-        layout.setPadding(new Insets(20));
+        layout.setPadding(new javafx.geometry.Insets(20));
 
         Label title = new Label("Welcome to the CY SIAO");
         Label subtitle = new Label("Here you can manage the SIAO. Does it cool?\nGood luck!");
@@ -29,8 +26,8 @@ public class GuiView extends Application {
         Button stayButton = new Button("Manage a stay");
         Button exitButton = new Button("Exit");
 
-        personButton.setOnAction(e -> showPersonMenu());
-        stayButton.setOnAction(e -> showMessage("Stay management coming soon..."));
+        personButton.setOnAction(e -> controller.handlePersonMenu());
+        stayButton.setOnAction(e -> controller.showMessage("Stay management coming soon..."));
         exitButton.setOnAction(e -> primaryStage.close());
 
         layout.getChildren().addAll(title, subtitle, personButton, stayButton, exitButton);
@@ -43,7 +40,7 @@ public class GuiView extends Application {
 
     public void showPersonMenu() {
         VBox layout = new VBox(10);
-        layout.setPadding(new Insets(20));
+        layout.setPadding(new javafx.geometry.Insets(20));
 
         Label label = new Label("Person Management");
         Button showAll = new Button("Show all persons");
@@ -52,17 +49,11 @@ public class GuiView extends Application {
         Button delete = new Button("Delete person");
         Button back = new Button("Back");
 
-        // Actions à compléter selon ton contrôleur métier
-        showAll.setOnAction(e -> showMessage("Listing all persons..."));
-        add.setOnAction(e -> {
-            String name = askString("Enter name:");
-            int age = askInt("Enter age:");
-            showMessage("Person added: " + name + " (" + age + ")");
-        });
-
-        update.setOnAction(e -> showMessage("Update logic not implemented."));
-        delete.setOnAction(e -> showMessage("Delete logic not implemented."));
-        back.setOnAction(e -> showMainMenu());
+        showAll.setOnAction(e -> controller.handleShowAllPersons());
+        add.setOnAction(e -> controller.handleAddPerson());
+        update.setOnAction(e -> controller.handleUpdatePerson());
+        delete.setOnAction(e -> controller.handleDeletePerson());
+        back.setOnAction(e -> controller.handleBackToMain());
 
         layout.getChildren().addAll(label, showAll, add, update, delete, back);
 
@@ -70,7 +61,7 @@ public class GuiView extends Application {
         primaryStage.setScene(scene);
     }
 
-    public String askString(String prompt) {
+    public String showInputDialog(String prompt) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Input");
         dialog.setHeaderText(null);
@@ -78,39 +69,10 @@ public class GuiView extends Application {
         return dialog.showAndWait().orElse("");
     }
 
-    public int askInt(String prompt) {
-        String input = askString(prompt);
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            showError("Please enter a valid number.");
-            return askInt(prompt);
-        }
-    }
-
-    public LocalDate askDate(String prompt) {
-        String input = askString(prompt + " (yyyy-MM-dd)");
-        try {
-            return LocalDate.parse(input);
-        } catch (Exception e) {
-            showError("Invalid date format.");
-            return askDate(prompt);
-        }
-    }
-
-    public void showMessage(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-        alert.setTitle("Info");
+    public void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type, message, ButtonType.OK);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.showAndWait();
     }
-
-    public void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
 }

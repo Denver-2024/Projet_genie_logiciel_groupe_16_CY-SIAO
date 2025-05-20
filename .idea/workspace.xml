@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`.">
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/BedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/BedController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/CLIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/CLIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/StayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CliView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,31 +55,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.GuiView.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Mainfx.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "DavidService",
-    "last_directory_selection": "E:/cy-saio - Copie/src/main/java",
-    "last_opened_file_path": "E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GuiView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Mainfx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DavidService&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/cy-saio - Copie/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
@@ -196,6 +179,7 @@
       <workItem from="1747646966914" duration="4544000" />
       <workItem from="1747659948886" duration="748000" />
       <workItem from="1747717622346" duration="11051000" />
+      <workItem from="1747732258381" duration="388000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -293,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747599634782</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`.">
+      <option name="closed" value="true" />
+      <created>1747732469918</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732469918</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +313,7 @@
     <MESSAGE value="add askInt" />
     <MESSAGE value="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness." />
     <MESSAGE value="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support." />
+    <MESSAGE value="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`." />
   </component>
 </project>

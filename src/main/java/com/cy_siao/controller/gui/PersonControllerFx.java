@@ -91,7 +91,25 @@ public class PersonControllerFx implements Initializable {
     private void handleUpdatePerson() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            // Update person implementation here
+            personTableView.getSelectionModel().clearSelection();
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String placeOfBirth = placeOfBirthField.getText();
+            String socialSecurityNumber = socialSecurityNumberField.getText();
+            int age = Integer.parseInt(ageField.getText());
+            Gender gender = genderComboBox.getValue();
+            if (firstName != null && !firstName.isEmpty() && gender != null && age > 0 && age < 150 && lastName != null && !lastName.isEmpty()) {
+                selectedPerson.setFirstName(firstName);
+                selectedPerson.setLastName(lastName);
+                selectedPerson.setGender(gender);
+                selectedPerson.setAge(age);
+                if (placeOfBirth != null && !placeOfBirth.isEmpty()) {
+                    selectedPerson.setPlaceOfBirth(placeOfBirth);
+                }
+                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()){
+                    selectedPerson.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
+                }
+            }
         } else {
             showAlert("Please select a person to update");
         }
@@ -100,7 +118,9 @@ public class PersonControllerFx implements Initializable {
     private void handleDeletePerson() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            // Delete person implementation here
+            personTableView.getSelectionModel().clearSelection();
+            personList.remove(selectedPerson);
+            personService.deletePerson(selectedPerson.getId());
         } else {
             showAlert("Please select a person to delete");
         }

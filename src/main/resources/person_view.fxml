@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cy_siao.controller.gui.PersonControllerFx">
+
+    <center>
+        <VBox spacing="10" padding="20">
+            <HBox spacing="10">
+                <VBox spacing="5">
+                    <Label text="Prénom" />
+                    <TextField fx:id="firstNameField" />
+
+                    <Label text="Nom" />
+                    <TextField fx:id="lastNameField" />
+
+                    <Label text="Âge" />
+                    <TextField fx:id="ageField" />
+
+                    <Label text="Genre" />
+                    <ComboBox fx:id="genderComboBox" prefWidth="150"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Lieu de naissance" />
+                    <TextField fx:id="placeOfBirthField" />
+
+                    <Label text="Numéro de Sécurité Sociale" />
+                    <TextField fx:id="socialSecurityNumberField" />
+
+                    <Label text="Téléphone" />
+                    <TextField fx:id="phoneNumberField" />
+                </VBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button fx:id="addButton" text="Ajouter" />
+                <Button fx:id="updateButton" text="Mettre à jour" />
+                <Button fx:id="deleteButton" text="Supprimer" />
+            </HBox>
+
+            <TableView fx:id="personTableView" prefHeight="200" prefWidth="600">
+                <columns>
+                    <TableColumn text="Prénom" prefWidth="100" />
+                    <TableColumn text="Nom" prefWidth="100" />
+                    <TableColumn text="Âge" prefWidth="50" />
+                    <TableColumn text="Genre" prefWidth="80" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

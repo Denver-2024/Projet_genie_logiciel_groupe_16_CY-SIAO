@@ -17,6 +17,7 @@ CREATE TABLE Address (
     streetName VARCHAR(50) NOT NULL,
     postalCode INT CHECK (postalCode > 0 AND LENGTH(postalCode::TEXT) = 5),
     cityName VARCHAR(50) NOT NULL
+    ON DELETE CASCADE
 );
 
 CREATE TABLE Person (
@@ -27,6 +28,7 @@ CREATE TABLE Person (
     gender CHAR(1) CHECK (gender IN ('F', 'M')) NOT NULL,
     placeOfBirth VARCHAR(50),
     socialSecurityNumber BIGINT CHECK (socialSecurityNumber > 0 AND LENGTH(socialSecurityNumber::TEXT) = 13)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE RestrictionType (
@@ -36,18 +38,21 @@ CREATE TABLE RestrictionType (
     maxAge INT CHECK (maxAge BETWEEN 0 AND 200),
     CHECK(minAge <= maxAge),
     genderRestriction CHAR(1) CHECK (genderRestriction IN ('F', 'M'))
+    ON DELETE CASCADE
 );
 
 CREATE TABLE Room (
     Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
     name VARCHAR(50),
     nbBedsMax INT CHECK (nbBedsMax >= 0 AND nbBedsMax <= 10) DEFAULT 0
+    ON DELETE CASCADE
 );
 
 CREATE TABLE Bed (
     Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
     nbPlacesMax INT CHECK (nbPlacesMax IN (1, 2)) DEFAULT 1,
     IdRoom INT REFERENCES Room(Id) NOT NULL
+    ON DELETE CASCADE
 );
 
 
@@ -56,6 +61,7 @@ CREATE TABLE RestrictionRoom (
     IdRestrictionType INT REFERENCES RestrictionType(Id),
     logicOperator VARCHAR(3) CHECK (logicOperator IN ('AND', 'OR')),
     PRIMARY KEY (IdRoom, IdRestrictionType)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE Relationship (
@@ -63,12 +69,14 @@ CREATE TABLE Relationship (
     IdPerson2 INT REFERENCES Person(Id),
     relationType VARCHAR(50) DEFAULT 'Not Specified',
     PRIMARY KEY (IdPerson1, IdPerson2)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE Knows (
     IdPerson INT REFERENCES Person(Id),
     IdAddress INT REFERENCES Address(Id),
     PRIMARY KEY (IdPerson, IdAddress)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE Stay (
@@ -77,4 +85,5 @@ CREATE TABLE Stay (
     IdBed INT REFERENCES Bed(Id),
     dateArrival DATE CHECK (dateArrival >= CURRENT_DATE),
     dateDeparture DATE CHECK (dateDeparture > dateArrival)
+    ON DELETE CASCADE
 );

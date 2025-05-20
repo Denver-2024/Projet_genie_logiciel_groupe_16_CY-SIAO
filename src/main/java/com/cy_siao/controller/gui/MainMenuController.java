@@ -13,22 +13,29 @@ public class MainMenuController implements Initializable {
     private VBox mainContainer;
 
     @FXML
-    private Button btnManagePersons;
+    private Button managePersonButton;
 
     @FXML
-    private Button btnManageRooms;
+    private Button manageRoomButton;
 
     @FXML
-    private Button btnManageStays;
+    private Button manageStayButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Initialize controller
+        setupButtonActions();
+        System.out.println("Controller initialized successfully!");
+    }
+
+    private void setupButtonActions() {
+        managePersonButton.setOnAction(event -> handleManagePersons());
+        manageRoomButton.setOnAction(event -> handleManageRooms());
+        manageStayButton.setOnAction(event -> handleManageStays());
     }
 
     @FXML
     private void handleManagePersons() {
-
+        System.out.println("Manage Persons button clicked!");
     }
 
     @FXML

@@ -45,7 +45,6 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private void handleManagePersons() {
-        System.out.println(viewManager);
         viewManager.showPersonView();
     }
 

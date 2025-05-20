@@ -8,6 +8,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         GuiView view = new GuiView();
+        view.start(primaryStage);
     }
 
     public static void main(String[] args) {

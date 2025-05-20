@@ -180,7 +180,5 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
-        CLIController cliController = new CLIController();
-        cliController.start();
     }
 }

@@ -1,28 +1,25 @@
 package com.cy_siao.view;
 
-import java.io.IOException;
-
-import com.cy_siao.controller.gui.MainMenuController;
-
-import com.cy_siao.view.ViewManager;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import java.net.URL;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainMenuView {
-    
-    private Parent view;
-    private MainMenuController controller;
+import java.io.IOException;
+import java.net.URL;
 
-    public MainMenuView(ViewManager viewManager) {
-        // Charge le FXML avec contrôleur injecté
-        this.controller = new MainMenuController();
+import com.cy_siao.controller.gui.MainMenuController;
+import com.cy_siao.controller.gui.PersonControllerFx;
+
+public class PersonView {
+    private Parent view;
+    private PersonControllerFx controller;
+
+    public PersonView() {
+        this.controller = new PersonControllerFx();
         try {
             // Chemin relatif depuis resources
-            URL fxmlUrl = getClass().getClassLoader().getResource("mainMenu.fxml");
+            URL fxmlUrl = getClass().getClassLoader().getResource("person_view.fxml");
             
             if (fxmlUrl == null) {
                 throw new IOException("FXML file not found in resources");
@@ -30,9 +27,7 @@ public class MainMenuView {
             
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             this.view = loader.load();
-            controller = loader.getController();
-            controller.setViewManager(viewManager);
-            
+                
         } catch (IOException e) {
             throw new RuntimeException("Failed to load FXML view", e);
         }
@@ -42,11 +37,10 @@ public class MainMenuView {
         return view;
     }
 
-    public MainMenuController getController() {
+    public PersonControllerFx getController() {
         return controller;
     }
 
-    // Méthode utilitaire pour montrer la vue dans une nouvelle fenêtre
     public void showInStage(Stage stage) {
         stage.setScene(new Scene(view));
         stage.setTitle("CY SIAO - Main Menu");

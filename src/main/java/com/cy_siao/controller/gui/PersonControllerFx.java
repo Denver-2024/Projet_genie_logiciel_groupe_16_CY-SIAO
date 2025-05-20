@@ -4,6 +4,7 @@ import com.cy_siao.service.PersonService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,8 +26,6 @@ public class PersonControllerFx implements Initializable {
     @FXML
     private TextField socialSecurityNumberField;
     @FXML
-    private TextField phoneNumberField;
-    @FXML
     private ComboBox<Gender> genderComboBox;
     @FXML
     private TableView<Person> personTableView;
@@ -36,23 +35,41 @@ public class PersonControllerFx implements Initializable {
     private Button updateButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private TableColumn<Person, String> firstNameCol;
+    @FXML
+    private TableColumn<Person, String> lastNameCol;
+    @FXML
+    private TableColumn<Person, Integer> ageCol;
+    @FXML
+    private TableColumn<Person, Gender> genderCol;
+    @FXML
+    private TableColumn<Person, String> placeOfBirthCol;
+    @FXML
+    private TableColumn<Person, Long> socialSecurityNumberCol;
+
+
 
     private ObservableList<Person> personList = FXCollections.observableArrayList();
-    private PersonService personService;
+    private PersonService personService = new PersonService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         genderComboBox.setItems(FXCollections.observableArrayList(Gender.values()));
+        personList = FXCollections.observableArrayList(personService.getAllPersons());
         personTableView.setItems(personList);
 
         addButton.setOnAction(e -> handleAddPerson());
         updateButton.setOnAction(e -> handleUpdatePerson());
         deleteButton.setOnAction(e -> handleDeletePerson());
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        placeOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("placeOfBirth"));
+        socialSecurityNumberCol.setCellValueFactory(new PropertyValueFactory<>("socialSecurityNumber"));
     }
 
-    public PersonControllerFx(){
-        personList = (ObservableList<Person>) personService.getAllPersons();
-    }
 
     private void handleAddPerson() {
         try {
@@ -91,7 +108,25 @@ public class PersonControllerFx implements Initializable {
     private void handleUpdatePerson() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            // Update person implementation here
+            personTableView.getSelectionModel().clearSelection();
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String placeOfBirth = placeOfBirthField.getText();
+            String socialSecurityNumber = socialSecurityNumberField.getText();
+            int age = Integer.parseInt(ageField.getText());
+            Gender gender = genderComboBox.getValue();
+            if (firstName != null && !firstName.isEmpty() && gender != null && age > 0 && age < 150 && lastName != null && !lastName.isEmpty()) {
+                selectedPerson.setFirstName(firstName);
+                selectedPerson.setLastName(lastName);
+                selectedPerson.setGender(gender);
+                selectedPerson.setAge(age);
+                if (placeOfBirth != null && !placeOfBirth.isEmpty()) {
+                    selectedPerson.setPlaceOfBirth(placeOfBirth);
+                }
+                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()){
+                    selectedPerson.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
+                }
+            }
         } else {
             showAlert("Please select a person to update");
         }
@@ -100,7 +135,9 @@ public class PersonControllerFx implements Initializable {
     private void handleDeletePerson() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            // Delete person implementation here
+            personTableView.getSelectionModel().clearSelection();
+            personList.remove(selectedPerson);
+            personService.deletePerson(selectedPerson.getId());
         } else {
             showAlert("Please select a person to delete");
         }

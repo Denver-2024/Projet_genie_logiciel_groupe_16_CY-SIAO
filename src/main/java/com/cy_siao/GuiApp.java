@@ -12,7 +12,7 @@ public class GuiApp extends Application {
         controller.startApplication();
     }
 
-    public static void main(String[] args) {
+    public void start(String[] args) {
         launch(args);
     }
 }

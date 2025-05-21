@@ -3,6 +3,8 @@ package com.cy_siao.controller.gui;
 import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.Room;
 import com.cy_siao.service.RoomService;
+import com.cy_siao.view.ViewManager;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +19,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class RoomControllerFx implements Initializable {
+
+    private ViewManager viewManager;
 
     @FXML
     private TextField nameField;
@@ -75,6 +79,10 @@ public class RoomControllerFx implements Initializable {
 
         addButton.setOnAction(e -> handleAddRoom());
         deleteButton.setOnAction(e -> handleDeleteRoom());
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
     }
 
     private void handleAddRoom() {

@@ -6,17 +6,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+import com.cy_siao.view.ViewManager;
+
 public class App extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/stay_view.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-
-        primaryStage.setTitle("Gestion des personnes");
-        primaryStage.setScene(scene);
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("CY SIAO Manager");
+        new ViewManager(primaryStage); // Initialisation principale
         primaryStage.show();
     }
 

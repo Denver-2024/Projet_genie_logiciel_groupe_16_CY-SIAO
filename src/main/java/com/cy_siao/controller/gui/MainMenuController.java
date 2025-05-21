@@ -8,36 +8,61 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.cy_siao.view.ViewManager;
+
 public class MainMenuController implements Initializable {
-    @FXML
+
+    private ViewManager viewManager; 
+
+     @FXML
     private VBox mainContainer;
 
     @FXML
-    private Button btnManagePersons;
+    private Button managePersonButton;
 
     @FXML
-    private Button btnManageRooms;
+    private Button manageBedButton;
 
     @FXML
-    private Button btnManageStays;
+    private Button manageRoomButton;
+
+    @FXML
+    private Button manageStayButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Initialize controller
+        setupButtonActions();
+        System.out.println("Controller initialized successfully!");
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
+    }
+
+    private void setupButtonActions() {
+        managePersonButton.setOnAction(event -> handleManagePersons());
+        manageBedButton.setOnAction(event -> handleManageBeds());
+        manageRoomButton.setOnAction(event -> handleManageRooms());
+        manageStayButton.setOnAction(event -> handleManageStays());
     }
 
     @FXML
     private void handleManagePersons() {
+        viewManager.showPersonView();
+    }
 
+    @FXML
+    private void handleManageBeds() {
+        viewManager.showBedView();
     }
 
     @FXML
     private void handleManageRooms() {
-        // Handle rooms management
+        viewManager.showRoomView();
     }
 
     @FXML
     private void handleManageStays() {
-        // Handle stays management
+        viewManager.showStayView();
     }
 }

@@ -1,6 +1,8 @@
 package com.cy_siao.controller.gui;
 
 import com.cy_siao.service.StayService;
+import com.cy_siao.view.ViewManager;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,6 +16,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StayControllerFx implements Initializable {
+
+    private ViewManager viewManager;
+
     @FXML
     private DatePicker arrivalDatePicker;
     @FXML
@@ -66,6 +71,10 @@ public class StayControllerFx implements Initializable {
         departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
         personIdCol.setCellValueFactory(new PropertyValueFactory<>("idPerson")); ////// A chercher comment les recuperer
         bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
     }
 
     private void handleAddStay() {

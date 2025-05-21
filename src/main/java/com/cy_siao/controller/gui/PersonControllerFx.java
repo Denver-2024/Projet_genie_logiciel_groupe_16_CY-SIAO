@@ -1,6 +1,8 @@
 package com.cy_siao.controller.gui;
 
 import com.cy_siao.service.PersonService;
+import com.cy_siao.view.ViewManager;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,6 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PersonControllerFx implements Initializable {
+
+    private ViewManager viewManager;
+
     @FXML
     private TextField firstNameField;
     @FXML
@@ -78,6 +83,10 @@ public class PersonControllerFx implements Initializable {
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         placeOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("placeOfBirth"));
         socialSecurityNumberCol.setCellValueFactory(new PropertyValueFactory<>("socialSecurityNumber"));
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
     }
 
     private void handleAddAddress() {

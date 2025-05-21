@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import com.cy_siao.model.person.Person;
@@ -50,7 +51,7 @@ public class StayControllerFx implements Initializable {
     @FXML
     private TableColumn<Stay, LocalDate> departureDateCol;
     @FXML
-    private TableColumn<Stay, Integer> personIdCol;
+    private TableColumn<Stay, String> personIdCol;
     @FXML
     private TableColumn<Stay, Integer> bedIdCol;
 
@@ -84,7 +85,15 @@ public class StayControllerFx implements Initializable {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         arrivalDateCol.setCellValueFactory(new PropertyValueFactory<>("dateArrival"));
         departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
-        personIdCol.setCellValueFactory(new PropertyValueFactory<>("idPerson")); ////// A chercher comment les recuperer
+        personIdCol.setCellValueFactory(cellData -> {
+        Stay stay = cellData.getValue();
+            return new SimpleStringProperty(
+                stay.getPerson() != null ? 
+                stay.getPerson().getLastName() : 
+                "N/A"
+            );
+        });
+        
         bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
     }
 
@@ -175,7 +184,7 @@ public class StayControllerFx implements Initializable {
         arrivalDatePicker.setValue(null);
         departureDatePicker.setValue(null);
         personIdField.setValue(null);
-        bedIdField.setValue(null);;
+        bedIdField.setValue(null);
         notesArea.clear();
     }
 

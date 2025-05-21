@@ -22,10 +22,10 @@
                 </VBox>
 
                 <VBox spacing="5">
-                    <Label text="ID Personne" />
+                    <Label text="Personne" />
                     <ComboBox fx:id="personIdField" />
 
-                    <Label text="ID Lit" />
+                    <Label text="Lit" />
                     <ComboBox fx:id="bedIdField" />
                 </VBox>
 
@@ -43,7 +43,7 @@
                     <TableColumn fx:id="idCol" prefWidth="50" text="ID" />
                     <TableColumn fx:id="arrivalDateCol" prefWidth="100" text="Date arrivée" />
                     <TableColumn fx:id="departureDateCol" prefWidth="100" text="Date départ" />
-                    <TableColumn fx:id="personIdCol" prefWidth="80" text="ID Personne" />
+                    <TableColumn fx:id="personIdCol" prefWidth="80" text="Nom de la personne" />
                     <TableColumn fx:id="bedIdCol" prefWidth="80" text="ID Lit" />
                 </columns>
             </TableView>

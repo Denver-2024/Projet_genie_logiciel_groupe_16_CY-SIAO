@@ -2,6 +2,7 @@ package com.cy_siao.dao;
 
 import com.cy_siao.model.Stay;
 import com.cy_siao.model.Bed;
+import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.util.DatabaseUtil;
 
@@ -110,19 +111,54 @@ public class StayDao {
 
     public List<Stay> findAll() {
         List<Stay> stays = new ArrayList<>();
-        String sql = "SELECT * FROM stay";
+        String sql = """
+            SELECT s.*, 
+                p.id as person_id, p.firstname, p.lastname, p.gender, p.age, 
+                b.id as bed_id, b.idroom, b.nbplacesmax
+            FROM stay s
+            JOIN person p ON s.idperson = p.id
+            JOIN bed b ON s.idbed = b.id
+            """;
+        
         try (Connection conn = databaseUtil.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                stays.add(extractStayFromResultSet(rs));
+                stays.add(extractStayWithAssociationsFromResultSet(rs));
             }
         } catch (SQLException e) {
             System.err.println("Error in finding all stays: " + e.getMessage());
-            return null;
+            throw new RuntimeException("Database error", e);
         }
         return stays;
+    }
+
+    private Stay extractStayWithAssociationsFromResultSet(ResultSet rs) throws SQLException {
+        // Extraction Stay de base
+        Stay stay = new Stay();
+        stay.setId(rs.getInt("id"));
+        stay.setDateArrival(rs.getDate("datearrival").toLocalDate());
+        stay.setDateDeparture(rs.getDate("datedeparture").toLocalDate());
+
+        // Extraction Person
+        Person person = new Person();
+        person.setId(rs.getInt("person_id"));
+        person.setFirstName(rs.getString("firstname"));
+        person.setLastName(rs.getString("lastname"));
+        String genderCode = rs.getString("gender");
+        person.setGender("M".equals(genderCode) ? Gender.MALE : Gender.FEMALE);
+        person.setAge(rs.getInt("age"));
+        stay.setPerson(person);
+
+        // Extraction Bed
+        Bed bed = new Bed();
+        bed.setId(rs.getInt("bed_id"));
+        bed.setIdRoom(rs.getInt("idroom"));
+        //bed.isDouble(rs.getInt("nbplacesmax")); bizarre pour le isDouble
+        stay.setBed(bed);
+
+        return stay;
     }
 
     public void update(Stay stay) {

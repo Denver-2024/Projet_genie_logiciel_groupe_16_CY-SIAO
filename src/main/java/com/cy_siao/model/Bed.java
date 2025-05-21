@@ -2,6 +2,8 @@ package com.cy_siao.model;
 
 import com.cy_siao.model.Stay;
 import com.cy_siao.model.person.Person;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,6 +39,11 @@ public class Bed {
         this.idRoom = idRoom;
     }
 
+    public Bed(int idRoom, boolean isDouble) {
+        this.idRoom = idRoom;
+        this.isDouble = isDouble;
+    }
+
     public int getId() {
         return id;
     }
@@ -51,6 +58,14 @@ public class Bed {
 
     public void isDouble() {
         this.isDouble = true;
+    }
+
+    public int getNbPlace(){
+        return isDouble ? 2 : 1;
+    }
+
+    public BooleanProperty isDoubleProperty() {
+        return new SimpleBooleanProperty(isDouble);
     }
 
     public int getIdRoom() {

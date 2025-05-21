@@ -1,9 +1,8 @@
-package com.cy_siao.controller;
+package com.cy_siao.controller.cli;
 
 import com.cy_siao.view.CLIView;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class CLIController {
     private PersonController personController;

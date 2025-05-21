@@ -59,7 +59,7 @@ public class PersonService {
                 personsName.add(p);
             }
         }
-        if (personsName.size() == 0){
+        if (personsName.isEmpty()){
             System.err.println("Error nobody with this first name : " + firstName);
         }
         return personsName;
@@ -79,7 +79,7 @@ public class PersonService {
                 personsName.add(p);
             }
         }
-        if (personsName.size() == 0){
+        if (personsName.isEmpty()){
             System.err.println("Error nobody with this last name : " + lastName);
         }
         return personsName;
@@ -100,7 +100,7 @@ public class PersonService {
                 personsName.add(p);
             }
         }
-        if (personsName.size() == 0){
+        if (personsName.isEmpty()){
             System.err.println("Error nobody with this name : " + firstName + " " + lastName);
         }
         return personsName;

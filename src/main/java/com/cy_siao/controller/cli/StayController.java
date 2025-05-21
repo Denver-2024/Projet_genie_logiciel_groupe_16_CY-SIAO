@@ -1,4 +1,4 @@
-package com.cy_siao.controller;
+package com.cy_siao.controller.cli;
 
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.Stay;

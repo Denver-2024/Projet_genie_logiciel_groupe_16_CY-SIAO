@@ -1,22 +1,13 @@
 package com.cy_siao;
 
-import com.cy_siao.dao.*;
-import com.cy_siao.model.*;
-import com.cy_siao.model.person.Address;
-import com.cy_siao.model.person.Gender;
-import com.cy_siao.model.person.Person;
-import com.cy_siao.model.person.Relationship;
-import com.cy_siao.util.DatabaseUtil;
-
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
-import com.cy_siao.controller.CLIController;
+import com.cy_siao.controller.cli.CLIController;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+        /*
         DatabaseUtil dbUtil = new DatabaseUtil();
         Connection connexion = null;
         connexion = dbUtil.getConnection();
@@ -171,7 +162,7 @@ public class Main {
         System.out.println(ANSI_GREEN + "All operations completed successfully!" + ANSI_RESET);
         
         
-        /*
+
         // Cleanup: delete created entities
         stayDao.delete(stay.getId());
         System.out.println("Deleted Stay: " + stay.getId());
@@ -189,10 +180,7 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
-
         CLIController cliController = new CLIController();
         cliController.start();
-
-        connexion.close();
     }
 }

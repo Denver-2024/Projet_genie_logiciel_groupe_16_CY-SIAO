@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@styles/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.cy_siao.controller.gui.PersonControllerFx">
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+
+            <HBox spacing="10">
+                <VBox spacing="5">
+                    <Label text="Prénom" />
+                    <TextField fx:id="firstNameField" />
+
+                    <Label text="Nom" />
+                    <TextField fx:id="lastNameField" />
+
+                    <Label text="Âge" />
+                    <TextField fx:id="ageField" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Lieu de naissance" />
+                    <TextField fx:id="placeOfBirthField" />
+
+                    <Label text="Numéro de Sécurité Sociale" />
+                    <TextField fx:id="socialSecurityNumberField" />
+
+                    <Label text="Genre" />
+                    <ComboBox fx:id="genderComboBox" prefWidth="150" />
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Numéro de rue" />
+                    <TextField fx:id="streetNumberField" />
+   
+                    <Label text="Nom de rue" />
+                    <TextField fx:id="streetNameField" />
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Code postal" />
+                    <TextField fx:id="postalCodeField" />
+
+                    <Label text="Ville" />
+                    <TextField fx:id="cityNameField" />
+                </VBox>
+            </HBox>
+
+            <!-- Ajout des champs d'adresse et du bouton -->
+            <HBox spacing="10" />
+
+            <HBox spacing="10">
+                <Button fx:id="addButton" text="Ajouter" />
+                <Button fx:id="updateButton" text="Mettre à jour" />
+                <Button fx:id="deleteButton" text="Supprimer" />
+                <VBox alignment="bottom_center" spacing="5">
+                    <Button fx:id="addAddressButton" text="Ajouter adresse" />
+                </VBox>
+            </HBox>
+
+            <TableView fx:id="personTableView" prefHeight="250" prefWidth="700">
+                <columns>
+                    <TableColumn fx:id="firstNameCol" prefWidth="100" text="Prénom" />
+                    <TableColumn fx:id="lastNameCol" prefWidth="100" text="Nom" />
+                    <TableColumn fx:id="ageCol" prefWidth="50" text="Âge" />
+                    <TableColumn fx:id="genderCol" prefWidth="80" text="Genre" />
+                    <TableColumn fx:id="placeOfBirthCol" prefWidth="150" text="Lieu de naissance" />
+                    <TableColumn fx:id="socialSecurityNumberCol" prefWidth="170" text="N° Sécurité Sociale" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

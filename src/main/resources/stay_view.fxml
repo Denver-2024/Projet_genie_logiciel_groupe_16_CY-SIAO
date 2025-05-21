@@ -23,10 +23,10 @@
 
                 <VBox spacing="5">
                     <Label text="ID Personne" />
-                    <TextField fx:id="personIdField" />
+                    <ComboBox fx:id="personIdField" />
 
                     <Label text="ID Lit" />
-                    <TextField fx:id="bedIdField" />
+                    <ComboBox fx:id="bedIdField" />
                 </VBox>
 
             </HBox>

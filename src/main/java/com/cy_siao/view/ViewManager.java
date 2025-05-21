@@ -28,7 +28,7 @@ public class ViewManager {
     }
 
     private void initializeViews() {
-        this.mainMenuView = new MainMenuView(this); // Passer this au constructeur
+        this.mainMenuView = new MainMenuView(this);
         this.personView = new PersonView(this);
         this.bedView = new BedView(this);
         this.roomView = new RoomView(this);

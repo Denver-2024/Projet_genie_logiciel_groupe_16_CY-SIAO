@@ -1,8 +1,13 @@
 package com.cy_siao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.cy_siao.controller.cli.CLIController;
+import com.cy_siao.dao.AddressDao;
+import com.cy_siao.model.person.Address;
+import com.cy_siao.model.person.Person;
+import com.cy_siao.service.PersonService;
 
 public class Main {
 
@@ -180,7 +185,11 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
-        CLIController cliController = new CLIController();
-        cliController.start();
+        PersonService personService = new PersonService();
+        AddressDao addressDao = new AddressDao();
+        Person person = personService.getPersonById(1);
+        List<Address> addresses = addressDao.findByPersonId(person.getId());
+        System.out.println(person.getAddresses().toString());
+        System.out.println(addresses.toString());
     }
 }

@@ -143,7 +143,7 @@ public class PersonDao {
                 return extractPersonFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            System.err.println("Erroe in gettign person by id: " + e.getMessage());
+            System.err.println("Error in getting person by id: " + e.getMessage());
         }
         return null;
     }
@@ -156,8 +156,8 @@ public class PersonDao {
      */
     public List<Person> findAll() {
         List<Person> persons = new ArrayList<>();
-        String sql = "SELECT a.*,\n" +
-                "a.id as idAddress, p.*\n" +
+        String sql = "SELECT p.*,\n" +
+                "a.id as idAddress, a.*\n" +
                 "FROM Person p\n" +
                 "LEFT JOIN Knows k ON p.Id = k.IdPerson\n" +
                 "LEFT JOIN Address a ON k.IdAddress = a.Id;";

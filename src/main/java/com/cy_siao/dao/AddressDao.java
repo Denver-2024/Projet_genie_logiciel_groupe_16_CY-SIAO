@@ -62,20 +62,17 @@ public class AddressDao {
         List<Address> addresses = new ArrayList<>();
         String sql = "SELECT a.* FROM address a JOIN Knows k ON a.id = k.idAddress WHERE k.idPerson = ?";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, personId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     addresses.add(extractAddressFromResultSet(rs));
                 }
-            } catch (SQLException e) {
-                System.err.println("Error in finding addresses by person id: " + e.getMessage());
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Error in finding addresses by person id: " + e.getMessage());
-            return null;
         }
-        return null;
+        return addresses;
     }
     public List<Address> findAll() {
         List<Address> addresses = new ArrayList<>();

@@ -31,7 +31,9 @@ public class PersonService {
         Person person = personDao.findById(id);
         if (person != null) {
             List<Address> addresses = addressDao.findByPersonId(id);
-            person.setAddresses(addresses);
+            if (addresses != null) {
+                person.setAddresses(addresses);
+            }
         }
         return person;
     }
@@ -112,7 +114,7 @@ public class PersonService {
             throw new IllegalArgumentException("No person found with ID: " + personId);
         }
 
-        person.addAddress(address);
+        //person.addAddress(address);
         knowsDao.create(new Knows(personId, address.getId()));
     }
 }

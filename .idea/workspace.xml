@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="RoomContro&#10;llerFX">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BDDprojetJava (2).sql" beforeDir="false" afterPath="$PROJECT_DIR$/BDDprojetJava (2).sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/StayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/AddressDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/PersonDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/person_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/person_view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +94,7 @@
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.App" />
       <module name="cy_siao" />
@@ -155,8 +149,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.Mainfx" />
         <item itemvalue="Application.GuiView" />
       </list>
@@ -194,7 +188,9 @@
       <workItem from="1747732258381" duration="13156000" />
       <workItem from="1747773713612" duration="8332000" />
       <workItem from="1747809514780" duration="12794000" />
-      <workItem from="1747823239968" duration="3078000" />
+      <workItem from="1747823239968" duration="3096000" />
+      <workItem from="1747835812034" duration="1640000" />
+      <workItem from="1747839038318" duration="8513000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -364,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747781129249</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling.">
+      <option name="closed" value="true" />
+      <created>1747827243125</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747827243125</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,6 +404,7 @@
     <MESSAGE value="Add Bed management GUI using JavaFX&#10;&#10;Introduced a new JavaFX-based GUI for managing beds, including `bed_view.fxml` and `BedControllerFx.java`. This implementation supports adding and deleting beds, along with displaying them in a TableView. Updated `App.java` to launch the newly integrated bed management view, and enhanced the `Bed` model to support relevant operations." />
     <MESSAGE value="Refactor views and controllers, add room management GUI&#10;&#10;Replaced `bed_view.fxml` with `room_view.fxml` in `App.java` and added a new GUI for managing rooms. Implemented `RoomControllerFx` to support adding, deleting, and displaying rooms. Enhanced `PersonControllerFx` with address management functionality and updated corresponding FXML files for better UI consistency." />
     <MESSAGE value="RoomContro&#10;llerFX" />
-    <option name="LAST_COMMIT_MESSAGE" value="RoomContro&#10;llerFX" />
+    <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
   </component>
 </project>

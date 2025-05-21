@@ -55,6 +55,9 @@ public class StayControllerFx implements Initializable {
     @FXML
     private TableColumn<Stay, Integer> bedIdCol;
 
+    @FXML
+    private Button backButton;
+
     private ObservableList<Stay> stayList = FXCollections.observableArrayList();
     private StayService stayService = new StayService();
 
@@ -80,6 +83,8 @@ public class StayControllerFx implements Initializable {
         updateButton.setOnAction(e -> handleUpdateStay());
         deleteButton.setOnAction(e -> handleDeleteStay());
         searchButton.setOnAction(e -> handleSearchStay());
+        backButton.setOnAction(e -> handleBackButton());
+
 
         // Configuration des colonnes du tableau
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -178,6 +183,10 @@ public class StayControllerFx implements Initializable {
     private void handleSearchStay() {
         // Implémentez la logique de recherche selon vos besoins
         showAlert("Search functionality to be implemented", Alert.AlertType.INFORMATION);
+    }
+
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
     }
 
     private void clearFields() {

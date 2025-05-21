@@ -8,8 +8,18 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.cy_siao.controller.gui.BedControllerFx"
             stylesheets="styles/style.css">
-
     <top>
+        <HBox alignment="TOP_LEFT" style="-fx-background-color: #f4f4f4;">
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label text="Gestion des Séjours" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+                <padding>
+                    <Insets left="10" right="10" top="5" bottom="5"/>
+                </padding>
+            </Button>
+        </HBox>
+
         <VBox spacing="10">
         <padding>
             <Insets top="20" right="20" bottom="20" left="20"/>
@@ -34,6 +44,7 @@
     </top>
 
     <center>
+    
         <TableView fx:id="bedTableView" prefHeight="300" prefWidth="600">
             <columns>
                 <TableColumn fx:id="idCol" text="ID" prefWidth="100"/>

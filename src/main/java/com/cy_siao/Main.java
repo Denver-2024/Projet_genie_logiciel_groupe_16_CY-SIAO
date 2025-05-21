@@ -1,13 +1,19 @@
 package com.cy_siao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.cy_siao.controller.GUIController;
 import com.cy_siao.controller.cli.CLIController;
-import com.cy_siao.dao.AddressDao;
+import com.cy_siao.dao.*;
+import com.cy_siao.model.*;
 import com.cy_siao.model.person.Address;
+import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Person;
+import com.cy_siao.model.person.Relationship;
 import com.cy_siao.service.PersonService;
+import com.cy_siao.util.DatabaseUtil;
 
 public class Main {
 
@@ -167,7 +173,7 @@ public class Main {
         System.out.println(ANSI_GREEN + "All operations completed successfully!" + ANSI_RESET);
         
         
-
+        /*
         // Cleanup: delete created entities
         stayDao.delete(stay.getId());
         System.out.println("Deleted Stay: " + stay.getId());
@@ -185,11 +191,7 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
-        PersonService personService = new PersonService();
-        AddressDao addressDao = new AddressDao();
-        Person person = personService.getPersonById(1);
-        List<Address> addresses = addressDao.findByPersonId(person.getId());
-        System.out.println(person.getAddresses().toString());
-        System.out.println(addresses.toString());
+        CLIController controller = new CLIController();
+        controller.start();
     }
 }

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling.">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/AddressDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/PersonDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +67,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;DavidService&quot;,
     &quot;last_directory_selection&quot;: &quot;E:/cy-saio - Copie/src/main/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Projet_genie_logiciel_groupe_16_CY-SIAO/src/main/java/com/cy_siao/model&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/cy-saio - Copie (2)&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -190,7 +186,9 @@
       <workItem from="1747809514780" duration="12794000" />
       <workItem from="1747823239968" duration="3096000" />
       <workItem from="1747835812034" duration="1640000" />
-      <workItem from="1747839038318" duration="8513000" />
+      <workItem from="1747839038318" duration="8880000" />
+      <workItem from="1747849881971" duration="341000" />
+      <workItem from="1747850281856" duration="532000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -368,7 +366,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747827243125</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements.">
+      <option name="closed" value="true" />
+      <created>1747847952519</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747847952519</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,6 +411,7 @@
     <MESSAGE value="Refactor views and controllers, add room management GUI&#10;&#10;Replaced `bed_view.fxml` with `room_view.fxml` in `App.java` and added a new GUI for managing rooms. Implemented `RoomControllerFx` to support adding, deleting, and displaying rooms. Enhanced `PersonControllerFx` with address management functionality and updated corresponding FXML files for better UI consistency." />
     <MESSAGE value="RoomContro&#10;llerFX" />
     <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
+    <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements." />
   </component>
 </project>

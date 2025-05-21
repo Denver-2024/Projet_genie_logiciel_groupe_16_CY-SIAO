@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="497.0" fitWidth="806.0" opacity="0.0" pickOnBounds="true">
          <image>
-            <Image url="@Images/fond.jpg" />
+            <Image url="@Images/fond - Copy.png" />
          </image>
       </ImageView>
       <BorderPane prefHeight="497.0" prefWidth="800">
@@ -33,7 +33,7 @@
                   <Button fx:id="manageRoomButton" maxWidth="Infinity" text="Manage Room" />
                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@Images/Projet_SIAO_logo.png" />
+                     <Image url="@Images/Projet_SIAO.png" />
                   </image>
                </ImageView>
               </VBox>

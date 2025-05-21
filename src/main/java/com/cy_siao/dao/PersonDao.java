@@ -68,7 +68,7 @@ public class PersonDao {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error occurred when trying to insert Person in Database " + e.getMessage());
+            System.err.println("Erreur lors de l'insertion de la personne dans la base de données: " + e.getMessage());
         }
     }
 
@@ -78,7 +78,7 @@ public class PersonDao {
      */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
-            throw new IllegalArgumentException("The person's ID is required for making any update");
+            throw new IllegalArgumentException("L'ID de la personne est requis pour la mise à jour");
         }
         
         StringBuilder sqlBuilder = new StringBuilder("UPDATE person SET ");

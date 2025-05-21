@@ -66,10 +66,10 @@
         <version>0.0.8</version>
         <configuration>
           <mainClass>com.cy_siao.App</mainClass>
-          <moduleNames>
+          <!--<moduleNames>
             <moduleName>javafx.controls</moduleName>
             <moduleName>javafx.fxml</moduleName>
-          </moduleNames>
+          </moduleNames>-->
         </configuration>
       </plugin>
 

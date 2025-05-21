@@ -11,19 +11,19 @@
     <!-- Image de fond qui remplit tout -->
     <ImageView smooth="false" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <image>
-            <Image url="@Images/fond.jpg" />
+            <Image url="@Images/fond - Copy.png" />
         </image>
     </ImageView>
 
     <!-- Logo centré en haut -->
     <ImageView fitHeight="150" fitWidth="200" layoutX="273.4" layoutY="28.0" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="273.4" AnchorPane.rightAnchor="283.4" AnchorPane.topAnchor="28.0">
         <image>
-            <Image url="@Images/Projet_SIAO_logo.png" />
+            <Image url="@Images/Projet_SIAO.png" />
         </image>
     </ImageView>
 
     <!-- Boutons centrés horizontalement, à 250 px du haut -->
-    <VBox fx:id="buttonContainer" alignment="CENTER" spacing="15" AnchorPane.leftAnchor="150" AnchorPane.rightAnchor="150" AnchorPane.topAnchor="250">
+    <VBox fx:id="mainContainer" alignment="CENTER" spacing="15" AnchorPane.leftAnchor="150" AnchorPane.rightAnchor="150" AnchorPane.topAnchor="250">
         <Button fx:id="manageRoomButton" text="Manage a Room" />
         <Button fx:id="managePersonButton" text="Manage a Person" />
         <Button fx:id="manageBedButton" text="Manage a Bed" />

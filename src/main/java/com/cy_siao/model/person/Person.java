@@ -220,7 +220,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                "lastName='" + lastName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", gender=" + gender +
                 ", age=" + age +

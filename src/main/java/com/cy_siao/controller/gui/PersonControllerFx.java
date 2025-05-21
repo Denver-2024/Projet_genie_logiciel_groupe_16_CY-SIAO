@@ -1,5 +1,6 @@
 package com.cy_siao.controller.gui;
 
+import com.cy_siao.service.AddressService;
 import com.cy_siao.service.PersonService;
 import com.cy_siao.view.ViewManager;
 
@@ -7,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import com.cy_siao.model.person.Person;
@@ -15,6 +15,8 @@ import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Address;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PersonControllerFx implements Initializable {
@@ -63,14 +65,21 @@ public class PersonControllerFx implements Initializable {
     private TableColumn<Person, String> placeOfBirthCol;
     @FXML
     private TableColumn<Person, Long> socialSecurityNumberCol;
+    @FXML
+    private TableColumn<Person, String> addressCol;
 
     private ObservableList<Person> personList = FXCollections.observableArrayList();
     private PersonService personService = new PersonService();
+    private AddressService addressService = new AddressService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         genderComboBox.setItems(FXCollections.observableArrayList(Gender.values()));
-        personList = FXCollections.observableArrayList(personService.getAllPersons());
+        try {
+            personList = FXCollections.observableArrayList(personService.getAllPersons());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         personTableView.setItems(personList);
 
         addButton.setOnAction(e -> handleAddPerson());
@@ -83,6 +92,24 @@ public class PersonControllerFx implements Initializable {
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         placeOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("placeOfBirth"));
         socialSecurityNumberCol.setCellValueFactory(new PropertyValueFactory<>("socialSecurityNumber"));
+        addressCol.setCellValueFactory(cellData -> {
+            List<Address> addresses = cellData.getValue().getAddresses();
+            if (addresses == null || addresses.isEmpty()) {
+                return new javafx.beans.property.SimpleStringProperty("");
+            }
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < addresses.size(); i++) {
+                Address addr = addresses.get(i);
+                str.append(addr.getStreetNumber()).append(" ")
+                        .append(addr.getStreetName()).append(", ")
+                        .append(addr.getPostalCode()).append(" ")
+                        .append(addr.getCityName());
+                if (i < addresses.size() - 1) {
+                    str.append(" | ");
+                }
+            }
+            return new javafx.beans.property.SimpleStringProperty(str.toString());
+        });
     }
 
     public void setViewManager(ViewManager viewManager){
@@ -104,7 +131,18 @@ public class PersonControllerFx implements Initializable {
                         cityName != null && !cityName.isEmpty()) {
 
                     Address address = new Address(streetNumber, streetName, postalCode, cityName);
-                    personService.addAddressToPerson(selectedPerson.getId(), address);
+                    try {
+                        addressService.createAddress(address);
+                    } catch (SQLException ex) {
+                        showAlert("Error creating address: " + ex.getMessage());
+                        return;
+                    }
+                    try {
+                        personService.addAddressToPerson(selectedPerson.getId(), address);
+                    } catch (SQLException ex) {
+                        showAlert("Error adding address to person: " + ex.getMessage());
+                        return;
+                    }
 
                     streetNumberField.clear();
                     streetNameField.clear();

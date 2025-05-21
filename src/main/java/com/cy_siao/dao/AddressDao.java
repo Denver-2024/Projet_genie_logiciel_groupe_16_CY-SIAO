@@ -44,6 +44,8 @@ public class AddressDao {
                 if (rs.next()) {
                     return extractAddressFromResultSet(rs);
                 }
+            } catch (SQLException e) {
+                System.err.println("Error in finding address by id: " + e.getMessage());
             }
         } catch (SQLException e) {
             System.err.println("Error in finding address by id: " + e.getMessage());
@@ -51,6 +53,30 @@ public class AddressDao {
         return null;
     }
 
+    /**
+     *
+     * @param personId the id of the person we want to find the addresses
+     * @return The list of addresses of the person or null
+     */
+    public List<Address> findByPersonId(int personId) throws SQLException {
+        List<Address> addresses = new ArrayList<>();
+        String sql = "SELECT a.* FROM address a JOIN Knows k ON a.id = k.idAddress WHERE k.idPerson = ?";
+        try (Connection conn = databaseUtil.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, personId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addresses.add(extractAddressFromResultSet(rs));
+                }
+            } catch (SQLException e) {
+                System.err.println("Error in finding addresses by person id: " + e.getMessage());
+            }
+        }catch (SQLException e) {
+            System.err.println("Error in finding addresses by person id: " + e.getMessage());
+            return null;
+        }
+        return null;
+    }
     public List<Address> findAll() {
         List<Address> addresses = new ArrayList<>();
         String sql = "SELECT * FROM address";

@@ -92,7 +92,7 @@ public class StayController {
         }
     }
 
-    private Person selectPerson() {
+    private Person selectPerson() throws SQLException {
         String lastName = view.askString("Nom : ");
         String firstName = view.askString("Prénom : ");
         List<Person> persons = personService.getByName(firstName, lastName);

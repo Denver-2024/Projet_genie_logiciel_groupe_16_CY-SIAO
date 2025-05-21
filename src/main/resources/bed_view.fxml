@@ -7,7 +7,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.cy_siao.controller.gui.BedControllerFx"
-            stylesheets="styles/style.css">
+            stylesheets="@styles/style.css">
 
     <top>
         <VBox spacing="10">

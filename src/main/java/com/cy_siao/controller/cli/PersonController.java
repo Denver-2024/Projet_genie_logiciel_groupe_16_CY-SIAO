@@ -5,6 +5,7 @@ import com.cy_siao.model.person.Person;
 import com.cy_siao.service.PersonService;
 import com.cy_siao.view.CLIView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class PersonController {
@@ -15,7 +16,7 @@ public class PersonController {
         this.personService = new PersonService();
     }
 
-    public void start(CLIView view) {
+    public void start(CLIView view) throws SQLException {
         int option;
         this.view=view;
         do{
@@ -55,7 +56,7 @@ public class PersonController {
     }
 
 
-    private void updatePerson(){
+    private void updatePerson() throws SQLException {
         String lastName = view.askString("Last Name :");
         String firstName = view.askString("First name: ");
         List<Person> persons = personService.getByName(lastName,firstName);
@@ -71,7 +72,7 @@ public class PersonController {
         }
     }
 
-    private void deletePerson(){
+    private void deletePerson() throws SQLException {
         String lastName = view.askString("Last Name :");
         String firstName = view.askString("First name: ");
         List<Person> persons = personService.getByName(firstName,lastName);

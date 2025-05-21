@@ -14,6 +14,8 @@ import javafx.collections.ObservableList;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.Stay;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,7 +63,12 @@ public class StayControllerFx implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         PersonService personService = new PersonService();
-        List<Person> personList = personService.getAllPersons();
+        List<Person> personList = null;
+        try {
+            personList = personService.getAllPersons();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         ObservableList<Person> observablePersonList = FXCollections.observableArrayList(personList);
         personIdField.setItems(observablePersonList);
 

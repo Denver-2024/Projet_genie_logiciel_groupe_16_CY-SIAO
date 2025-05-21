@@ -54,6 +54,9 @@
             <HBox spacing="10" />
 
             <HBox spacing="10">
+                <padding>
+                    <Insets left="130" right="20"/>
+                </padding>
                 <Button fx:id="addButton" text="Ajouter" />
                 <Button fx:id="updateButton" text="Mettre à jour" />
                 <Button fx:id="deleteButton" text="Supprimer" />
@@ -70,6 +73,7 @@
                     <TableColumn fx:id="genderCol" prefWidth="80" text="Genre" />
                     <TableColumn fx:id="placeOfBirthCol" prefWidth="150" text="Lieu de naissance" />
                     <TableColumn fx:id="socialSecurityNumberCol" prefWidth="170" text="N° Sécurité Sociale" />
+                    <TableColumn fx:id="addressCol" prefWidth="220" text="Adresse" />
                 </columns>
             </TableView>
         </VBox>

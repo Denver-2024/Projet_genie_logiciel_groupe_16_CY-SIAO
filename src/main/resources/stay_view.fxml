@@ -3,8 +3,23 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane stylesheets="@styles/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.cy_siao.controller.gui.StayControllerFx">
+
+    <top>
+        <HBox alignment="TOP_LEFT" style="-fx-background-color: #f4f4f4;">
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label text="Gestion des Séjours" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+                <padding>
+                    <Insets left="10" right="10" top="5" bottom="5"/>
+                </padding>
+            </Button>
+        </HBox>
+    </top>
 
     <center>
         <VBox spacing="10">
@@ -22,13 +37,12 @@
                 </VBox>
 
                 <VBox spacing="5">
-                    <Label text="ID Personne" />
+                    <Label text="Personne" />
                     <ComboBox fx:id="personIdField" />
 
-                    <Label text="ID Lit" />
+                    <Label text="Lit" />
                     <ComboBox fx:id="bedIdField" />
                 </VBox>
-
             </HBox>
 
             <HBox spacing="10">
@@ -43,7 +57,7 @@
                     <TableColumn fx:id="idCol" prefWidth="50" text="ID" />
                     <TableColumn fx:id="arrivalDateCol" prefWidth="100" text="Date arrivée" />
                     <TableColumn fx:id="departureDateCol" prefWidth="100" text="Date départ" />
-                    <TableColumn fx:id="personIdCol" prefWidth="80" text="ID Personne" />
+                    <TableColumn fx:id="personIdCol" prefWidth="80" text="Occupant" />
                     <TableColumn fx:id="bedIdCol" prefWidth="80" text="ID Lit" />
                 </columns>
             </TableView>

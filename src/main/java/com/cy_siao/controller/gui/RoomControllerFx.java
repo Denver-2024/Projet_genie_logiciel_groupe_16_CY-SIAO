@@ -52,6 +52,9 @@ public class RoomControllerFx implements Initializable {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button backButton;
+
     private ObservableList<Room> roomList = FXCollections.observableArrayList();
     private RoomService roomService = new RoomService();
 
@@ -79,10 +82,15 @@ public class RoomControllerFx implements Initializable {
 
         addButton.setOnAction(e -> handleAddRoom());
         deleteButton.setOnAction(e -> handleDeleteRoom());
+        backButton.setOnAction(e -> handleBackButton());
     }
 
     public void setViewManager(ViewManager viewManager){
         this.viewManager = viewManager;
+    }
+
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
     }
 
     private void handleAddRoom() {

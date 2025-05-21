@@ -15,44 +15,47 @@ import javafx.stage.Stage;
 public class ViewManager {
     
     private static Stage primaryStage;
-    private MainMenuView mainMenuView;
-    private PersonView personView;
-    private BedView bedView;
-    private RoomView roomView;
-    private StayView stayView;
 
     public ViewManager(Stage stage) {
         primaryStage = stage;
-        initializeViews();
         showMainMenu();
     }
 
-    private void initializeViews() {
-        this.mainMenuView = new MainMenuView(this);
-        this.personView = new PersonView(this);
-        this.bedView = new BedView(this);
-        this.roomView = new RoomView(this);
-        this.stayView = new StayView(this);
-    }
-
     public void showMainMenu() {
+        MainMenuView mainMenuView = new MainMenuView(this);
         primaryStage.setScene(new Scene(mainMenuView.getView()));
+        configureStage();
     }
 
     public void showPersonView() {
+        PersonView personView = new PersonView(this); // Nouvelle instance
         primaryStage.setScene(new Scene(personView.getView()));
+        configureStage();
     }
 
     public void showBedView() {
+        BedView bedView = new BedView(this);
         primaryStage.setScene(new Scene(bedView.getView()));
+        configureStage();
     }
 
     public void showRoomView() {
+        RoomView roomView = new RoomView(this);
         primaryStage.setScene(new Scene(roomView.getView()));
+        configureStage();
     }
 
     public void showStayView() {
+        StayView stayView = new StayView(this);
         primaryStage.setScene(new Scene(stayView.getView()));
+        configureStage();
+    }
+
+    private void configureStage() {
+        primaryStage.setTitle("CY SIAO Management");
+        if (!primaryStage.isShowing()) {
+            primaryStage.show();
+        }
     }
 
     public static Stage getPrimaryStage() {

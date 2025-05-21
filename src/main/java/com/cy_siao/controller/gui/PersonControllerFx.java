@@ -64,6 +64,9 @@ public class PersonControllerFx implements Initializable {
     @FXML
     private TableColumn<Person, String> addressCol;
 
+    @FXML
+    private Button backButton;
+
     private ObservableList<Person> personList = FXCollections.observableArrayList();
     private PersonService personService = new PersonService();
     private AddressService addressService = new AddressService();
@@ -83,6 +86,7 @@ public class PersonControllerFx implements Initializable {
         updateButton.setOnAction(e -> handleUpdatePerson());
         deleteButton.setOnAction(e -> handleDeletePerson());
         addAddressButton.setOnAction(e -> handleAddAddress());
+        backButton.setOnAction(e -> handleBackButton());
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
@@ -251,6 +255,10 @@ public class PersonControllerFx implements Initializable {
         } else {
             showAlert("Veuillez sélectionner une personne à mettre à jour");
         }
+    }
+
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
     }
 
     private void handleDeletePerson() {

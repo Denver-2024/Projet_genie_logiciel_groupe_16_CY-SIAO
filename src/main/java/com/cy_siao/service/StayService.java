@@ -158,4 +158,12 @@ public class StayService {
         }
     }
 
+    public void updateStay(Stay stay){
+        stayDao.update(stay);
+    }
+
+    public void deleteStay(Stay stay){
+        stayDao.delete(stay.getId());
+    }
+
 }

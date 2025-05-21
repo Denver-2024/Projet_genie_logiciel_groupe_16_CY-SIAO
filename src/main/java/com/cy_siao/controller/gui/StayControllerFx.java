@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import com.cy_siao.model.person.Person;
+import com.cy_siao.dao.BedDao;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.Stay;
 
@@ -20,11 +21,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StayControllerFx implements Initializable {
 
     private ViewManager viewManager;
+    private List<Bed> bedList;
+    private BedService bedService;
 
     @FXML
     private DatePicker arrivalDatePicker;
@@ -76,8 +80,7 @@ public class StayControllerFx implements Initializable {
         ObservableList<Person> observablePersonList = FXCollections.observableArrayList(personList);
         personIdField.setItems(observablePersonList);
 
-        BedService bedService = new BedService();
-        List<Bed> bedList = bedService.getAllBeds();
+        bedList = new ArrayList<>();
         ObservableList<Bed> observableBedList = FXCollections.observableArrayList(bedList);
         bedIdField.setItems(observableBedList);
 
@@ -97,6 +100,7 @@ public class StayControllerFx implements Initializable {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         arrivalDateCol.setCellValueFactory(new PropertyValueFactory<>("dateArrival"));
         departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
+        bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
         personIdCol.setCellValueFactory(cellData -> {
         Stay stay = cellData.getValue();
             return new SimpleStringProperty(
@@ -105,8 +109,10 @@ public class StayControllerFx implements Initializable {
                 "N/A"
             );
         });
-        
-        bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
+
+        arrivalDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> updateAvailableBeds());
+        departureDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> updateAvailableBeds());
+        personIdField.valueProperty().addListener((obs, oldVal, newVal) -> updateAvailableBeds());
     }
 
     public void setViewManager(ViewManager viewManager){
@@ -202,6 +208,52 @@ public class StayControllerFx implements Initializable {
         personIdField.setValue(null);
         bedIdField.setValue(null);
         notesArea.clear();
+    }
+
+    private void updateAvailableBeds() {
+        LocalDate arrival = arrivalDatePicker.getValue();
+        LocalDate departure = departureDatePicker.getValue();
+        Person selectedPerson = personIdField.getValue();
+
+        if (arrival != null && departure != null && selectedPerson != null 
+            && !arrival.isAfter(departure)) {
+            
+            try {
+                // Récupère les lits disponibles pour la période et le genre
+                BedDao bedDaoTest = new BedDao();
+                List<Bed> allBeds = bedDaoTest.findAll();
+                List<Bed> availableBeds = new ArrayList<>();
+                for (Bed bed : allBeds){
+                    if (stayService.isAssignable(selectedPerson, bed, arrival, departure)){
+                        availableBeds.add(bed);
+                    }
+                }
+
+                // Met à jour la ComboBox
+                ObservableList<Bed> observableBeds = FXCollections.observableArrayList(availableBeds);
+                bedIdField.setItems(observableBeds);
+                
+                // Configure l'affichage dans la ComboBox
+                bedIdField.setCellFactory(param -> new ListCell<Bed>() {
+                    @Override
+                    protected void updateItem(Bed bed, boolean empty) {
+                        super.updateItem(bed, empty);
+                        setText(empty || bed == null ? null : "Lit #" + bed.getId() + " - Chambre " + bed.getIdRoom());
+                    }
+                });
+                
+                bedIdField.setButtonCell(new ListCell<Bed>() {
+                    @Override
+                    protected void updateItem(Bed bed, boolean empty) {
+                        super.updateItem(bed, empty);
+                        setText(empty || bed == null ? null : "Lit #" + bed.getId() + " - Chambre " + bed.getIdRoom());
+                    }
+                });
+                
+            } catch (Exception e) {
+                showAlert("Erreur lors de la récupération des lits: " + e.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
     }
 
     private void showAlert(String message, Alert.AlertType alertType) {

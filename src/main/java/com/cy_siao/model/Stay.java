@@ -38,6 +38,10 @@ public class Stay {
 
     public void setId(int id){this.id = id;}
 
+    public void setIdBed(int idBed){this.idBed = idBed;}
+    
+    public void setIdPerson(int idPerson){this.idPerson = idPerson;}
+
     public Bed getBed() {
         return bed;
     }

@@ -12,8 +12,9 @@ public class RestrictionType {
     private int id;
     private String label;
     private Gender genderRestriction;
-    private int minAge;
-    private int maxAge;
+    private Integer minAge;
+    private Integer maxAge;
+
 
     /**
      * Constructor used for RestrictionTypeDao
@@ -23,7 +24,7 @@ public class RestrictionType {
      * @param minAge l'age minimal autorisé
      * @param maxAge l'age maximal autorisé
      */
-    public RestrictionType(int id, String label, Gender genderRestriction, int minAge, int maxAge) {
+    public RestrictionType(int id, String label, Gender genderRestriction, Integer minAge, Integer maxAge) {
         this.id = id;
         this.label = label;
         this.genderRestriction = genderRestriction;
@@ -31,7 +32,7 @@ public class RestrictionType {
         this.maxAge = maxAge;
     }
 
-    public RestrictionType(String label, Gender genderRestriction, int minAge, int maxAge) {
+    public RestrictionType(String label, Gender genderRestriction, Integer minAge, Integer maxAge) {
         this.label = label;
         this.genderRestriction = genderRestriction;
         this.minAge = minAge;
@@ -86,11 +87,11 @@ public class RestrictionType {
         this.genderRestriction = genderRestriction;
     }
 
-    public void setMinAge(int minAge) {
+    public void setMinAge(Integer minAge) {
         this.minAge = minAge;
     }
 
-    public void setMaxAge(int maxAge) {
+    public void setMaxAge(Integer maxAge) {
         this.maxAge = maxAge;
     }
 

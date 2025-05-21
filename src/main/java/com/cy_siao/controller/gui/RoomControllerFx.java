@@ -141,8 +141,7 @@ public class RoomControllerFx implements Initializable {
                 return;
             }
 
-            RestrictionType restriction = gender!=null? new RestrictionType(restrictionName, gender, minAge==null?0:minAge, maxAge==null?200:maxAge): new RestrictionType(restrictionName, minAge==null?0:minAge, maxAge==null?200:maxAge) ;
-
+            RestrictionType restriction = new RestrictionType(restrictionName, gender, minAge, maxAge);
             Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
             if (selectedRoom == null) {
                 showAlert("Please select a room to add restriction.");

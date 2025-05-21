@@ -25,8 +25,13 @@ public class Relationship {
     public Relationship() {
     }
 
+
     /**
-     * Constructor with parameters
+     * Construcor with parameter
+     * 
+     * @param person1 first person of the relation
+     * @param person2 second person of the relation
+     * @param relationType type of relation between first and second person
      */
     public Relationship(Person person1, Person person2, String relationType) {
         this.person1 = person1;
@@ -34,24 +39,64 @@ public class Relationship {
         this.relationType = relationType;
     }
 
+    /**
+     * setter of the first person of the relation
+     * 
+     * @param person the first person of the relation
+     */
+    public void setPerson1(Person person) {
+        person1 = person;
+    }
+
+    /**
+     * setter of the second person of the relation
+     * 
+     * @param person the second person of the relation
+     */
+    public void setPerson2(Person person) {
+        person2 = person;
+    }
+
+    /**
+     * getter of the first person of the relation
+     * 
+     * @return the first person of the relation
+     */
     public Person getPerson1() {
         return person1;
     }
 
+    /**
+     * getter of the second person of the relation
+     * 
+     * @return the second person of the relation
+     */
     public Person getPerson2() {
         return person2;
     }
 
+    /**
+     * getter of the type of relationship
+     * 
+     * @return the type of the relationship
+     */
     public String getRelationType() {
         return relationType;
     }
 
+    /**
+     * setter to define a type for this relation
+     * 
+     * @param relationType type of relation
+     */
     public void setRelationType(String relationType) {
         this.relationType = relationType;
     }
 
     /**
      * Adds a person to this relationship. Supports one or two persons.
+     * 
+     * @param person who will add to the relationship
      */
     public void addPerson(Person person) {
         if (person1 == null) {
@@ -82,6 +127,12 @@ public class Relationship {
     // Methode a refaire dans service (stayService)
     /**
      * Assigns the people in the relationship to available beds, respecting room sharing if required.
+     * 
+     * @param rooms list of room to choose a room between them to assign the two people
+     * @param arrival date when the two people come
+     * @param departure date when the two people go
+     * @param sameRoom boolean which are true if the two people need to be in the same room
+     * @return true if is possible to find a room or rooms with beds which respect group condition, false otherwise
      */
     public boolean assignGroup(List<Room> rooms, LocalDate arrival, LocalDate departure, boolean sameRoom) {
         List<Bed> allAvailableBeds = new ArrayList<>();
@@ -132,6 +183,11 @@ public class Relationship {
         }
     }
 
+    /**
+     * Returns the display of the Relationship.
+     *
+     * @return the display of the name of two people who compose the relation and the relation type
+     */
     @Override
     public String toString() {
         return "Relationship{" +
@@ -141,6 +197,12 @@ public class Relationship {
                 '}';
     }
 
+    /**
+     * Compares this address to the specified object for equality.
+     *
+     * @param o the object to compare with
+     * @return true if the person are equals and relationtype too, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Relationship r)) return false;
@@ -149,6 +211,11 @@ public class Relationship {
                Objects.equals(relationType, r.relationType);
     }
 
+    /**
+     * Returns a hash code value for the relationship.
+     *
+     * @return a hash code value for this relationship
+     */
     @Override
     public int hashCode() {
         return Objects.hash(person1, person2, relationType);

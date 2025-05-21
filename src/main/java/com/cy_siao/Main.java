@@ -1,25 +1,13 @@
 package com.cy_siao;
 
-import com.cy_siao.dao.*;
-import com.cy_siao.model.*;
-import com.cy_siao.util.DatabaseUtil;
-import com.cy_siao.controller.cli.CLIController;
-
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import com.cy_siao.controller.cli.CLIController;
-import com.cy_siao.view.GUIView;
-import javafx.stage.Stage;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-
-        CLIController cliController = new CLIController();
-        GUIView guiView=new GUIView();
-
+        /*
         DatabaseUtil dbUtil = new DatabaseUtil();
         Connection connexion = null;
         connexion = dbUtil.getConnection();
@@ -32,12 +20,12 @@ public class Main {
         StayDao stayDao = new StayDao();
 
         // Test PersonDao
-        /*Person person = new Person();
-        person.setFirstName("Humpich");
-        person.setLastName("Schmidt");
+        Person person = new Person();
+        person.setFirstName("John");
+        person.setLastName("Doe");
         person.setGender(Gender.MALE);
-        person.setAge(25);
-        person.setPlaceOfBirth("Cergy");
+        person.setAge(30);
+        person.setPlaceOfBirth("Paris");
         personDao.createPerson(person);
         System.out.println("Created Person: " + person.getId());
 
@@ -47,16 +35,16 @@ public class Main {
         List<Person> allPersons = personDao.findAll();
         System.out.println("All Persons count: " + allPersons.size());
 
-        person.setAge(20);
+        person.setAge(31);
         personDao.updatePerson(person);
         System.out.println("Updated Person age to: " + person.getAge());
 
         // Test AddressDao
         Address address = new Address();
-        address.setStreetNumber(15);
-        address.setStreetName("rue de l'hôtel de ville");
-        address.setPostalCode(95000);
-        address.setCityName("Cergy");
+        address.setStreetNumber(10);
+        address.setStreetName("Main Street");
+        address.setPostalCode(75001);
+        address.setCityName("Paris");
         addressDao.create(address);
         System.out.println("Created Address: " + address.getId());
 
@@ -66,14 +54,14 @@ public class Main {
         List<Address> allAddresses = addressDao.findAll();
         System.out.println("All Addresses count: " + allAddresses.size());
 
-        address.setCityName("Marseille");
+        address.setCityName("Lyon");
         addressDao.update(address);
         System.out.println("Updated Address city to: " + address.getCityName());
 
         // Test RoomDao
         Room room = new Room();
-        room.setName("Room M");
-        room.setNbBedsMax(1);
+        room.setName("Room A");
+        room.setNbBedsMax(2);
         roomDao.create(room);
         System.out.println("Created Room: " + room.getId());
 
@@ -83,7 +71,7 @@ public class Main {
         List<Room> allRooms = roomDao.findAll();
         System.out.println("All Rooms count: " + allRooms.size());
 
-        room.setName("Room N");
+        room.setName("Room B");
         roomDao.update(room);
         System.out.println("Updated Room name to: " + room.getName());
 
@@ -146,25 +134,19 @@ public class Main {
         restrictionRoomDao.create(restrictionRoom);
         System.out.println("Created RestrictionRoom mapping");
 
-        RestrictionRoomDao restrictionRoomDao1= new RestrictionRoomDao();
-        RestrictionRoom restrictionRoom1= new RestrictionRoom(room.getId(), restrictionType.getId(),"AND");
-        restrictionRoomDao1.create(restrictionRoom1);
-        System.out.println("Created RestrictionRoom1 mapping");
-
-
         // Test Relationship
         RelationshipDao relationshipDao = new RelationshipDao();
         Person person2 = new Person();
-        person2.setFirstName("Chloé");
-        person2.setLastName("Schmidt");
+        person2.setFirstName("Jane");
+        person2.setLastName("Doe");
         person2.setGender(Gender.FEMALE);
-        person2.setAge(45);
+        person2.setAge(28);
         personDao.createPerson(person2);
 
         Relationship relationship = new Relationship();
         relationship.addPerson(person);
         relationship.addPerson(person2);
-        relationship.setRelationType("Mother-Child");
+        relationship.setRelationType("Spouse");
         relationshipDao.create(relationship);
         System.out.println("Created Relationship between persons");
 
@@ -178,10 +160,9 @@ public class Main {
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_RESET = "\u001B[0m";
         System.out.println(ANSI_GREEN + "All operations completed successfully!" + ANSI_RESET);
-        */
-
         
-        /*
+        
+
         // Cleanup: delete created entities
         stayDao.delete(stay.getId());
         System.out.println("Deleted Stay: " + stay.getId());
@@ -199,14 +180,7 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
-        List<Stay> allStays = stayDao.findAll();
-        System.out.println("All Stays count: " + (allStays != null ? allStays.size() : "null"));
-        if (allStays!=null){
-        for (Stay stay: allStays){
-           System.out.println("Stay: "+stay.getId()+" ,bed: "+stay.getBed()+" , person: "+stay.getPerson()+" ,arrival: "+stay.getDateArrival()+", departure: "+stay.getDateDeparture());
-        }}
+        CLIController cliController = new CLIController();
         cliController.start();
-
-        connexion.close();
     }
 }

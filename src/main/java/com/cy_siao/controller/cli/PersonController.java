@@ -74,7 +74,7 @@ public class PersonController {
     private void deletePerson(){
         String lastName = view.askString("Last Name :");
         String firstName = view.askString("First name: ");
-        List<Person> persons = personService.getByName(lastName,firstName);
+        List<Person> persons = personService.getByName(firstName,lastName);
         view.showMessage(persons.toString());
         int id = Integer.parseInt(view.askString("Enter person id: "));
         Person person = personService.getPersonById(id);

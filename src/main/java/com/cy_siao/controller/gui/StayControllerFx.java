@@ -1,0 +1,170 @@
+package com.cy_siao.controller.gui;
+
+import com.cy_siao.service.StayService;
+import com.cy_siao.view.ViewManager;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import com.cy_siao.service.StayService;
+import com.cy_siao.model.Stay;
+import java.time.LocalDate;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class StayControllerFx implements Initializable {
+
+    private ViewManager viewManager;
+
+    @FXML
+    private DatePicker arrivalDatePicker;
+    @FXML
+    private DatePicker departureDatePicker;
+    @FXML
+    private TextField personIdField;
+    @FXML
+    private TextField bedIdField;
+    @FXML
+    private TextArea notesArea;
+    @FXML
+    private TableView<Stay> stayTableView;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button updateButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button searchButton;
+    @FXML
+    private TableColumn<Stay, Integer> idCol;
+    @FXML
+    private TableColumn<Stay, LocalDate> arrivalDateCol;
+    @FXML
+    private TableColumn<Stay, LocalDate> departureDateCol;
+    @FXML
+    private TableColumn<Stay, Integer> personIdCol;
+    @FXML
+    private TableColumn<Stay, Integer> bedIdCol;
+
+    private ObservableList<Stay> stayList = FXCollections.observableArrayList();
+    private StayService stayService = new StayService();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Initialisation des combobox et tableaux
+        stayList = FXCollections.observableArrayList(stayService.getAllStays());
+        stayTableView.setItems(stayList);
+
+        // Configuration des boutons
+        addButton.setOnAction(e -> handleAddStay());
+        updateButton.setOnAction(e -> handleUpdateStay());
+        deleteButton.setOnAction(e -> handleDeleteStay());
+        searchButton.setOnAction(e -> handleSearchStay());
+
+        // Configuration des colonnes du tableau
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        arrivalDateCol.setCellValueFactory(new PropertyValueFactory<>("dateArrival"));
+        departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
+        personIdCol.setCellValueFactory(new PropertyValueFactory<>("idPerson")); ////// A chercher comment les recuperer
+        bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
+    }
+
+    private void handleAddStay() {
+        try {
+            LocalDate arrivalDate = arrivalDatePicker.getValue();
+            LocalDate departureDate = departureDatePicker.getValue();
+            int personId = Integer.parseInt(personIdField.getText());
+            int bedId = Integer.parseInt(bedIdField.getText());
+
+            if (arrivalDate != null && departureDate != null && 
+                !arrivalDate.isAfter(departureDate)) {
+                
+                Stay stay = new Stay(bedId, personId, arrivalDate, departureDate);
+                
+                stayService.assignPersonToBed(null, null, arrivalDate, departureDate); ///////////////////////////// A CORRRIGER
+                stayList.add(stay);
+                
+                clearFields();
+                showAlert("Stay added successfully", Alert.AlertType.INFORMATION);
+            } else {
+                showAlert("Invalid dates: arrival must be before departure", Alert.AlertType.ERROR);
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Invalid ID format", Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            showAlert("Error adding stay: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void handleUpdateStay() {
+        Stay selectedStay = stayTableView.getSelectionModel().getSelectedItem();
+        if (selectedStay != null) {
+            try {
+                LocalDate newArrivalDate = arrivalDatePicker.getValue();
+                LocalDate newDepartureDate = departureDatePicker.getValue();
+                int newPersonId = Integer.parseInt(personIdField.getText());
+                int newBedId = Integer.parseInt(bedIdField.getText());
+
+                if (newArrivalDate != null && newDepartureDate != null && 
+                    !newArrivalDate.isAfter(newDepartureDate)) {
+                    
+                    selectedStay.setDateArrival(newArrivalDate);
+                    selectedStay.setDateDeparture(newDepartureDate);
+                    selectedStay.setPerson(null); /////////////////////////////////////////// A corriger
+                    selectedStay.setBed(null);
+                    
+                    stayService.updateStay(selectedStay);
+                    stayTableView.refresh();
+                    
+                    showAlert("Stay updated successfully", Alert.AlertType.INFORMATION);
+                } else {
+                    showAlert("Invalid dates: arrival must be before departure", Alert.AlertType.ERROR);
+                }
+            } catch (NumberFormatException e) {
+                showAlert("Invalid ID format", Alert.AlertType.ERROR);
+            }
+        } else {
+            showAlert("Please select a stay to update", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void handleDeleteStay() {
+        Stay selectedStay = stayTableView.getSelectionModel().getSelectedItem();
+        if (selectedStay != null) {
+            stayService.deleteStay(selectedStay);
+            stayList.remove(selectedStay);
+            showAlert("Stay deleted successfully", Alert.AlertType.INFORMATION);
+        } else {
+            showAlert("Please select a stay to delete", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void handleSearchStay() {
+        // Implémentez la logique de recherche selon vos besoins
+        showAlert("Search functionality to be implemented", Alert.AlertType.INFORMATION);
+    }
+
+    private void clearFields() {
+        arrivalDatePicker.setValue(null);
+        departureDatePicker.setValue(null);
+        personIdField.clear();
+        bedIdField.clear();
+        notesArea.clear();
+    }
+
+    private void showAlert(String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(alertType == Alert.AlertType.ERROR ? "Error" : "Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}

@@ -158,9 +158,9 @@ public class StayDao {
     private Stay extractStayFromResultSet(ResultSet rs) throws SQLException {
         LocalDate dateArrival = rs.getDate("datearrival").toLocalDate();
         LocalDate dateDeparture = rs.getDate("datedeparture").toLocalDate();
-        Bed  bed = bedDao.findById(rs.getInt("idBed"));
-        Person person = personDao.findById(rs.getInt("idPerson"));
-        Stay stay = new Stay(bed, person, dateArrival, dateDeparture);
+        int  idBed = rs.getInt("idBed");
+        int idPerson = rs.getInt("idPerson");
+        Stay stay = new Stay(idBed, idPerson, dateArrival, dateDeparture);
         stay.setId(rs.getInt("id"));
         return stay;
     }

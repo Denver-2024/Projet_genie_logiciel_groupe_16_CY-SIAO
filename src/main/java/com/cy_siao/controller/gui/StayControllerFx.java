@@ -225,7 +225,6 @@ public class StayControllerFx implements Initializable {
                 stayService.connectStayToBed(allBeds);
                 List<Bed> availableBeds = new ArrayList<>();
                 for (Bed bed : allBeds){
-                    System.out.println(bed.getStays());
                     if (stayService.isAssignable(selectedPerson, bed, arrival, departure)){
                         availableBeds.add(bed);
                     }

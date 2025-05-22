@@ -54,6 +54,9 @@ public class RoomControllerFx implements Initializable {
     @FXML
     private Button updateButton;
 
+    @FXML
+    private Button backButton;
+
 
     @FXML
     private TableView<Room> roomTableView;
@@ -102,12 +105,18 @@ public class RoomControllerFx implements Initializable {
         updateButton.setOnAction(e -> handleUpdateRoom());
         deleteButton.setOnAction(e -> handleDeleteRoom());
         addRestrictionButton.setOnAction(e -> handleAddRestriction());
+        backButton.setOnAction(e -> handleBackButton());
     }
 
     public void setViewManager(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
-@FXML
+
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
+    }
+    
+    @FXML
     private void handleAddRoom() {
         try {
             String name = nameField1.getText();
@@ -212,7 +221,7 @@ public class RoomControllerFx implements Initializable {
         }
     }
 
-@FXML
+    @FXML
     private void handleDeleteRoom() {
         Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
         if (selectedRoom != null) {

@@ -222,8 +222,10 @@ public class StayControllerFx implements Initializable {
                 // Récupère les lits disponibles pour la période et le genre
                 BedDao bedDaoTest = new BedDao();
                 List<Bed> allBeds = bedDaoTest.findAll();
+                stayService.connectStayToBed(allBeds);
                 List<Bed> availableBeds = new ArrayList<>();
                 for (Bed bed : allBeds){
+                    System.out.println(bed.getStays());
                     if (stayService.isAssignable(selectedPerson, bed, arrival, departure)){
                         availableBeds.add(bed);
                     }

@@ -150,6 +150,7 @@ public class StayDao {
         person.setGender("M".equals(genderCode) ? Gender.MALE : Gender.FEMALE);
         person.setAge(rs.getInt("age"));
         stay.setPerson(person);
+        stay.setIdPerson(person.getId());
 
         // Extraction Bed
         Bed bed = new Bed();
@@ -199,4 +200,5 @@ public class StayDao {
         stay.setId(rs.getInt("id"));
         return stay;
     }
+
 }

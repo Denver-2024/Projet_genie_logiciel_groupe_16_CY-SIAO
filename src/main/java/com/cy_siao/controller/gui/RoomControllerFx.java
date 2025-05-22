@@ -37,9 +37,6 @@ public class RoomControllerFx implements Initializable {
     private ComboBox<Gender> genderRestriction;
 
     @FXML
-    private TextField restrictionField;
-
-    @FXML
     private TextField nameField3; // Min age
 
     @FXML
@@ -83,7 +80,7 @@ public class RoomControllerFx implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Init Spinner
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50,0);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50,1);
         nbBedsMaxSpinner.setValueFactory(valueFactory);
 
         // Init ComboBox
@@ -134,6 +131,11 @@ public class RoomControllerFx implements Initializable {
             Room room = new Room(name, nbBedsMax);
             roomService.createRoom(room);
             roomList.add(room);
+            // Clear fields
+            nameField1.clear();
+
+            // Refresh TableView
+            roomTableView.refresh();
 
         } catch (Exception e) {
             showAlert("Error adding room: " + e.getMessage());
@@ -145,16 +147,16 @@ public class RoomControllerFx implements Initializable {
         try {
             String restrictionName = nameField2.getText();
             Gender gender = genderRestriction.getValue();
-            Integer minAge = nameField3.getText().isEmpty() ? null : Integer.parseInt(nameField3.getText());
-            Integer maxAge = nameField4.getText().isEmpty() ? null : Integer.parseInt(nameField4.getText());
+            Integer minAge = nameField3.getText().isEmpty() ? 0 : Integer.parseInt(nameField3.getText());
+            Integer maxAge = nameField4.getText().isEmpty() ? 200 : Integer.parseInt(nameField4.getText());
 
             if ((restrictionName == null || restrictionName.trim().isEmpty()) &&
-                    gender == null && minAge == null && maxAge == null) {
+                    gender == null && minAge == 0 && maxAge == 200) {
                 showAlert("At least one restriction field must be filled.");
                 return;
             }
 
-            RestrictionType restriction = gender!=null? new RestrictionType(restrictionName, gender, minAge==null?0:minAge, maxAge==null?200:maxAge): new RestrictionType(restrictionName, minAge==null?0:minAge, maxAge==null?200:maxAge) ;
+            RestrictionType restriction = gender!=null? new RestrictionType(restrictionName, gender, minAge, maxAge): new RestrictionType(restrictionName, minAge, maxAge) ;
 
             Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
             if (selectedRoom == null) {
@@ -178,6 +180,9 @@ public class RoomControllerFx implements Initializable {
             genderRestriction.setValue(null);
             nameField3.clear();
             nameField4.clear();
+
+            // Refresh TableView
+            roomTableView.refresh();
 
         } catch (NumberFormatException e) {
             showAlert("Min and Max age must be valid integers.");
@@ -233,6 +238,8 @@ public class RoomControllerFx implements Initializable {
             roomTableView.getSelectionModel().clearSelection();
             roomService.deleteRoom(selectedRoom.getId());
             roomList.remove(selectedRoom);
+            // Refresh TableView
+            roomTableView.refresh();
         } else {
             showAlert("Please select a room to delete.");
         }

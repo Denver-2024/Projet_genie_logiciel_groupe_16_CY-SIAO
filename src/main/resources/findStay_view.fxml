@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.cy_siao.controller.gui.FindStayControllerFx" 
+      spacing="10" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f4f4f4; -fx-padding: 10;">
+        <Label text="Gestion des Séjours" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+            <padding>
+                <Insets left="10" right="10" top="5" bottom="5"/>
+            </padding>
+        </Button>
+    </HBox>
+
+    <!-- Zone de recherche et sélection -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Rechercher:"/>
+        <ComboBox fx:id="personComboBox" promptText="Sélectionnez une personne" prefWidth="300"/>    </HBox>
+
+    <!-- Boutons d'action -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="addButton" text="Ajouter" style="-fx-font-weight: bold;"/>
+        <Button fx:id="removeButton" text="Supprimer" style="-fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Barre numérique -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Nombre:"/>
+        <TextField fx:id="numberField" prefWidth="100">
+            <HBox.margin>
+                <Insets right="10"/>
+            </HBox.margin>
+        </TextField>
+        <Label text="(Entrez un nombre de jour)"/>
+        <Button fx:id="searchStay" text="Rechercher sejour" style="-fx-font-weight: bold;"/>
+
+    </HBox>
+
+    <!-- Tableau des personnes sélectionnées -->
+    <TableView fx:id="selectedPersonTableView" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="idCol" prefWidth="50" text="ID"/>
+            <TableColumn fx:id="firstNameCol" prefWidth="150" text="Prénom"/>
+            <TableColumn fx:id="lastNameCol" prefWidth="150" text="Nom"/>
+            <TableColumn fx:id="ageCol" prefWidth="50" text="Âge"/>
+        </columns>
+    </TableView>
+</VBox>

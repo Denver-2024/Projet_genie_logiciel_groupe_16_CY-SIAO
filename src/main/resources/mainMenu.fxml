@@ -28,6 +28,7 @@
         <Button fx:id="managePersonButton" text="Manage a Person" />
         <Button fx:id="manageBedButton" text="Manage a Bed" />
         <Button fx:id="manageStayButton" text="Manage a Stay" />
+        <Button fx:id="manageFindStayButton" text="Find a Stay" />
     </VBox>
 
 </AnchorPane>

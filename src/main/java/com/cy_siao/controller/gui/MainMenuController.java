@@ -29,6 +29,9 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button manageStayButton;
 
+    @FXML
+    private Button manageFindStayButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupButtonActions();
@@ -44,6 +47,7 @@ public class MainMenuController implements Initializable {
         manageBedButton.setOnAction(event -> handleManageBeds());
         manageRoomButton.setOnAction(event -> handleManageRooms());
         manageStayButton.setOnAction(event -> handleManageStays());
+        manageFindStayButton.setOnAction(event -> handleManageFindStays());
     }
 
     @FXML
@@ -64,5 +68,10 @@ public class MainMenuController implements Initializable {
     @FXML
     private void handleManageStays() {
         viewManager.showStayView();
+    }
+
+    @FXML
+    private void handleManageFindStays() {
+        viewManager.showFindStayView();
     }
 }

@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Refactor RoomControllerFx and improve restriction handling&#10;&#10;Renamed min/max age fields for clarity in RoomControllerFx. Removed redundant DAO initialization and moved restriction creation logic to RoomService for consistency. Added logging and refreshed the table view after adding restrictions." />
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add dao for all the complex sql">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/DashboardView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dashboard_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,8 +26,8 @@
         <option value="Kotlin Class" />
         <option value="JavaFXApplication" />
         <option value="CSS File" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -71,6 +81,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -188,7 +199,8 @@
       <workItem from="1747850281856" duration="1311000" />
       <workItem from="1747857813830" duration="3517000" />
       <workItem from="1747901383041" duration="647000" />
-      <workItem from="1747904784439" duration="3493000" />
+      <workItem from="1747904784439" duration="6175000" />
+      <workItem from="1747916749014" duration="2049000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -398,7 +410,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747908198042</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="add dao for all the complex sql">
+      <option name="closed" value="true" />
+      <created>1747909800859</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1747909800859</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,6 +459,7 @@
     <MESSAGE value="Add orlan" />
     <MESSAGE value="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file." />
     <MESSAGE value="Refactor RoomControllerFx and improve restriction handling&#10;&#10;Renamed min/max age fields for clarity in RoomControllerFx. Removed redundant DAO initialization and moved restriction creation logic to RoomService for consistency. Added logging and refreshed the table view after adding restrictions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor RoomControllerFx and improve restriction handling&#10;&#10;Renamed min/max age fields for clarity in RoomControllerFx. Removed redundant DAO initialization and moved restriction creation logic to RoomService for consistency. Added logging and refreshed the table view after adding restrictions." />
+    <MESSAGE value="add dao for all the complex sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="add dao for all the complex sql" />
   </component>
 </project>

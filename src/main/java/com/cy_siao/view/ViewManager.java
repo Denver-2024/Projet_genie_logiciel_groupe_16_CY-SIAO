@@ -51,6 +51,11 @@ public class ViewManager {
         configureStage();
     }
 
+    public void showDashboardView(){
+        DashboardView dashboardView = new DashboardView(this);
+        primaryStage.setScene(new Scene(dashboardView.getView()));
+        configureStage();
+    }
     private void configureStage() {
         primaryStage.setTitle("CY SIAO Management");
         if (!primaryStage.isShowing()) {

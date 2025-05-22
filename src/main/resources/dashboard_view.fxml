@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.cy_siao.controller.gui.DashboardController" prefWidth="800" prefHeight="600">
+    <VBox spacing="10" >
+        <Label text="État de l'agence" style="-fx-font-size: 20px;"/>
+
+        <HBox spacing="20">
+            <PieChart fx:id="pieOccupation" prefWidth="350"/>
+            <BarChart fx:id="barDepartures" prefWidth="400">
+                <xAxis>
+                    <CategoryAxis label="Statut"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Nombre"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class MainMenuView {
     
-    private Parent view;
+    private final Parent view;
     private MainMenuController controller;
 
     public MainMenuView(ViewManager viewManager) {

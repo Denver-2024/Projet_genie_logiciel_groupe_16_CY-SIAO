@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add dao for all the complex sql">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/DashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/DashboardView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dashboard_view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/MainMenuView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/room_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,37 +58,41 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2x5cBp8zy6Dr2HHJ7A37d2dDQdT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GuiView.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Mainfx.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;DavidService&quot;,
-    &quot;last_directory_selection&quot;: &quot;E:/cy-saio - Copie/src/main/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/cy-saio - Copie (2)&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.GuiView.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Mainfx.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Ulrich",
+    "last_directory_selection": "E:/cy-saio - Copie/src/main/java",
+    "last_opened_file_path": "E:/cy-saio - Copie (2)",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
@@ -151,6 +154,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.GuiView" />
+      <item itemvalue="Application.Mainfx" />
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />

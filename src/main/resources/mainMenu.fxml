@@ -1,34 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cy_siao.controller.gui.MainMenuController">
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.text.TextFlow?>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cy_siao.controller.gui.MainMenuController"
+            stylesheets="@styles/style.css" >
 
-    <!-- Image de fond qui remplit tout -->
-    <ImageView smooth="false" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-        <image>
-            <Image url="@Images/fond - Copy.png" />
-        </image>
-    </ImageView>
+    <!-- TOP HEADER -->
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: #f4f4f4;">
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+            <Label text="WELCOME TO THE CY SIAO MANAGER" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
 
-    <!-- Logo centré en haut -->
-    <ImageView fitHeight="150" fitWidth="200" layoutX="273.4" layoutY="28.0" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="273.4" AnchorPane.rightAnchor="283.4" AnchorPane.topAnchor="28.0">
-        <image>
-            <Image url="@Images/Projet_SIAO.png" />
-        </image>
-    </ImageView>
+    <!-- CENTER CONTENT -->
+    <center>
+        <ImageView>
+            <image>
+                <Image url="@Images/fond - Copy.png"/>
+            </image>
+        </ImageView>
+        <VBox alignment="CENTER">
+            <!--Comments-->
+            <TextArea fx:id="longTextArea"  styleClass="label"    layoutX="20" layoutY="20"   maxHeight="100"
+                      editable="false"
+                      wrapText="true"
+                      text="Hi! CY SIAO Manager is a software developed by CY Tech Students for managing the SIAO Emergency Shelters. Here you can manage easily the Rooms for welcoming persons to be hosted. You can also manage the hosted Persons, their Stays and the Beds. Plus, you can have the overview of the center affluence in the Dashboard.If you are ready, let's get started!"/>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" left="20" right="20" bottom="20"/>
+            </padding>
 
-    <!-- Boutons centrés horizontalement, à 250 px du haut -->
-    <VBox fx:id="mainContainer" alignment="CENTER" spacing="15" AnchorPane.leftAnchor="150" AnchorPane.rightAnchor="150" AnchorPane.topAnchor="250">
-        <Button fx:id="manageRoomButton" text="Manage a Room" />
-        <Button fx:id="managePersonButton" text="Manage a Person" />
-        <Button fx:id="manageBedButton" text="Manage a Bed" />
-        <Button fx:id="manageStayButton" text="Manage a Stay" />
-        <Button fx:id="dashboardButton" text="Dashboard" />
-    </VBox>
+            <!-- Logo centré -->
+            <ImageView fitHeight="120" fitWidth="200" preserveRatio="true">
+                <image>
+                    <Image url="@Images/Projet_SIAO.png"/>
+                </image>
+            </ImageView>
+            <!-- Boutons du menu -->
 
-</AnchorPane>
+            <VBox fx:id="mainContainer"  spacing="10" maxHeight="400" alignment="CENTER">
+                <Label fx:id="menuText" styleClass="label.title" text="MAIN MENU"/>
+                <Button fx:id="manageRoomButton" styleClass="menuButton" text="Manage Rooms" prefWidth="200"/>
+                <Button fx:id="managePersonButton" styleClass="menuButton" text="Manage Persons" prefWidth="200"/>
+                <Button fx:id="manageBedButton" styleClass="menuButton" text="Manage Beds" prefWidth="200"/>
+                <Button fx:id="manageStayButton" styleClass="menuButton" text="Manage Stays" prefWidth="200"/>
+                <Button fx:id="dashboardButton" styleClass="menuButton" text="Dashboard" prefWidth="200"/>
+            </VBox>
+        </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

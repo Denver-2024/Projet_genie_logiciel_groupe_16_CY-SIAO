@@ -1,98 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.cy_siao.controller.gui.RoomControllerFx">
-    <stylesheets>
-        <URL value="@styles/style.css"/>
-    </stylesheets>
-    <!-- Barre supérieure avec ancrage -->
-    <HBox alignment="CENTER" style="-fx-background-color: #f4f4f4;"
-          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-        <Label text="Gestion des salles" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
-        <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cy_siao.controller.gui.RoomControllerFx"
+            stylesheets="@styles/style.css">
+
+    <!-- TOP HEADER -->
+    <top>
+        <HBox alignment="TOP_LEFT" style="-fx-background-color: #f4f4f4;">
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label text="Gestion des chambres" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+                <padding>
+                    <Insets left="10" right="10" top="5" bottom="5"/>
+                </padding>
+            </Button>
+        </HBox>
+    </top>
+
+    <!-- CENTER CONTENT -->
+    <center>
+        <VBox spacing="15">
             <padding>
-                <Insets left="10" right="10" top="5" bottom="5"/>
+                <Insets top="20" bottom="20" left="20" right="20"/>
             </padding>
-        </Button>
-    </HBox>
 
-    <!-- Contenu principal avec ancrage -->
-    <VBox spacing="10" AnchorPane.topAnchor="40" AnchorPane.leftAnchor="0"
-          AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
-        <padding>
-            <Insets bottom="20" left="20" right="20" top="20"/>
-        </padding>
+            <HBox spacing="20">
+                <!-- Room Info -->
+                <VBox spacing="10">
+                    <Label text="Nom de la chambre"/>
+                    <TextField fx:id="nameField1"/>
 
-        <HBox spacing="10">
-            <VBox>
-                <Label text="Room Name:"/>
-                <TextField fx:id="nameField1">
-                    <VBox.margin>
-                        <Insets bottom="10.0"/>
-                    </VBox.margin>
-                </TextField>
-                <Label text="Max Beds:"/>
-                <Spinner fx:id="nbBedsMaxSpinner" prefWidth="160.0"
-                         initialValue="1" editable="true"/>
-            </VBox>
+                    <Label text="Nombre de lits max"/>
+                    <Spinner fx:id="nbBedsMaxSpinner" editable="true" prefWidth="160"/>
+                </VBox>
 
-            <VBox>
-                <Label text="Restriction Name:"/>
-                <TextField fx:id="nameField2">
-                    <VBox.margin>
-                        <Insets bottom="10.0"/>
-                    </VBox.margin>
-                </TextField>
-                <Label text="Gender Restriction"/>
-                <ComboBox fx:id="genderRestriction" prefWidth="150.0"/>
-            </VBox>
+                <!-- Restriction Info -->
+                <VBox spacing="10">
+                    <Label text="Nom de la restriction"/>
+                    <TextField fx:id="nameField2"/>
 
-            <VBox>
+                    <Label text="Restriction de genre"/>
+                    <ComboBox fx:id="genderRestriction" prefWidth="150"/>
+                </VBox>
 
-                <Label text="Minimum Age"/>
-                <TextField fx:id="minAgeField">
-                    <VBox.margin>
-                        <Insets bottom="10.0"/>
-                    </VBox.margin>
-                </TextField>
-                <Label text="Maximum Age"/>
-                <TextField fx:id="maxAgeField">
-                    <VBox.margin>
-                        <Insets bottom="10.0"/>
-                    </VBox.margin>
-                </TextField>
-                <Label text="Logic Operator"/>
-                <ComboBox fx:id="logicOperator" prefWidth="150.0"/>
-            </VBox>
-        </HBox>
+                <!-- Age Restrictions -->
+                <VBox spacing="10">
+                    <Label text="Âge minimum"/>
+                    <TextField fx:id="minAgeField"/>
 
-        <HBox spacing="10">
-            <Button fx:id="addButton" text="Add Room"/>
-            <Button fx:id="updateButton" text="Update Room"/>
-            <Button fx:id="deleteButton" text="Delete Room"/>
-            <Button fx:id="addRestrictionButton" text="Add Restriction"/>
-        </HBox>
+                    <Label text="Âge maximum"/>
+                    <TextField fx:id="maxAgeField"/>
 
-        <TableView fx:id="roomTableView" prefHeight="300">
-            <columns>
-                <TableColumn fx:id="idCol" prefWidth="50" text="ID"/>
-                <TableColumn fx:id="nameCol" prefWidth="150" text="Name"/>
-                <TableColumn fx:id="nbBedsMaxCol" prefWidth="100" text="Max Beds"/>
-                <TableColumn fx:id="restrictionCol" prefWidth="250" text="Restrictions"/>
-            </columns>
-        </TableView>
-    </VBox>
-</AnchorPane>
+                    <Label text="Opérateur logique"/>
+                    <ComboBox fx:id="logicOperator" prefWidth="150"/>
+                </VBox>
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10">
+                <Button fx:id="addButton" text="Ajouter la chambre"/>
+                <Button fx:id="updateButton" text="Mettre à jour"/>
+                <Button fx:id="deleteButton" text="Supprimer"/>
+                <Button fx:id="addRestrictionButton" text="Ajouter restriction"/>
+            </HBox>
+
+            <!-- TableView -->
+            <TableView fx:id="roomTableView" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="idCol" prefWidth="50" text="ID"/>
+                    <TableColumn fx:id="nameCol" prefWidth="150" text="Nom"/>
+                    <TableColumn fx:id="nbBedsMaxCol" prefWidth="100" text="Lits max"/>
+                    <TableColumn fx:id="restrictionCol" prefWidth="250" text="Restrictions"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

@@ -3,19 +3,32 @@ package com.cy_siao.controller.gui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.cy_siao.view.ViewManager;
+import javafx.scene.text.TextFlow;
 
 public class MainMenuController implements Initializable {
 
-    private ViewManager viewManager; 
 
-     @FXML
-    private VBox mainContainer;
+    @FXML
+    public VBox mainContainer;
+
+    @FXML
+    public Label menuText;
+    public TextArea longTextArea;
+
+
+    @FXML
+    private ViewManager viewManager;
+
+
 
     @FXML
     private Button managePersonButton;

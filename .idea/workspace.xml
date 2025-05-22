@@ -4,74 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add orlan">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_05_2025_21_47_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_05_2025_21_47_[Changes]/shelved.patch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BDDprojetJava (2).sql" beforeDir="false" afterPath="$PROJECT_DIR$/BDDprojetJava (2).sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/GuiApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/GuiApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/BedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/BedController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/CLIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/CLIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/StayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/cli/StayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/PersonControllerFx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/RoomControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/RoomControllerFx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/AddressDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/BedDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/KnowsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/KnowsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RelationshipDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RelationshipDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionRoomDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionRoomDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RoomDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RoomDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Bed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Knows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Knows.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/RestrictionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Relationship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Relationship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/AddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/BedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/BedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/PersonService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/RoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/util/DatabaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/BedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/BedView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/CLIView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/GuiView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/GuiView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/MainMenuView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/PersonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/PersonView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/RoomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/RoomView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/StayView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/StayView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bed_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/person_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/person_view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/room_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/stay_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stay_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/cy_siao/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cy_siao/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,8 +24,8 @@
         <option value="Kotlin Class" />
         <option value="JavaFXApplication" />
         <option value="CSS File" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -133,9 +73,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Toledo",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
+    "git-widget-placeholder": "Merging Toledo",
     "last_directory_selection": "E:/cy-saio - Copie/src/main/java",
     "last_opened_file_path": "E:/cy-saio - Copie (2)",
     "list.type.of.created.stylesheet": "CSS",
@@ -228,7 +166,14 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="" />
@@ -259,6 +204,8 @@
       <workItem from="1747849881971" duration="341000" />
       <workItem from="1747850281856" duration="1311000" />
       <workItem from="1747857813830" duration="3517000" />
+      <workItem from="1747901383041" duration="647000" />
+      <workItem from="1747904784439" duration="3178000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -491,6 +438,7 @@
     <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
     <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements." />
     <MESSAGE value="Add orlan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add orlan" />
+    <MESSAGE value="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file." />
   </component>
 </project>

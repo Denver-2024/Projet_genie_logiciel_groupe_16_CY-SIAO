@@ -1,6 +1,7 @@
 package com.cy_siao.service;
 
 import com.cy_siao.dao.RestrictionRoomDao;
+import com.cy_siao.dao.RestrictionTypeDao;
 import com.cy_siao.dao.RoomDao;
 import com.cy_siao.dao.BedDao;
 import com.cy_siao.model.Bed;
@@ -20,6 +21,7 @@ public class RoomService {
     private final RoomDao roomDao;
     private final BedDao bedDao;
     private final RestrictionRoomDao restrictionRoomDao;
+    private RestrictionTypeDao restrictionTypeDao;
 
     /**
      * 
@@ -28,6 +30,7 @@ public class RoomService {
         this.roomDao = new RoomDao();
         this.bedDao = new BedDao();
         this.restrictionRoomDao = new RestrictionRoomDao();
+        this.restrictionTypeDao = new RestrictionTypeDao();
     }
 
     // CRUD OPERATIONS
@@ -97,7 +100,7 @@ public class RoomService {
      * @param room the room who need a restriction
      * @param restriction the restriction who must be add to the room
      */
-    public void addRestrictionToRoom(Room room, RestrictionType restriction) {
+    public void addRestrictionToRoom(Room room, RestrictionType restriction) throws SQLException {
        this.addRestrictionToRoom(room, restriction, "AND");
     }
 
@@ -111,7 +114,11 @@ public class RoomService {
      * @param logicOperator the logical operator (e.g., AND, OR) defining how
      *                      the restriction interacts with other restrictions
      */
-    public void addRestrictionToRoom(Room room, RestrictionType restriction, String logicOperator) {
+    public void addRestrictionToRoom(Room room, RestrictionType restriction, String logicOperator) throws SQLException {
+        boolean exists = restrictionTypeDao.findAll().stream().anyMatch(r -> r.equals(restriction));
+        if (!exists) {
+            restrictionTypeDao.create(restriction);
+        }
         room.addRestriction(restriction);
         restrictionRoomDao.create(new RestrictionRoom(room.getId(), restriction.getId(), logicOperator));
     }

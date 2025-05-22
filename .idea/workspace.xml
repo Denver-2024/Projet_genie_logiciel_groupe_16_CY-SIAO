@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/RoomControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/RoomControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/StayDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/RoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/room_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room_view.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging Toledo",
+    "git-widget-placeholder": "Toledo",
     "last_directory_selection": "E:/cy-saio - Copie/src/main/java",
     "last_opened_file_path": "E:/cy-saio - Copie (2)",
     "list.type.of.created.stylesheet": "CSS",

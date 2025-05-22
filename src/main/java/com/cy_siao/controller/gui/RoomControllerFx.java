@@ -37,10 +37,10 @@ public class RoomControllerFx implements Initializable {
     private ComboBox<Gender> genderRestriction;
 
     @FXML
-    private TextField nameField3; // Min age
+    private TextField minAgeField; // Min age
 
     @FXML
-    private TextField nameField4; // Max age
+    private TextField maxAgeField; // Max age
 
     @FXML
     private Button addButton;
@@ -75,7 +75,6 @@ public class RoomControllerFx implements Initializable {
 
     private final ObservableList<Room> roomList = FXCollections.observableArrayList();
     private final RoomService roomService = new RoomService();
-    private final RestrictionTypeDao restrictionTypeDao = new RestrictionTypeDao();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -141,8 +140,8 @@ public class RoomControllerFx implements Initializable {
         try {
             String restrictionName = nameField2.getText();
             Gender gender = genderRestriction.getValue();
-            Integer minAge = nameField3.getText().isEmpty() ? null : Integer.parseInt(nameField3.getText());
-            Integer maxAge = nameField4.getText().isEmpty() ? null : Integer.parseInt(nameField4.getText());
+            Integer minAge = minAgeField.getText().isEmpty() ? null : Integer.parseInt(minAgeField.getText());
+            Integer maxAge = maxAgeField.getText().isEmpty() ? null : Integer.parseInt(maxAgeField.getText());
 
             if ((restrictionName == null || restrictionName.trim().isEmpty()) &&
                     gender == null && minAge == null && maxAge == null) {
@@ -159,20 +158,19 @@ public class RoomControllerFx implements Initializable {
 
             // Add restriction to the room
             roomService.addRestrictionToRoom(selectedRoom, restriction);
+            System.out.println("Added restriction to room: " + selectedRoom.getId());
+            System.out.println("Restriction: " + restriction.getLabel());
 
-            // Ensure restriction exists in database
-            boolean exists = restrictionTypeDao.findAll().stream().anyMatch(r -> r.equals(restriction));
-            if (!exists) {
-                restrictionTypeDao.create(restriction);
-            }
+
 
             showAlert("Restriction added successfully");
 
             // Clear fields
             nameField2.clear();
             genderRestriction.setValue(null);
-            nameField3.clear();
-            nameField4.clear();
+            minAgeField.clear();
+            maxAgeField.clear();
+            roomTableView.refresh();
 
         } catch (NumberFormatException e) {
             showAlert("Min and Max age must be valid integers.");

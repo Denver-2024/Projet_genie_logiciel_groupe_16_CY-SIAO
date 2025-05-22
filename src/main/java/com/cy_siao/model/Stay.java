@@ -20,7 +20,9 @@ public class Stay {
 
     public Stay(Bed bed, Person person, LocalDate dateArrival, LocalDate dateDeparture) {
         this.bed = bed;
+        this.idBed = bed.getId();
         this.person = person;
+        this.idPerson = person.getId();
         this.dateArrival = dateArrival;
         this.dateDeparture = dateDeparture;
     }
@@ -36,6 +38,10 @@ public class Stay {
 
     public void setId(int id){this.id = id;}
 
+    public void setIdBed(int idBed){this.idBed = idBed;}
+    
+    public void setIdPerson(int idPerson){this.idPerson = idPerson;}
+
     public Bed getBed() {
         return bed;
     }
@@ -46,6 +52,14 @@ public class Stay {
 
     public Person getPerson() {
         return person;
+    }
+
+    public int getIdBed() {
+        return this.idBed;
+    }
+
+    public int getIdPerson() {
+        return this.idPerson;
     }
 
     public void setPerson(Person person) {

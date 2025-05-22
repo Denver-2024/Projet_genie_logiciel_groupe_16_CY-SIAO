@@ -72,15 +72,15 @@ public class StayController {
     }
 
     private void freeBed() throws SQLException {
-        view.showMessage("=== Libérer un lit pour une personne ===");
+        view.showMessage("=== Libérer un lit===");
         Person person = selectPerson();
         if (person == null) return;
 
         Bed bed = selectBed();
         if (bed == null) return;
 
-        stayService.free(bed, person);
-        view.showMessage("Lit libéré pour cette personne (en mémoire).");
+        stayService.freeBed(bed);
+        view.showMessage("Lit libéré.");
     }
 
     private void listAllStays() {
@@ -92,7 +92,7 @@ public class StayController {
         }
     }
 
-    private Person selectPerson() {
+    private Person selectPerson() throws SQLException {
         String lastName = view.askString("Nom : ");
         String firstName = view.askString("Prénom : ");
         List<Person> persons = personService.getByName(firstName, lastName);

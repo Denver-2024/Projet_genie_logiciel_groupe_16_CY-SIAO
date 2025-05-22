@@ -2,6 +2,8 @@ package com.cy_siao.controller.gui;
 
 import com.cy_siao.model.Bed;
 import com.cy_siao.service.BedService;
+import com.cy_siao.view.ViewManager;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BedControllerFx implements Initializable {
+
+    private ViewManager viewManager;
 
     @FXML
     private TextField idRoomField;
@@ -38,6 +42,9 @@ public class BedControllerFx implements Initializable {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button backButton;
+
     private ObservableList<Bed> bedList = FXCollections.observableArrayList();
     private BedService bedService = new BedService();
 
@@ -52,6 +59,15 @@ public class BedControllerFx implements Initializable {
 
         addButton.setOnAction(e -> handleAddBed());
         deleteButton.setOnAction(e -> handleDeleteBed());
+        backButton.setOnAction(e -> handleBackButton());
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
+    }
+
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
     }
 
     private void handleAddBed() {

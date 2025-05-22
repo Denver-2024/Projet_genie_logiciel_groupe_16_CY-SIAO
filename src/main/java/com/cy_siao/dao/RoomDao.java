@@ -1,6 +1,8 @@
 package com.cy_siao.dao;
 
+import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.Room;
+import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
 
 import java.sql.*;
@@ -52,13 +54,18 @@ public class RoomDao {
 
     public List<Room> findAll() {
         List<Room> rooms = new ArrayList<>();
-        String sql = "SELECT * FROM room";
+        String sql = "SELECT r.*, rt.*,rt.id as idRestrictionType\n" +
+                "FROM room r\n" +
+                "LEFT JOIN restrictionRoom rr ON r.id= rr.idRoom\n" +
+                "LEFT JOIN restrictionType rt ON rr.idRestrictionType = rt.id;";
         try (Connection conn = databaseUtil.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                rooms.add(extractRoomFromResultSet(rs));
+                Room room = extractRoomFromResultSet(rs);
+                room.addRestriction( extractRestrictionFromResultSet(rs));
+                rooms.add(room);
             }
         } catch (SQLException e) {
             System.err.println("Error in finding all rooms: " + e.getMessage());
@@ -99,4 +106,10 @@ public class RoomDao {
         room.setNbBedsMax(rs.getInt("nbbedsmax"));
         return room;
     }
+    private RestrictionType extractRestrictionFromResultSet(ResultSet rs) throws SQLException {
+        int id = rs.getInt("idRestrictionType");
+        return RestrictionTypeDao.getRestrictionType(rs, id);
+    }
+
+
 }

@@ -16,14 +16,22 @@ import com.cy_siao.model.RestrictionRoom;
 import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.person.Person;
 
+/**
+ * 
+ */
 public class StayService {
     private EligibilityService eligibilityService;
     private BedDao bedDao;
     private RoomDao roomDao;
     private StayDao stayDao;
+    private PersonService personService;
 
+    /**
+     * 
+     */
     public StayService() {
         this.eligibilityService = new EligibilityService();
+        this.personService = new PersonService();
         this.bedDao = new BedDao();
         this.roomDao = new RoomDao();
         this.stayDao = new StayDao();
@@ -70,21 +78,10 @@ public class StayService {
         restrictions = restrictionRoomDao.findAll();
 
         if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
-            List<Stay> stays;
-            stays = stayDao.findAll(); // remove person and bed when is corriged
-            for (Stay stay: stays){
-                // bed already occuped
-                if (!(stay.getBed().isAvailable(arrival, departure)) && stay.getBed() == bed){
-                    return false;
-                }
-                // person already assign at a bed during a part of selected period
-                if (stay.getPerson() == person &&
-                    ((stay.getDateArrival().isAfter(arrival) && stay.getDateArrival().isBefore(departure)) ||
-                    (stay.getDateDeparture().isAfter(arrival) && stay.getDateDeparture().isBefore(departure)))){
-                    return false;
-                }
-            }
-            return true;
+            if (bed.isAvailable(arrival, departure)){
+                return true;
+            };
+            return false;
         }
 
         return false;
@@ -122,12 +119,51 @@ public class StayService {
     }
 
     /**
-     * Frees the bed for a given person by removing their stays.
+     * Frees the bed for all his stay.
      *
-     * @param person Person to remove from the bed
+     * @param bed Remove all stay link at this bed
      */
-    public void free(Bed bed, Person person) {
-        bed.getStays().removeIf(stay -> stay.getPerson().equals(person));
+    public void freeBed(Bed bed) {
+        List<Stay> stays;
+        stays = this.getAllStays();
+        for(Stay stay: stays){
+            if (stay.getBed().equals(bed)){
+                stayDao.delete(stay.getId());
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param person
+     */
+    public void freePerson(Person person) {
+        List<Stay> stays;
+        stays = this.getAllStays();
+        for(Stay stay: stays){
+            if (stay.getPerson().equals(person)){
+                stayDao.delete(stay.getId());
+            }
+        }
+    }
+
+    public void connectStayToBed(List<Bed> listBed){
+        List<Stay> allStay = stayDao.findAll();
+        for (Stay stay: allStay){
+            for (Bed bed : listBed){
+                if (bed.getId() == stay.getIdBed()){
+                    bed.addStay(stay);
+                }
+            }
+        }
+    }
+
+    public void updateStay(Stay stay){
+        stayDao.update(stay);
+    }
+
+    public void deleteStay(Stay stay){
+        stayDao.delete(stay.getId());
     }
 
 }

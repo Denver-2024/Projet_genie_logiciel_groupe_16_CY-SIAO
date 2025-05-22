@@ -96,7 +96,7 @@ public class CLIView {
     }
 
     public void showError(String message) {
-        System.err.println("Error : " + message);
+        System.err.println("Erreur : " + message);
     }
 
     public void close() {

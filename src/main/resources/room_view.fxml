@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -13,110 +14,78 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cy_siao.controller.gui.RoomControllerFx">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cy_siao.controller.gui.RoomControllerFx">
+    <stylesheets>
+        <URL value="@styles/style.css" />
+    </stylesheets>
 
-        <HBox style="-fx-background-color: #f4f4f4;">
+    <VBox spacing="10">
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+        </padding>
+
+        <!-- Title bar -->
+        <HBox spacing="10" style="-fx-background-color: #f4f4f4;">
             <Pane HBox.hgrow="ALWAYS" />
-            <Label style="-fx-font-size: 16pt; -fx-font-weight: bold;" text="Gestion des Séjours" />
+            <Label style="-fx-font-size: 16pt; -fx-font-weight: bold;" text="Stays Management" />
             <Pane HBox.hgrow="ALWAYS" />
-   
-   
-       <VBox prefWidth="604.0" spacing="10">
-           <padding>
-               <Insets bottom="20" left="20" right="20" top="20" />
-           </padding>
-           <HBox spacing="10">
-            <VBox>
-               <children>
-                     <Label text="Room Name:">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                     <TextField fx:id="nameField1">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                     <Label text="Max Beds:">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                     <Spinner fx:id="nbBedsMaxSpinner" prefHeight="26.0" prefWidth="160.0" />
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <VBox prefHeight="153.0" prefWidth="202.0">
-               <children>
-                     <Label text=" Restriction Name:">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="nameField2">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Gender Restriction">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ComboBox fx:id="genderRestriction" prefWidth="150.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="130.0" prefWidth="170.0">
-               <children>
-                  <Label text="Minimum Age">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="nameField3">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Maximum Age">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="nameField4">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-           </HBox>
-   
-           <HBox spacing="10" />
-   
-           <HBox spacing="10">
-               <Button fx:id="addButton" onAction="#handleAddRoom" text="Add Room" />
-            <Button fx:id="updateButton" onAction="#handleUpdateRoom" text="Update Room" />
-               <Button fx:id="deleteButton" onAction="#handleDeleteRoom" text="Delete Room" />
-            <Button fx:id="addRestrictionButton" onAction="#handleAddRestriction" text="Add Restriction" />
-           </HBox>
-   
-           <TableView fx:id="roomTableView" prefHeight="300">
-               <columns>
-                   <TableColumn fx:id="idCol" prefWidth="50" text="ID" />
-                   <TableColumn fx:id="nameCol" prefWidth="150" text="Name" />
-                   <TableColumn fx:id="nbBedsMaxCol" prefWidth="100" text="Max Beds" />
-                   <TableColumn fx:id="restrictionCol" prefWidth="250" text="Restrictions" />
-               </columns>
-           </TableView>
-       </VBox>
             <Button fx:id="backButton" style="-fx-font-weight: bold;" text="Retour">
                 <padding>
                     <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
             </Button>
         </HBox>
+
+        <!-- Form -->
+        <HBox spacing="10">
+            <!-- Room fields -->
+            <VBox>
+                <children>
+                    <Label text="Room Name:" />
+                    <TextField fx:id="nameField1" />
+                    <Label text="Max Beds:" />
+                    <Spinner fx:id="nbBedsMaxSpinner" prefHeight="26.0" prefWidth="160.0" />
+                </children>
+            </VBox>
+
+            <!-- Restriction fields -->
+            <VBox prefHeight="153.0" prefWidth="202.0">
+                <children>
+                    <Label text="Restriction Name:" />
+                    <TextField fx:id="nameField2" />
+                    <Label text="Gender Restriction" />
+                    <ComboBox fx:id="genderRestriction" prefWidth="150.0" />
+                </children>
+            </VBox>
+
+            <VBox prefHeight="130.0" prefWidth="170.0">
+                <children>
+                    <Label text="Minimum Age" />
+                    <TextField fx:id="nameField3" />
+                    <Label text="Maximum Age" />
+                    <TextField fx:id="nameField4" />
+               <Label text="Logic Operator" />
+               <ComboBox prefWidth="150.0" />
+                </children>
+            </VBox>
+        </HBox>
+
+        <!-- Buttons -->
+        <HBox spacing="10">
+            <Button fx:id="addButton" text="Add Room" />
+            <Button fx:id="updateButton" text="Update Room" />
+            <Button fx:id="deleteButton" text="Delete Room" />
+            <Button fx:id="addRestrictionButton" text="Add Restriction" />
+        </HBox>
+
+        <!-- Table -->
+        <TableView fx:id="roomTableView" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="idCol" prefWidth="50" text="ID" />
+                <TableColumn fx:id="nameCol" prefWidth="150" text="Name" />
+                <TableColumn fx:id="nbBedsMaxCol" prefWidth="100" text="Max Beds" />
+                <TableColumn fx:id="restrictionCol" prefWidth="250" text="Restrictions" />
+            </columns>
+        </TableView>
+    </VBox>
 </AnchorPane>

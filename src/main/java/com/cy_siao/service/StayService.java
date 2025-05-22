@@ -2,6 +2,7 @@ package com.cy_siao.service;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cy_siao.dao.BedDao;
@@ -165,5 +166,60 @@ public class StayService {
     public void deleteStay(Stay stay){
         stayDao.delete(stay.getId());
     }
+
+    public LocalDate findStayRoom(List<Person> persons, int nbDay, Room room){
+    
+        LocalDate arrivalDay = LocalDate.now();
+        arrivalDay.minusDays(1);
+        List<Bed> allBeds = bedDao.findAll();
+        int nbBedInRoom = 0;
+        for (Bed bed : allBeds){
+            if(bed.getIdRoom() == room.getId()){
+                nbBedInRoom += 1;
+            }
+        }
+        this.connectStayToBed(allBeds);
+        int countNbBedAvaible = 0;
+        if(persons.size() <= nbBedInRoom){
+            while (countNbBedAvaible < persons.size()){
+                countNbBedAvaible = 0;
+                arrivalDay = arrivalDay.plusDays(1);
+                for (Bed bed : allBeds){
+                    if (bed.getIdRoom() == room.getId() && bed.isAvailable(arrivalDay, arrivalDay.plusDays(nbDay))){
+                        countNbBedAvaible += 1;
+                    }
+                }
+            }
+            return arrivalDay;
+        }else{
+            return null;
+        }
+    }
+
+    public Room findStay(List<Person> persons, int nbDay){
+
+        List<Room> allRoom = roomDao.findAll();
+        int selectRoom = 0;
+        LocalDate nearestDate = findStayRoom(persons, nbDay, allRoom.get(0));
+        for (int i = 1; i < allRoom.size(); i++){
+            if (nearestDate != null){
+                LocalDate compareDate = findStayRoom(persons, nbDay, allRoom.get(i));
+                if (compareDate != null){
+                    if (compareDate.isBefore(nearestDate)){
+                        selectRoom = i;
+                        nearestDate = compareDate;
+                    }
+                }
+            }else{
+                nearestDate = findStayRoom(persons, nbDay, allRoom.get(i));
+            }
+        }
+        if (findStayRoom(persons, nbDay, allRoom.get(selectRoom)) != null){
+            return allRoom.get(selectRoom);
+        }else{
+            return null;
+        }
+    }
+    
 
 }

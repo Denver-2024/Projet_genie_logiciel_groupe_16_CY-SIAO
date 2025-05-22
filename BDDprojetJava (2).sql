@@ -42,6 +42,7 @@ CREATE TABLE Room (
     Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
     name VARCHAR(50),
     nbBedsMax INT CHECK (nbBedsMax >= 0 AND nbBedsMax <= 10) DEFAULT 0
+    IdRestrictionType INT REFERENCES RestrictionType(Id)
 );
 
 CREATE TABLE Bed (

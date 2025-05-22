@@ -7,6 +7,7 @@ import com.cy_siao.util.DatabaseUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.SQLException;
 
 public class RestrictionTypeDao {
 
@@ -49,7 +50,7 @@ public class RestrictionTypeDao {
         return null;
     }
 
-    public List<RestrictionType> findAll() throws SQLException {
+    public List<RestrictionType> findAll() {
         List<RestrictionType> restrictions = new ArrayList<>();
         String sql = "SELECT * FROM restrictiontype";
         try (Connection conn = databaseUtil.getConnection();
@@ -59,9 +60,14 @@ public class RestrictionTypeDao {
             while (rs.next()) {
                 restrictions.add(extractFromResultSet(rs));
             }
+
+        return restrictions;}
+        catch (SQLException e){
+            System.out.println("Error: "+e.getMessage());
         }
-        return restrictions;
+        return null;
     }
+
 
     public void update(RestrictionType restriction) throws SQLException {
         String sql = "UPDATE restrictiontype SET label = ?, minage = ?, maxage = ?, genderrestriction = ? WHERE id = ?";

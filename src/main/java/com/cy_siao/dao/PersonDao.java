@@ -1,5 +1,6 @@
 package com.cy_siao.dao;
 
+import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
@@ -142,7 +143,7 @@ public class PersonDao {
                 return extractPersonFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            System.err.println("Erroe in gettign person by id: " + e.getMessage());
+            System.err.println("Error in getting person by id: " + e.getMessage());
         }
         return null;
     }
@@ -155,12 +156,18 @@ public class PersonDao {
      */
     public List<Person> findAll() {
         List<Person> persons = new ArrayList<>();
-        String sql = "SELECT * FROM person";
+        String sql = "SELECT p.*,\n" +
+                "a.id as idAddress, a.*\n" +
+                "FROM Person p\n" +
+                "LEFT JOIN Knows k ON p.Id = k.IdPerson\n" +
+                "LEFT JOIN Address a ON k.IdAddress = a.Id;";
         try (Connection connection = DatabaseUtil.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                persons.add(extractPersonFromResultSet(resultSet));
+                Person person = extractPersonFromResultSet(resultSet);
+                person.addAddress(extractAddressFromResultSet(resultSet));
+                persons.add(person);
             }
         } catch (SQLException e) {
             System.err.println("Error from getting all persons: " + e.getMessage());
@@ -181,7 +188,7 @@ public class PersonDao {
         person.setGender("M".equals(genderCode) ? Gender.MALE : Gender.FEMALE);
         person.setAge(rs.getInt("age"));
         person.setPlaceOfBirth(rs.getString("placeOfBirth"));
-        person.setSocialSecurityNumber(rs.getInt("socialSecurityNumber"));
+        person.setSocialSecurityNumber(rs.getLong("socialSecurityNumber"));
         return person;
     }
     /**
@@ -199,4 +206,16 @@ public class PersonDao {
             System.err.println("Erreur lors de la suppression de la personne: " + e.getMessage());
         }
     }
+
+
+    private Address extractAddressFromResultSet(ResultSet rs) throws SQLException {
+        Address address = new Address();
+        address.setId(rs.getInt("idAddress"));
+        address.setStreetNumber(rs.getInt("streetNumber"));
+        address.setStreetName(rs.getString("streetName"));
+        address.setPostalCode(rs.getInt("postalCode"));
+        address.setCityName(rs.getString("cityName"));
+        return address;
+    }
+
 }

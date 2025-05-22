@@ -1,19 +1,26 @@
 package com.cy_siao.controller.gui;
 
 import com.cy_siao.service.StayService;
+import com.cy_siao.service.PersonService;
+import com.cy_siao.service.BedService;
 import com.cy_siao.view.ViewManager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import com.cy_siao.service.StayService;
+import com.cy_siao.model.person.Person;
+import com.cy_siao.model.Bed;
 import com.cy_siao.model.Stay;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.List;
 
 public class StayControllerFx implements Initializable {
 
@@ -24,9 +31,9 @@ public class StayControllerFx implements Initializable {
     @FXML
     private DatePicker departureDatePicker;
     @FXML
-    private TextField personIdField;
+    private ComboBox<Person> personIdField;
     @FXML
-    private TextField bedIdField;
+    private ComboBox<Bed> bedIdField;
     @FXML
     private TextArea notesArea;
     @FXML
@@ -46,15 +53,34 @@ public class StayControllerFx implements Initializable {
     @FXML
     private TableColumn<Stay, LocalDate> departureDateCol;
     @FXML
-    private TableColumn<Stay, Integer> personIdCol;
+    private TableColumn<Stay, String> personIdCol;
     @FXML
     private TableColumn<Stay, Integer> bedIdCol;
+
+    @FXML
+    private Button backButton;
 
     private ObservableList<Stay> stayList = FXCollections.observableArrayList();
     private StayService stayService = new StayService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        PersonService personService = new PersonService();
+        List<Person> personList = null;
+        try {
+            personList = personService.getAllPersons();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<Person> observablePersonList = FXCollections.observableArrayList(personList);
+        personIdField.setItems(observablePersonList);
+
+        BedService bedService = new BedService();
+        List<Bed> bedList = bedService.getAllBeds();
+        ObservableList<Bed> observableBedList = FXCollections.observableArrayList(bedList);
+        bedIdField.setItems(observableBedList);
+
         // Initialisation des combobox et tableaux
         stayList = FXCollections.observableArrayList(stayService.getAllStays());
         stayTableView.setItems(stayList);
@@ -64,12 +90,22 @@ public class StayControllerFx implements Initializable {
         updateButton.setOnAction(e -> handleUpdateStay());
         deleteButton.setOnAction(e -> handleDeleteStay());
         searchButton.setOnAction(e -> handleSearchStay());
+        backButton.setOnAction(e -> handleBackButton());
+
 
         // Configuration des colonnes du tableau
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         arrivalDateCol.setCellValueFactory(new PropertyValueFactory<>("dateArrival"));
         departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
-        personIdCol.setCellValueFactory(new PropertyValueFactory<>("idPerson")); ////// A chercher comment les recuperer
+        personIdCol.setCellValueFactory(cellData -> {
+        Stay stay = cellData.getValue();
+            return new SimpleStringProperty(
+                stay.getPerson() != null ? 
+                stay.getPerson().getLastName() : 
+                "N/A"
+            );
+        });
+        
         bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
     }
 
@@ -81,15 +117,17 @@ public class StayControllerFx implements Initializable {
         try {
             LocalDate arrivalDate = arrivalDatePicker.getValue();
             LocalDate departureDate = departureDatePicker.getValue();
-            int personId = Integer.parseInt(personIdField.getText());
-            int bedId = Integer.parseInt(bedIdField.getText());
+            int personId = personIdField.getValue().getId();
+            Person personSelect = personIdField.getValue();
+            int bedId = bedIdField.getValue().getId();
+            Bed bedSelect = bedIdField.getValue();
 
             if (arrivalDate != null && departureDate != null && 
                 !arrivalDate.isAfter(departureDate)) {
                 
                 Stay stay = new Stay(bedId, personId, arrivalDate, departureDate);
                 
-                stayService.assignPersonToBed(null, null, arrivalDate, departureDate); ///////////////////////////// A CORRRIGER
+                stayService.assignPersonToBed(personSelect, bedSelect, arrivalDate, departureDate);
                 stayList.add(stay);
                 
                 clearFields();
@@ -110,16 +148,18 @@ public class StayControllerFx implements Initializable {
             try {
                 LocalDate newArrivalDate = arrivalDatePicker.getValue();
                 LocalDate newDepartureDate = departureDatePicker.getValue();
-                int newPersonId = Integer.parseInt(personIdField.getText());
-                int newBedId = Integer.parseInt(bedIdField.getText());
+                Person newPersonSelect = personIdField.getValue();
+                int newPersonId = personIdField.getValue().getId();
+                int newBedId = bedIdField.getValue().getId();
+                Bed newBedSelect = bedIdField.getValue();
 
                 if (newArrivalDate != null && newDepartureDate != null && 
                     !newArrivalDate.isAfter(newDepartureDate)) {
                     
                     selectedStay.setDateArrival(newArrivalDate);
                     selectedStay.setDateDeparture(newDepartureDate);
-                    selectedStay.setPerson(null); /////////////////////////////////////////// A corriger
-                    selectedStay.setBed(null);
+                    selectedStay.setPerson(newPersonSelect);
+                    selectedStay.setBed(newBedSelect);
                     
                     stayService.updateStay(selectedStay);
                     stayTableView.refresh();
@@ -152,11 +192,15 @@ public class StayControllerFx implements Initializable {
         showAlert("Search functionality to be implemented", Alert.AlertType.INFORMATION);
     }
 
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
+    }
+
     private void clearFields() {
         arrivalDatePicker.setValue(null);
         departureDatePicker.setValue(null);
-        personIdField.clear();
-        bedIdField.clear();
+        personIdField.setValue(null);
+        bedIdField.setValue(null);
         notesArea.clear();
     }
 

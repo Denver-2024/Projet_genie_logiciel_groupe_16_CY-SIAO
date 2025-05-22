@@ -37,6 +37,9 @@ public class RoomControllerFx implements Initializable {
     private ComboBox<Gender> genderRestriction;
 
     @FXML
+    private TextField restrictionField;
+
+    @FXML
     private TextField nameField3; // Min age
 
     @FXML
@@ -47,6 +50,9 @@ public class RoomControllerFx implements Initializable {
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    private Button backButton;
 
     @FXML
     private Button addRestrictionButton;
@@ -77,7 +83,7 @@ public class RoomControllerFx implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Init Spinner
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50,0);
         nbBedsMaxSpinner.setValueFactory(valueFactory);
 
         // Init ComboBox
@@ -101,6 +107,7 @@ public class RoomControllerFx implements Initializable {
         addButton.setOnAction(e -> handleAddRoom());
         updateButton.setOnAction(e -> handleUpdateRoom());
         deleteButton.setOnAction(e -> handleDeleteRoom());
+        backButton.setOnAction(e -> handleBackButton());
         addRestrictionButton.setOnAction(e -> handleAddRestriction());
     }
 
@@ -108,10 +115,16 @@ public class RoomControllerFx implements Initializable {
         this.viewManager = viewManager;
     }
 @FXML
+    private void handleBackButton(){
+        this.viewManager.showMainMenu();
+    }
+
+@FXML
     private void handleAddRoom() {
         try {
             String name = nameField1.getText();
             int nbBedsMax = nbBedsMaxSpinner.getValue();
+            //String restriction = restrictionField.getText();
 
             if (name == null || name.trim().isEmpty()) {
                 showAlert("Room name is required.");

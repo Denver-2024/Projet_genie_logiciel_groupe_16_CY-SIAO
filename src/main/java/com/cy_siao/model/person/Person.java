@@ -1,7 +1,7 @@
 package com.cy_siao.model.person;
 
-import com.cy_siao.model.RestrictionType;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -18,15 +18,15 @@ public class Person {
     private int age; // Person's age in years
     private String placeOfBirth; // Person's birthplace
     private long socialSecurityNumber; // Person's social security number
-    private Address address; // Person's current address
-    private RestrictionType restrictionType; // Any restrictions applicable to this person
+    private List<Address> addresses = new ArrayList<>(); // Person's current address
 
     /**
      * Default Constructor used for PersonDao
      * Creates an empty Person object.
      */
     public Person() {
-    }
+    this.addresses = new ArrayList<>();
+}
 
     /**
      * Constructor that initializes a person with their name
@@ -184,36 +184,23 @@ public class Person {
      *
      * @return The current address
      */
-    public Address getAddress() {
-        return address;
+    public List<Address> getAddresses() {
+        if (addresses == null) {
+            addresses = new ArrayList<>();
+        }
+        return addresses;
     }
 
     /**
-     * Sets the person's address
+     * Sets the person's addresses
      *
-     * @param address The address to set
+     * @param addresses The list of address to set
      */
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
-    /**
-     * Gets the person's restriction type
-     *
-     * @return The current restriction type
-     */
-    public RestrictionType getRestrictionType() {
-        return restrictionType;
-    }
 
-    /**
-     * Sets the person's restriction type
-     *
-     * @param restrictionType The restriction type to set
-     */
-    public void setRestrictionType(RestrictionType restrictionType) {
-        this.restrictionType = restrictionType;
-    }
 
     /**
      * Adds or updates the person's address
@@ -221,7 +208,7 @@ public class Person {
      * @param address The new address to associate with the person
      */
     public void addAddress(Address address) {
-        this.address = address;
+        this.addresses.add(address);
     }
 
     /**
@@ -249,7 +236,7 @@ public class Person {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Person person)) return false;
-        return id == person.id && age == person.age && socialSecurityNumber == person.socialSecurityNumber && Objects.equals(lastName, person.lastName) && Objects.equals(firstName, person.firstName) && gender == person.gender && Objects.equals(placeOfBirth, person.placeOfBirth) && Objects.equals(address, person.address) && Objects.equals(restrictionType, person.restrictionType);
+        return id == person.id && age == person.age && socialSecurityNumber == person.socialSecurityNumber && Objects.equals(lastName, person.lastName) && Objects.equals(firstName, person.firstName) && gender == person.gender && Objects.equals(placeOfBirth, person.placeOfBirth) && Objects.equals(addresses, person.addresses);
     }
 
     /**
@@ -259,6 +246,6 @@ public class Person {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, gender, age, placeOfBirth, socialSecurityNumber, address, restrictionType);
+        return Objects.hash(id, lastName, firstName, gender, age, placeOfBirth, socialSecurityNumber, addresses);
     }
 }

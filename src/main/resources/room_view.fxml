@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cy_siao.controller.gui.RoomControllerFx">
-    <VBox prefHeight="503.0" prefWidth="592.0" spacing="10">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.cy_siao.controller.gui.RoomControllerFx">
+    <top>
+        <HBox alignment="TOP_LEFT" style="-fx-background-color: #f4f4f4;">
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label text="Gestion des Séjours" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+                <padding>
+                    <Insets left="10" right="10" top="5" bottom="5"/>
+                </padding>
+            </Button>
+        </HBox>
+    </top>
+
+    <VBox spacing="10">
         <padding>
-            <Insets bottom="20" left="20" right="20" top="20" />
+            <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
         <HBox spacing="10">
          <VBox>

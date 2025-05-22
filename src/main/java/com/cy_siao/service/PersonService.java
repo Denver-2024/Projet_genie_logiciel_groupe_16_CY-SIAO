@@ -1,56 +1,44 @@
 package com.cy_siao.service;
 
+import com.cy_siao.dao.AddressDao;
+import com.cy_siao.dao.KnowsDao;
 import com.cy_siao.dao.PersonDao;
+import com.cy_siao.model.Knows;
 import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Person;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 
- */
 public class PersonService {
 
     private final PersonDao personDao;
+    private AddressDao addressDao;
+    private KnowsDao knowsDao;
 
-    /**
-     * 
-     */
     public PersonService() {
         this.personDao = new PersonDao();
+        this.addressDao = new AddressDao();
+        this.knowsDao = new KnowsDao();
     }
 
-    /**
-     * 
-     * @return
-     */
-    public List<Person> getAllPersons() {
-        return personDao.findAll(); // findAll
+    public List<Person> getAllPersons() throws SQLException {
+        return personDao.findAll();
     }
 
-    /**
-     * 
-     * @param id
-     * @return
-     */
-    public Person getPersonById(int id) {
-        List<Person> researchIn; // Rechercher l'id dans cette list
-        researchIn = getAllPersons();
-        for (Person p: researchIn){
-            if (p.getId() == id){
-                return p;
+    public Person getPersonById(int id) throws SQLException {
+        Person person = personDao.findById(id);
+        if (person != null) {
+            List<Address> addresses = addressDao.findByPersonId(id);
+            if (addresses != null) {
+                person.setAddresses(addresses);
             }
         }
-        return null;
+        return person;
     }
 
-    /**
-     * 
-     * @param firstName
-     * @return
-     */
-    public List<Person> getByFirstName(String firstName){
+    public List<Person> getByFirstName(String firstName) throws SQLException {
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
@@ -65,12 +53,7 @@ public class PersonService {
         return personsName;
     }
 
-    /**
-     * 
-     * @param lastName
-     * @return
-     */
-    public List<Person> getByLastName(String lastName){
+    public List<Person> getByLastName(String lastName) throws SQLException {
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
@@ -85,13 +68,7 @@ public class PersonService {
         return personsName;
     }
 
-    /**
-     * 
-     * @param firstName
-     * @param lastName
-     * @return
-     */
-    public List<Person> getByName(String firstName, String lastName){
+    public List<Person> getByName(String firstName, String lastName) throws SQLException {
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
@@ -106,19 +83,11 @@ public class PersonService {
         return personsName;
     }
 
-    /**
-     * 
-     * @param person
-     */
     public void createPerson(Person person) {
         // You could add validation logic here if needed
         personDao.createPerson(person);
     }
 
-    /**
-     * 
-     * @param person
-     */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
             throw new IllegalArgumentException("Invalid ID for update.");
@@ -126,21 +95,11 @@ public class PersonService {
         personDao.updatePerson(person);
     }
 
-    /**
-     * 
-     * @param id
-     */
     public void deletePerson(int id) {
         personDao.deletePerson(id);
     }
 
-    /**
-     * 
-     * @param person1
-     * @param person2
-     * @return
-     */
-    public boolean isPersonCompatible(Person person1, Person person2) {
+ /*   public boolean isPersonCompatible(Person person1, Person person2) {
         // Based on the diagram, compatibility is checked via RestrictionType
         if (person1.getRestrictionType() == null || person2.getRestrictionType() == null) {
             return true; // No restriction blocks
@@ -148,19 +107,14 @@ public class PersonService {
         return person1.getRestrictionType().isRespectedBy(person2)
                 && person2.getRestrictionType().isRespectedBy(person1);
     }
-
-    /**
-     * 
-     * @param personId
-     * @param address
-     */
-    public void addAddressToPerson(int personId, Address address) {
+*/
+    public void addAddressToPerson(int personId, Address address) throws SQLException {
         Person person = getPersonById(personId);
         if (person == null) {
             throw new IllegalArgumentException("No person found with ID: " + personId);
         }
 
-        person.addAddress(address);
-        personDao.updatePerson(person); // Persist updated data
+        //person.addAddress(address);
+        knowsDao.create(new Knows(personId, address.getId()));
     }
 }

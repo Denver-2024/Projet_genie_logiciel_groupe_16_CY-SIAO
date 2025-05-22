@@ -22,7 +22,6 @@
         <option value="CSS File" />
         <option value="Class" />
         <option value="FxmlFile" />
-        <option value="module-info" />
       </list>
     </option>
   </component>
@@ -61,34 +60,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.GuiView.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Mainfx.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "E:/cy-saio - Copie/src/main/java",
-    "last_opened_file_path": "C:/javafx/lib/javafx.web.jar",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GuiView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Mainfx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DavidService&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/cy-saio - Copie/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/cy-saio - Copie (2)&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
 }]]></component>
@@ -169,7 +163,14 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="" />
@@ -192,7 +193,13 @@
       <workItem from="1747659948886" duration="748000" />
       <workItem from="1747717622346" duration="11051000" />
       <workItem from="1747732258381" duration="13156000" />
-      <workItem from="1747773713612" duration="5205000" />
+      <workItem from="1747773713612" duration="8332000" />
+      <workItem from="1747809514780" duration="12794000" />
+      <workItem from="1747823239968" duration="3096000" />
+      <workItem from="1747835812034" duration="1640000" />
+      <workItem from="1747839038318" duration="8880000" />
+      <workItem from="1747849881971" duration="341000" />
+      <workItem from="1747850281856" duration="532000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -346,7 +353,39 @@
       <option name="project" value="LOCAL" />
       <updated>1747745221087</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Refactor views and controllers, add room management GUI&#10;&#10;Replaced `bed_view.fxml` with `room_view.fxml` in `App.java` and added a new GUI for managing rooms. Implemented `RoomControllerFx` to support adding, deleting, and displaying rooms. Enhanced `PersonControllerFx` with address management functionality and updated corresponding FXML files for better UI consistency.">
+      <option name="closed" value="true" />
+      <created>1747779607637</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747779607637</updated>
+    </task>
+    <task id="LOCAL-00021" summary="RoomContro&#10;llerFX">
+      <option name="closed" value="true" />
+      <created>1747781129249</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747781129249</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling.">
+      <option name="closed" value="true" />
+      <created>1747827243125</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747827243125</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements.">
+      <option name="closed" value="true" />
+      <created>1747847952519</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747847952519</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,6 +419,10 @@
     <MESSAGE value="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation." />
     <MESSAGE value="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut" />
     <MESSAGE value="Add Bed management GUI using JavaFX&#10;&#10;Introduced a new JavaFX-based GUI for managing beds, including `bed_view.fxml` and `BedControllerFx.java`. This implementation supports adding and deleting beds, along with displaying them in a TableView. Updated `App.java` to launch the newly integrated bed management view, and enhanced the `Bed` model to support relevant operations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Bed management GUI using JavaFX&#10;&#10;Introduced a new JavaFX-based GUI for managing beds, including `bed_view.fxml` and `BedControllerFx.java`. This implementation supports adding and deleting beds, along with displaying them in a TableView. Updated `App.java` to launch the newly integrated bed management view, and enhanced the `Bed` model to support relevant operations." />
+    <MESSAGE value="Refactor views and controllers, add room management GUI&#10;&#10;Replaced `bed_view.fxml` with `room_view.fxml` in `App.java` and added a new GUI for managing rooms. Implemented `RoomControllerFx` to support adding, deleting, and displaying rooms. Enhanced `PersonControllerFx` with address management functionality and updated corresponding FXML files for better UI consistency." />
+    <MESSAGE value="RoomContro&#10;llerFX" />
+    <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
+    <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements." />
   </component>
 </project>

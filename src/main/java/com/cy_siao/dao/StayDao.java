@@ -201,4 +201,62 @@ public class StayDao {
         return stay;
     }
 
+    public int countActiveStays() {
+        int count = 0;
+        String sql ="SELECT COUNT(*) FROM stay WHERE dateArrival <= CURRENT_DATE AND dateDeparture >= CURRENT_DATE AND hasLeft =FALSE";
+        try(Connection conn = databaseUtil.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql)){
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                count = rs.getInt(1);
+            }
+        }catch (SQLException e) {
+            System.err.println("Error in counting active stays: " + e.getMessage());
+        }
+        return count;
+    }
+
+
+
+
+    public int countDeparted() {
+        String sql = "SELECT COUNT(*) FROM Stay WHERE hasLeft = TRUE";
+        try (Connection conn = databaseUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.err.println("Error in counting departed stays: " + e.getMessage());
+        }
+        return 0;
+    }
+
+
+    public int countOngoing() {
+        String sql = "SELECT COUNT(*) FROM Stay " +
+                "WHERE dateDeparture >= CURRENT_DATE AND hasLeft = FALSE";
+        try (Connection conn = databaseUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.err.println("Error in counting ongoing stays: " + e.getMessage());
+        }
+        return 0;
+    }
+
+
+    public int countOverdue() {
+        String sql = "SELECT COUNT(*) FROM Stay " +
+                "WHERE dateDeparture < CURRENT_DATE AND hasLeft = FALSE";
+        try (Connection conn = databaseUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.err.println("Error in counting overdue stays: " + e.getMessage());
+        }
+        return 0;
+    }
+
 }

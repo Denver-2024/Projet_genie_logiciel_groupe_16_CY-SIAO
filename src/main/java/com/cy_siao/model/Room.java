@@ -35,11 +35,6 @@ public class Room {
         this.name = name;
         this.nbBedsMax = nbBedsMax;
     }
-    public Room(String name, int nbBedsMax, List<RestrictionType> restrictions ) {
-        this.name = name;
-        this.nbBedsMax = nbBedsMax;
-        this.restrictions=new ArrayList<>(restrictions);
-    }
 
     public int getId() {
         return id;

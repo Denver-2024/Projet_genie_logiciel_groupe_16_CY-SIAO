@@ -37,6 +37,9 @@ public class RoomControllerFx implements Initializable {
     private ComboBox<Gender> genderRestriction;
 
     @FXML
+    private ComboBox<String> logicOperator;
+
+    @FXML
     private TextField nameField3; // Min age
 
     @FXML
@@ -82,6 +85,8 @@ public class RoomControllerFx implements Initializable {
 
         // Init ComboBox
         genderRestriction.setItems(FXCollections.observableArrayList(Gender.values()));
+        logicOperator.setItems(FXCollections.observableArrayList("AND", "OR"));
+
 
         // Load Rooms
         roomList.addAll(roomService.getAllRooms());
@@ -134,9 +139,9 @@ public class RoomControllerFx implements Initializable {
             Gender gender = genderRestriction.getValue();
             Integer minAge = nameField3.getText().isEmpty() ? null : Integer.parseInt(nameField3.getText());
             Integer maxAge = nameField4.getText().isEmpty() ? null : Integer.parseInt(nameField4.getText());
-
+            String operator=logicOperator.getValue();
             if ((restrictionName == null || restrictionName.trim().isEmpty()) &&
-                    gender == null && minAge == null && maxAge == null) {
+                    gender == null && minAge == null && maxAge == null && operator==null) {
                 showAlert("At least one restriction field must be filled.");
                 return;
             }
@@ -162,6 +167,7 @@ public class RoomControllerFx implements Initializable {
             // Clear fields
             nameField2.clear();
             genderRestriction.setValue(null);
+            logicOperator.setValue(null);
             nameField3.clear();
             nameField4.clear();
 

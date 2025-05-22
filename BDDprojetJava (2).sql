@@ -35,7 +35,7 @@ CREATE TABLE RestrictionType (
                                  minAge INT CHECK (minAge BETWEEN 0 AND 200),
                                  maxAge INT CHECK (maxAge BETWEEN 0 AND 200),
                                  CHECK(minAge <= maxAge),
-                                 genderRestriction CHAR(1) CHECK (genderRestriction IN ('F', 'M',''))
+                                 genderRestriction CHAR(1) CHECK (genderRestriction IN ('F', 'M'))
 );
 
 CREATE TABLE Room (

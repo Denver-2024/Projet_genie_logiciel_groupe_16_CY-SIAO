@@ -7,7 +7,6 @@ import com.cy_siao.util.DatabaseUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.SQLException;
 
 public class RestrictionTypeDao {
 
@@ -25,7 +24,7 @@ public class RestrictionTypeDao {
             pstmt.setString(1, restriction.getLabel());
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
-            pstmt.setString(4, restriction.getGenderNameOrEmpty().substring(0, 1)); // "M" or "F" or ""
+            pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1)); // "M" or "F"
             pstmt.executeUpdate();
 
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -50,7 +49,7 @@ public class RestrictionTypeDao {
         return null;
     }
 
-    public List<RestrictionType> findAll() {
+    public List<RestrictionType> findAll() throws SQLException {
         List<RestrictionType> restrictions = new ArrayList<>();
         String sql = "SELECT * FROM restrictiontype";
         try (Connection conn = databaseUtil.getConnection();
@@ -60,14 +59,9 @@ public class RestrictionTypeDao {
             while (rs.next()) {
                 restrictions.add(extractFromResultSet(rs));
             }
-
-        return restrictions;}
-        catch (SQLException e){
-            System.out.println("Error: "+e.getMessage());
         }
-        return null;
+        return restrictions;
     }
-
 
     public void update(RestrictionType restriction) throws SQLException {
         String sql = "UPDATE restrictiontype SET label = ?, minage = ?, maxage = ?, genderrestriction = ? WHERE id = ?";
@@ -77,19 +71,11 @@ public class RestrictionTypeDao {
             pstmt.setString(1, restriction.getLabel());
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
-
-            Gender gender = restriction.getGenderRestriction();
-            if (gender != null) {
-                pstmt.setString(4, String.valueOf(gender.toString().charAt(0))); // "M" or "F"
-            } else {
-                pstmt.setNull(4, Types.CHAR);
-            }
-
+            pstmt.setString(4, String.valueOf(restriction.getGenderRestriction().toString().charAt(0))); // "M" or "F"
             pstmt.setInt(5, restriction.getId());
             pstmt.executeUpdate();
         }
     }
-
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM restrictiontype WHERE id = ?";

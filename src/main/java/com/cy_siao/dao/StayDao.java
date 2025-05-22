@@ -157,6 +157,7 @@ public class StayDao {
         bed.setIdRoom(rs.getInt("idroom"));
         //bed.isDouble(rs.getInt("nbplacesmax")); bizarre pour le isDouble
         stay.setBed(bed);
+        stay.setIdBed(bed.getId());
 
         return stay;
     }

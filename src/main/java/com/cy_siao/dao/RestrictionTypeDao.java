@@ -103,6 +103,10 @@ public class RestrictionTypeDao {
 
     private RestrictionType extractFromResultSet(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
+        return getRestrictionType(rs, id);
+    }
+
+    static RestrictionType getRestrictionType(ResultSet rs, int id) throws SQLException {
         String label = rs.getString("label");
         Integer minAge = rs.getObject("minage") != null ? rs.getInt("minage") : null;
         Integer maxAge = rs.getObject("maxage") != null ? rs.getInt("maxage") : null;

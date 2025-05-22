@@ -1,8 +1,10 @@
 package com.cy_siao.service;
 
+import com.cy_siao.dao.RestrictionRoomDao;
 import com.cy_siao.dao.RoomDao;
 import com.cy_siao.dao.BedDao;
 import com.cy_siao.model.Bed;
+import com.cy_siao.model.RestrictionRoom;
 import com.cy_siao.model.Room;
 import com.cy_siao.model.RestrictionType;
 
@@ -17,6 +19,7 @@ public class RoomService {
 
     private final RoomDao roomDao;
     private final BedDao bedDao;
+    private final RestrictionRoomDao restrictionRoomDao;
 
     /**
      * 
@@ -24,6 +27,7 @@ public class RoomService {
     public RoomService() {
         this.roomDao = new RoomDao();
         this.bedDao = new BedDao();
+        this.restrictionRoomDao = new RestrictionRoomDao();
     }
 
     // CRUD OPERATIONS
@@ -88,15 +92,29 @@ public class RoomService {
     }
 
     /**
-     * 
-     * @param room
-     * @param restriction
+     *Add a restriction to a room
+     * With And for the logic operator automatically
+     * @param room the room who need a restriction
+     * @param restriction the restriction who must be add to the room
      */
     public void addRestrictionToRoom(Room room, RestrictionType restriction) {
-        room.addRestriction(restriction);
-        roomDao.update(room);
+       this.addRestrictionToRoom(room, restriction, "AND");
     }
 
+    /**
+     * Adds a restriction to a specified room with the given logic operator.
+     * This method ensures the restriction is associated with the room and
+     * persists the relationship in the database.
+     *
+     * @param room the room to which the restriction will be added
+     * @param restriction the restriction that will be applied to the room
+     * @param logicOperator the logical operator (e.g., AND, OR) defining how
+     *                      the restriction interacts with other restrictions
+     */
+    public void addRestrictionToRoom(Room room, RestrictionType restriction, String logicOperator) {
+        room.addRestriction(restriction);
+        restrictionRoomDao.create(new RestrictionRoom(room.getId(), restriction.getId(), logicOperator));
+    }
     /**
      * 
      * @param room

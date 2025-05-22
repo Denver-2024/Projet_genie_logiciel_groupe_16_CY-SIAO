@@ -49,9 +49,6 @@ public class RoomControllerFx implements Initializable {
     private Button deleteButton;
 
     @FXML
-    private Button backButton;
-
-    @FXML
     private Button addRestrictionButton;
 
     @FXML
@@ -80,7 +77,7 @@ public class RoomControllerFx implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Init Spinner
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50,1);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50);
         nbBedsMaxSpinner.setValueFactory(valueFactory);
 
         // Init ComboBox
@@ -104,7 +101,6 @@ public class RoomControllerFx implements Initializable {
         addButton.setOnAction(e -> handleAddRoom());
         updateButton.setOnAction(e -> handleUpdateRoom());
         deleteButton.setOnAction(e -> handleDeleteRoom());
-        backButton.setOnAction(e -> handleBackButton());
         addRestrictionButton.setOnAction(e -> handleAddRestriction());
     }
 
@@ -112,16 +108,10 @@ public class RoomControllerFx implements Initializable {
         this.viewManager = viewManager;
     }
 @FXML
-    private void handleBackButton(){
-        this.viewManager.showMainMenu();
-    }
-
-@FXML
     private void handleAddRoom() {
         try {
             String name = nameField1.getText();
             int nbBedsMax = nbBedsMaxSpinner.getValue();
-            //String restriction = restrictionField.getText();
 
             if (name == null || name.trim().isEmpty()) {
                 showAlert("Room name is required.");
@@ -131,11 +121,6 @@ public class RoomControllerFx implements Initializable {
             Room room = new Room(name, nbBedsMax);
             roomService.createRoom(room);
             roomList.add(room);
-            // Clear fields
-            nameField1.clear();
-
-            // Refresh TableView
-            roomTableView.refresh();
 
         } catch (Exception e) {
             showAlert("Error adding room: " + e.getMessage());
@@ -147,17 +132,16 @@ public class RoomControllerFx implements Initializable {
         try {
             String restrictionName = nameField2.getText();
             Gender gender = genderRestriction.getValue();
-            Integer minAge = nameField3.getText().isEmpty() ? 0 : Integer.parseInt(nameField3.getText());
-            Integer maxAge = nameField4.getText().isEmpty() ? 200 : Integer.parseInt(nameField4.getText());
+            Integer minAge = nameField3.getText().isEmpty() ? null : Integer.parseInt(nameField3.getText());
+            Integer maxAge = nameField4.getText().isEmpty() ? null : Integer.parseInt(nameField4.getText());
 
             if ((restrictionName == null || restrictionName.trim().isEmpty()) &&
-                    gender == null && minAge == 0 && maxAge == 200) {
+                    gender == null && minAge == null && maxAge == null) {
                 showAlert("At least one restriction field must be filled.");
                 return;
             }
 
-            RestrictionType restriction = gender!=null? new RestrictionType(restrictionName, gender, minAge, maxAge): new RestrictionType(restrictionName, minAge, maxAge) ;
-
+            RestrictionType restriction = new RestrictionType(restrictionName, gender, minAge, maxAge);
             Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
             if (selectedRoom == null) {
                 showAlert("Please select a room to add restriction.");
@@ -180,9 +164,6 @@ public class RoomControllerFx implements Initializable {
             genderRestriction.setValue(null);
             nameField3.clear();
             nameField4.clear();
-
-            // Refresh TableView
-            roomTableView.refresh();
 
         } catch (NumberFormatException e) {
             showAlert("Min and Max age must be valid integers.");
@@ -238,8 +219,6 @@ public class RoomControllerFx implements Initializable {
             roomTableView.getSelectionModel().clearSelection();
             roomService.deleteRoom(selectedRoom.getId());
             roomList.remove(selectedRoom);
-            // Refresh TableView
-            roomTableView.refresh();
         } else {
             showAlert("Please select a room to delete.");
         }

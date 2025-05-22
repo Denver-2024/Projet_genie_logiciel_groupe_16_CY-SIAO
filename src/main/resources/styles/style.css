@@ -4,7 +4,7 @@
 .root {
     -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     -fx-font-size: 14px;
-    -fx-background-color: #f9f9f9;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f0f2f5);
 }
 
 /* Styles pour les labels */

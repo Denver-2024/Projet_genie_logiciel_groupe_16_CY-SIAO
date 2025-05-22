@@ -4,46 +4,424 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3171a62-99b6-469e-9445-386f958214f4" name="Changes" comment="">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Add orlan">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/room_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/person/Person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="JavaFXApplication" />
+        <option value="CSS File" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="2xRdO3cVXndV2uissSudJ5bouT7" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;davekg8&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Denver-2024/Projet_genie_logiciel_groupe_16_CY-SIAO.git&quot;,
+    &quot;accountId&quot;: &quot;7f49c3d6-1319-491d-95fc-cfb4e97881dd&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2x5cBp8zy6Dr2HHJ7A37d2dDQdT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GuiView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Mainfx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DavidService&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/cy-saio - Copie/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/cy-saio - Copie (2)&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
-}]]></component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.App" />
+      <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuiView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.view.GuiView" />
+      <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.Main" />
+      <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mainfx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cy_siao.Mainfx" />
+      <module name="cy_siao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cy_siao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.Mainfx" />
+        <item itemvalue="Application.GuiView" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c3171a62-99b6-469e-9445-386f958214f4" name="Changes" comment="" />
-      <created>1747904794229</created>
+      <changelist id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="" />
+      <created>1747231243126</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1747904794229</updated>
+      <updated>1747231243126</updated>
+      <workItem from="1747231245237" duration="165000" />
+      <workItem from="1747238722316" duration="6583000" />
+      <workItem from="1747292863290" duration="6233000" />
+      <workItem from="1747341718127" duration="6418000" />
+      <workItem from="1747382571819" duration="9017000" />
+      <workItem from="1747462493570" duration="1649000" />
+      <workItem from="1747493827326" duration="944000" />
+      <workItem from="1747502145846" duration="2936000" />
+      <workItem from="1747510602485" duration="5958000" />
+      <workItem from="1747591948694" duration="2723000" />
+      <workItem from="1747598732391" duration="2449000" />
+      <workItem from="1747646966914" duration="4544000" />
+      <workItem from="1747659948886" duration="748000" />
+      <workItem from="1747717622346" duration="11051000" />
+      <workItem from="1747732258381" duration="13156000" />
+      <workItem from="1747773713612" duration="8332000" />
+      <workItem from="1747809514780" duration="12794000" />
+      <workItem from="1747823239968" duration="3096000" />
+      <workItem from="1747835812034" duration="1640000" />
+      <workItem from="1747839038318" duration="8880000" />
+      <workItem from="1747849881971" duration="341000" />
+      <workItem from="1747850281856" duration="1311000" />
+      <workItem from="1747857813830" duration="3517000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
+      <option name="closed" value="true" />
+      <created>1747243840980</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747243840980</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update StayController to include CLI options menu">
+      <option name="closed" value="true" />
+      <created>1747257189601</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747257189601</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long">
+      <option name="closed" value="true" />
+      <created>1747348013829</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747348013829</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness.">
+      <option name="closed" value="true" />
+      <created>1747386742951</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747386742951</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness.">
+      <option name="closed" value="true" />
+      <created>1747386981947</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747386981947</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping.">
+      <option name="closed" value="true" />
+      <created>1747392126868</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747392126868</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities.">
+      <option name="closed" value="true" />
+      <created>1747464262055</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747464262055</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities.">
+      <option name="closed" value="true" />
+      <created>1747493983661</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747493983661</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Refactor controllers for improved error handling and modularity&#10;&#10;Updated `PersonController` to include robust error handling for invalid age and gender inputs. Enhanced modularity by refactoring methods in `StayController` and integrating `CLIView` for user interactions. Deprecated unfinished features in `CLIController` with relevant error messages to improve user experience.">
+      <option name="closed" value="true" />
+      <created>1747511773507</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747511773507</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add askInt">
+      <option name="closed" value="true" />
+      <created>1747512108592</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747512108592</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness.">
+      <option name="closed" value="true" />
+      <created>1747587123627</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747587123627</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support.">
+      <option name="closed" value="true" />
+      <created>1747599634779</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747599634782</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`.">
+      <option name="closed" value="true" />
+      <created>1747732469918</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732469918</updated>
+    </task>
+    <task id="LOCAL-00014" summary="CLIView">
+      <option name="closed" value="true" />
+      <created>1747732682644</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732682644</updated>
+    </task>
+    <task id="LOCAL-00015" summary="CLIView">
+      <option name="closed" value="true" />
+      <created>1747732880352</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747732880352</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add GUI for person management and implement update/delete logic&#10;&#10;Introduced a JavaFX-based GUI with person-related fields and table view in `person_view.fxml`. Enhanced `PersonControllerFx` to handle person updates and deletions, including validation and clearing selections. Included new image assets for GUI design.">
+      <option name="closed" value="true" />
+      <created>1747735494311</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747735494312</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation.">
+      <option name="closed" value="true" />
+      <created>1747738800711</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747738800711</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut">
+      <option name="closed" value="true" />
+      <created>1747739491304</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747739491304</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add Bed management GUI using JavaFX&#10;&#10;Introduced a new JavaFX-based GUI for managing beds, including `bed_view.fxml` and `BedControllerFx.java`. This implementation supports adding and deleting beds, along with displaying them in a TableView. Updated `App.java` to launch the newly integrated bed management view, and enhanced the `Bed` model to support relevant operations.">
+      <option name="closed" value="true" />
+      <created>1747745221087</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747745221087</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Refactor views and controllers, add room management GUI&#10;&#10;Replaced `bed_view.fxml` with `room_view.fxml` in `App.java` and added a new GUI for managing rooms. Implemented `RoomControllerFx` to support adding, deleting, and displaying rooms. Enhanced `PersonControllerFx` with address management functionality and updated corresponding FXML files for better UI consistency.">
+      <option name="closed" value="true" />
+      <created>1747779607637</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747779607637</updated>
+    </task>
+    <task id="LOCAL-00021" summary="RoomContro&#10;llerFX">
+      <option name="closed" value="true" />
+      <created>1747781129249</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747781129249</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling.">
+      <option name="closed" value="true" />
+      <created>1747827243125</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747827243125</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements.">
+      <option name="closed" value="true" />
+      <created>1747847952519</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747847952519</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Add orlan">
+      <option name="closed" value="true" />
+      <created>1747850951791</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1747850951791</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase." />
+    <MESSAGE value="Update StayController to include CLI options menu" />
+    <MESSAGE value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
+    <MESSAGE value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
+    <MESSAGE value="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
+    <MESSAGE value="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities." />
+    <MESSAGE value="Refactor controllers for improved error handling and modularity&#10;&#10;Updated `PersonController` to include robust error handling for invalid age and gender inputs. Enhanced modularity by refactoring methods in `StayController` and integrating `CLIView` for user interactions. Deprecated unfinished features in `CLIController` with relevant error messages to improve user experience." />
+    <MESSAGE value="add askInt" />
+    <MESSAGE value="Fix bugs and improve data handling across services&#10;&#10;Corrected logical errors in `StayController` and `PersonService` related to parameter ordering and comparisons. Enhanced `EligibilityService` and `StayService` with better restriction and assignment handling, including database integration via `RestrictionTypeDao` and new methods like `findByBedPerson` in `StayDao`. Added proper exception handling for improved robustness." />
+    <MESSAGE value="Convert application to JavaFX and fix key bugs.&#10;&#10;Migrated the main application from CLI to JavaFX for better user experience by implementing `GuiView` and updating the main class. Fixed a critical bug in `PersonController` related to parameter ordering during person retrieval. Enhanced build files and dependencies, including JavaFX modules, PostgreSQL, and Maven plugins for JavaFX support." />
+    <MESSAGE value="Refactor to JavaFX and improve database handling.&#10;&#10;Converted CLI to JavaFX for enhanced UI by adding FXML controllers and views. Updated database connection to use properties file and introduced modularized entity handling. Fixed minor bugs, improved structure by relocating CLI controllers, and streamlined dependency setup in `pom.xml`." />
+    <MESSAGE value="CLIView" />
+    <MESSAGE value="Add GUI for person management and implement update/delete logic&#10;&#10;Introduced a JavaFX-based GUI with person-related fields and table view in `person_view.fxml`. Enhanced `PersonControllerFx` to handle person updates and deletions, including validation and clearing selections. Included new image assets for GUI design." />
+    <MESSAGE value="Add JavaFX-based GUI for person management&#10;&#10;Introduced a new JavaFX GUI with FXML for managing persons, replacing the CLI interface. Added `styles/style.css` for consistent styling and improved the TableView layout to display person details. Enhanced `PersonControllerFx` to handle add, update, and delete operations with proper field bindings and validation." />
+    <MESSAGE value="Add css style. Si quelqu'un maitrise css qu'il s'amuse avec et l'ameliore le comme il veut" />
+    <MESSAGE value="Add Bed management GUI using JavaFX&#10;&#10;Introduced a new JavaFX-based GUI for managing beds, including `bed_view.fxml` and `BedControllerFx.java`. This implementation supports adding and deleting beds, along with displaying them in a TableView. Updated `App.java` to launch the newly integrated bed management view, and enhanced the `Bed` model to support relevant operations." />
+    <MESSAGE value="Refactor views and controllers, add room management GUI&#10;&#10;Replaced `bed_view.fxml` with `room_view.fxml` in `App.java` and added a new GUI for managing rooms. Implemented `RoomControllerFx` to support adding, deleting, and displaying rooms. Enhanced `PersonControllerFx` with address management functionality and updated corresponding FXML files for better UI consistency." />
+    <MESSAGE value="RoomContro&#10;llerFX" />
+    <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added functionality to handle multiple addresses in PersonControllerFx by integrating AddressService, updating FXML, and modifying the TableView to display addresses. Adjusted database schema and DAO layer to account for the new relationship between Person and Address with cascading behaviors. Minor refactoring in related controllers and improvements in SQL exception handling." />
+    <MESSAGE value="Enhance PersonControllerFx with address management&#10;&#10;Added support for managing multiple addresses in PersonControllerFx by integrating AddressService and updating the TableView. Refactored DAO and service layers to handle address relationships and updated exception handling for better reliability. Minor code improvements include SQL query corrections, UI field resets, and validation enhancements." />
+    <MESSAGE value="Add orlan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add orlan" />
   </component>
 </project>

@@ -1,20 +1,40 @@
 # Projet_genie_logiciel_groupe_16_CY-SIAO
-Ceci est un projet de géniel logiciel sur java du groupe 16 sur "CY-SIAO" une application de gestion d'un hebergement d'urgence
+<p style="text-align: justify;">This is a software engineering project in Java by group 16 on 'CY-SIAO', which involves the development of an application for managing an emergency shelter.</p>
 
-Pour l'execution s'assurer d'avoir Java 21.0.6
+<p style="text-align: justify;">For being able to execute the project, be sure to have the Java 21.0.6 version.
+To check it, you can execute the following command on your terminal:<br/>
 
-## Initialisation du projet et des dépendances
-Generation des dépendances
+``java -version``<br/>
 
-``mvn compile``
+Otherwise, install it by executing on your terminal:<br/>
 
-Avant de push votre travail, executer
+Windows: ``choco install openjdk``<br/>
+Linux: ``sudo apt update``, ``sudo apt install default-jdk``<br/>
+</p>
 
-``mvn clean``
+<p style="text-align:justify;">Before continuing, be sure to have a Maven version installed (3.8.1 or later). To check it, you can execute :<br/>
 
-Ce qui permet de ne pas push les dependanes et les target generer  l'execution
+``mvn -v``<br/>
 
-Pour lancer le Main, pour l'instant je n'arrive pas encore à l'automatiser alors il faut,
+Otherwise, install it by executing: <br/>
 
-``mvn exec:java -Dexec.mainClass="com.cy_siao.Main"
-``
+Windows: ``choco install maven``<br/>
+Linux: ``sudo apt update``, ``sudo apt install maven``</p>
+
+## Project and dependencies initialization:
+<p style="text-align: justify;"> First, you need to generate dependencies and the target files (.class) by:<br/>
+
+``mvn compile``<br/>
+
+Then, for executing the Main file, you need to execute the following:<br/>
+
+``mvn exec:java -Dexec.mainClass="com.cy_siao.Main"``<br/>
+
+That's it.</p>
+
+
+<p style="text-align: justify;"> Before staging/committing your changes, be sure to execute the following in order to not push the generated dependencies and target files into remote repository:<br/>
+
+``mvn clean``<br/>
+
+</p>

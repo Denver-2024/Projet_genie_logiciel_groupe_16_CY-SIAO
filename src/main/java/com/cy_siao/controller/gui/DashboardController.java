@@ -24,8 +24,8 @@ public class DashboardController {
         int litsOccupés = stayDao.countActiveStays();
 
         pieOccupation.getData().addAll(
-                new PieChart.Data("Occupés", litsOccupés),
-                new PieChart.Data("Libres", totalLits - litsOccupés)
+                new PieChart.Data("occupied", litsOccupés),
+                new PieChart.Data("free", totalLits - litsOccupés)
         );
 
         int partis = stayDao.countDeparted();
@@ -33,9 +33,9 @@ public class DashboardController {
         int enRetard = stayDao.countOverdue();
 
         XYChart.Series<String, Number> serie = new XYChart.Series<>();
-        serie.getData().add(new XYChart.Data<>("Sortis", partis));
-        serie.getData().add(new XYChart.Data<>("Actifs", enCours));
-        serie.getData().add(new XYChart.Data<>("En retard", enRetard));
+        serie.getData().add(new XYChart.Data<>("Have left", partis));
+        serie.getData().add(new XYChart.Data<>("Current", enCours));
+        serie.getData().add(new XYChart.Data<>("Delayed", enRetard));
 
         barDepartures.getData().add(serie);
     }

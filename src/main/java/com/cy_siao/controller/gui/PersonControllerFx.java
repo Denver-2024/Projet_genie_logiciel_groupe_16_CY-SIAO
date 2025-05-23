@@ -182,7 +182,7 @@ public class PersonControllerFx implements Initializable {
                 }
                 
                 personService.createPerson(person);
-                // Rafraîchir la liste avec les données mises à jour
+                // Refresh the list with the updated data
                 personList.setAll(personService.getAllPersons());
                 
                 firstNameField.clear();
@@ -193,12 +193,12 @@ public class PersonControllerFx implements Initializable {
                 socialSecurityNumberField.clear();
                 
             } else {
-                showAlert("Veuillez entrer des informations valides pour la personne");
+                showAlert("Please insert valid infos of the person");
             }
         } catch (NumberFormatException e) {
-            showAlert("Format d'âge invalide");
+            showAlert("Age format invalid");
         } catch (SQLException e) {
-            showAlert("Erreur lors de la création de la personne : " + e.getMessage());
+            showAlert("Error when trying to register the person: " + e.getMessage());
         }
     }
 
@@ -214,7 +214,7 @@ public class PersonControllerFx implements Initializable {
 
             // check the age field
             if (ageText == null || ageText.trim().isEmpty()) {
-                showAlert("L'âge ne peut pas être vide");
+                showAlert("Age field cannot be empty");
                 return;
             }
 
@@ -247,13 +247,13 @@ public class PersonControllerFx implements Initializable {
                     placeOfBirthField.clear();
                     showAlert("Person updated successfully");
                 } else {
-                    showAlert("Veuillez remplir tous les champs obligatoires correctement");
+                    showAlert("Please fill in all the mandatory fields");
                 }
             } catch (NumberFormatException e) {
-                showAlert("Format d'âge invalide. Veuillez entrer un nombre entier valide.");
+                showAlert("Age format invalid. Please insert a valid integer age.");
             }
         } else {
-            showAlert("Veuillez sélectionner une personne à mettre à jour");
+            showAlert("Please select a person to be updated.");
         }
     }
 
@@ -274,7 +274,7 @@ public class PersonControllerFx implements Initializable {
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Notification");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

@@ -43,9 +43,9 @@ public class BedDao {
         }
     } catch (SQLException e) {
         // Log l'erreur et/ou notifier l'utilisateur
-        System.err.println("Erreur lors de la création du lit: " + e.getMessage());
+        System.err.println("Error when trying to insert the bed entity: " + e.getMessage());
         // Optionnel : relancer une RuntimeException pour interrompre le flux
-        throw new RuntimeException("Erreur de base de données", e);
+        throw new RuntimeException("Error in database", e);
     }
 }
 

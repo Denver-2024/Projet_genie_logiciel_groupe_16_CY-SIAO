@@ -1,7 +1,8 @@
--- Suppression des tables dans l'ordre inverse des dépendances
+-- Suppression des tables dans l'ordre inverse des dependances
 DROP TABLE IF EXISTS Knows;
 DROP TABLE IF EXISTS RestrictionRoom;
 DROP TABLE IF EXISTS Relationship;
+DROP VIEW Planning;
 DROP TABLE IF EXISTS Stay;
 DROP TABLE IF EXISTS Bed;
 DROP TABLE IF EXISTS Room;
@@ -9,7 +10,7 @@ DROP TABLE IF EXISTS RestrictionType;
 DROP TABLE IF EXISTS Address;
 DROP TABLE IF EXISTS Person;
 
--- Création des tables
+-- Creation des tables
 
 CREATE TABLE Address (
                          Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
@@ -35,7 +36,7 @@ CREATE TABLE RestrictionType (
                                  minAge INT CHECK (minAge BETWEEN 0 AND 200),
                                  maxAge INT CHECK (maxAge BETWEEN 0 AND 200),
                                  CHECK(minAge <= maxAge),
-                                 genderRestriction CHAR(1) CHECK (genderRestriction IN ('F', 'M',''))
+                                 genderRestriction CHAR(1) CHECK (genderRestriction IN ('F', 'M'))
 );
 
 CREATE TABLE Room (
@@ -47,33 +48,162 @@ CREATE TABLE Room (
 CREATE TABLE Bed (
                      Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
                      nbPlacesMax INT CHECK (nbPlacesMax IN (1, 2)) DEFAULT 1,
-                     IdRoom INT REFERENCES Room(Id) ON DELETE RESTRICT -- on empêche la suppression d'une Room avec lits
+                     IdRoom INT REFERENCES Room(Id)
 );
 
 CREATE TABLE RestrictionRoom (
-                                 IdRoom INT REFERENCES Room(Id) ON DELETE CASCADE,
-                                 IdRestrictionType INT REFERENCES RestrictionType(Id) ON DELETE CASCADE,
+                                 IdRoom INT REFERENCES Room(Id),
+                                 IdRestrictionType INT REFERENCES RestrictionType(Id),
                                  logicOperator VARCHAR(3) CHECK (logicOperator IN ('AND', 'OR')),
                                  PRIMARY KEY (IdRoom, IdRestrictionType)
 );
 
 CREATE TABLE Relationship (
-                              IdPerson1 INT REFERENCES Person(Id) ON DELETE CASCADE,
-                              IdPerson2 INT REFERENCES Person(Id) ON DELETE CASCADE,
+                              IdPerson1 INT REFERENCES Person(Id),
+                              IdPerson2 INT REFERENCES Person(Id),
                               relationType VARCHAR(50) DEFAULT 'Not Specified',
                               PRIMARY KEY (IdPerson1, IdPerson2)
 );
 
 CREATE TABLE Knows (
-                       IdPerson INT REFERENCES Person(Id) ON DELETE CASCADE,
-                       IdAddress INT REFERENCES Address(Id) ON DELETE RESTRICT, -- plusieurs personnes peuvent connaître une adresse
+                       IdPerson INT REFERENCES Person(Id),
+                       IdAddress INT REFERENCES Address(Id),
                        PRIMARY KEY (IdPerson, IdAddress)
 );
 
 CREATE TABLE Stay (
                       Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
-                      IdPerson INT REFERENCES Person(Id) ON DELETE CASCADE,
-                      IdBed INT REFERENCES Bed(Id) ON DELETE RESTRICT,
+                      IdPerson INT REFERENCES Person(Id),
+                      IdBed INT REFERENCES Bed(Id),
                       dateArrival DATE CHECK (dateArrival >= CURRENT_DATE),
-                      dateDeparture DATE CHECK (dateDeparture > dateArrival)
+                      dateDeparture DATE CHECK (dateDeparture > dateArrival),
+                      hasLeft BOOLEAN DEFAULT FALSE
 );
+
+CREATE VIEW Planning AS
+SELECT
+    s.Id AS idStay,
+    b.Id AS idBed,
+    r.name AS roomName,
+    p.firstName || ' ' || p.lastName AS personName,
+    s.dateArrival,
+    s.dateDeparture,
+    s.hasLeft
+FROM Stay s
+         JOIN Bed b ON s.IdBed = b.Id
+         JOIN Room r ON b.IdRoom = r.Id
+         JOIN Person p ON s.IdPerson = p.Id;
+
+-- Insertion des donnees
+
+INSERT INTO Address (streetNumber, streetName, postalCode, cityName) VALUES
+                                                                         (12, 'Rue des Lilas', 75001, 'Paris'),
+                                                                         (45, 'Avenue Victor Hugo', 69006, 'Lyon'),
+                                                                         (89, 'Boulevard Haussmann', 13008, 'Marseille');
+
+INSERT INTO Person (lastName, firstName, age, gender, placeOfBirth, socialSecurityNumber) VALUES
+                                                                                              ('Dupont', 'Alice', 30, 'F', 'Paris', 2901012345678),
+                                                                                              ('Martin', 'Jean', 45, 'M', 'Lyon', 1804012345678),
+                                                                                              ('Durand', 'Sophie', 12, 'F', 'Marseille', 1212012345678),
+                                                                                              ('Petit', 'Marc', 80, 'M', 'Nice', 4403012345678);
+
+INSERT INTO Knows (IdPerson, IdAddress) VALUES
+                                            (1, 1),
+                                            (2, 2),
+                                            (3, 1),
+                                            (4, 3);
+
+INSERT INTO RestrictionType (label, minAge, maxAge, genderRestriction) VALUES
+                                                                           ('Femmes uniquement', 0, 200, 'F'),
+                                                                           ('Hommes uniquement', 18, 65, 'M'),
+                                                                           ('Mineurs', 0, 17, 'F');
+
+INSERT INTO Room (name, nbBedsMax) VALUES
+                                       ('Chambre 101', 2),
+                                       ('Chambre 102', 3),
+                                       ('Chambre 103', 1);
+
+INSERT INTO Bed (nbPlacesMax, IdRoom) VALUES
+                                          (1, 1),
+                                          (2, 1),
+                                          (1, 2),
+                                          (1, 2),
+                                          (1, 3);
+
+INSERT INTO RestrictionRoom (IdRoom, IdRestrictionType, logicOperator) VALUES
+                                                                           (1, 1, 'AND'),
+                                                                           (2, 2, 'AND'),
+                                                                           (3, 3, 'AND');
+
+INSERT INTO Relationship (IdPerson1, IdPerson2, relationType) VALUES
+                                                                  (1, 3, 'Mere'),
+                                                                  (2, 4, 'Frere'),
+                                                                  (3, 4, 'Ami');
+
+-- Sejours (passes, presents et futurs)
+
+INSERT INTO Stay (IdPerson, IdBed, dateArrival, dateDeparture, hasLeft) VALUES
+                                                                            (1, 1, CURRENT_DATE - INTERVAL '10 day', CURRENT_DATE - INTERVAL '5 day', TRUE),
+                                                                            (2, 3, CURRENT_DATE - INTERVAL '7 day', CURRENT_DATE - INTERVAL '2 day', TRUE),
+                                                                            (3, 5, CURRENT_DATE - INTERVAL '5 day', CURRENT_DATE + INTERVAL '1 day', TRUE),
+                                                                            (4, 2, CURRENT_DATE - INTERVAL '1 day', CURRENT_DATE + INTERVAL '2 day', FALSE),
+                                                                            (1, 4, CURRENT_DATE + INTERVAL '3 day', CURRENT_DATE + INTERVAL '10 day', FALSE);
+
+-- Donnees d'adresse
+INSERT INTO Address (streetNumber, streetName, postalCode, cityName) VALUES
+                                                                         (10, 'Rue de la Paix', 75002, 'Paris'),
+                                                                         (20, 'Avenue des Champs', 69002, 'Lyon'),
+                                                                         (30, 'Rue Nationale', 33000, 'Bordeaux');
+
+-- Personnes
+INSERT INTO Person (lastName, firstName, age, gender, placeOfBirth, socialSecurityNumber) VALUES
+                                                                                              ('Bernard', 'Emma', 25, 'F', 'Paris', 2951234567890),
+                                                                                              ('Lemoine', 'Lucas', 60, 'M', 'Lille', 1630456789123),
+                                                                                              ('Moreau', 'Julie', 15, 'F', 'Toulouse', 3091223344556),
+                                                                                              ('Noel', 'Antoine', 34, 'M', 'Nice', 1903344556677);
+
+-- Connait des adresses
+INSERT INTO Knows (IdPerson, IdAddress) VALUES
+                                            (1, 1),
+                                            (2, 2),
+                                            (3, 1),
+                                            (4, 3);
+
+-- Restrictions
+INSERT INTO RestrictionType (label, minAge, maxAge, genderRestriction) VALUES
+                                                                           ('Femmes uniquement', 18, 100, 'F'),
+                                                                           ('Hommes adultes', 18, 100, 'M'),
+                                                                           ('Mineures filles', 0, 17, 'F');
+
+-- Chambres
+INSERT INTO Room (name, nbBedsMax) VALUES
+                                       ('Chambre A', 2),
+                                       ('Chambre B', 3),
+                                       ('Chambre C', 1);
+
+-- Lits
+INSERT INTO Bed (nbPlacesMax, IdRoom) VALUES
+                                          (1, 1),
+                                          (1, 1),
+                                          (2, 2),
+                                          (1, 2),
+                                          (1, 3);
+
+-- Restrictions liees aux chambres
+INSERT INTO RestrictionRoom (IdRoom, IdRestrictionType, logicOperator) VALUES
+                                                                           (1, 1, 'AND'),  -- Chambre A : femmes adultes
+                                                                           (2, 2, 'AND'),  -- Chambre B : hommes adultes
+                                                                           (3, 3, 'AND');  -- Chambre C : filles mineures
+
+-- Relations
+INSERT INTO Relationship (IdPerson1, IdPerson2, relationType) VALUES
+                                                                  (1, 3, 'Soeur'),
+                                                                  (2, 4, 'Frere'),
+                                                                  (3, 4, 'Amie');
+
+-- Sejours valides (futurs ou en cours)
+INSERT INTO Stay (IdPerson, IdBed, dateArrival, dateDeparture, hasLeft) VALUES
+                                                                            (1, 1, CURRENT_DATE + INTERVAL '1 day', CURRENT_DATE + INTERVAL '4 day', FALSE), -- Emma (F, 25) -> OK pour Chambre A
+                                                                            (2, 3, CURRENT_DATE + INTERVAL '2 day', CURRENT_DATE + INTERVAL '6 day', FALSE), -- Lucas (M, 60) -> OK pour Chambre B
+                                                                            (3, 5, CURRENT_DATE + INTERVAL '1 day', CURRENT_DATE + INTERVAL '3 day', FALSE), -- Julie (F, 15) -> OK pour Chambre C
+                                                                            (4, 4, CURRENT_DATE + INTERVAL '3 day', CURRENT_DATE + INTERVAL '5 day', FALSE); -- Antoine (M, 34) -> OK pour Chambre B

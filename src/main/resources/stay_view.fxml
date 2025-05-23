@@ -9,11 +9,11 @@
 <BorderPane stylesheets="@styles/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.cy_siao.controller.gui.StayControllerFx">
 
     <top>
-        <HBox alignment="TOP_LEFT" style="-fx-background-color: #f4f4f4;">
+        <HBox style="-fx-background-color: #f4f4f4;">
             <Pane HBox.hgrow="ALWAYS" />
-            <Label text="Gestion des Séjours" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Label text="Stay Management" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
             <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+            <Button fx:id="backButton" text="Back" style="-fx-font-weight: bold;">
                 <padding>
                     <Insets left="10" right="10" top="5" bottom="5"/>
                 </padding>
@@ -29,36 +29,36 @@
 
             <HBox spacing="10">
                 <VBox spacing="5">
-                    <Label text="Date d'arrivée" />
+                    <Label text="Date arrival" />
                     <DatePicker fx:id="arrivalDatePicker" />
 
-                    <Label text="Date de départ" />
+                    <Label text="Date departure" />
                     <DatePicker fx:id="departureDatePicker" />
                 </VBox>
 
                 <VBox spacing="5">
-                    <Label text="Personne" />
+                    <Label text="Person" />
                     <ComboBox fx:id="personIdField" />
 
-                    <Label text="Lit" />
+                    <Label text="Bed" />
                     <ComboBox fx:id="bedIdField" />
                 </VBox>
             </HBox>
 
             <HBox spacing="10">
-                <Button fx:id="addButton" text="Ajouter" />
-                <Button fx:id="updateButton" text="Mettre à jour" />
-                <Button fx:id="deleteButton" text="Supprimer" />
-                <Button fx:id="searchButton" text="Rechercher" />
+                <Button fx:id="addButton" text="Add" />
+                <Button fx:id="updateButton" text="Update" />
+                <Button fx:id="deleteButton" text="Delete" />
+                <Button fx:id="searchButton" text="Search" />
             </HBox>
 
             <TableView fx:id="stayTableView" prefHeight="250" prefWidth="700">
                 <columns>
                     <TableColumn fx:id="idCol" prefWidth="50" text="ID" />
-                    <TableColumn fx:id="arrivalDateCol" prefWidth="100" text="Date arrivée" />
-                    <TableColumn fx:id="departureDateCol" prefWidth="100" text="Date départ" />
+                    <TableColumn fx:id="arrivalDateCol" prefWidth="100" text="Date arrival" />
+                    <TableColumn fx:id="departureDateCol" prefWidth="100" text="Date departure" />
                     <TableColumn fx:id="personIdCol" prefWidth="80" text="Occupant" />
-                    <TableColumn fx:id="bedIdCol" prefWidth="80" text="ID Lit" />
+                    <TableColumn fx:id="bedIdCol" prefWidth="80" text="ID Bed" />
                 </columns>
             </TableView>
         </VBox>

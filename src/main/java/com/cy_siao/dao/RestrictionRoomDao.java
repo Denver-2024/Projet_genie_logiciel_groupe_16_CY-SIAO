@@ -59,6 +59,25 @@ public class RestrictionRoomDao {
         return restrictionRooms;
     }
 
+
+    public List<RestrictionRoom> findByIdRoom(int idRoom) {
+        List<RestrictionRoom> restrictionRooms = new ArrayList<>();
+        String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ?";
+        try (Connection connect = databaseUtil.getConnection();
+            PreparedStatement pst = connect.prepareStatement(sql)) {
+            pst.setInt(1, idRoom);
+            try (ResultSet rset = pst.executeQuery()) {
+                while (rset.next()) {
+                    restrictionRooms.add(extractFromResultSet(rset));
+            }
+            }
+        } catch (SQLException e) {
+            System.err.println("An error occurred when trying to find all RestrictionRooms: " + e.getMessage());
+        }
+        return restrictionRooms;
+    }
+
+
     public void update(RestrictionRoom restrictionRoom) {
         String sql = "UPDATE RestrictionRoom SET logic_operator = ? WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();
@@ -72,15 +91,17 @@ public class RestrictionRoomDao {
         }
     }
 
-    public void delete(int roomId, int restrictionTypeId) {
+    public boolean delete(int roomId, int restrictionTypeId) {
         String sql = "DELETE FROM RestrictionRoom WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();
              PreparedStatement pst = connect.prepareStatement(sql)) {
             pst.setInt(1, roomId);
             pst.setInt(2, restrictionTypeId);
             pst.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("An error occurred when trying to delete RestrictionRoom: " + e.getMessage());
+            return false;
         }
     }
 
@@ -95,6 +116,20 @@ public class RestrictionRoomDao {
             System.err.println("An error occurred when trying to delete RestrictionRoom: " + e.getMessage());
         }
         return null;  
-}
+    }
 
+    public List<RestrictionRoom> findByRoomId(int roomId) throws SQLException {
+        String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ?";
+        try( Connection conn = databaseUtil.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, roomId);
+            try( ResultSet rs = pstmt.executeQuery()){
+                List<RestrictionRoom> restrictionRooms = new ArrayList<>();
+                while(rs.next()){
+                    restrictionRooms.add(extractFromResultSet(rs));
+                }
+                return restrictionRooms;
+            }
+        }
+    }
 }

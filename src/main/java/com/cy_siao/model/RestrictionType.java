@@ -3,60 +3,82 @@ package com.cy_siao.model;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Gender;
 
-import java.util.Objects;
-
-
 /**
  * Represents restriction rules applied to rooms (age and gender).
+ * This class defines restrictions for rooms based on age ranges and gender.
  */
 public class RestrictionType {
 
 
+    private int id; //ID of the restriction type
+    private String label; //Label/description of the restriction
+    private Gender genderRestriction; //Gender restriction (MALE or FEMALE) - null if no gender restriction is set.
+    private Integer minAge; // minimun age allowed - null if no age restriction is set.
+    private Integer maxAge; // maximum age allowed - null if no age restriction is set.
+
     /**
      * Constructor used for RestrictionTypeDao
-     * @param id l'id
-     * @param label le nom
-     * @param genderRestriction le genre de la restriction (MALE ou FEMALE)
-     * @param minAge l'age minimal autorisé
-     * @param maxAge l'age maximal autorisé
+     *
+     * @param id                The ID of the restriction type
+     * @param label             The label/description
+     * @param genderRestriction The gender restriction (MALE or FEMALE)
+     * @param minAge            The minimum age allowed
+     * @param maxAge            The maximum age allowed
      */
-    private int id;
-    private String label;
-    private Gender genderRestriction;
-    private Integer minAge;
-    private Integer maxAge;
-
     public RestrictionType(int id, String label, Gender genderRestriction, Integer minAge, Integer maxAge) {
         this.id = id;
         this.label = label;
         this.genderRestriction = genderRestriction;
-        this.minAge = (minAge != null) ? minAge : 0;
-        this.maxAge = (maxAge != null) ? maxAge : 200;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
     }
 
+    /**
+     * Constructor without id parameter
+     *
+     * @param label             The label/description
+     * @param genderRestriction The gender restriction
+     * @param minAge            The minimum age allowed
+     * @param maxAge            The maximum age allowed
+     */
     public RestrictionType(String label, Gender genderRestriction, Integer minAge, Integer maxAge) {
         this.label = label;
         this.genderRestriction = genderRestriction;
-        this.minAge = (minAge != null) ? minAge : 0;
-        this.maxAge = (maxAge != null) ? maxAge : 200;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
     }
 
-    public RestrictionType(String label, Integer minAge, Integer maxAge) {
-        this(label, null, minAge, maxAge); // appel du constructeur précédent avec genderRestriction à null
+    /**
+     * Constructor for age-only restrictions
+     *
+     * @param label  The label/description
+     * @param minAge The minimum age allowed
+     * @param maxAge The maximum age allowed
+     */
+    public RestrictionType(String label, int minAge, int maxAge) {
+        this.label = label;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
     }
 
+    /**
+     * Constructor for gender-only restrictions
+     *
+     * @param label             The label/description
+     * @param genderRestriction The gender restriction
+     */
     public RestrictionType(String label, Gender genderRestriction) {
-        this(label, genderRestriction, 0, 200); // valeurs par défaut d’âge
+        this.label = label;
+        this.genderRestriction = genderRestriction;
     }
 
     /**
      * Default constructor used for RestrictionTypeDao
      */
     public RestrictionType() {
-        this.minAge = 0;
-        this.maxAge = 200;
     }
 
+    // Getters
     public int getId() {
         return id;
     }
@@ -69,11 +91,6 @@ public class RestrictionType {
         return genderRestriction;
     }
 
-    public String getGenderNameOrEmpty() {
-        return (genderRestriction != null) ? genderRestriction.name() : " ";
-    }
-
-
     public Integer getMinAge() {
         return minAge;
     }
@@ -82,6 +99,7 @@ public class RestrictionType {
         return maxAge;
     }
 
+    // Setters
     public void setId(int id) {
         this.id = id;
     }
@@ -94,56 +112,40 @@ public class RestrictionType {
         this.genderRestriction = genderRestriction;
     }
 
-    public void setMinAge(int minAge) {
+    public void setMinAge(Integer minAge) {
         this.minAge = minAge;
     }
 
-    public void setMaxAge(int maxAge) {
+    public void setMaxAge(Integer maxAge) {
         this.maxAge = maxAge;
     }
 
+    /**
+     * Checks if a person meets the restrictions criteria
+     *
+     * @param person The person to check against restrictions
+     * @return true if person meets all restrictions, false otherwise
+     */
     public boolean isRespectedBy(Person person) {
         int age = person.getAge();
-        boolean genderOk = (genderRestriction == null) || (genderRestriction == person.getGender());
-        return genderOk && isAgeWithinLimits(age);
+        return genderRestriction == person.getGender() &&
+                age >= minAge &&
+                age <= maxAge;
     }
 
-    private boolean isAgeWithinLimits(int age) {
-        int min = (minAge != null) ? minAge : 0;
-        int max = (maxAge != null) ? maxAge : 200;
-        return age >= min && age <= max;
-    }
-
+    /**
+     * Returns a string representation of the RestrictionType
+     *
+     * @return String containing all restriction details
+     */
     @Override
     public String toString() {
-        return "RestrictionType{" +
-                "id=" + id +
-                ", label='" + label + '\'' +
-                ", genderRestriction=" + genderRestriction +
-                ", minAge=" + minAge +
-                ", maxAge=" + maxAge +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RestrictionType that)) return false;
-
-        if (id != that.id) return false;
-        if (!Objects.equals(label, that.label)) return false;
-        if (genderRestriction != that.genderRestriction) return false;
-        if (!Objects.equals(minAge, that.minAge)) return false;
-        return Objects.equals(maxAge, that.maxAge);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (label != null ? label.hashCode() : 0);
-        result = 31 * result + (genderRestriction != null ? genderRestriction.hashCode() : 0);
-        result = 31 * result + (minAge != null ? minAge.hashCode() : 0);
-        result = 31 * result + (maxAge != null ? maxAge.hashCode() : 0);
-        return result;
+        return "restrictionType{" +
+                "id= " + id +
+                ", description= " + label +
+                ", minAge= " + minAge +
+                ", maxAge= " + maxAge +
+                ", genderRestriction= " + genderRestriction +
+                "}";
     }
 }

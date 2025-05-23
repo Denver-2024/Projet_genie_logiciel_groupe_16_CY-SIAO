@@ -8,16 +8,31 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object class for managing relationship data between persons in the database.
+ * Handles CRUD operations for relationships between people.
+ */
 public class RelationshipDao {
 
+    //Database utility instance for connections
     private final DatabaseUtil databaseUtil;
+    //Data access object for Person entities
     private final PersonDao personDao;
 
+    /**
+     * Constructor initializes database utility and person DAO
+     */
     public RelationshipDao() {
         this.databaseUtil = new DatabaseUtil();
         this.personDao = new PersonDao();
     }
 
+    /**
+     * Creates a new relationship record in the database
+     *
+     * @param relationship The relationship object to persist
+     * @throws SQLException if a database access error occurs
+     */
     public void create(Relationship relationship) throws SQLException {
         String sql = "INSERT INTO relationship (idperson1, idperson2, relationtype) VALUES (?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
@@ -30,6 +45,12 @@ public class RelationshipDao {
         }
     }
 
+    /**
+     * Retrieves all relationships from the database
+     *
+     * @return List of all relationship objects
+     * @throws SQLException if a database access error occurs
+     */
     public List<Relationship> findAll() throws SQLException {
         List<Relationship> relationships = new ArrayList<>();
         String sql = "SELECT * FROM relationship";
@@ -53,7 +74,14 @@ public class RelationshipDao {
         return relationships;
     }
 
-    public void delete(Relationship relationship) throws SQLException {
+    /**
+     * Deletes a relationship from the database
+     *
+     * @param relationship The relationship object to delete
+     * @throws SQLException if a database access error occurs
+     * @return true if the delete is a success
+     */
+    public boolean delete(Relationship relationship) throws SQLException {
         String sql = "DELETE FROM relationship WHERE idperson1 = ? AND idperson2 = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -61,9 +89,21 @@ public class RelationshipDao {
             pstmt.setInt(1, relationship.getPerson1().getId());
             pstmt.setInt(2, relationship.getPerson2().getId());
             pstmt.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            System.err.println("Error when trying this relation: " + e.getMessage());
+            return false;
         }
     }
 
+    /**
+     * Finds a relationship between two specific persons
+     *
+     * @param person1 The first person in the relationship
+     * @param person2 The second person in the relationship
+     * @return The relationship if found, null otherwise
+     * @throws SQLException if a database access error occurs
+     */
     public Relationship findByPersons(Person person1, Person person2) throws SQLException {
         String sql = "SELECT * FROM relationship WHERE idperson1 = ? AND idperson2 = ?";
         try (Connection conn = databaseUtil.getConnection();

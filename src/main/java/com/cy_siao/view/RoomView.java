@@ -12,11 +12,20 @@ import java.net.URL;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * View class for displaying room-related UI components.
+ * Loads the FXML layout and manages the associated controller.
+ */
 public class RoomView {
     
-    private Parent view;
-    private RoomControllerFx controller;
+    private Parent view; // Root node of the view
+    private RoomControllerFx controller; // Controller for the room view
 
+    /**
+     * Constructs the RoomView, loading the FXML and setting up the controller.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public RoomView(ViewManager viewManager) {
         // Charge le FXML avec contrôleur injecté
         this.controller = new RoomControllerFx();
@@ -38,10 +47,20 @@ public class RoomView {
         }
     }
 
+    /**
+     * Gets the root node of the room view.
+     *
+     * @return The root Parent node
+     */
     public Parent getView() {
         return view;
     }
 
+    /**
+     * Gets the controller associated with this view.
+     *
+     * @return The RoomControllerFx instance
+     */
     public RoomControllerFx getController() {
         return controller;
     }

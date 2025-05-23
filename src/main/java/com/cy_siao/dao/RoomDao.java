@@ -1,24 +1,39 @@
 package com.cy_siao.dao;
 
+import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.Room;
+import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object class for handling Room entities in the database.
+ * Provides CRUD operations for Room objects.
+ */
 public class RoomDao {
 
+    //Database utility instance for handling connections
     private final DatabaseUtil databaseUtil;
 
+    /**
+     * Constructor initializes database utility.
+     */
     public RoomDao() {
         this.databaseUtil = new DatabaseUtil();
     }
 
+    /**
+     * Creates a new room record in the database.
+     *
+     * @param room The Room object to be created
+     */
     public void create(Room room) {
         String sql = "INSERT INTO room (name, nbbedsmax) VALUES (?, ?)";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, room.getName());
             pstmt.setInt(2, room.getNbBedsMax());
@@ -33,10 +48,16 @@ public class RoomDao {
         }
     }
 
+    /**
+     * Retrieves a room by its ID from the database.
+     *
+     * @param id The ID of the room to find
+     * @return Room object if found, null otherwise
+     */
     public Room findById(int id) {
         String sql = "SELECT * FROM room WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -50,15 +71,25 @@ public class RoomDao {
         return null;
     }
 
+    /**
+     * Retrieves all rooms from the database including their restrictions.
+     *
+     * @return List of all rooms with their associated restrictions
+     */
     public List<Room> findAll() {
         List<Room> rooms = new ArrayList<>();
-        String sql = "SELECT * FROM room";
+        String sql = "SELECT r.*, rt.*,rt.id as idRestrictionType\n" +
+                "FROM room r\n" +
+                "LEFT JOIN restrictionRoom rr ON r.id= rr.idRoom\n" +
+                "LEFT JOIN restrictionType rt ON rr.idRestrictionType = rt.id;";
         try (Connection conn = databaseUtil.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)) {
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                rooms.add(extractRoomFromResultSet(rs));
+                Room room = extractRoomFromResultSet(rs);
+                room.addRestriction(extractRestrictionFromResultSet(rs));
+                rooms.add(room);
             }
         } catch (SQLException e) {
             System.err.println("Error in finding all rooms: " + e.getMessage());
@@ -66,6 +97,11 @@ public class RoomDao {
         return rooms;
     }
 
+    /**
+     * Updates an existing room record in the database.
+     *
+     * @param room The Room object containing updated information
+     */
     public void update(Room room) {
         String sql = "UPDATE room SET name = ?, nbbedsmax = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
@@ -80,23 +116,64 @@ public class RoomDao {
         }
     }
 
-    public void delete(int id) {
+    /**
+     * Deletes a room record from the database.
+     *
+     * @param id The ID of the room to delete
+     * @return true if the delete is a success
+     */
+    public boolean delete(int id) {
         String sql = "DELETE FROM room WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("Error in deleting room: " + e.getMessage());
+            return false;
         }
     }
 
+    public int restPlace(int id){
+        String sql ="SELECT \n" +
+                "    r.Id AS room_id,\n" +
+                "    r.nbBedsMax,\n" +
+                "    COUNT(b.Id) AS currentBeds,\n" +
+                "    (r.nbBedsMax - COUNT(b.Id)) AS bedsRemaining\n" +
+                "FROM Room r\n" +
+                "LEFT JOIN Bed b ON b.IdRoom = r.Id\n" +
+                "WHERE r.Id = ? \n" +
+                "GROUP BY r.Id, r.nbBedsMax;\n";
+        try(Connection conn = databaseUtil.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1,id);
+            try(ResultSet rs=pstmt.executeQuery()){
+                if(!rs.next()) return 0;
+               return rs.getInt(4);
+            } catch (SQLException e) {
+                System.err.println("Error in finding rest place: " + e.getMessage());
+            }
+
+        }catch (SQLException e) {
+            System.err.println("Error in finding rest place: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    //Extracts room data from result set and creates Room object
     private Room extractRoomFromResultSet(ResultSet rs) throws SQLException {
         Room room = new Room();
         room.setId(rs.getInt("id"));
         room.setName(rs.getString("name"));
         room.setNbBedsMax(rs.getInt("nbbedsmax"));
         return room;
+    }
+
+    //Extracts restriction data from result set and creates RestrictionType object
+    private RestrictionType extractRestrictionFromResultSet(ResultSet rs) throws SQLException {
+        int id = rs.getInt("idRestrictionType");
+        return RestrictionTypeDao.getRestrictionType(rs, id);
     }
 }

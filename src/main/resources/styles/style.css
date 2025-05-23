@@ -1,20 +1,23 @@
 /* styles/style.css */
 
-/* Style global de la fenêtre */
+/* Global style of the window */
 .root {
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #dfdfdf);
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
     -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     -fx-font-size: 14px;
-    -fx-background-color: #f9f9f9;
 }
 
-/* Styles pour les labels */
+/* Styles for labels */
 .label {
     -fx-text-fill: #333333;
     -fx-font-weight: bold;
     -fx-padding: 5 0 5 0;
 }
 
-/* Styles pour les boutons */
+/* Styles for buttons */
 .button {
     -fx-background-color: #4CAF50;
     -fx-text-fill: white;
@@ -31,7 +34,37 @@
 #deleteButton {
     -fx-background-color: #d32f2f;
 }
-/* Styles pour les champs texte */
+
+#mainContainer {
+    -fx-border-color: rgb(1, 122, 110);
+    -fx-border-width: 5px;
+    -fx-padding: 10px;
+    -fx-pref-height: 200px;
+    -fx-max-width: 200;
+    -fx-background-color: #e1ad01;
+}
+
+
+.menuButton {
+    -fx-background-color: rgb(1, 122, 110);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15 8 15;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+#longTextArea {
+    -fx-font-size: 16px;
+    -fx-control-inner-background: #f9f9f9;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-border-color: #e1ad01;
+    -fx-border-width: 5px;
+    -fx-max-height: 100px;
+}
+
+/* Styles for text fields */
 .text-field, .text-area {
     -fx-border-color: #cccccc;
     -fx-border-radius: 4;
@@ -39,7 +72,7 @@
     -fx-background-color: white;
 }
 
-/* Styles pour la TableView */
+/* Styles for TableView */
 .table-view {
     -fx-border-color: #cccccc;
     -fx-border-width: 1;
@@ -50,7 +83,8 @@
     -fx-background-color: #e1e1e1;
 }
 
-.table-view .table-row-cell:filled:selected, .table-view .table-row-cell:focused:selected {
+.table-view .table-row-cell:filled:selected,
+.table-view .table-row-cell:focused:selected {
     -fx-background-color: #4CAF50;
     -fx-text-fill: white;
 }
@@ -59,14 +93,14 @@
     -fx-padding: 8 10 8 10;
 }
 
-/* Style pour les titres (par exemple un label de titre) */
+/* Style for title (label) */
 .label.title {
     -fx-font-size: 20px;
     -fx-text-fill: #2c3e50;
     -fx-padding: 10 0 20 0;
 }
 
-/* Style pour un conteneur avec marges */
+/* Style for containers */
 .vbox, .hbox {
     -fx-spacing: 10;
     -fx-padding: 15;

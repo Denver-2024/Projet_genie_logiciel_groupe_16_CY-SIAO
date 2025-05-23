@@ -12,10 +12,19 @@ import com.cy_siao.controller.gui.MainMenuController;
 import com.cy_siao.controller.gui.PersonControllerFx;
 import com.cy_siao.view.ViewManager;
 
+/**
+ * View class for displaying person-related UI components.
+ * Loads the FXML layout and manages the associated controller.
+ */
 public class PersonView {
-    private Parent view;
-    private PersonControllerFx controller;
+    private Parent view; // Root node of the view
+    private PersonControllerFx controller; // Controller for the person view
 
+    /**
+     * Constructs the PersonView, loading the FXML and setting up the controller.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public PersonView(ViewManager viewManager) {
         this.controller = new PersonControllerFx();
         try {
@@ -36,10 +45,20 @@ public class PersonView {
         }
     }
 
+    /**
+     * Gets the root node of the person view.
+     *
+     * @return The root Parent node
+     */
     public Parent getView() {
         return view;
     }
 
+    /**
+     * Gets the controller associated with this view.
+     *
+     * @return The PersonControllerFx instance
+     */
     public PersonControllerFx getController() {
         return controller;
     }

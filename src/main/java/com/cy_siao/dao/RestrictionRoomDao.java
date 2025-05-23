@@ -59,6 +59,25 @@ public class RestrictionRoomDao {
         return restrictionRooms;
     }
 
+
+    public List<RestrictionRoom> findByIdRoom(int idRoom) {
+        List<RestrictionRoom> restrictionRooms = new ArrayList<>();
+        String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ?";
+        try (Connection connect = databaseUtil.getConnection();
+            PreparedStatement pst = connect.prepareStatement(sql)) {
+            pst.setInt(1, idRoom);
+            try (ResultSet rset = pst.executeQuery()) {
+                while (rset.next()) {
+                    restrictionRooms.add(extractFromResultSet(rset));
+            }
+            }
+        } catch (SQLException e) {
+            System.err.println("An error occurred when trying to find all RestrictionRooms: " + e.getMessage());
+        }
+        return restrictionRooms;
+    }
+
+
     public void update(RestrictionRoom restrictionRoom) {
         String sql = "UPDATE RestrictionRoom SET logic_operator = ? WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();

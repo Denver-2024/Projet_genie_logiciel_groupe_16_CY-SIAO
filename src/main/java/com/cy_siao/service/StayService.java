@@ -2,6 +2,7 @@ package com.cy_siao.service;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cy_siao.dao.BedDao;
@@ -75,10 +76,19 @@ public class StayService {
 
         RestrictionRoomDao restrictionRoomDao = new RestrictionRoomDao();
         List<RestrictionRoom> restrictions;
-        restrictions = restrictionRoomDao.findAll();
+        restrictions = restrictionRoomDao.findByIdRoom(room.getId());
 
         if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
             if (bed.isAvailable(arrival, departure)){
+                List<Stay> allStay = this.getAllStays();
+                for (Stay stay : allStay){
+                    if (person.getId() == stay.getIdPerson()){
+                        if ((stay.getDateArrival().isAfter(arrival) && stay.getDateArrival().isBefore(arrival)) ||
+                        (stay.getDateArrival().isAfter(departure) && stay.getDateArrival().isBefore(departure))) {
+                        return false;
+            }
+                    }
+                }
                 return true;
             };
             return false;
@@ -95,12 +105,12 @@ public class StayService {
      */
     public boolean isAssign(Person person, Bed bed){
         List<Stay> stays;
-            stays = stayDao.findAll();
-            for (Stay stay: stays){
-                if (stay.getBed().equals(bed) && stay.getPerson().equals(person)){
-                    return true;
-                }
+        stays = stayDao.findAll();
+        for (Stay stay: stays){
+            if (stay.getBed().equals(bed) && stay.getPerson().equals(person)){
+                return true;
             }
+        }
         return false;
     }
 
@@ -165,5 +175,60 @@ public class StayService {
     public void deleteStay(Stay stay){
         stayDao.delete(stay.getId());
     }
+
+    public LocalDate findStayRoom(List<Person> persons, int nbDay, Room room){
+    
+        LocalDate arrivalDay = LocalDate.now();
+        arrivalDay.minusDays(1);
+        List<Bed> allBeds = bedDao.findAll();
+        int nbBedInRoom = 0;
+        for (Bed bed : allBeds){
+            if(bed.getIdRoom() == room.getId()){
+                nbBedInRoom += 1;
+            }
+        }
+        this.connectStayToBed(allBeds);
+        int countNbBedAvaible = 0;
+        if(persons.size() <= nbBedInRoom){
+            while (countNbBedAvaible < persons.size()){
+                countNbBedAvaible = 0;
+                arrivalDay = arrivalDay.plusDays(1);
+                for (Bed bed : allBeds){
+                    if (bed.getIdRoom() == room.getId() && bed.isAvailable(arrivalDay, arrivalDay.plusDays(nbDay))){
+                        countNbBedAvaible += 1;
+                    }
+                }
+            }
+            return arrivalDay;
+        }else{
+            return null;
+        }
+    }
+
+    public Room findStay(List<Person> persons, int nbDay){
+
+        List<Room> allRoom = roomDao.findAll();
+        int selectRoom = 0;
+        LocalDate nearestDate = findStayRoom(persons, nbDay, allRoom.get(0));
+        for (int i = 1; i < allRoom.size(); i++){
+            if (nearestDate != null){
+                LocalDate compareDate = findStayRoom(persons, nbDay, allRoom.get(i));
+                if (compareDate != null){
+                    if (compareDate.isBefore(nearestDate)){
+                        selectRoom = i;
+                        nearestDate = compareDate;
+                    }
+                }
+            }else{
+                nearestDate = findStayRoom(persons, nbDay, allRoom.get(i));
+            }
+        }
+        if (findStayRoom(persons, nbDay, allRoom.get(selectRoom)) != null){
+            return allRoom.get(selectRoom);
+        }else{
+            return null;
+        }
+    }
+    
 
 }

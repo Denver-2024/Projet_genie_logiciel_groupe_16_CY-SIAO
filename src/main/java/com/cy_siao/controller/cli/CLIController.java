@@ -4,13 +4,22 @@ import com.cy_siao.view.CLIView;
 
 import java.sql.SQLException;
 
+/**
+ * CLIController manages the command-line interface interactions.
+ * It delegates user actions to the appropriate controllers for persons, stays, beds, and rooms.
+ */
 public class CLIController {
+    // Controllers for different entities
     private PersonController personController;
     private StayController stayController;
     private BedController bedController;
     private RoomController roomController;
+    // CLI view for user interaction
     private CLIView view = new CLIView();
 
+    /**
+     * Initializes all controllers used by the CLI.
+     */
     public CLIController() {
         this.personController = new PersonController();
         this.stayController = new StayController();
@@ -18,6 +27,10 @@ public class CLIController {
         this.roomController = new RoomController();
     }
 
+    /**
+     * Starts the CLI main loop, displaying the menu and handling user input.
+     * @throws SQLException if a database error occurs
+     */
     public void start() throws SQLException {
         int option;
         do {

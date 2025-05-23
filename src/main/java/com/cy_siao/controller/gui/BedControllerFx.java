@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class BedControllerFx implements Initializable {
 
+    // Reference to the view manager for navigation
     private ViewManager viewManager;
 
     @FXML
@@ -54,11 +55,22 @@ public class BedControllerFx implements Initializable {
     @FXML
     private Button planningButton;
 
+    // List of beds for the table view
     private ObservableList<Bed> bedList = FXCollections.observableArrayList();
+    // List of rooms for the combo box
     private List<Room> roomList;
+    // Service for bed-related operations
     private BedService bedService = new BedService();
+    // Service for room-related operations
     private RoomService roomService = new RoomService();
 
+    /**
+     * Initializes the controller after its root element has been completely processed.
+     * Sets up table columns, loads data, and configures button actions.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if unknown.
+     * @param resources The resources used to localize the root object, or null if not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bedList = FXCollections.observableArrayList(bedService.getAllBeds());
@@ -80,14 +92,20 @@ public class BedControllerFx implements Initializable {
         planningButton.setOnAction( e -> viewManager.showPlanningView() );
     }
 
+    /**
+     * Sets the ViewManager for this controller.
+     * @param viewManager the ViewManager instance
+     */
     public void setViewManager(ViewManager viewManager){
         this.viewManager = viewManager;
     }
 
+    // Handles the action when the back button is pressed.
     private void handleBackButton(){
         this.viewManager.showMainMenu();
     }
 
+    // Handles the action to add a new bed.
     private void handleAddBed() {
         try {
             int idRoom =  idRoomField.getValue().getId();
@@ -104,6 +122,7 @@ public class BedControllerFx implements Initializable {
         }
     }
 
+    // Handles the action to delete a selected bed.
     private void handleDeleteBed() {
         Bed selectedBed = bedTableView.getSelectionModel().getSelectedItem();
         if (selectedBed != null) {
@@ -122,6 +141,7 @@ public class BedControllerFx implements Initializable {
         }
     }
 
+    // Shows an alert dialog with the given message.
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Notification");

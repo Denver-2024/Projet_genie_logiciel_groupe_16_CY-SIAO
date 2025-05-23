@@ -27,8 +27,11 @@ import java.util.List;
 
 public class StayControllerFx implements Initializable {
 
+    // Reference to the view manager for navigation
     private ViewManager viewManager;
+    // List of beds for selection
     private List<Bed> bedList;
+    // Service for bed-related operations
     private BedService bedService;
 
     @FXML
@@ -65,9 +68,18 @@ public class StayControllerFx implements Initializable {
     @FXML
     private Button backButton;
 
+    // Observable list of stays for the table view
     private ObservableList<Stay> stayList = FXCollections.observableArrayList();
+    // Service for stay-related operations
     private StayService stayService = new StayService();
 
+    /**
+     * Initializes the controller after its root element has been completely processed.
+     * Sets up table columns, loads data, and configures button actions.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if unknown.
+     * @param resources The resources used to localize the root object, or null if not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -116,10 +128,15 @@ public class StayControllerFx implements Initializable {
         personIdField.valueProperty().addListener((obs, oldVal, newVal) -> updateAvailableBeds());
     }
 
+    /**
+     * Sets the ViewManager for this controller.
+     * @param viewManager the ViewManager instance
+     */
     public void setViewManager(ViewManager viewManager){
         this.viewManager = viewManager;
     }
 
+    // Handles the action to add a new stay.
     private void handleAddStay() {
         try {
             LocalDate arrivalDate = arrivalDatePicker.getValue();
@@ -149,6 +166,7 @@ public class StayControllerFx implements Initializable {
         }
     }
 
+    // Handles the action to update a selected stay.
     private void handleUpdateStay() {
         Stay selectedStay = stayTableView.getSelectionModel().getSelectedItem();
         if (selectedStay != null) {
@@ -183,6 +201,7 @@ public class StayControllerFx implements Initializable {
         }
     }
 
+    // Handles the action to delete a selected stay.
     private void handleDeleteStay() {
         Stay selectedStay = stayTableView.getSelectionModel().getSelectedItem();
         if (selectedStay != null) {
@@ -199,15 +218,18 @@ public class StayControllerFx implements Initializable {
         }
     }
 
+    // Handles the action to search for stays (to be implemented).
     private void handleSearchStay() {
 
         showAlert("Search functionality to be implemented", Alert.AlertType.INFORMATION);
     }
 
+    // Handles the action when the back button is pressed.
     private void handleBackButton(){
         this.viewManager.showMainMenu();
     }
 
+    // Clears all input fields in the form.
     private void clearFields() {
         arrivalDatePicker.setValue(null);
         departureDatePicker.setValue(null);
@@ -216,6 +238,7 @@ public class StayControllerFx implements Initializable {
         notesArea.clear();
     }
 
+    // Updates the list of available beds based on selected dates and person.
     private void updateAvailableBeds() {
         LocalDate arrival = arrivalDatePicker.getValue();
         LocalDate departure = departureDatePicker.getValue();
@@ -263,6 +286,7 @@ public class StayControllerFx implements Initializable {
         }
     }
 
+    // Shows an alert dialog with the given message and alert type.
     private void showAlert(String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(alertType == Alert.AlertType.ERROR ? "Error" : "Information");
@@ -271,6 +295,10 @@ public class StayControllerFx implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Returns the main view for this controller.
+     * @return VBox containing the layout for the stay management view
+     */
     public VBox getView() {
         if (arrivalDatePicker == null) arrivalDatePicker = new DatePicker();
         if (departureDatePicker == null) departureDatePicker = new DatePicker();

@@ -8,14 +8,30 @@ import com.cy_siao.view.CLIView;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Controller class for managing Person-related CLI interactions.
+ * Handles user input and delegates operations to the PersonService.
+ */
 public class PersonController {
+    // Service for person-related operations 
     private PersonService personService;
+    // CLI view for user interaction 
     private CLIView view;
 
+    /**
+     * Constructs a new PersonController and initializes the PersonService.
+     */
     public PersonController(){
         this.personService = new PersonService();
     }
 
+    /**
+     * Starts the person management menu loop.
+     * Handles user choices for listing, adding, updating, and deleting persons.
+     *
+     * @param view the CLIView instance for user interaction
+     * @throws SQLException if a database access error occurs
+     */
     public void start(CLIView view) throws SQLException {
         int option;
         this.view=view;
@@ -37,6 +53,7 @@ public class PersonController {
         } while(option!=0);
     }
 
+    // Adds a new person by prompting the user for details.
     private void addPerson(){
         view.showMessage("Enter person details:");
         String firstName = view.askString("First name: ");
@@ -56,6 +73,7 @@ public class PersonController {
     }
 
 
+    // Updates an existing person after searching by name.
     private void updatePerson() throws SQLException {
         String lastName = view.askString("Last Name :");
         String firstName = view.askString("First name: ");
@@ -72,6 +90,7 @@ public class PersonController {
         }
     }
 
+    // Deletes a person after searching by name.
     private void deletePerson() throws SQLException {
         String lastName = view.askString("Last Name :");
         String firstName = view.askString("First name: ");

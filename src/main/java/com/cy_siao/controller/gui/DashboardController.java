@@ -15,16 +15,21 @@ import javafx.scene.layout.StackPane;
 public class DashboardController {
 
     @FXML
-    private PieChart pieOccupation;
+    private PieChart pieOccupation; // Pie chart for bed occupation
 
     @FXML
-    private BarChart<String, Number> barDepartures;
+    private BarChart<String, Number> barDepartures; // Bar chart for departures
 
     @FXML
-    private Button backButton;
+    private Button backButton; // Button to return to main menu
 
+    // Reference to the view manager for navigation
     private ViewManager viewManager;
 
+    /**
+     * Initializes the dashboard controller, sets up charts and button actions.
+     * This method is automatically called after the FXML is loaded.
+     */
     @FXML
     public void initialize() {
         StayDao stayDao = new StayDao();
@@ -71,10 +76,15 @@ public class DashboardController {
         backButton.setOnAction(e -> handleBackButton());
     }
 
+    /**
+     * Sets the ViewManager for this controller.
+     * @param viewManager the ViewManager instance
+     */
     public void setViewManager(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
 
+    // Handles the action when the back button is pressed.
     private void handleBackButton() {
         this.viewManager.showMainMenu();
     }

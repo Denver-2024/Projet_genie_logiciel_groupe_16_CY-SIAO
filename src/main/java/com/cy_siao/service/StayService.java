@@ -80,6 +80,7 @@ public class StayService {
 
         if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
             if (bed.isAvailable(arrival, departure)){
+                
                 return true;
             };
             return false;
@@ -96,12 +97,12 @@ public class StayService {
      */
     public boolean isAssign(Person person, Bed bed){
         List<Stay> stays;
-            stays = stayDao.findAll();
-            for (Stay stay: stays){
-                if (stay.getBed().equals(bed) && stay.getPerson().equals(person)){
-                    return true;
-                }
+        stays = stayDao.findAll();
+        for (Stay stay: stays){
+            if (stay.getBed().equals(bed) && stay.getPerson().equals(person)){
+                return true;
             }
+        }
         return false;
     }
 

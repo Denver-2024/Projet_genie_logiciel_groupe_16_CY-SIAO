@@ -59,6 +59,12 @@ public class ViewManager {
         primaryStage.setScene(new Scene(dashboardView.getView()));
         configureStage();
     }
+
+    public void showPlanningView() {
+        PlanningView planningView = new PlanningView(this);
+        getPrimaryStage().setScene(new Scene(planningView.getView()));
+    }
+
     private void configureStage() {
         primaryStage.setTitle("CY SIAO Manager");
         //Relative path from resources for  adding the icon to our software

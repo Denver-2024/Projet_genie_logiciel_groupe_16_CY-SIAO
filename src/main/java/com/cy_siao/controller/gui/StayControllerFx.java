@@ -16,6 +16,7 @@ import com.cy_siao.model.person.Person;
 import com.cy_siao.dao.BedDao;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.Stay;
+import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -252,7 +253,7 @@ public class StayControllerFx implements Initializable {
                 });
                 
             } catch (Exception e) {
-                showAlert("Erreur lors de la récupération des lits: " + e.getMessage(), Alert.AlertType.ERROR);
+                showAlert("Error occurred when trying to get the beds: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }
@@ -263,5 +264,63 @@ public class StayControllerFx implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public VBox getView() {
+        if (arrivalDatePicker == null) arrivalDatePicker = new DatePicker();
+        if (departureDatePicker == null) departureDatePicker = new DatePicker();
+        if (personIdField == null) personIdField = new ComboBox<>();
+        if (bedIdField == null) bedIdField = new ComboBox<>();
+        if (notesArea == null) notesArea = new TextArea();
+        if (addButton == null) addButton = new Button("Add Stay");
+        if (updateButton == null) updateButton = new Button("Update Stay");
+        if (deleteButton == null) deleteButton = new Button("Delete Stay");
+        if (searchButton == null) searchButton = new Button("Search Stay");
+        if (backButton == null) backButton = new Button("Back");
+        if (stayTableView == null) stayTableView = new TableView<>();
+
+        // Colonnes du tableau si non initialisées
+        if (stayTableView.getColumns().isEmpty()) {
+            idCol = new TableColumn<>("ID");
+            arrivalDateCol = new TableColumn<>("Arrival");
+            departureDateCol = new TableColumn<>("Departure");
+            bedIdCol = new TableColumn<>("Bed");
+            personIdCol = new TableColumn<>("Person");
+
+            idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            arrivalDateCol.setCellValueFactory(new PropertyValueFactory<>("dateArrival"));
+            departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
+            bedIdCol.setCellValueFactory(new PropertyValueFactory<>("idBed"));
+            personIdCol.setCellValueFactory(cellData -> {
+                Stay stay = cellData.getValue();
+                return new SimpleStringProperty(
+                        stay.getPerson() != null ? stay.getPerson().getLastName() : "N/A"
+                );
+            });
+
+            stayTableView.getColumns().addAll(idCol, arrivalDateCol, departureDateCol, bedIdCol, personIdCol);
+            stayTableView.setItems(stayList);
+        }
+
+        // Actions
+        addButton.setOnAction(e -> handleAddStay());
+        updateButton.setOnAction(e -> handleUpdateStay());
+        deleteButton.setOnAction(e -> handleDeleteStay());
+        searchButton.setOnAction(e -> handleSearchStay());
+        backButton.setOnAction(e -> handleBackButton());
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new javafx.geometry.Insets(20));
+        layout.getChildren().addAll(
+                new Label("Date Arrival:"), arrivalDatePicker,
+                new Label("Date Departure:"), departureDatePicker,
+                new Label("Person:"), personIdField,
+                new Label("Bed:"), bedIdField,
+                new Label("Remarks:"), notesArea,
+                addButton, updateButton, deleteButton, searchButton, backButton,
+                stayTableView
+        );
+
+        return layout;
     }
 }

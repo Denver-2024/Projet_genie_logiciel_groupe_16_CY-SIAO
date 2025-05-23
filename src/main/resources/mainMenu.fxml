@@ -39,7 +39,7 @@
             <TextArea fx:id="longTextArea"  styleClass="label"    layoutX="20" layoutY="20"   maxHeight="100"
                       editable="false"
                       wrapText="true"
-                      text="Hi! CY SIAO Manager is a software developed by CY Tech Students for managing the SIAO Emergency Shelters. Here you can manage easily the Rooms for welcoming persons to be hosted. You can also manage the hosted Persons, their Stays and the Beds. Plus, you can have the overview of the center affluence in the Dashboard.If you are ready, let's get started!"/>
+                      text="Hi! CY SIAO Manager is a software developed by CY Tech Students for managing the SIAO Emergency Shelters. Here you can manage easily the Rooms for welcoming persons to be hosted. You can also manage the hosted Persons, their Stays and the Beds. Plus, you can have the overview of the center occupancy in the Dashboard and of course the beds occupancy schedule.If you are ready, let's get started!"/>
         <HBox spacing="20" alignment="CENTER">
             <padding>
                 <Insets top="20" left="20" right="20" bottom="20"/>

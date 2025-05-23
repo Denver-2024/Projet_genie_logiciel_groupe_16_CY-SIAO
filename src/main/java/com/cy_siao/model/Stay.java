@@ -14,6 +14,7 @@ public class Stay {
     private Person person;
     private LocalDate dateArrival;
     private LocalDate dateDeparture;
+    private boolean hasLeft = false; //set on false by default
 
     public Stay() {
     }
@@ -82,6 +83,14 @@ public class Stay {
         this.dateDeparture = dateDeparture;
     }
 
+    public boolean isHasLeft(){
+        return hasLeft;
+    }
+
+    public void setHasLeft(boolean hasLeft) {
+        this.hasLeft = hasLeft;
+    }
+
     public boolean modifyDates(LocalDate newArrival, LocalDate newDeparture) {
         LocalDate today = LocalDate.now();
         if (!newArrival.isBefore(today) && !newDeparture.isBefore(today)) {
@@ -101,6 +110,10 @@ public class Stay {
     public boolean isEditable() {
         LocalDate today = LocalDate.now();
         return !dateArrival.isBefore(today);
+    }
+
+    public boolean isInconsistent() {
+        return !hasLeft && dateDeparture.isBefore(LocalDate.now());
     }
 
     @Override

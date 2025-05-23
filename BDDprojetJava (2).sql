@@ -75,5 +75,6 @@ CREATE TABLE Stay (
                       IdPerson INT REFERENCES Person(Id) ON DELETE CASCADE,
                       IdBed INT REFERENCES Bed(Id) ON DELETE RESTRICT,
                       dateArrival DATE CHECK (dateArrival >= CURRENT_DATE),
-                      dateDeparture DATE CHECK (dateDeparture > dateArrival)
+                      dateDeparture DATE CHECK (dateDeparture > dateArrival),
+                      hasLeft BOOLEAN DEFAULT FALSE
 );

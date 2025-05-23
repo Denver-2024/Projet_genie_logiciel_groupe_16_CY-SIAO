@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add dao for all the complex sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BDDprojetJava (2).sql" beforeDir="false" afterPath="$PROJECT_DIR$/BDDprojetJava (2).sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/model/Stay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/BedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/BedView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/StayView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/StayView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/view/ViewManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -96,8 +96,9 @@ public class RoomService {
      * @param bed  The bed to be added
      */
     public void addBedToRoom(Room room, Bed bed) {
-        room.addBed(bed); // already checks max number of beds
-        bedDao.update(bed);
+        if (room.addBed(bed)){
+            bedDao.update(bed);
+        }
     }
 
     /**

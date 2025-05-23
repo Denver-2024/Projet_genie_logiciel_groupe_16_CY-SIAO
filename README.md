@@ -28,7 +28,7 @@ Linux: ``sudo apt update``, ``sudo apt install maven``</p>
 
 Then, for executing the Main file, you need to execute the following:<br/>
 
-``mvn exec:java -Dexec.mainClass="com.cy_siao.Main"``<br/>
+``mvn exec:java -Dexec.mainClass="com.cy_siao.App"``<br/>
 
 That's it.</p>
 

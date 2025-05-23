@@ -137,15 +137,18 @@ public class BedDao {
      * Deletes a bed record from the database.
      *
      * @param id The unique identifier of the bed to delete
+     * @return true if the bed was successfully delete
      */
-    public void delete(int id) {
+    public boolean delete(int id) {
         String sql = "DELETE FROM Bed WHERE Id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("Error in deleting bed: " + e.getMessage());
+            return false;
         }
     }
 

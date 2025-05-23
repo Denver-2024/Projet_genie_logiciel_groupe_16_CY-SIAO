@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -107,8 +108,15 @@ public class BedControllerFx implements Initializable {
         Bed selectedBed = bedTableView.getSelectionModel().getSelectedItem();
         if (selectedBed != null) {
             bedTableView.getSelectionModel().clearSelection();
-            bedList.remove(selectedBed);
-            bedService.deleteBed(selectedBed.getId());
+            boolean sucess = bedService.deleteBed(selectedBed.getId());
+            if (sucess){
+                showAlert("Sucess delete");
+                bedList.remove(selectedBed);
+            }
+            else{
+                showAlert("It is currently impossible to delete this data, it is probably being used elsewhere. Delete it below.");
+            }
+
         } else {
             showAlert("Please select a bed to delete");
         }

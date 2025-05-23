@@ -5,6 +5,8 @@ import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.util.DatabaseUtil;
 
+import javafx.scene.control.Alert;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -208,7 +210,7 @@ public class PersonDao {
     public void deletePerson(int id) {
         String sql = "DELETE FROM person WHERE id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+            PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {

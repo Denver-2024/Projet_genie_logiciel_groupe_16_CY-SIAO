@@ -66,9 +66,10 @@ public class BedService {
      * Deletes a bed record from the database
      *
      * @param id The unique identifier of the bed to delete
+     * @return true if the bed was delete
      */
-    public void deleteBed(int id) {
-        bedDao.delete(id);
+    public boolean deleteBed(int id) {
+        return bedDao.delete(id);
     }
 
     // BUSINESS METHODS

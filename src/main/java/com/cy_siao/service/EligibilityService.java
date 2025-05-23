@@ -1,6 +1,5 @@
 package com.cy_siao.service;
 
-import com.cy_siao.dao.RestrictionRoomDao;
 import com.cy_siao.dao.RestrictionTypeDao;
 import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.Room;
@@ -11,48 +10,48 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Service handling eligibility checks for room assignments based on restrictions
+ * Service de gestion des règles d'éligibilité pour une personne dans une chambre.
+ * Vérifie si une personne respecte les restrictions d'une chambre avant de pouvoir y être assignée.
  */
 public class EligibilityService {
-    //Data access object for restriction types
+    // DAO pour accéder aux types de restrictions depuis la base de données
     private RestrictionTypeDao restrictionTypeDao;
-    //Data access object for room restrictions
-    private RestrictionRoomDao restrictionRoomDao;
 
     /**
-     * Constructs a new EligibilityService with required DAOs
+     * Constructeur par défaut initialisant le DAO de RestrictionType.
      */
     public EligibilityService() {
         this.restrictionTypeDao = new RestrictionTypeDao();
-        this.restrictionRoomDao = new RestrictionRoomDao();
     }
 
     /**
-     * Check if the person is eligible to be assigned to a specific room based on restrictions
+     * Vérifie si une personne est autorisée à accéder à une chambre, en fonction de ses restrictions.
      *
-     * @param person Person to check eligibility for
-     * @param room   Room to check restrictions against
-     * @return true if the person meets all room restrictions, false otherwise
-     * @throws SQLException if a database access error occurs
+     * @param person       La personne à vérifier.
+     * @param room         La chambre concernée.
+     * @param restrictions La liste des restrictions appliquées à la chambre.
+     * @return true si la personne respecte les restrictions, false sinon.
      */
-    public boolean isPersonAllowedInRoom(Person person, Room room) throws SQLException {
-        List<RestrictionRoom> restrictions = restrictionRoomDao.findByRoomId(room.getId());
+    public boolean isPersonAllowedInRoom(Person person, Room room, List<RestrictionRoom> restrictions) {
         if (restrictions == null || restrictions.isEmpty()) {
-            return true; // No restrictions means access is allowed
+            return true; // Pas de restrictions = accès autorisé
         }
 
+        // Si la première restriction utilise "AND", on initialise à true, sinon false
         boolean finalResult = restrictions.get(0).getLogicOperator().equals("AND");
 
         for (RestrictionRoom rr : restrictions) {
             try {
-                // Load RestrictionType from database
+                // Charger le RestrictionType depuis la base de données
                 RestrictionType restriction = restrictionTypeDao.findById(rr.getIdRestrictionType());
                 if (restriction == null) {
-                    continue; // Skip invalid restrictions
+                    continue; // Ignorer les restrictions invalides
                 }
 
+                // Vérifie si la personne respecte la restriction
                 boolean result = matchesRestriction(person, restriction);
 
+                // Combine le résultat selon l'opérateur logique
                 if (rr.getLogicOperator().equalsIgnoreCase("AND")) {
                     finalResult = finalResult && result;
                 } else if (rr.getLogicOperator().equalsIgnoreCase("OR")) {
@@ -68,20 +67,22 @@ public class EligibilityService {
     }
 
     /**
-     * Evaluates if a person matches the given restriction criteria
+     * Vérifie si une personne correspond aux critères définis par une restriction.
+     * (Âge minimum/maximum et genre)
      *
-     * @param person      Person to evaluate
-     * @param restriction Restriction criteria to check against
-     * @return true if person matches all restriction criteria, false otherwise
+     * @param person      La personne à évaluer.
+     * @param restriction La restriction à appliquer.
+     * @return true si la personne satisfait la restriction, false sinon.
      */
     private boolean matchesRestriction(Person person, RestrictionType restriction) {
         if (restriction == null) {
-            return true; // No restriction means access is allowed
+            return true; // Pas de restriction = autorisation accordée
         }
 
         boolean ageOk = true;
         boolean genderOk = true;
 
+        // Vérifie l'âge de la personne
         Integer minAge = restriction.getMinAge();
         Integer maxAge = restriction.getMaxAge();
 
@@ -91,6 +92,7 @@ public class EligibilityService {
             if (maxAge != null && age > maxAge) ageOk = false;
         }
 
+        // Vérifie le genre de la personne
         if (restriction.getGenderRestriction() != null) {
             genderOk = person.getGender().equals(restriction.getGenderRestriction());
         }

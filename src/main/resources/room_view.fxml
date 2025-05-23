@@ -15,7 +15,7 @@
         <HBox style="-fx-background-color: #f4f4f4; ">
             <Pane HBox.hgrow="ALWAYS"/>
             <Label text="Gestion des chambres" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
-            <Pane HBox.hgrow="ALWAYS"/>
+            <Pane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
             <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
                 <padding>
                     <Insets left="10" right="10" top="5" bottom="5"/>

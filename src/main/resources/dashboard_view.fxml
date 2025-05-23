@@ -6,16 +6,16 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.cy_siao.controller.gui.DashboardController" prefWidth="800" prefHeight="600">
     <VBox spacing="10" >
-        <Label text="État de l'agence" style="-fx-font-size: 20px;"/>
+        <Label text="Agency State" style="-fx-font-size: 20px;"/>
 
         <HBox spacing="20">
             <PieChart fx:id="pieOccupation" prefWidth="350"/>
             <BarChart fx:id="barDepartures" prefWidth="400">
                 <xAxis>
-                    <CategoryAxis label="Statut"/>
+                    <CategoryAxis label="Status"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis label="Nombre"/>
+                    <NumberAxis label="Number"/>
                 </yAxis>
             </BarChart>
         </HBox>

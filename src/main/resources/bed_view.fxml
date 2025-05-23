@@ -15,7 +15,7 @@
             </padding>
             <HBox>
             <Label text="Add a Bed" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-                <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+                <Button fx:id="backButton" text="Back" style="-fx-font-weight: bold;">
                     <padding>
                         <Insets left="10" right="10" top="5" bottom="5"/>
                     </padding>
@@ -44,7 +44,7 @@
             <columns>
                 <TableColumn fx:id="idCol" text="ID" prefWidth="100"/>
                 <TableColumn fx:id="idRoomCol" text="Room ID" prefWidth="200"/>
-                <TableColumn fx:id="isDoubleCol" text="Nombre de place" prefWidth="200"/>
+                <TableColumn fx:id="isDoubleCol" text="Number of places" prefWidth="200"/>
             </columns>
         </TableView>
     </center>

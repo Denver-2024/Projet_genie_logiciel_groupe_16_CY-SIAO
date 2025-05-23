@@ -115,14 +115,19 @@ public class RestrictionTypeDao {
      *
      * @param id The ID of the restriction type to delete
      * @throws SQLException if a database access error occurs
+     * @return true if the delete is a success
      */
-    public void delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException {
         String sql = "DELETE FROM restrictiontype WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error when trying to delete restriction " + e.getMessage());
+            return false;
         }
     }
 

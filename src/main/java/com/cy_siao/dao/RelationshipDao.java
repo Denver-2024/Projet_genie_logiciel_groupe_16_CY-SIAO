@@ -79,8 +79,9 @@ public class RelationshipDao {
      *
      * @param relationship The relationship object to delete
      * @throws SQLException if a database access error occurs
+     * @return true if the delete is a success
      */
-    public void delete(Relationship relationship) throws SQLException {
+    public boolean delete(Relationship relationship) throws SQLException {
         String sql = "DELETE FROM relationship WHERE idperson1 = ? AND idperson2 = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -88,6 +89,10 @@ public class RelationshipDao {
             pstmt.setInt(1, relationship.getPerson1().getId());
             pstmt.setInt(2, relationship.getPerson2().getId());
             pstmt.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            System.err.println("Error when trying this relation: " + e.getMessage());
+            return false;
         }
     }
 

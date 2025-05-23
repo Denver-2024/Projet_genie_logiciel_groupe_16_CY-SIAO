@@ -91,15 +91,17 @@ public class RestrictionRoomDao {
         }
     }
 
-    public void delete(int roomId, int restrictionTypeId) {
+    public boolean delete(int roomId, int restrictionTypeId) {
         String sql = "DELETE FROM RestrictionRoom WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();
              PreparedStatement pst = connect.prepareStatement(sql)) {
             pst.setInt(1, roomId);
             pst.setInt(2, restrictionTypeId);
             pst.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("An error occurred when trying to delete RestrictionRoom: " + e.getMessage());
+            return false;
         }
     }
 

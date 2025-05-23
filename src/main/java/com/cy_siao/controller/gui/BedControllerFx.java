@@ -108,9 +108,9 @@ public class BedControllerFx implements Initializable {
         Bed selectedBed = bedTableView.getSelectionModel().getSelectedItem();
         if (selectedBed != null) {
             bedTableView.getSelectionModel().clearSelection();
-            boolean sucess = bedService.deleteBed(selectedBed.getId());
-            if (sucess){
-                showAlert("Sucess delete");
+            boolean success = bedService.deleteBed(selectedBed.getId());
+            if (success){
+                showAlert("Success delete");
                 bedList.remove(selectedBed);
             }
             else{

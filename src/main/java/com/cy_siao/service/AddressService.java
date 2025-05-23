@@ -87,11 +87,12 @@ public class AddressService {
      * @param id The ID of the address to delete
      * @throws SQLException             if a database access error occurs
      * @throws IllegalArgumentException if id is negative
+     * @return true if the delete is a success
      */
-    public void deleteAddress(int id) throws SQLException {
+    public boolean deleteAddress(int id) throws SQLException {
         if (id < 0) {
             throw new IllegalArgumentException("ID cannot be negative");
         }
-        addressDao.delete(id);
+        return addressDao.delete(id);
     }
 }

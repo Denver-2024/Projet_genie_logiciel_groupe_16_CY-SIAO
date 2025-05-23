@@ -249,8 +249,14 @@ public class RoomControllerFx implements Initializable {
         Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
         if (selectedRoom != null) {
             roomTableView.getSelectionModel().clearSelection();
-            roomService.deleteRoom(selectedRoom.getId());
-            roomList.remove(selectedRoom);
+            boolean success = roomService.deleteRoom(selectedRoom.getId());
+            if (success){
+                showAlert("Success delete");
+                roomList.remove(selectedRoom);
+            }
+            else{
+                showAlert("It is currently impossible to delete this data, it is probably being used elsewhere. Delete it below.");
+            }
         } else {
             showAlert("Please select a room to delete.");
         }

@@ -19,7 +19,7 @@
 
     <!-- TOP HEADER -->
     <top>
-        <HBox alignment="CENTER" style="-fx-background-color: #f4f4f4;">
+        <HBox alignment="CENTER" style="-fx-background-color: #e1ad01;">
             <padding>
                 <Insets top="10" bottom="10" left="20" right="20"/>
             </padding>
@@ -47,9 +47,7 @@
 
             <!-- Logo centré -->
             <ImageView fitHeight="120" fitWidth="200" preserveRatio="true">
-                <image>
-                    <Image url="@Images/Projet_SIAO.png"/>
-                </image>
+                <Image url="@Images/Projet_SIAO.png"/>
             </ImageView>
             <!-- Boutons du menu -->
 
@@ -64,5 +62,11 @@
         </HBox>
         </VBox>
     </center>
-
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #e1ad01;">
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+        </HBox>
+    </bottom>
 </BorderPane>

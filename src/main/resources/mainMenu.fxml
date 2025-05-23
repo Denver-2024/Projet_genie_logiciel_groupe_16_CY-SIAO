@@ -29,11 +29,6 @@
 
     <!-- CENTER CONTENT -->
     <center>
-        <ImageView>
-            <image>
-                <Image url="@Images/fond - Copy.png"/>
-            </image>
-        </ImageView>
         <VBox alignment="CENTER">
             <!--Comments-->
             <TextArea fx:id="longTextArea"  styleClass="label"    layoutX="20" layoutY="20"   maxHeight="100"

@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.cy_siao.controller.gui.DashboardController" prefWidth="800" prefHeight="600">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cy_siao.controller.gui.DashboardController" prefWidth="800" prefHeight="600">
     <VBox spacing="10" >
-        <Label text="Agency State" style="-fx-font-size: 20px;"/>
+        <Label text="Agency Status" style="-fx-font-size: 20px;"/>
 
         <HBox spacing="20">
             <PieChart fx:id="pieOccupation" prefWidth="350"/>

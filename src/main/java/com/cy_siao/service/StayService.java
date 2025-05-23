@@ -80,7 +80,15 @@ public class StayService {
 
         if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
             if (bed.isAvailable(arrival, departure)){
-                
+                List<Stay> allStay = this.getAllStays();
+                for (Stay stay : allStay){
+                    if (person.getId() == stay.getIdPerson()){
+                        if ((stay.getDateArrival().isAfter(arrival) && stay.getDateArrival().isBefore(arrival)) ||
+                        (stay.getDateArrival().isAfter(departure) && stay.getDateArrival().isBefore(departure))) {
+                        return false;
+            }
+                    }
+                }
                 return true;
             };
             return false;

@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -79,6 +80,7 @@ public class BedControllerFx implements Initializable {
 
         roomList = new ArrayList<>();
         roomList= roomService.getAllRooms();
+        roomService.connectBedToRoom(roomList);
         ObservableList<Room> observableRoomList = FXCollections.observableArrayList(roomList);
         idRoomField.setItems(observableRoomList);
 
@@ -112,8 +114,13 @@ public class BedControllerFx implements Initializable {
             boolean isDouble = isDoubleCheckBox.isSelected();
 
             Bed bed = new Bed(idRoom, isDouble);
+
+                if (idRoomField.getValue().getBeds().size()<idRoomField.getValue().getNbBedsMax()){
             bedList.add(bed);
-            bedService.createBed(bed);
+            bedService.createBed(bed);}
+                else {
+                 showAlert("Max beds exceeded");
+            }
 
             idRoomField.setValue(null);
             isDoubleCheckBox.setSelected(false);

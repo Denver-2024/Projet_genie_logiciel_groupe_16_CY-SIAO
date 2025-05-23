@@ -80,7 +80,7 @@ public class RoomControllerFx implements Initializable {
     @FXML
     private TableColumn<Room, String> restrictionCol; // Restrictions column
 
-    private final ObservableList<Room> roomList = FXCollections.observableArrayList(); // Observable room list
+    private ObservableList<Room> roomList = FXCollections.observableArrayList(); // Observable room list
     private final RoomService roomService = new RoomService(); // Room service for data operations
 
     /**
@@ -100,7 +100,9 @@ public class RoomControllerFx implements Initializable {
         logicOperator.setItems(FXCollections.observableArrayList("AND", "OR"));
 
         // Load Rooms
-        roomList.addAll(roomService.getAllRooms());
+        List<Room> allRooms = roomService.getAllRooms();
+        roomService.connectBedToRoom(allRooms);
+        ObservableList<Room> roomList = FXCollections.observableArrayList(allRooms);
         roomTableView.setItems(roomList);
 
         // Set Table Columns

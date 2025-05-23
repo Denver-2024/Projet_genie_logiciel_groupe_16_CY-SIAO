@@ -101,6 +101,17 @@ public class RoomService {
         }
     }
 
+    public void connectBedToRoom(List<Room> listRoom) {
+        List<Bed> allBed = bedDao.findAll();
+        for (Bed bed : allBed) {
+            for (Room room : listRoom) {
+                if (room.getId() == bed.getIdRoom()) {
+                    room.addBed(bed);
+                }
+            }
+        }
+    }
+
     /**
      * Removes a bed from a room and updates the database
      *

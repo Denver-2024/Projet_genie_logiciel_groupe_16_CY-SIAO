@@ -2,6 +2,8 @@ package com.cy_siao.service;
 
 import com.cy_siao.dao.BedDao;
 import com.cy_siao.model.Bed;
+import com.cy_siao.model.Room;
+import com.cy_siao.model.Stay;
 import com.cy_siao.model.person.Person;
 
 import java.sql.SQLException;
@@ -71,6 +73,9 @@ public class BedService {
     public boolean deleteBed(int id) {
         return bedDao.delete(id);
     }
+
+
+
 
     // BUSINESS METHODS
 

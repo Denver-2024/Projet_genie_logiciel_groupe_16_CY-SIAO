@@ -89,16 +89,19 @@ public class KnowsDao {
      *
      * @param personId  The ID of the person
      * @param addressId The ID of the address
+     * @return true if the delete is a success
      */
-    public void delete(int personId, int addressId) {
+    public boolean delete(int personId, int addressId) {
         String sql = "DELETE FROM Knows WHERE IdPerson = ? AND IdAddress = ?";
         try (Connection connect = databaseUtil.getConnection();
              PreparedStatement pst = connect.prepareStatement(sql)) {
             pst.setInt(1, personId);
             pst.setInt(2, addressId);
             pst.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("An error occurred when trying to delete Knows: " + e.getMessage());
+            return false;
         }
     }
 

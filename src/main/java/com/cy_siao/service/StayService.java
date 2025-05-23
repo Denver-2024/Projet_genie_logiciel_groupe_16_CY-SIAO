@@ -180,9 +180,14 @@ public class StayService {
         stayDao.update(stay);
     }
 
-    // Supprime un séjour.
-    public void deleteStay(Stay stay) {
-        stayDao.delete(stay.getId());
+    /**
+     * Remove a stay
+     * 
+     * @param stay to remove
+     * @return true if the delete is a success
+     */
+    public boolean deleteStay(Stay stay) {
+        return stayDao.delete(stay.getId());
     }
 
     /**

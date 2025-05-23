@@ -154,9 +154,10 @@ public class PersonService {
      * Deletes a person by their ID
      *
      * @param id The ID of the person to delete
+     * @return true if the delete is a success
      */
-    public void deletePerson(int id) {
-        personDao.deletePerson(id);
+    public boolean deletePerson(int id) {
+        return personDao.deletePerson(id);
     }
 
  /*   public boolean isPersonCompatible(Person person1, Person person2) {

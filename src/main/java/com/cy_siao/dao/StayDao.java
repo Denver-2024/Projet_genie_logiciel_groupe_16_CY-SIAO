@@ -230,16 +230,19 @@ public class StayDao {
      * Deletes a stay record by ID.
      *
      * @param id The ID of the stay to delete
+     * @return true if the delete is a success
      */
-    public void delete(int id) {
+    public boolean delete(int id) {
         String sql = "DELETE FROM stay WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("Error in deleting stay: " + e.getMessage());
+            return false;
         }
     }
 

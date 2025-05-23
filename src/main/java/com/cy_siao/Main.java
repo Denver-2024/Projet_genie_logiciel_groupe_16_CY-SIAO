@@ -12,6 +12,7 @@ import com.cy_siao.model.person.Address;
 import com.cy_siao.model.person.Gender;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.model.person.Relationship;
+import com.cy_siao.service.BedService;
 import com.cy_siao.service.PersonService;
 import com.cy_siao.util.DatabaseUtil;
 
@@ -19,6 +20,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
+        /*
         DatabaseUtil dbUtil = new DatabaseUtil();
         Connection connexion = null;
         connexion = dbUtil.getConnection();
@@ -191,7 +193,10 @@ public class Main {
         System.out.println("Deleted Person: " + person.getId());
 
          */
-        CLIController controller = new CLIController();
-        controller.start();
+        RoomDao roomDao = new RoomDao();
+        Bed bed = new Bed(2);
+        BedService bedService = new BedService();
+        bedService.createBed(bed);
+        System.out.println(roomDao.restPlace(2));
     }
 }

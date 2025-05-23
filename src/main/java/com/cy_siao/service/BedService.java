@@ -1,6 +1,7 @@
 package com.cy_siao.service;
 
 import com.cy_siao.dao.BedDao;
+import com.cy_siao.dao.RoomDao;
 import com.cy_siao.model.Bed;
 import com.cy_siao.model.Room;
 import com.cy_siao.model.Stay;
@@ -17,12 +18,14 @@ public class BedService {
 
     //Data access object for bed persistence
     private final BedDao bedDao;
+    private final RoomDao roomDao;
 
     /**
      * Default constructor that initializes the BedDao
      */
     public BedService() {
         this.bedDao = new BedDao();
+        this.roomDao = new RoomDao();
     }
 
     // CRUD OPERATIONS
@@ -33,7 +36,10 @@ public class BedService {
      * @param bed The bed entity to be created
      */
     public void createBed(Bed bed) {
-        bedDao.create(bed);
+        int restPlace = roomDao.restPlace(bed.getIdRoom());
+        if (restPlace > 0) {
+            bedDao.create(bed);
+        }
     }
 
     /**

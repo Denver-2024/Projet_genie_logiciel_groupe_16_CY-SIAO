@@ -75,7 +75,7 @@ CREATE TABLE Stay (
                       Id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY CHECK (Id > 0),
                       IdPerson INT REFERENCES Person(Id),
                       IdBed INT REFERENCES Bed(Id),
-                      dateArrival DATE CHECK (dateArrival >= CURRENT_DATE - INTERVAL '2 years'),
+                      dateArrival DATE CHECK (dateArrival >= CURRENT_DATE),
                       dateDeparture DATE CHECK (dateDeparture > dateArrival),
                       hasLeft BOOLEAN DEFAULT FALSE
 );
@@ -148,3 +148,62 @@ INSERT INTO Stay (IdPerson, IdBed, dateArrival, dateDeparture, hasLeft) VALUES
                                                                             (3, 5, CURRENT_DATE - INTERVAL '5 day', CURRENT_DATE + INTERVAL '1 day', TRUE),
                                                                             (4, 2, CURRENT_DATE - INTERVAL '1 day', CURRENT_DATE + INTERVAL '2 day', FALSE),
                                                                             (1, 4, CURRENT_DATE + INTERVAL '3 day', CURRENT_DATE + INTERVAL '10 day', FALSE);
+
+-- Donnees d'adresse
+INSERT INTO Address (streetNumber, streetName, postalCode, cityName) VALUES
+                                                                         (10, 'Rue de la Paix', 75002, 'Paris'),
+                                                                         (20, 'Avenue des Champs', 69002, 'Lyon'),
+                                                                         (30, 'Rue Nationale', 33000, 'Bordeaux');
+
+-- Personnes
+INSERT INTO Person (lastName, firstName, age, gender, placeOfBirth, socialSecurityNumber) VALUES
+                                                                                              ('Bernard', 'Emma', 25, 'F', 'Paris', 2951234567890),
+                                                                                              ('Lemoine', 'Lucas', 60, 'M', 'Lille', 1630456789123),
+                                                                                              ('Moreau', 'Julie', 15, 'F', 'Toulouse', 3091223344556),
+                                                                                              ('Noel', 'Antoine', 34, 'M', 'Nice', 1903344556677);
+
+-- Connait des adresses
+INSERT INTO Knows (IdPerson, IdAddress) VALUES
+                                            (1, 1),
+                                            (2, 2),
+                                            (3, 1),
+                                            (4, 3);
+
+-- Restrictions
+INSERT INTO RestrictionType (label, minAge, maxAge, genderRestriction) VALUES
+                                                                           ('Femmes uniquement', 18, 100, 'F'),
+                                                                           ('Hommes adultes', 18, 100, 'M'),
+                                                                           ('Mineures filles', 0, 17, 'F');
+
+-- Chambres
+INSERT INTO Room (name, nbBedsMax) VALUES
+                                       ('Chambre A', 2),
+                                       ('Chambre B', 3),
+                                       ('Chambre C', 1);
+
+-- Lits
+INSERT INTO Bed (nbPlacesMax, IdRoom) VALUES
+                                          (1, 1),
+                                          (1, 1),
+                                          (2, 2),
+                                          (1, 2),
+                                          (1, 3);
+
+-- Restrictions liees aux chambres
+INSERT INTO RestrictionRoom (IdRoom, IdRestrictionType, logicOperator) VALUES
+                                                                           (1, 1, 'AND'),  -- Chambre A : femmes adultes
+                                                                           (2, 2, 'AND'),  -- Chambre B : hommes adultes
+                                                                           (3, 3, 'AND');  -- Chambre C : filles mineures
+
+-- Relations
+INSERT INTO Relationship (IdPerson1, IdPerson2, relationType) VALUES
+                                                                  (1, 3, 'Soeur'),
+                                                                  (2, 4, 'Frere'),
+                                                                  (3, 4, 'Amie');
+
+-- Sejours valides (futurs ou en cours)
+INSERT INTO Stay (IdPerson, IdBed, dateArrival, dateDeparture, hasLeft) VALUES
+                                                                            (1, 1, CURRENT_DATE + INTERVAL '1 day', CURRENT_DATE + INTERVAL '4 day', FALSE), -- Emma (F, 25) -> OK pour Chambre A
+                                                                            (2, 3, CURRENT_DATE + INTERVAL '2 day', CURRENT_DATE + INTERVAL '6 day', FALSE), -- Lucas (M, 60) -> OK pour Chambre B
+                                                                            (3, 5, CURRENT_DATE + INTERVAL '1 day', CURRENT_DATE + INTERVAL '3 day', FALSE), -- Julie (F, 15) -> OK pour Chambre C
+                                                                            (4, 4, CURRENT_DATE + INTERVAL '3 day', CURRENT_DATE + INTERVAL '5 day', FALSE); -- Antoine (M, 34) -> OK pour Chambre B

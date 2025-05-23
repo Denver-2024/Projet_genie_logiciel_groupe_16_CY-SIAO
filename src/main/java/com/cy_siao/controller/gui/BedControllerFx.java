@@ -117,7 +117,8 @@ public class BedControllerFx implements Initializable {
 
                 if (idRoomField.getValue().getBeds().size()<idRoomField.getValue().getNbBedsMax()){
             bedList.add(bed);
-            bedService.createBed(bed);}
+            bedService.createBed(bed);
+                bedTableView.refresh();}
                 else {
                  showAlert("Max beds exceeded");
             }

@@ -136,6 +136,32 @@ public class RoomDao {
         }
     }
 
+    public int restPlace(int id){
+        String sql ="SELECT \n" +
+                "    r.Id AS room_id,\n" +
+                "    r.nbBedsMax,\n" +
+                "    COUNT(b.Id) AS currentBeds,\n" +
+                "    (r.nbBedsMax - COUNT(b.Id)) AS bedsRemaining\n" +
+                "FROM Room r\n" +
+                "LEFT JOIN Bed b ON b.IdRoom = r.Id\n" +
+                "WHERE r.Id = ? \n" +
+                "GROUP BY r.Id, r.nbBedsMax;\n";
+        try(Connection conn = databaseUtil.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1,id);
+            try(ResultSet rs=pstmt.executeQuery()){
+                if(!rs.next()) return 0;
+               return rs.getInt(4);
+            } catch (SQLException e) {
+                System.err.println("Error in finding rest place: " + e.getMessage());
+            }
+
+        }catch (SQLException e) {
+            System.err.println("Error in finding rest place: " + e.getMessage());
+        }
+        return 0;
+    }
+
     //Extracts room data from result set and creates Room object
     private Room extractRoomFromResultSet(ResultSet rs) throws SQLException {
         Room room = new Room();

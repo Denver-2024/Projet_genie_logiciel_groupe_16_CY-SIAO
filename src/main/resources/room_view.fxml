@@ -14,9 +14,9 @@
     <top>
         <HBox style="-fx-background-color: #f4f4f4; ">
             <Pane HBox.hgrow="ALWAYS"/>
-            <Label text="Gestion des chambres" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Label text="Room Management" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
             <Pane HBox.hgrow="ALWAYS"/>
-            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+            <Button fx:id="backButton" text="Back" style="-fx-font-weight: bold;">
                 <padding>
                     <Insets left="10" right="10" top="5" bottom="5"/>
                 </padding>
@@ -34,49 +34,49 @@
             <HBox spacing="20">
                 <!-- Room Info -->
                 <VBox spacing="10">
-                    <Label text="Nom de la chambre"/>
+                    <Label text="Room name"/>
                     <TextField fx:id="nameField1"/>
 
-                    <Label text="Nombre de lits max"/>
+                    <Label text="Max number of beds"/>
                     <Spinner fx:id="nbBedsMaxSpinner" editable="true" prefWidth="160"/>
                 </VBox>
 
                 <!-- Restriction Info -->
                 <VBox spacing="10">
-                    <Label text="Nom de la restriction"/>
+                    <Label text="Restriction name"/>
                     <TextField fx:id="nameField2"/>
 
-                    <Label text="Restriction de genre"/>
+                    <Label text="Gender restriction"/>
                     <ComboBox fx:id="genderRestriction" prefWidth="150"/>
                 </VBox>
 
                 <!-- Age Restrictions -->
                 <VBox spacing="10">
-                    <Label text="Âge minimum"/>
+                    <Label text="Minimum age"/>
                     <TextField fx:id="minAgeField"/>
 
-                    <Label text="Âge maximum"/>
+                    <Label text="Maximum age"/>
                     <TextField fx:id="maxAgeField"/>
 
-                    <Label text="Opérateur logique"/>
+                    <Label text="Logic operator"/>
                     <ComboBox fx:id="logicOperator" prefWidth="150"/>
                 </VBox>
             </HBox>
 
             <!-- Action Buttons -->
             <HBox spacing="10">
-                <Button fx:id="addButton" text="Ajouter la chambre"/>
-                <Button fx:id="updateButton" text="Mettre à jour"/>
-                <Button fx:id="deleteButton" text="Supprimer"/>
-                <Button fx:id="addRestrictionButton" text="Ajouter restriction"/>
+                <Button fx:id="addButton" text="Add room"/>
+                <Button fx:id="updateButton" text="Update room"/>
+                <Button fx:id="deleteButton" text="Delete room"/>
+                <Button fx:id="addRestrictionButton" text="Add restriction"/>
             </HBox>
 
             <!-- TableView -->
             <TableView fx:id="roomTableView" prefHeight="300">
                 <columns>
                     <TableColumn fx:id="idCol" prefWidth="50" text="ID"/>
-                    <TableColumn fx:id="nameCol" prefWidth="150" text="Nom"/>
-                    <TableColumn fx:id="nbBedsMaxCol" prefWidth="100" text="Lits max"/>
+                    <TableColumn fx:id="nameCol" prefWidth="150" text="Name"/>
+                    <TableColumn fx:id="nbBedsMaxCol" prefWidth="100" text="Max Beds"/>
                     <TableColumn fx:id="restrictionCol" prefWidth="250" text="Restrictions"/>
                 </columns>
             </TableView>

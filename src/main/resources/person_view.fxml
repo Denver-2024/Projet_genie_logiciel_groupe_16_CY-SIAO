@@ -6,11 +6,11 @@
 
 <BorderPane stylesheets="@styles/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.cy_siao.controller.gui.PersonControllerFx">
     <top>
-        <HBox alignment="TOP_LEFT" style="-fx-background-color: #f4f4f4;">
+        <HBox style="-fx-background-color: #f4f4f4;">
             <Pane HBox.hgrow="ALWAYS" />
-            <Label text="Gestion des occupants" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
+            <Label text="Occupant Management" style="-fx-font-size: 16pt; -fx-font-weight: bold;"/>
             <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;">
+            <Button fx:id="backButton" text="Back" style="-fx-font-weight: bold;">
                 <padding>
                     <Insets left="10" right="10" top="5" bottom="5"/>
                 </padding>
@@ -26,66 +26,66 @@
 
             <HBox spacing="10">
                 <VBox spacing="5">
-                    <Label text="Prénom" />
+                    <Label text="First name" />
                     <TextField fx:id="firstNameField" />
 
-                    <Label text="Nom" />
+                    <Label text="Last name" />
                     <TextField fx:id="lastNameField" />
 
-                    <Label text="Âge" />
+                    <Label text="Age" />
                     <TextField fx:id="ageField" />
                 </VBox>
 
                 <VBox spacing="5">
-                    <Label text="Lieu de naissance" />
+                    <Label text="Place of birth" />
                     <TextField fx:id="placeOfBirthField" />
 
-                    <Label text="Numéro de Sécurité Sociale" />
+                    <Label text="Social security number" />
                     <TextField fx:id="socialSecurityNumberField" />
 
-                    <Label text="Genre" />
+                    <Label text="Gender" />
                     <ComboBox fx:id="genderComboBox" prefWidth="150" />
                 </VBox>
                 <VBox spacing="5">
-                    <Label text="Numéro de rue" />
+                    <Label text="Street number" />
                     <TextField fx:id="streetNumberField" />
    
-                    <Label text="Nom de rue" />
+                    <Label text="Street name" />
                     <TextField fx:id="streetNameField" />
                 </VBox>
                 <VBox spacing="5">
-                    <Label text="Code postal" />
+                    <Label text="Postal code" />
                     <TextField fx:id="postalCodeField" />
 
-                    <Label text="Ville" />
+                    <Label text="City" />
                     <TextField fx:id="cityNameField" />
                 </VBox>
             </HBox>
 
-            <!-- Ajout des champs d'adresse et du bouton -->
+            <!-- Adding text fields and buttons -->
             <HBox spacing="10" />
 
             <HBox spacing="10">
                 <padding>
                     <Insets left="130" right="20"/>
                 </padding>
-                <Button fx:id="addButton" text="Ajouter" />
-                <Button fx:id="updateButton" text="Mettre à jour" />
-                <Button fx:id="deleteButton" text="Supprimer" />
+                <Button fx:id="addButton" text="Add person" />
+                <Button fx:id="updateButton" text="Update person" />
+                <Button fx:id="deleteButton" text="Delete person" />
                 <VBox alignment="bottom_center" spacing="5">
-                    <Button fx:id="addAddressButton" text="Ajouter adresse" />
+                    <Button fx:id="addAddressButton" text="Add address" />
                 </VBox>
             </HBox>
 
             <TableView fx:id="personTableView" prefHeight="250" prefWidth="700">
                 <columns>
-                    <TableColumn fx:id="firstNameCol" prefWidth="100" text="Prénom" />
-                    <TableColumn fx:id="lastNameCol" prefWidth="100" text="Nom" />
-                    <TableColumn fx:id="ageCol" prefWidth="50" text="Âge" />
-                    <TableColumn fx:id="genderCol" prefWidth="80" text="Genre" />
-                    <TableColumn fx:id="placeOfBirthCol" prefWidth="150" text="Lieu de naissance" />
-                    <TableColumn fx:id="socialSecurityNumberCol" prefWidth="170" text="N° Sécurité Sociale" />
-                    <TableColumn fx:id="addressCol" prefWidth="220" text="Adresse" />
+                    <TableColumn fx:id="firstNameCol" prefWidth="100" text="First name" />
+                    <TableColumn fx:id="lastNameCol" prefWidth="100" text="Last name" />
+                    <TableColumn fx:id="ageCol" prefWidth="50" text="Age" />
+                    <TableColumn fx:id="genderCol" prefWidth="80" text="Gender" />
+                    <TableColumn fx:id="placeOfBirthCol" prefWidth="150" text="Place of birth" />
+                    <TableColumn fx:id="socialSecurityNumberCol" prefWidth="170" text="Social security N°" />
+                    <TableColumn fx:id="addressCol" prefWidth="220" text="Address" />
                 </columns>
             </TableView>
         </VBox>

@@ -75,7 +75,7 @@ public class PersonDao {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Erreur lors de l'insertion de la personne dans la base de données: " + e.getMessage());
+            System.err.println("Error when trying to insert person in database: " + e.getMessage());
         }
     }
 
@@ -88,7 +88,7 @@ public class PersonDao {
      */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
-            throw new IllegalArgumentException("L'ID de la personne est requis pour la mise à jour");
+            throw new IllegalArgumentException("ID Person is required for update");
         }
 
         StringBuilder sqlBuilder = new StringBuilder("UPDATE person SET ");
@@ -132,7 +132,7 @@ public class PersonDao {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Erreur lors de la mise à jour de la personne: " + e.getMessage());
+            System.err.println("Error when trying to update person: " + e.getMessage());
         }
     }
 
@@ -212,7 +212,7 @@ public class PersonDao {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Erreur lors de la suppression de la personne: " + e.getMessage());
+            System.err.println("Error when trying to delete person: " + e.getMessage());
         }
     }
 

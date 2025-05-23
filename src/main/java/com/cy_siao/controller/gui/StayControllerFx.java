@@ -85,11 +85,11 @@ public class StayControllerFx implements Initializable {
         ObservableList<Bed> observableBedList = FXCollections.observableArrayList(bedList);
         bedIdField.setItems(observableBedList);
 
-        // Initialisation des combobox et tableaux
+
         stayList = FXCollections.observableArrayList(stayService.getAllStays());
         stayTableView.setItems(stayList);
 
-        // Configuration des boutons
+
         addButton.setOnAction(e -> handleAddStay());
         updateButton.setOnAction(e -> handleUpdateStay());
         deleteButton.setOnAction(e -> handleDeleteStay());
@@ -97,7 +97,7 @@ public class StayControllerFx implements Initializable {
         backButton.setOnAction(e -> handleBackButton());
 
 
-        // Configuration des colonnes du tableau
+
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         arrivalDateCol.setCellValueFactory(new PropertyValueFactory<>("dateArrival"));
         departureDateCol.setCellValueFactory(new PropertyValueFactory<>("dateDeparture"));
@@ -195,7 +195,7 @@ public class StayControllerFx implements Initializable {
     }
 
     private void handleSearchStay() {
-        // Implémentez la logique de recherche selon vos besoins
+
         showAlert("Search functionality to be implemented", Alert.AlertType.INFORMATION);
     }
 
@@ -220,7 +220,7 @@ public class StayControllerFx implements Initializable {
             && !arrival.isAfter(departure)) {
             
             try {
-                // Récupère les lits disponibles pour la période et le genre
+
                 BedDao bedDaoTest = new BedDao();
                 List<Bed> allBeds = bedDaoTest.findAll();
                 stayService.connectStayToBed(allBeds);
@@ -231,16 +231,16 @@ public class StayControllerFx implements Initializable {
                     }
                 }
 
-                // Met à jour la ComboBox
+
                 ObservableList<Bed> observableBeds = FXCollections.observableArrayList(availableBeds);
                 bedIdField.setItems(observableBeds);
                 
-                // Configure l'affichage dans la ComboBox
+
                 bedIdField.setCellFactory(param -> new ListCell<Bed>() {
                     @Override
                     protected void updateItem(Bed bed, boolean empty) {
                         super.updateItem(bed, empty);
-                        setText(empty || bed == null ? null : "Lit #" + bed.getId() + " - Chambre " + bed.getIdRoom());
+                        setText(empty || bed == null ? null : "Bed #" + bed.getId() + " - Room " + bed.getIdRoom());
                     }
                 });
                 
@@ -248,7 +248,7 @@ public class StayControllerFx implements Initializable {
                     @Override
                     protected void updateItem(Bed bed, boolean empty) {
                         super.updateItem(bed, empty);
-                        setText(empty || bed == null ? null : "Lit #" + bed.getId() + " - Chambre " + bed.getIdRoom());
+                        setText(empty || bed == null ? null : "Bed #" + bed.getId() + " - Room " + bed.getIdRoom());
                     }
                 });
                 
@@ -279,7 +279,7 @@ public class StayControllerFx implements Initializable {
         if (backButton == null) backButton = new Button("Back");
         if (stayTableView == null) stayTableView = new TableView<>();
 
-        // Colonnes du tableau si non initialisées
+
         if (stayTableView.getColumns().isEmpty()) {
             idCol = new TableColumn<>("ID");
             arrivalDateCol = new TableColumn<>("Arrival");

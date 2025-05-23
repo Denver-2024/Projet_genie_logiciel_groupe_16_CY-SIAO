@@ -153,7 +153,7 @@ public class CLIView {
      * @param message The error message to display
      */
     public void showError(String message) {
-        System.err.println("Erreur : " + message);
+        System.err.println("Error : " + message);
     }
 
     /**

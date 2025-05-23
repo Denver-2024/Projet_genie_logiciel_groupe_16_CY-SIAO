@@ -76,7 +76,7 @@ public class StayService {
 
         RestrictionRoomDao restrictionRoomDao = new RestrictionRoomDao();
         List<RestrictionRoom> restrictions;
-        restrictions = restrictionRoomDao.findAll();
+        restrictions = restrictionRoomDao.findByIdRoom(room.getId());
 
         if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
             if (bed.isAvailable(arrival, departure)){

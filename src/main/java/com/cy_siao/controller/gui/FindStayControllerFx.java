@@ -1,10 +1,12 @@
 package com.cy_siao.controller.gui;
 
 import com.cy_siao.model.Room;
+import com.cy_siao.model.Bed;
 import com.cy_siao.model.person.Person;
 import com.cy_siao.view.ViewManager;
 import com.cy_siao.service.PersonService;
 import com.cy_siao.service.StayService;
+import com.cy_siao.service.BedService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -172,6 +174,20 @@ public class FindStayControllerFx implements Initializable {
                 System.out.println("Reservation des sejours a mettre ici");
                 LocalDate arrivalDate = date;
                 LocalDate departureDate = date.plusDays(nbDay);
+                BedService bedService = new BedService();
+                StayService stayService = new StayService();
+                List<Bed> allBeds = bedService.getAllBeds();
+                List<Person> lstPerson = new ArrayList<>();
+                lstPerson.addAll(selectedPersons);
+                for (Person person : lstPerson){
+                    for (Bed bed : allBeds){
+                        if (bed.getIdRoom() == room.getId()){
+                            if (stayService.isAssignable(person, bed, arrivalDate, departureDate)){
+                                stayService.assignPersonToBed(person, bed, arrivalDate, departureDate);
+                            }
+                        }
+                    }
+                }
             }
         });
     }

@@ -183,12 +183,17 @@ public class StayControllerFx implements Initializable {
         }
     }
 
-    private void handleDeleteStay() {
+    private void handleDeleteStay(){
         Stay selectedStay = stayTableView.getSelectionModel().getSelectedItem();
         if (selectedStay != null) {
-            stayService.deleteStay(selectedStay);
-            stayList.remove(selectedStay);
-            showAlert("Stay deleted successfully", Alert.AlertType.INFORMATION);
+            try{
+                stayService.deleteStay(selectedStay);
+                stayTableView.refresh();
+                clearFields();
+                showAlert("Stay deleted successfully", Alert.AlertType.INFORMATION);
+            } catch (Exception e){
+                showAlert("Error in deleting" + e.getMessage(), Alert.AlertType.ERROR);
+            }
         } else {
             showAlert("Please select a stay to delete", Alert.AlertType.WARNING);
         }

@@ -38,7 +38,11 @@ public class RestrictionTypeDao {
             pstmt.setString(1, restriction.getLabel());
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
-            pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1)); // "M" or "F"
+            if (restriction.getGenderRestriction() != null) {
+                pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1));
+            } else {
+                pstmt.setNull(4, java.sql.Types.VARCHAR); // ou pstmt.setString(4, null);
+            }// "M" or "F"
             pstmt.executeUpdate();
 
             ResultSet rs = pstmt.getGeneratedKeys();

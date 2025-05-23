@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Adding comment and docs for the javadoc">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="sql and merge conflict">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BDDprojetJava (2).sql" beforeDir="false" afterPath="$PROJECT_DIR$/BDDprojetJava (2).sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/EligibilityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/StayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748018546846</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="sql and merge conflict">
+      <option name="closed" value="true" />
+      <created>1748021802635</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1748021802635</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +450,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase." />
     <MESSAGE value="Update StayController to include CLI options menu" />
     <MESSAGE value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
     <MESSAGE value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
@@ -470,6 +474,7 @@
     <MESSAGE value="Refactor RoomControllerFx and improve restriction handling&#10;&#10;Renamed min/max age fields for clarity in RoomControllerFx. Removed redundant DAO initialization and moved restriction creation logic to RoomService for consistency. Added logging and refreshed the table view after adding restrictions." />
     <MESSAGE value="add dao for all the complex sql" />
     <MESSAGE value="Adding comment and docs for the javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding comment and docs for the javadoc" />
+    <MESSAGE value="sql and merge conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="sql and merge conflict" />
   </component>
 </project>

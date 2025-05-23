@@ -38,7 +38,11 @@ public class RestrictionTypeDao {
             pstmt.setString(1, restriction.getLabel());
             pstmt.setObject(2, restriction.getMinAge(), Types.INTEGER);
             pstmt.setObject(3, restriction.getMaxAge(), Types.INTEGER);
-            pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1)); // "M" or "F"
+            if (restriction.getGenderRestriction() != null) {
+                pstmt.setString(4, restriction.getGenderRestriction().name().substring(0, 1));
+            } else {
+                pstmt.setNull(4, java.sql.Types.VARCHAR); // ou pstmt.setString(4, null);
+            }// "M" or "F"
             pstmt.executeUpdate();
 
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -115,14 +119,19 @@ public class RestrictionTypeDao {
      *
      * @param id The ID of the restriction type to delete
      * @throws SQLException if a database access error occurs
+     * @return true if the delete is a success
      */
-    public void delete(int id) throws SQLException {
+    public boolean delete(int id) throws SQLException {
         String sql = "DELETE FROM restrictiontype WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error when trying to delete restriction " + e.getMessage());
+            return false;
         }
     }
 

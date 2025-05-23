@@ -7,17 +7,31 @@ import com.cy_siao.view.CLIView;
 
 public class RoomController {
 
+    // Service for bed-related operations
     private BedService bedService;
+    // Service for room-related operations
     private RoomService roomService;
+    // Controller for bed operations (not used here)
     private BedController bedController;
+    // Controller for room operations (not used here)
     private RoomController roomController;
+    // CLI view for user interaction
     private CLIView view;
 
+    /**
+     * Constructs a new RoomController and initializes services.
+     */
     public RoomController(){
         this.bedService = new BedService();
         this.roomService = new RoomService();
     }
 
+    /**
+     * Starts the room management menu loop.
+     * Handles user choices for listing beds, creating, updating, and deleting rooms.
+     *
+     * @param view the CLIView instance for user interaction
+     */
     public void start(CLIView view){
         int option;
         this.view=view;
@@ -41,6 +55,7 @@ public class RoomController {
         
     }
 
+    // Updates an existing room after prompting the user for new values.
     private void updateRoom(){
         int idRoom = view.askInt("Give id room which you want to edit:");
         String name = view.askString("Give new name of the room - or '' if you don't want to change");
@@ -55,12 +70,14 @@ public class RoomController {
         roomService.updateRoom(room);
     }
 
+    // Creates a new room by prompting the user for details.
     private void createRoom(){
         String nameRoom = view.askString("Give name of the room");
         int nbBedsMax = view.askInt("Give number max of bed in the room");
         roomService.createRoom(new Room(nameRoom, nbBedsMax));
     }
 
+    // Deletes a room after searching by id.
     private void deleteRoom(){
         int id = Integer.parseInt(view.askString("Enter room id: "));
         Room room = roomService.getRoomById(id);

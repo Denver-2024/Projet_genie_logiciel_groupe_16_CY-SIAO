@@ -310,8 +310,14 @@ public class PersonControllerFx implements Initializable {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
             personTableView.getSelectionModel().clearSelection();
-            personList.remove(selectedPerson);
-            personService.deletePerson(selectedPerson.getId());
+            boolean success = personService.deletePerson(selectedPerson.getId());
+            if (success){
+                showAlert("Success delete");
+                personList.remove(selectedPerson);
+            }
+            else{
+                showAlert("It is currently impossible to delete this data, it is probably being used elsewhere. Delete it below.");
+            }
         } else {
             showAlert("Please select a person to delete");
         }

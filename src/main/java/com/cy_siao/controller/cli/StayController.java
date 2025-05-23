@@ -13,17 +13,31 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class StayController {
+    // Service for stay-related operations
     private StayService stayService;
+    // Service for person-related operations
     private PersonService personService;
+    // Service for bed-related operations
     private BedService bedService;
+    // CLI view for user interaction
     private CLIView view;
 
+    /**
+     * Constructs a new StayController and initializes services.
+     */
     public StayController() {
         this.stayService = new StayService();
         this.personService = new PersonService();
         this.bedService = new BedService();
     }
 
+    /**
+     * Starts the stay management menu loop.
+     * Handles user choices for assigning, unassigning, freeing beds, and listing stays.
+     *
+     * @param view the CLIView instance for user interaction
+     * @throws SQLException if a database access error occurs
+     */
     public void start(CLIView view) throws SQLException {
         this.view = view;
         int option;
@@ -38,6 +52,7 @@ public class StayController {
         } while (option != 0);
     }
 
+    // Assigns a person to a bed for a stay.
     private void assignStay() throws SQLException {
         view.showMessage("=== Assigner une personne à un lit ===");
         Person person = selectPerson();
@@ -56,6 +71,7 @@ public class StayController {
         }
     }
 
+    // Unassigns a person from a bed.
     private void unassignStay() throws SQLException {
         view.showMessage("=== Désassigner une personne d'un lit ===");
         Person person = selectPerson();
@@ -71,6 +87,7 @@ public class StayController {
         }
     }
 
+    // Frees a bed from a stay.
     private void freeBed() throws SQLException {
         view.showMessage("=== Libérer un lit===");
         Person person = selectPerson();
@@ -83,6 +100,7 @@ public class StayController {
         view.showMessage("Lit libéré.");
     }
 
+    // Lists all stays.
     private void listAllStays() {
         List<Stay> stays = stayService.getAllStays(); // à ajouter dans StayService
         if (stays.isEmpty()) {
@@ -92,6 +110,7 @@ public class StayController {
         }
     }
 
+    // Prompts user to select a person.
     private Person selectPerson() throws SQLException {
         String lastName = view.askString("Nom : ");
         String firstName = view.askString("Prénom : ");
@@ -110,6 +129,7 @@ public class StayController {
         return person;
     }
 
+    // Prompts user to select a bed.
     private Bed selectBed() throws SQLException
     {
         int id = view.askInt("ID du lit : ");

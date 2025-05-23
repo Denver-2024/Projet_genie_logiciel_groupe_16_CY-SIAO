@@ -81,9 +81,10 @@ public class RoomService {
      * Deletes a room from the database
      *
      * @param id The ID of the room to delete
+     * @return true of the delete is a success
      */
-    public void deleteRoom(int id) {
-        roomDao.delete(id);
+    public boolean deleteRoom(int id) {
+        return roomDao.delete(id);
     }
 
     // BUSINESS METHODS

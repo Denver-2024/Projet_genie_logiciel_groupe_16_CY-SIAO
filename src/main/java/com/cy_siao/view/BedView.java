@@ -16,11 +16,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
+/**
+ * View class for displaying bed-related UI components.
+ * Loads the FXML layout and manages the associated controller.
+ */
 public class BedView {
     
-    private Parent view;
-    private BedControllerFx controller;
+    private Parent view; // Root node of the view
+    private BedControllerFx controller; // Controller for the bed view
 
+    /**
+     * Constructs the BedView, loading the FXML and setting up the controller.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public BedView(ViewManager viewManager) {
         // Charge le FXML avec contrôleur injecté
         this.controller = new BedControllerFx();
@@ -37,6 +46,7 @@ public class BedView {
             controller = loader.getController();
             controller.setViewManager(viewManager);
 
+            /*
             VBox layout= controller.getView();
 
             Button planningButton = new Button("See the Beds Schedule");
@@ -47,16 +57,28 @@ public class BedView {
             });
             layout.getChildren().add(planningButton);
             this.view=layout;
+
+             */
             
         } catch (IOException e) {
             throw new RuntimeException("Failed to load FXML view", e);
         }
     }
 
+    /**
+     * Gets the root node of the bed view.
+     *
+     * @return The root Parent node
+     */
     public Parent getView() {
         return view;
     }
 
+    /**
+     * Gets the controller associated with this view.
+     *
+     * @return The BedControllerFx instance
+     */
     public BedControllerFx getController() {
         return controller;
     }

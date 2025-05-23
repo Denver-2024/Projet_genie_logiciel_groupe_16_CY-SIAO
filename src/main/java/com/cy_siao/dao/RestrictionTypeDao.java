@@ -8,14 +8,28 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object class for handling RestrictionType entities in the database.
+ * Provides CRUD operations for RestrictionType objects.
+ */
 public class RestrictionTypeDao {
 
+    //Database utility instance for handling connections
     private final DatabaseUtil databaseUtil;
 
+    /**
+     * Default constructor that initializes the database utility.
+     */
     public RestrictionTypeDao() {
         this.databaseUtil = new DatabaseUtil();
     }
 
+    /**
+     * Creates a new restriction type record in the database.
+     *
+     * @param restriction The RestrictionType object to be created
+     * @throws SQLException if a database access error occurs
+     */
     public void create(RestrictionType restriction) throws SQLException {
         String sql = "INSERT INTO restrictiontype (label, minage, maxage, genderrestriction) VALUES (?, ?, ?, ?)";
         try (Connection conn = databaseUtil.getConnection();
@@ -34,6 +48,13 @@ public class RestrictionTypeDao {
         }
     }
 
+    /**
+     * Retrieves a restriction type by its ID from the database.
+     *
+     * @param id The ID of the restriction type to find
+     * @return The RestrictionType object if found, null otherwise
+     * @throws SQLException if a database access error occurs
+     */
     public RestrictionType findById(int id) throws SQLException {
         String sql = "SELECT * FROM restrictiontype WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
@@ -49,6 +70,12 @@ public class RestrictionTypeDao {
         return null;
     }
 
+    /**
+     * Retrieves all restriction types from the database.
+     *
+     * @return List of all RestrictionType objects
+     * @throws SQLException if a database access error occurs
+     */
     public List<RestrictionType> findAll() throws SQLException {
         List<RestrictionType> restrictions = new ArrayList<>();
         String sql = "SELECT * FROM restrictiontype";
@@ -63,6 +90,12 @@ public class RestrictionTypeDao {
         return restrictions;
     }
 
+    /**
+     * Updates an existing restriction type in the database.
+     *
+     * @param restriction The RestrictionType object to update
+     * @throws SQLException if a database access error occurs
+     */
     public void update(RestrictionType restriction) throws SQLException {
         String sql = "UPDATE restrictiontype SET label = ?, minage = ?, maxage = ?, genderrestriction = ? WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
@@ -77,6 +110,12 @@ public class RestrictionTypeDao {
         }
     }
 
+    /**
+     * Deletes a restriction type from the database.
+     *
+     * @param id The ID of the restriction type to delete
+     * @throws SQLException if a database access error occurs
+     */
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM restrictiontype WHERE id = ?";
         try (Connection conn = databaseUtil.getConnection();
@@ -87,11 +126,13 @@ public class RestrictionTypeDao {
         }
     }
 
+    //Extracts a RestrictionType object from a ResultSet
     private RestrictionType extractFromResultSet(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         return getRestrictionType(rs, id);
     }
 
+    //Helper method to create a RestrictionType from ResultSet data
     static RestrictionType getRestrictionType(ResultSet rs, int id) throws SQLException {
         String label = rs.getString("label");
         Integer minAge = rs.getObject("minage") != null ? rs.getInt("minage") : null;

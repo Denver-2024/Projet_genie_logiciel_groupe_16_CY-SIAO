@@ -1,7 +1,9 @@
 package com.cy_siao.controller.gui;
 
 import com.cy_siao.model.Bed;
+import com.cy_siao.model.Room;
 import com.cy_siao.service.BedService;
+import com.cy_siao.service.RoomService;
 import com.cy_siao.view.ViewManager;
 
 import javafx.collections.FXCollections;
@@ -13,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class BedControllerFx implements Initializable {
@@ -20,7 +24,7 @@ public class BedControllerFx implements Initializable {
     private ViewManager viewManager;
 
     @FXML
-    private TextField idRoomField;
+    private ComboBox<Room> idRoomField;
 
     @FXML
     private CheckBox isDoubleCheckBox;
@@ -46,13 +50,24 @@ public class BedControllerFx implements Initializable {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Button planningButton;
+
     private ObservableList<Bed> bedList = FXCollections.observableArrayList();
+    private List<Room> roomList;
     private BedService bedService = new BedService();
+    private RoomService roomService = new RoomService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bedList = FXCollections.observableArrayList(bedService.getAllBeds());
         bedTableView.setItems(bedList);
+
+
+        roomList = new ArrayList<>();
+        roomList= roomService.getAllRooms();
+        ObservableList<Room> observableRoomList = FXCollections.observableArrayList(roomList);
+        idRoomField.setItems(observableRoomList);
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         idRoomCol.setCellValueFactory(new PropertyValueFactory<>("idRoom"));
@@ -61,6 +76,7 @@ public class BedControllerFx implements Initializable {
         addButton.setOnAction(e -> handleAddBed());
         deleteButton.setOnAction(e -> handleDeleteBed());
         backButton.setOnAction(e -> handleBackButton());
+        planningButton.setOnAction( e -> viewManager.showPlanningView() );
     }
 
     public void setViewManager(ViewManager viewManager){
@@ -73,14 +89,14 @@ public class BedControllerFx implements Initializable {
 
     private void handleAddBed() {
         try {
-            int idRoom = Integer.parseInt(idRoomField.getText());
+            int idRoom =  idRoomField.getValue().getId();
             boolean isDouble = isDoubleCheckBox.isSelected();
 
             Bed bed = new Bed(idRoom, isDouble);
             bedList.add(bed);
             bedService.createBed(bed);
 
-            idRoomField.clear();
+            idRoomField.setValue(null);
             isDoubleCheckBox.setSelected(false);
         } catch (NumberFormatException e) {
             showAlert("Invalid Room ID");
@@ -106,9 +122,10 @@ public class BedControllerFx implements Initializable {
         alert.showAndWait();
     }
 
+    /*
     public VBox getView() {
         // Initialisation des composants s'ils ne sont pas instanciés par FXML
-        if (idRoomField == null) idRoomField = new TextField();
+        if (idRoomField == null) idRoomField = new ComboBox<>();
         if (isDoubleCheckBox == null) isDoubleCheckBox = new CheckBox();
         if (addButton == null) addButton = new Button("Add Bed");
         if (deleteButton == null) deleteButton = new Button("Delete Bed");
@@ -145,4 +162,6 @@ public class BedControllerFx implements Initializable {
 
         return layout;
     }
+
+     */
 }

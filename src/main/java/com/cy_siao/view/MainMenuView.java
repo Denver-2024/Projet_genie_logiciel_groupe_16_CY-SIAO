@@ -12,11 +12,20 @@ import java.net.URL;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * View class for displaying the main menu UI components.
+ * Loads the FXML layout and manages the associated controller.
+ */
 public class MainMenuView {
     
-    private final Parent view;
-    private MainMenuController controller;
+    private final Parent view; // Root node of the view
+    private MainMenuController controller; // Controller for the main menu view
 
+    /**
+     * Constructs the MainMenuView, loading the FXML and setting up the controller.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public MainMenuView(ViewManager viewManager) {
         // Charge le FXML avec contrôleur injecté
         this.controller = new MainMenuController();
@@ -38,10 +47,20 @@ public class MainMenuView {
         }
     }
 
+    /**
+     * Gets the root node of the main menu view.
+     *
+     * @return The root Parent node
+     */
     public Parent getView() {
         return view;
     }
 
+    /**
+     * Gets the controller associated with this view.
+     *
+     * @return The MainMenuController instance
+     */
     public MainMenuController getController() {
         return controller;
     }

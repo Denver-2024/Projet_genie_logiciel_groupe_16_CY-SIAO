@@ -14,8 +14,7 @@
 <?import javafx.scene.text.TextFlow?>
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.cy_siao.controller.gui.MainMenuController"
-            stylesheets="@styles/style.css" >
+            fx:controller="com.cy_siao.controller.gui.MainMenuController">
 
     <!-- TOP HEADER -->
     <top>

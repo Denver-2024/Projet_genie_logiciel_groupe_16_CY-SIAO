@@ -13,11 +13,20 @@ import java.net.URL;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * View class for displaying the dashboard UI components.
+ * Loads the FXML layout and manages the associated controller.
+ */
 public class DashboardView{
 
-    private Parent view;
-    private DashboardController controller;
+    private Parent view; // Root node of the view
+    private DashboardController controller; // Controller for the dashboard view
 
+    /**
+     * Constructs the DashboardView, loading the FXML and setting up the controller.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public DashboardView(ViewManager viewManager) {
         // Charge le FXML avec contrôleur injecté
         this.controller = new DashboardController();
@@ -39,10 +48,20 @@ public class DashboardView{
         }
     }
 
+    /**
+     * Gets the root node of the dashboard view.
+     *
+     * @return The root Parent node
+     */
     public Parent getView() {
         return view;
     }
 
+    /**
+     * Gets the controller associated with this view.
+     *
+     * @return The DashboardController instance
+     */
     public DashboardController getController() {
         return controller;
     }

@@ -1,5 +1,6 @@
 package com.cy_siao.service;
 
+import com.cy_siao.dao.RestrictionRoomDao;
 import com.cy_siao.dao.RestrictionTypeDao;
 import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.Room;
@@ -10,40 +11,46 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * 
+ * Service handling eligibility checks for room assignments based on restrictions
  */
 public class EligibilityService {
+    //Data access object for restriction types
     private RestrictionTypeDao restrictionTypeDao;
+    //Data access object for room restrictions
+    private RestrictionRoomDao restrictionRoomDao;
 
     /**
-     * 
+     * Constructs a new EligibilityService with required DAOs
      */
     public EligibilityService() {
         this.restrictionTypeDao = new RestrictionTypeDao();
+        this.restrictionRoomDao = new RestrictionRoomDao();
     }
 
     /**
-     * 
-     * @param person
-     * @param room
-     * @param restrictions
-     * @return
+     * Check if the person is eligible to be assigned to a specific room based on restrictions
+     *
+     * @param person Person to check eligibility for
+     * @param room   Room to check restrictions against
+     * @return true if the person meets all room restrictions, false otherwise
+     * @throws SQLException if a database access error occurs
      */
-    public boolean isPersonAllowedInRoom(Person person, Room room, List<RestrictionRoom> restrictions) {
+    public boolean isPersonAllowedInRoom(Person person, Room room) throws SQLException {
+        List<RestrictionRoom> restrictions = restrictionRoomDao.findByRoomId(room.getId());
         if (restrictions == null || restrictions.isEmpty()) {
-            return true; // Pas de restrictions = accès autorisé
+            return true; // No restrictions means access is allowed
         }
 
         boolean finalResult = restrictions.get(0).getLogicOperator().equals("AND");
 
         for (RestrictionRoom rr : restrictions) {
             try {
-                // Charger le RestrictionType depuis la base de données
+                // Load RestrictionType from database
                 RestrictionType restriction = restrictionTypeDao.findById(rr.getIdRestrictionType());
                 if (restriction == null) {
-                    continue; // Ignorer les restrictions invalides
+                    continue; // Skip invalid restrictions
                 }
-                
+
                 boolean result = matchesRestriction(person, restriction);
 
                 if (rr.getLogicOperator().equalsIgnoreCase("AND")) {
@@ -61,14 +68,15 @@ public class EligibilityService {
     }
 
     /**
-     * 
-     * @param person
-     * @param restriction
-     * @return
+     * Evaluates if a person matches the given restriction criteria
+     *
+     * @param person      Person to evaluate
+     * @param restriction Restriction criteria to check against
+     * @return true if person matches all restriction criteria, false otherwise
      */
     private boolean matchesRestriction(Person person, RestrictionType restriction) {
         if (restriction == null) {
-            return true; // Pas de restriction = autorisation accordée
+            return true; // No restriction means access is allowed
         }
 
         boolean ageOk = true;
@@ -76,7 +84,7 @@ public class EligibilityService {
 
         Integer minAge = restriction.getMinAge();
         Integer maxAge = restriction.getMaxAge();
-        
+
         if (minAge != null || maxAge != null) {
             int age = person.getAge();
             if (minAge != null && age < minAge) ageOk = false;

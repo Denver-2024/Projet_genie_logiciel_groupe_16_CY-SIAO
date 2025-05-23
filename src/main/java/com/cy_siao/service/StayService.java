@@ -17,7 +17,8 @@ import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.person.Person;
 
 /**
- * 
+ * The service who manage stay
+ * It check if the person is eligible in the room where the bed is at the choose date
  */
 public class StayService {
     private EligibilityService eligibilityService;
@@ -27,7 +28,7 @@ public class StayService {
     private PersonService personService;
 
     /**
-     * 
+     * The constructor
      */
     public StayService() {
         this.eligibilityService = new EligibilityService();
@@ -44,7 +45,7 @@ public class StayService {
      * @param departure end date
      * @return true if Person is correctly assign to the bed
      */
-    public boolean assignPersonToBed(Person person, Bed bed, LocalDate arrival, LocalDate departure) {
+    public boolean assignPersonToBed(Person person, Bed bed, LocalDate arrival, LocalDate departure) throws SQLException {
         
         if (this.isAssignable(person, bed, arrival, departure)){
             Stay stay = new Stay(bed, person, arrival, departure);
@@ -62,22 +63,20 @@ public class StayService {
      * Check if the person is eligible at the room where the bed is
      * And check if the bed is not assigned during arrival departure
      * And check if the person is not assigned at an other bed during a part of sejour
-     * @param person
-     * @param bed
-     * @param arrival
-     * @param departure
+     * @param person person who needs to be assigned during arrival - departure
+     * @param bed bed selected to be assigned at the person
+     * @param arrival start date
+     * @param departure end date
      * @return true if we can assign the person at the bed during arrival - departure
      */
-    public boolean isAssignable(Person person, Bed bed, LocalDate arrival, LocalDate departure){
+    public boolean isAssignable(Person person, Bed bed, LocalDate arrival, LocalDate departure) throws SQLException {
 
         Room room;
         room = roomDao.findById(bed.getIdRoom());
 
         RestrictionRoomDao restrictionRoomDao = new RestrictionRoomDao();
-        List<RestrictionRoom> restrictions;
-        restrictions = restrictionRoomDao.findAll();
 
-        if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
+        if (eligibilityService.isPersonAllowedInRoom(person, room)){
             if (bed.isAvailable(arrival, departure)){
                 return true;
             };

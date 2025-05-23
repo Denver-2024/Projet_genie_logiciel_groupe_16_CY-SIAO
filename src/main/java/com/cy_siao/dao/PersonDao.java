@@ -16,11 +16,17 @@ import java.util.List;
  * Create, Read, Update, and Delete (CRUD) operations for Person records.
  */
 public class PersonDao {
-    
+
+    /**
+     * Creates a new person record in the database
+     *
+     * @param person The Person object to be created in the database
+     * @throws SQLException If database access error occurs
+     */
     public void createPerson(Person person) {
         StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person (");
         List<Object> values = new ArrayList<>();
-        
+
         // Construction dynamique de la requête
         if (person.getFirstName() != null) {
             sqlBuilder.append("firstName,");
@@ -46,13 +52,13 @@ public class PersonDao {
             sqlBuilder.append("socialSecurityNumber,");
             values.add(person.getSocialSecurityNumber());
         }
-        
+
         // Suppression de la dernière virgule
         String sql = sqlBuilder.substring(0, sqlBuilder.length() - 1) + ") VALUES (" +
                 String.join(",", Collections.nCopies(values.size(), "?")) + ")";
-        
+
         try (Connection connection = DatabaseUtil.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             // Définition des paramètres
             for (int i = 0; i < values.size(); i++) {
@@ -74,17 +80,20 @@ public class PersonDao {
     }
 
     /**
-     * The method who update a person in tables
-     * @param person the person to update
+     * Updates an existing person record in the database
+     *
+     * @param person The Person object containing updated information
+     * @throws IllegalArgumentException If person ID is invalid
+     * @throws SQLException             If database access error occurs
      */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
             throw new IllegalArgumentException("L'ID de la personne est requis pour la mise à jour");
         }
-        
+
         StringBuilder sqlBuilder = new StringBuilder("UPDATE person SET ");
         List<Object> values = new ArrayList<>();
-        
+
         if (person.getFirstName() != null) {
             sqlBuilder.append("firstName = ?,");
             values.add(person.getFirstName());
@@ -109,18 +118,18 @@ public class PersonDao {
             sqlBuilder.append("socialSecurityNumber = ?,");
             values.add(person.getSocialSecurityNumber());
         }
-        
+
         // Suppression de la dernière virgule et ajout de la clause WHERE
         String sql = sqlBuilder.substring(0, sqlBuilder.length() - 1) + " WHERE id = ?";
         values.add(person.getId());
-        
+
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            
+
             for (int i = 0; i < values.size(); i++) {
                 statement.setObject(i + 1, values.get(i));
             }
-            
+
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erreur lors de la mise à jour de la personne: " + e.getMessage());
@@ -130,8 +139,9 @@ public class PersonDao {
     /**
      * Retrieves a Person from the database by its ID.
      *
-     * @param id the ID of the person to retrieve
-     * @return the retrieved Person entity, or null if not found
+     * @param id The ID of the person to retrieve
+     * @return The Person object if found, null otherwise
+     * @throws SQLException If database access error occurs
      */
     public Person findById(int id) {
         String sql = "SELECT * FROM person WHERE id = ?";
@@ -149,10 +159,10 @@ public class PersonDao {
     }
 
     /**
-     * Retrieves all Person records from the database.
-     * Iterates through the result set and maps each row to a Person object.
+     * Retrieves all Person records from the database with their associated addresses.
      *
-     * @return a list of all persons found in the database. Returns an empty list if no records are found.
+     * @return List of Person objects with their addresses, empty list if none found
+     * @throws SQLException If database access error occurs
      */
     public List<Person> findAll() {
         List<Person> persons = new ArrayList<>();
@@ -175,10 +185,7 @@ public class PersonDao {
         return persons;
     }
 
-    
-
-
-    // A method to extract a person from the result set
+    // Extracts person data from ResultSet
     private Person extractPersonFromResultSet(ResultSet rs) throws SQLException {
         Person person = new Person();
         person.setId(rs.getInt("id"));
@@ -191,10 +198,12 @@ public class PersonDao {
         person.setSocialSecurityNumber(rs.getLong("socialSecurityNumber"));
         return person;
     }
+
     /**
-     * Deletes a Person from the database by its ID.
+     * Deletes a person record from the database
      *
-     * @param id the ID of the person to delete
+     * @param id The ID of the person to delete
+     * @throws SQLException If database access error occurs
      */
     public void deletePerson(int id) {
         String sql = "DELETE FROM person WHERE id = ?";
@@ -207,7 +216,7 @@ public class PersonDao {
         }
     }
 
-
+    // Extracts address data from ResultSet 
     private Address extractAddressFromResultSet(ResultSet rs) throws SQLException {
         Address address = new Address();
         address.setId(rs.getInt("idAddress"));
@@ -217,5 +226,4 @@ public class PersonDao {
         address.setCityName(rs.getString("cityName"));
         return address;
     }
-
 }

@@ -20,64 +20,75 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+/**
+ * Controller class for managing rooms in the JavaFX UI.
+ * Handles room creation, updating, deletion and restriction management.
+ */
 public class RoomControllerFx implements Initializable {
 
+    // View manager for screen navigation
     private ViewManager viewManager;
 
     @FXML
     private TextField nameField1; // Room name
 
     @FXML
-    private Spinner<Integer> nbBedsMaxSpinner;
+    private Spinner<Integer> nbBedsMaxSpinner; // Max number of beds spinner
 
     @FXML
     private TextField nameField2; // Restriction name
 
     @FXML
-    private ComboBox<Gender> genderRestriction;
+    private ComboBox<Gender> genderRestriction; // Gender restriction dropdown
 
     @FXML
-    private TextField minAgeField; // Min age
+    private TextField minAgeField; // Min age restriction field
 
     @FXML
-    private TextField maxAgeField; // Max age
+    private TextField maxAgeField; // Max age restriction field
 
     @FXML
-    private Button addButton;
+    private Button addButton; // Add room button
 
     @FXML
-    private Button deleteButton;
+    private Button deleteButton; // Delete room button
 
     @FXML
-    private Button addRestrictionButton;
+    private Button addRestrictionButton; // Add restriction button
 
     @FXML
-    private Button updateButton;
+    private Button updateButton; // Update room button
 
     @FXML
-    private Button backButton;
+    private Button backButton; // Back navigation button
 
     @FXML
-    private ComboBox<String> logicOperator;
+    private ComboBox<String> logicOperator; // Logic operator dropdown
 
     @FXML
-    private TableView<Room> roomTableView;
+    private TableView<Room> roomTableView; // Room table view
 
     @FXML
-    private TableColumn<Room, Long> idCol;
+    private TableColumn<Room, Long> idCol; // Room ID column
 
     @FXML
-    private TableColumn<Room, String> nameCol;
+    private TableColumn<Room, String> nameCol; // Room name column
 
     @FXML
-    private TableColumn<Room, Integer> nbBedsMaxCol;
+    private TableColumn<Room, Integer> nbBedsMaxCol; // Max beds column
 
     @FXML
-    private TableColumn<Room, String> restrictionCol;
+    private TableColumn<Room, String> restrictionCol; // Restrictions column
 
-    private final ObservableList<Room> roomList = FXCollections.observableArrayList();
-    private final RoomService roomService = new RoomService();
+    private final ObservableList<Room> roomList = FXCollections.observableArrayList(); // Observable room list
+    private final RoomService roomService = new RoomService(); // Room service for data operations
 
+    /**
+     * Initializes the controller class. Sets up UI controls and loads initial data.
+     *
+     * @param location  The location used to resolve relative paths
+     * @param resources The resources used to localize the root object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Init Spinner
@@ -110,14 +121,21 @@ public class RoomControllerFx implements Initializable {
         backButton.setOnAction(e -> handleBackButton());
     }
 
+    /**
+     * Sets the view manager for screen navigation.
+     *
+     * @param viewManager The view manager to set
+     */
     public void setViewManager(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
 
-    private void handleBackButton(){
+    // Handles back button navigation
+    private void handleBackButton() {
         this.viewManager.showMainMenu();
     }
 
+    // Handles adding a new room
     @FXML
     private void handleAddRoom() {
         try {
@@ -138,6 +156,7 @@ public class RoomControllerFx implements Initializable {
         }
     }
 
+    // Handles adding restrictions to a room
     @FXML
     private void handleAddRestriction() {
         try {
@@ -149,7 +168,7 @@ public class RoomControllerFx implements Initializable {
 
 
             if ((restrictionName == null || restrictionName.trim().isEmpty()) &&
-                    gender == null && minAge == null && maxAge == null && operator==null) {
+                    gender == null && minAge == null && maxAge == null && operator == null) {
                 showAlert("At least one restriction field must be filled.");
                 return;
             }
@@ -165,8 +184,6 @@ public class RoomControllerFx implements Initializable {
             roomService.addRestrictionToRoom(selectedRoom, restriction);
             System.out.println("Added restriction to room: " + selectedRoom.getId());
             System.out.println("Restriction: " + restriction.getLabel());
-
-
 
             showAlert("Restriction added successfully");
 
@@ -185,6 +202,7 @@ public class RoomControllerFx implements Initializable {
         }
     }
 
+    // Handles updating an existing room
     @FXML
     private void handleUpdateRoom() {
         Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
@@ -225,6 +243,7 @@ public class RoomControllerFx implements Initializable {
         }
     }
 
+    // Handles deleting a room
     @FXML
     private void handleDeleteRoom() {
         Room selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
@@ -237,7 +256,7 @@ public class RoomControllerFx implements Initializable {
         }
     }
 
-
+    // Shows alert dialog with message
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Notification");

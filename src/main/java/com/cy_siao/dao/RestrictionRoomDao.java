@@ -95,6 +95,20 @@ public class RestrictionRoomDao {
             System.err.println("An error occurred when trying to delete RestrictionRoom: " + e.getMessage());
         }
         return null;  
-}
+    }
 
+    public List<RestrictionRoom> findByRoomId(int roomId) throws SQLException {
+        String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ?";
+        try( Connection conn = databaseUtil.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, roomId);
+            try( ResultSet rs = pstmt.executeQuery()){
+                List<RestrictionRoom> restrictionRooms = new ArrayList<>();
+                while(rs.next()){
+                    restrictionRooms.add(extractFromResultSet(rs));
+                }
+                return restrictionRooms;
+            }
+        }
+    }
 }

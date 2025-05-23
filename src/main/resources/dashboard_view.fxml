@@ -4,20 +4,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.cy_siao.controller.gui.DashboardController" prefWidth="800" prefHeight="600">
-    <VBox spacing="10" >
-        <Label text="État de l'agence" style="-fx-font-size: 20px;"/>
+<AnchorPane prefHeight="600" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.cy_siao.controller.gui.DashboardController" stylesheets="@styles/style.css">
+    <VBox spacing="10">
+        <Label style="-fx-font-size: 20px;" text="État de l'agence" />
 
         <HBox spacing="20">
-            <PieChart fx:id="pieOccupation" prefWidth="350"/>
+            <PieChart fx:id="pieOccupation" prefWidth="350" />
             <BarChart fx:id="barDepartures" prefWidth="400">
                 <xAxis>
-                    <CategoryAxis label="Statut"/>
+                    <CategoryAxis label="Statut" />
                 </xAxis>
                 <yAxis>
-                    <NumberAxis label="Nombre"/>
+                    <NumberAxis label="Nombre" />
                 </yAxis>
             </BarChart>
         </HBox>
+        <Button fx:id="backButton" text="Retour" style="-fx-font-weight: bold;"/>
     </VBox>
 </AnchorPane>

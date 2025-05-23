@@ -76,7 +76,7 @@ public class StayControllerFx implements Initializable {
         try {
             personList = personService.getAllPersons();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            showAlert("Error retrieving persons: " + e.getMessage(), Alert.AlertType.ERROR);
         }
         ObservableList<Person> observablePersonList = FXCollections.observableArrayList(personList);
         personIdField.setItems(observablePersonList);

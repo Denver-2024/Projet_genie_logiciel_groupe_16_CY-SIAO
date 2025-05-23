@@ -87,19 +87,6 @@ public class StayController {
         }
     }
 
-    // Frees a bed from a stay.
-    private void freeBed() throws SQLException {
-        view.showMessage("=== Libérer un lit===");
-        Person person = selectPerson();
-        if (person == null) return;
-
-        Bed bed = selectBed();
-        if (bed == null) return;
-
-        stayService.freeBed(bed);
-        view.showMessage("Lit libéré.");
-    }
-
     // Lists all stays.
     private void listAllStays() {
         List<Stay> stays = stayService.getAllStays(); // à ajouter dans StayService

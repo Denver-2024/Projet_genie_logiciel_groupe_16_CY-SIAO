@@ -119,13 +119,14 @@ public class Room {
      * Adds a bed to the room if there's space.
      *
      * @param bed The bed to add
-     * @throws IllegalStateException if room is at maximum capacity
+     * @return true if we add the bed
      */
-    public void addBed(Bed bed) {
+    public boolean addBed(Bed bed) {
         if (beds.size() < nbBedsMax) {
             beds.add(bed);
+            return true;
         } else {
-            throw new IllegalStateException("Maximum number of beds reached for this room.");
+            return false;
         }
     }
 

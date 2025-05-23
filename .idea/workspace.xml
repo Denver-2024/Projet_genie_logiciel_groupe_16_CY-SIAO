@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="sql and merge conflict">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Finish javadoc">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/StayControllerFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RestrictionTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/controller/gui/BedControllerFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RoomDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/dao/RoomDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/BedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cy_siao/service/BedService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +103,7 @@
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.App" />
       <module name="cy_siao" />
@@ -158,12 +164,20 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.Mainfx" />
         <item itemvalue="Application.GuiView" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -199,6 +213,7 @@
       <workItem from="1747901383041" duration="647000" />
       <workItem from="1747904784439" duration="6175000" />
       <workItem from="1747916749014" duration="2049000" />
+      <workItem from="1748028202718" duration="3973000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor SQL queries and improve entity handling&#10;&#10;Renamed table and column names in SQL queries to camelCase for consistency. Added generated key handling when creating entities (e.g., Person, Address, Bed) to ensure IDs are assigned appropriately. Removed unused compatibility checks and redundant methods, simplifying the codebase.">
       <option name="closed" value="true" />
@@ -432,7 +447,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748021802635</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fix : bug add restriction">
+      <option name="closed" value="true" />
+      <created>1748025634594</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1748025634594</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Finish javadoc">
+      <option name="closed" value="true" />
+      <created>1748027452640</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1748027452640</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,8 +481,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update StayController to include CLI options menu" />
-    <MESSAGE value="Update all dao th i have add cathc to try test des dao et ils marchent sauf bedDao pour l'instant.&#10;Changer de gender Male et Female par M et F pour faciliter l'entrer et le retour du de la bdd&#10;changement de socialsecurity de int a long" />
     <MESSAGE value="Refactor BedDao and update SQL queries for consistency&#10;&#10;Updated SQL queries in BedDao to use camelCase for table and column names. Improved entity creation logic by handling generated keys correctly and streamlined attribute mappings. Added missing BedDao method call in Main.java to ensure completeness." />
     <MESSAGE value="Add new DAOs, refactor models, and enhance SQL consistency&#10;&#10;Introduced `KnowsDao` and `RestrictionRoomDao` to manage respective mappings for `Knows` and `RestrictionRoom` entities. Refactored several model classes (`RestrictionType`, `RestrictionRoom`, `Gender`) for improved naming clarity and added validation logic. Updated SQL queries across various DAOs (e.g., `StayDao`, `PersonDao`) to ensure attribute consistency, handle IDs correctly, and adopt camelCase conventions in queries and mapping." />
     <MESSAGE value="Refactor controllers to use CLIView for user interaction&#10;&#10;Replaced `Scanner` with the new `CLIView` class in `CLIController`, `PersonController`, and `StayController`. Centralized UI components into `CLIView`, enhancing modularity and code readability. Updated method signatures and flow to integrate the `CLIView` functionalities." />
@@ -475,6 +504,8 @@
     <MESSAGE value="add dao for all the complex sql" />
     <MESSAGE value="Adding comment and docs for the javadoc" />
     <MESSAGE value="sql and merge conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="sql and merge conflict" />
+    <MESSAGE value="fix : bug add restriction" />
+    <MESSAGE value="Finish javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish javadoc" />
   </component>
 </project>

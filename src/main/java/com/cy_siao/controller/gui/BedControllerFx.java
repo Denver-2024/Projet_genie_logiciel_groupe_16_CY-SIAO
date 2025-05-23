@@ -112,8 +112,8 @@ public class BedControllerFx implements Initializable {
             boolean isDouble = isDoubleCheckBox.isSelected();
 
             Bed bed = new Bed(idRoom, isDouble);
-            bedList.add(bed);
             bedService.createBed(bed);
+            bedTableView.refresh();
 
             idRoomField.setValue(null);
             isDoubleCheckBox.setSelected(false);

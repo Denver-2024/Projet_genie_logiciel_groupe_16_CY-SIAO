@@ -19,6 +19,14 @@ public class Address {
     public Address() {
     }
 
+    /**
+     * Constructor with parameters
+     *
+     * @param streetNumber the street number
+     * @param streetName   the street name
+     * @param postalCode   the postal code
+     * @param cityName     the city name
+     */
     public Address(int streetNumber, String streetName, int postalCode, String cityName) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;

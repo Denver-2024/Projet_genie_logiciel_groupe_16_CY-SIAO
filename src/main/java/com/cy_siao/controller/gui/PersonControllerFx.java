@@ -18,60 +18,97 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for managing Person-related GUI operations.
+ * Handles CRUD operations for Person entities and their addresses.
+ */
 public class PersonControllerFx implements Initializable {
+    //Text field for first name input
     @FXML
     private TextField firstNameField;
+    //Text field for last name input
     @FXML
     private TextField lastNameField;
+    //Text field for age input 
     @FXML
     private TextField ageField;
+    //Text field for place of birth input
     @FXML
     private TextField placeOfBirthField;
+    //Text field for social security number input
     @FXML
     private TextField socialSecurityNumberField;
+    //Text field for street number input
     @FXML
     private TextField streetNumberField;
+    //Text field for street name input
     @FXML
     private TextField streetNameField;
+    //Text field for postal code input
     @FXML
     private TextField postalCodeField;
+    //Text field for city name input
     @FXML
     private TextField cityNameField;
+    //Combo box for gender selection
     @FXML
     private ComboBox<Gender> genderComboBox;
+    //Table view to display persons
     @FXML
     private TableView<Person> personTableView;
+    //Button to add new person
     @FXML
     private Button addButton;
+    //Button to update person
     @FXML
     private Button updateButton;
+    //Button to delete person
     @FXML
     private Button deleteButton;
+    //Button to add address
     @FXML
     private Button addAddressButton;
+    //Column for first name in table
     @FXML
     private TableColumn<Person, String> firstNameCol;
+    //Column for last name in table
     @FXML
     private TableColumn<Person, String> lastNameCol;
+    //Column for age in table
     @FXML
     private TableColumn<Person, Integer> ageCol;
+    //Column for gender in table
     @FXML
     private TableColumn<Person, Gender> genderCol;
+    //Column for place of birth in table
     @FXML
     private TableColumn<Person, String> placeOfBirthCol;
+    //Column for social security number in table
     @FXML
     private TableColumn<Person, Long> socialSecurityNumberCol;
+    //Column for address in table
     @FXML
     private TableColumn<Person, String> addressCol;
-
+    //Button to go back
     @FXML
     private Button backButton;
 
+    //Observable list of persons
     private ObservableList<Person> personList = FXCollections.observableArrayList();
+    //Service for person operations
     private PersonService personService = new PersonService();
+    //Service for address operations
     private AddressService addressService = new AddressService();
+    //Manager for view navigation
     private ViewManager viewManager;
 
+    /**
+     * Initializes the controller class.
+     * Sets up the table columns, loads initial data and configures event handlers.
+     *
+     * @param location  The location used to resolve relative paths
+     * @param resources The resources used to localize the root object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         genderComboBox.setItems(FXCollections.observableArrayList(Gender.values()));
@@ -112,11 +149,17 @@ public class PersonControllerFx implements Initializable {
             return new javafx.beans.property.SimpleStringProperty(str.toString());
         });
     }
-    public void setViewManager(ViewManager viewManager){
+
+    /**
+     * Sets the view manager for navigation control.
+     *
+     * @param viewManager The ViewManager instance to set
+     */
+    public void setViewManager(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
 
-
+    //Handler for adding new address to selected person
     private void handleAddAddress() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
@@ -126,7 +169,7 @@ public class PersonControllerFx implements Initializable {
                 Integer postalCode = Integer.parseInt(postalCodeField.getText());
                 String cityName = cityNameField.getText();
 
-                if (streetNumber>0 && streetNumber<1000000000 &&
+                if (streetNumber > 0 && streetNumber < 1000000000 &&
                         streetName != null && !streetName.isEmpty() &&
                         postalCode > 0 && postalCode < 1000000000 &&
                         cityName != null && !cityName.isEmpty()) {
@@ -163,6 +206,7 @@ public class PersonControllerFx implements Initializable {
         }
     }
 
+    //Handler for adding new person
     private void handleAddPerson() {
         try {
             String firstName = firstNameField.getText();
@@ -180,28 +224,28 @@ public class PersonControllerFx implements Initializable {
                 if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()) {
                     person.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
                 }
-                
+
                 personService.createPerson(person);
-                // Refresh the list with the updated data
                 personList.setAll(personService.getAllPersons());
-                
+
                 firstNameField.clear();
                 lastNameField.clear();
                 ageField.clear();
                 genderComboBox.setValue(null);
                 placeOfBirthField.clear();
                 socialSecurityNumberField.clear();
-                
+
             } else {
-                showAlert("Please insert valid infos of the person");
+                showAlert("Veuillez entrer des informations valides pour la personne");
             }
         } catch (NumberFormatException e) {
-            showAlert("Age format invalid");
+            showAlert("Format d'âge invalide");
         } catch (SQLException e) {
-            showAlert("Error when trying to register the person: " + e.getMessage());
+            showAlert("Erreur lors de la création de la personne : " + e.getMessage());
         }
     }
 
+    //Handler for updating existing person
     private void handleUpdatePerson() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
@@ -212,9 +256,8 @@ public class PersonControllerFx implements Initializable {
             String socialSecurityNumber = socialSecurityNumberField.getText();
             String ageText = ageField.getText();
 
-            // check the age field
             if (ageText == null || ageText.trim().isEmpty()) {
-                showAlert("Age field cannot be empty");
+                showAlert("L'âge ne peut pas être vide");
                 return;
             }
 
@@ -247,20 +290,22 @@ public class PersonControllerFx implements Initializable {
                     placeOfBirthField.clear();
                     showAlert("Person updated successfully");
                 } else {
-                    showAlert("Please fill in all the mandatory fields");
+                    showAlert("Veuillez remplir tous les champs obligatoires correctement");
                 }
             } catch (NumberFormatException e) {
-                showAlert("Age format invalid. Please insert a valid integer age.");
+                showAlert("Format d'âge invalide. Veuillez entrer un nombre entier valide.");
             }
         } else {
-            showAlert("Please select a person to be updated.");
+            showAlert("Veuillez sélectionner une personne à mettre à jour");
         }
     }
 
-    private void handleBackButton(){
+    //Handler for back button navigation
+    private void handleBackButton() {
         this.viewManager.showMainMenu();
     }
 
+    //Handler for deleting person
     private void handleDeletePerson() {
         Person selectedPerson = personTableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
@@ -272,9 +317,10 @@ public class PersonControllerFx implements Initializable {
         }
     }
 
+    //Shows alert dialog with error message
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Notification");
+        alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

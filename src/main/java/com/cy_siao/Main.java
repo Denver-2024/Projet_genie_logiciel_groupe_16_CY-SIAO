@@ -18,7 +18,7 @@ import com.cy_siao.util.DatabaseUtil;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        /*
+
         DatabaseUtil dbUtil = new DatabaseUtil();
         Connection connexion = null;
         connexion = dbUtil.getConnection();

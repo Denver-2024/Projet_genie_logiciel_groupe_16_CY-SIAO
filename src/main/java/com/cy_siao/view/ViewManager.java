@@ -15,56 +15,89 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 
+
+/**
+ * Manages the different views of the application and handles stage configuration.
+ */
 public class ViewManager {
     
-    private static Stage primaryStage;
+    private static Stage primaryStage; // Primary stage of the application
 
+    /**
+     * Constructs the ViewManager with the primary stage and shows the main menu.
+     *
+     * @param stage The primary stage of the application
+     */
     public ViewManager(Stage stage) {
         primaryStage = stage;
         showMainMenu();
     }
 
+    /**
+     * Shows the main menu view.
+     */
     public void showMainMenu() {
         MainMenuView mainMenuView = new MainMenuView(this);
         primaryStage.setScene(new Scene(mainMenuView.getView()));
         configureStage();
     }
 
+    /**
+     * Shows the person management view.
+     */
     public void showPersonView() {
         PersonView personView = new PersonView(this); // Nouvelle instance
         primaryStage.setScene(new Scene(personView.getView()));
         configureStage();
     }
 
+    /**
+     * Shows the bed management view.
+     */
     public void showBedView() {
         BedView bedView = new BedView(this);
         primaryStage.setScene(new Scene(bedView.getView()));
         configureStage();
     }
 
+    /**
+     * Shows the room management view.
+     */
     public void showRoomView() {
         RoomView roomView = new RoomView(this);
         primaryStage.setScene(new Scene(roomView.getView()));
         configureStage();
     }
 
+    /**
+     * Shows the stay management view.
+     */
     public void showStayView() {
         StayView stayView = new StayView(this);
         primaryStage.setScene(new Scene(stayView.getView()));
         configureStage();
     }
 
+    /**
+     * Shows the dashboard view.
+     */
     public void showDashboardView(){
         DashboardView dashboardView = new DashboardView(this);
         primaryStage.setScene(new Scene(dashboardView.getView()));
         configureStage();
     }
 
+    /**
+     * Shows the planning view.
+     */
     public void showPlanningView() {
         PlanningView planningView = new PlanningView(this);
         getPrimaryStage().setScene(new Scene(planningView.getView()));
     }
 
+    /**
+     * Configures the primary stage with title and icon.
+     */
     private void configureStage() {
         primaryStage.setTitle("CY SIAO Manager");
         //Relative path from resources for  adding the icon to our software
@@ -81,6 +114,11 @@ public class ViewManager {
         }
     }
 
+    /**
+     * Gets the primary stage.
+     *
+     * @return The primary Stage instance
+     */
     public static Stage getPrimaryStage() {
         return primaryStage;
     }

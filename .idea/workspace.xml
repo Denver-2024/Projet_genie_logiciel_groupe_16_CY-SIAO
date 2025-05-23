@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="add dao for all the complex sql">
+    <list default="true" id="a05eba9d-490b-4ef3-b21b-caad9a49fc7a" name="Changes" comment="Adding comment and docs for the javadoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,36 +58,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.GuiView.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Mainfx.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Ulrich",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "E:/cy-saio - Copie/src/main/java",
-    "last_opened_file_path": "E:/cy-saio - Copie (2)",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GuiView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Mainfx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DavidService&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/cy-saio - Copie/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/cy-saio - Copie (2)&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
@@ -97,7 +95,7 @@
       <recent name="E:\Projet_genie_logiciel_groupe_16_CY-SIAO\src\main\java\com\cy_siao\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cy_siao.App" />
       <module name="cy_siao" />
@@ -158,8 +156,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Mainfx" />
         <item itemvalue="Application.GuiView" />
       </list>
@@ -416,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747909800859</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Adding comment and docs for the javadoc">
+      <option name="closed" value="true" />
+      <created>1748018546846</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1748018546846</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,6 +464,7 @@
     <MESSAGE value="Fix toString formatting in Person class&#10;&#10;Corrected a missing comma in the toString method of the Person class for consistent formatting. Updated workspace.xml to reflect the changes to the Person.java file." />
     <MESSAGE value="Refactor RoomControllerFx and improve restriction handling&#10;&#10;Renamed min/max age fields for clarity in RoomControllerFx. Removed redundant DAO initialization and moved restriction creation logic to RoomService for consistency. Added logging and refreshed the table view after adding restrictions." />
     <MESSAGE value="add dao for all the complex sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dao for all the complex sql" />
+    <MESSAGE value="Adding comment and docs for the javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding comment and docs for the javadoc" />
   </component>
 </project>

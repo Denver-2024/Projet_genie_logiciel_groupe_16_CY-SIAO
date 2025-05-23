@@ -14,17 +14,22 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * 
+ * Service class that handles all room-related business logic including CRUD operations
+ * and management of beds and restrictions.
  */
 public class RoomService {
 
+    //Data access object for Room entities
     private final RoomDao roomDao;
+    //Data access object for Bed entities 
     private final BedDao bedDao;
+    //Data access object for RestrictionRoom entities
     private final RestrictionRoomDao restrictionRoomDao;
+    //Data access object for RestrictionType entities
     private RestrictionTypeDao restrictionTypeDao;
 
     /**
-     * 
+     * Constructs a new RoomService with all required DAOs initialized
      */
     public RoomService() {
         this.roomDao = new RoomDao();
@@ -36,37 +41,46 @@ public class RoomService {
     // CRUD OPERATIONS
 
     /**
-     * 
-     * @param room
+     * Creates a new room in the database
+     *
+     * @param room The room entity to create
      */
     public void createRoom(Room room) {
         roomDao.create(room);
     }
 
     /**
-     * 
-     * @param id
-     * @return
+     * Retrieves a room by its ID
+     *
+     * @param id The ID of the room to find
+     * @return The found room or null if not found
      */
     public Room getRoomById(int id) {
         return roomDao.findById(id);
     }
 
     /**
-     * 
-     * @return
+     * Retrieves all rooms from the database
+     *
+     * @return List of all rooms
      */
     public List<Room> getAllRooms() {
         return roomDao.findAll();
     }
 
+    /**
+     * Updates an existing room in the database
+     *
+     * @param room The room entity with updated information
+     */
     public void updateRoom(Room room) {
         roomDao.update(room);
     }
 
     /**
-     * 
-     * @param id
+     * Deletes a room from the database
+     *
+     * @param id The ID of the room to delete
      */
     public void deleteRoom(int id) {
         roomDao.delete(id);
@@ -75,9 +89,10 @@ public class RoomService {
     // BUSINESS METHODS
 
     /**
-     * 
-     * @param room
-     * @param bed
+     * Adds a bed to a room and updates the database
+     *
+     * @param room The room to add the bed to
+     * @param bed  The bed to be added
      */
     public void addBedToRoom(Room room, Bed bed) {
         room.addBed(bed); // already checks max number of beds
@@ -85,9 +100,10 @@ public class RoomService {
     }
 
     /**
-     * 
-     * @param room
-     * @param bed
+     * Removes a bed from a room and updates the database
+     *
+     * @param room The room to remove the bed from
+     * @param bed  The bed to be removed
      */
     public void removeBedFromRoom(Room room, Bed bed) {
         room.removeBed(bed);
@@ -95,13 +111,14 @@ public class RoomService {
     }
 
     /**
-     *Add a restriction to a room
-     * With And for the logic operator automatically
-     * @param room the room who need a restriction
-     * @param restriction the restriction who must be add to the room
+     * Adds a restriction to a room using AND as the default logical operator
+     *
+     * @param room        The room who needs a restriction
+     * @param restriction The restriction to be added to the room
+     * @throws SQLException If database operation fails
      */
     public void addRestrictionToRoom(Room room, RestrictionType restriction) throws SQLException {
-       this.addRestrictionToRoom(room, restriction, "AND");
+        this.addRestrictionToRoom(room, restriction, "AND");
     }
 
     /**
@@ -109,10 +126,11 @@ public class RoomService {
      * This method ensures the restriction is associated with the room and
      * persists the relationship in the database.
      *
-     * @param room the room to which the restriction will be added
-     * @param restriction the restriction that will be applied to the room
-     * @param logicOperator the logical operator (e.g., AND, OR) defining how
+     * @param room          The room to which the restriction will be added
+     * @param restriction   The restriction that will be applied to the room
+     * @param logicOperator The logical operator (e.g., AND, OR) defining how
      *                      the restriction interacts with other restrictions
+     * @throws SQLException If database operation fails
      */
     public void addRestrictionToRoom(Room room, RestrictionType restriction, String logicOperator) throws SQLException {
         boolean exists = restrictionTypeDao.findAll().stream().anyMatch(r -> r.equals(restriction));
@@ -122,10 +140,12 @@ public class RoomService {
         room.addRestriction(restriction);
         restrictionRoomDao.create(new RestrictionRoom(room.getId(), restriction.getId(), logicOperator));
     }
+
     /**
-     * 
-     * @param room
-     * @param restriction
+     * Removes a restriction from a room and updates the database
+     *
+     * @param room        The room to remove the restriction from
+     * @param restriction The restriction to be removed
      */
     public void removeRestrictionFromRoom(Room room, RestrictionType restriction) {
         room.removeRestriction(restriction);
@@ -133,31 +153,34 @@ public class RoomService {
     }
 
     /**
-     * 
-     * @param room
-     * @param dateArrival
-     * @param dateDeparture
-     * @return
+     * Gets all available beds in a room for a given time period
+     *
+     * @param room          The room to check
+     * @param dateArrival   The arrival date
+     * @param dateDeparture The departure date
+     * @return List of available beds
      */
     public List<Bed> getAvailableBeds(Room room, LocalDate dateArrival, LocalDate dateDeparture) {
         return room.getAvailableBeds(dateArrival, dateDeparture);
     }
 
     /**
-     * 
-     * @param room
-     * @param dateArrival
-     * @param dateDeparture
-     * @return
+     * Checks if a room has any available beds for a given time period
+     *
+     * @param room          The room to check
+     * @param dateArrival   The arrival date
+     * @param dateDeparture The departure date
+     * @return True if beds are available, false otherwise
      */
     public boolean hasAvailableBeds(Room room, LocalDate dateArrival, LocalDate dateDeparture) {
         return !getAvailableBeds(room, dateArrival, dateDeparture).isEmpty();
     }
 
     /**
-     * 
-     * @param room
-     * @return
+     * Checks if a room is at maximum bed capacity
+     *
+     * @param room The room to check
+     * @return True if room is full, false otherwise
      */
     public boolean isRoomFull(Room room) {
         return room.getBeds().size() >= room.getNbBedsMax();

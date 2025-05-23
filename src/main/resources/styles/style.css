@@ -2,8 +2,7 @@
 
 /* Global style of the window */
 .root {
-    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f0f2f5); /* fallback */
-    -fx-background-image: url("/Images/fond.jpg");
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #dfdfdf);
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;

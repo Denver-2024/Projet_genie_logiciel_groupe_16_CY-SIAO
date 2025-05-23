@@ -18,9 +18,13 @@ import com.cy_siao.model.RestrictionType;
 import com.cy_siao.model.person.Person;
 
 /**
- * 
+ * Service de gestion des séjours (Stay). Permet d’assigner des personnes à des lits
+ * selon des règles d’éligibilité et les restrictions de chambres.
+ * Gère également les désassignations, la recherche de créneaux disponibles, etc.
  */
 public class StayService {
+
+    // Services internes et DAO
     private EligibilityService eligibilityService;
     private BedDao bedDao;
     private RoomDao roomDao;
@@ -28,7 +32,7 @@ public class StayService {
     private PersonService personService;
 
     /**
-     * 
+     * Constructeur par défaut initialisant les DAO et services nécessaires.
      */
     public StayService() {
         this.eligibilityService = new EligibilityService();
@@ -37,17 +41,18 @@ public class StayService {
         this.roomDao = new RoomDao();
         this.stayDao = new StayDao();
     }
+
     /**
-     * 
-     * @param person personn who need to be assign during arrival - departure
-     * @param bed bed selected to be assigned at the person
-     * @param arrival start date
-     * @param departure end date
-     * @return true if Person is correctly assign to the bed
+     * Tente d’assigner une personne à un lit sur une période donnée si elle est éligible.
+     *
+     * @param person    La personne à assigner.
+     * @param bed       Le lit concerné.
+     * @param arrival   Date d’arrivée souhaitée.
+     * @param departure Date de départ souhaitée.
+     * @return true si l’assignation a réussi, false sinon.
      */
     public boolean assignPersonToBed(Person person, Bed bed, LocalDate arrival, LocalDate departure) {
-        
-        if (this.isAssignable(person, bed, arrival, departure)){
+        if (this.isAssignable(person, bed, arrival, departure)) {
             Stay stay = new Stay(bed, person, arrival, departure);
             stayDao.create(stay);
             return true;
@@ -55,59 +60,60 @@ public class StayService {
         return false;
     }
 
-    public List<Stay> getAllStays(){
+    /**
+     * Retourne tous les séjours enregistrés.
+     *
+     * @return Liste des objets Stay.
+     */
+    public List<Stay> getAllStays() {
         return stayDao.findAll();
     }
 
     /**
-     * Check if the person is eligible at the room where the bed is
-     * And check if the bed is not assigned during arrival departure
-     * And check if the person is not assigned at an other bed during a part of sejour
-     * @param person
-     * @param bed
-     * @param arrival
-     * @param departure
-     * @return true if we can assign the person at the bed during arrival - departure
+     * Vérifie si une personne peut être assignée à un lit à une période donnée.
+     *
+     * @param person    La personne.
+     * @param bed       Le lit ciblé.
+     * @param arrival   Date de début de séjour.
+     * @param departure Date de fin de séjour.
+     * @return true si l’assignation est possible.
      */
-    public boolean isAssignable(Person person, Bed bed, LocalDate arrival, LocalDate departure){
-
-        Room room;
-        room = roomDao.findById(bed.getIdRoom());
+    public boolean isAssignable(Person person, Bed bed, LocalDate arrival, LocalDate departure) {
+        Room room = roomDao.findById(bed.getIdRoom());
 
         RestrictionRoomDao restrictionRoomDao = new RestrictionRoomDao();
-        List<RestrictionRoom> restrictions;
-        restrictions = restrictionRoomDao.findByIdRoom(room.getId());
+        List<RestrictionRoom> restrictions = restrictionRoomDao.findByIdRoom(room.getId());
 
-        if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)){
-            if (bed.isAvailable(arrival, departure)){
+        if (eligibilityService.isPersonAllowedInRoom(person, room, restrictions)) {
+            if (bed.isAvailable(arrival, departure)) {
                 List<Stay> allStay = this.getAllStays();
-                for (Stay stay : allStay){
-                    if (person.getId() == stay.getIdPerson()){
-                        if ((stay.getDateArrival().isAfter(arrival) && stay.getDateArrival().isBefore(arrival)) ||
-                        (stay.getDateArrival().isAfter(departure) && stay.getDateArrival().isBefore(departure))) {
-                        return false;
-            }
+                for (Stay stay : allStay) {
+                    if (person.getId() == stay.getIdPerson()) {
+                        // Vérifie si la personne est déjà assignée à un autre lit pendant la même période
+                        if ((stay.getDateArrival().isAfter(arrival) && stay.getDateArrival().isBefore(departure)) ||
+                                (stay.getDateDeparture().isAfter(arrival) && stay.getDateDeparture().isBefore(departure))) {
+                            return false;
+                        }
                     }
                 }
                 return true;
-            };
+            }
             return false;
         }
-
         return false;
     }
 
     /**
-     * 
-     * @param person
-     * @param bed
-     * @return
+     * Vérifie si une personne est actuellement assignée à un lit.
+     *
+     * @param person La personne.
+     * @param bed    Le lit.
+     * @return true si la personne est déjà assignée à ce lit.
      */
-    public boolean isAssign(Person person, Bed bed){
-        List<Stay> stays;
-        stays = stayDao.findAll();
-        for (Stay stay: stays){
-            if (stay.getBed().equals(bed) && stay.getPerson().equals(person)){
+    public boolean isAssign(Person person, Bed bed) {
+        List<Stay> stays = stayDao.findAll();
+        for (Stay stay : stays) {
+            if (stay.getBed().equals(bed) && stay.getPerson().equals(person)) {
                 return true;
             }
         }
@@ -115,13 +121,14 @@ public class StayService {
     }
 
     /**
-     * 
-     * @param person
-     * @param bed
-     * @return
+     * Supprime une assignation spécifique d’une personne à un lit.
+     *
+     * @param person La personne.
+     * @param bed    Le lit.
+     * @return true si la désassignation a réussi.
      */
     public boolean unassign(Person person, Bed bed) throws SQLException {
-        if (isAssign(person, bed)){
+        if (isAssign(person, bed)) {
             stayDao.delete(stayDao.findByBedPerson(bed.getId(), person.getId()).getId());
             return true;
         }
@@ -129,106 +136,121 @@ public class StayService {
     }
 
     /**
-     * Frees the bed for all his stay.
+     * Libère tous les séjours associés à un lit.
      *
-     * @param bed Remove all stay link at this bed
+     * @param bed Le lit à libérer.
      */
     public void freeBed(Bed bed) {
-        List<Stay> stays;
-        stays = this.getAllStays();
-        for(Stay stay: stays){
-            if (stay.getBed().equals(bed)){
+        List<Stay> stays = this.getAllStays();
+        for (Stay stay : stays) {
+            if (stay.getBed().equals(bed)) {
                 stayDao.delete(stay.getId());
             }
         }
     }
 
     /**
-     * 
-     * @param person
+     * Libère tous les séjours d’une personne.
+     *
+     * @param person La personne dont il faut libérer les séjours.
      */
     public void freePerson(Person person) {
-        List<Stay> stays;
-        stays = this.getAllStays();
-        for(Stay stay: stays){
-            if (stay.getPerson().equals(person)){
+        List<Stay> stays = this.getAllStays();
+        for (Stay stay : stays) {
+            if (stay.getPerson().equals(person)) {
                 stayDao.delete(stay.getId());
             }
         }
     }
 
-    public void connectStayToBed(List<Bed> listBed){
+    // Connecte les séjours aux lits pour permettre le calcul de disponibilité.
+    public void connectStayToBed(List<Bed> listBed) {
         List<Stay> allStay = stayDao.findAll();
-        for (Stay stay: allStay){
-            for (Bed bed : listBed){
-                if (bed.getId() == stay.getIdBed()){
+        for (Stay stay : allStay) {
+            for (Bed bed : listBed) {
+                if (bed.getId() == stay.getIdBed()) {
                     bed.addStay(stay);
                 }
             }
         }
     }
 
-    public void updateStay(Stay stay){
+    // Met à jour un séjour existant.
+    public void updateStay(Stay stay) {
         stayDao.update(stay);
     }
 
-    public void deleteStay(Stay stay){
+    // Supprime un séjour.
+    public void deleteStay(Stay stay) {
         stayDao.delete(stay.getId());
     }
 
-    public LocalDate findStayRoom(List<Person> persons, int nbDay, Room room){
-    
-        LocalDate arrivalDay = LocalDate.now();
-        arrivalDay.minusDays(1);
+    /**
+     * Cherche une date à laquelle une chambre peut accueillir un groupe de personnes pendant une durée donnée.
+     *
+     * @param persons Liste des personnes à héberger.
+     * @param nbDay   Durée du séjour en jours.
+     * @param room    La chambre ciblée.
+     * @return Date la plus proche à laquelle la chambre peut accueillir le groupe, ou null si impossible.
+     */
+    public LocalDate findStayRoom(List<Person> persons, int nbDay, Room room) {
+        LocalDate arrivalDay = LocalDate.now().minusDays(1);
         List<Bed> allBeds = bedDao.findAll();
+
         int nbBedInRoom = 0;
-        for (Bed bed : allBeds){
-            if(bed.getIdRoom() == room.getId()){
+        for (Bed bed : allBeds) {
+            if (bed.getIdRoom() == room.getId()) {
                 nbBedInRoom += 1;
             }
         }
+
         this.connectStayToBed(allBeds);
-        int countNbBedAvaible = 0;
-        if(persons.size() <= nbBedInRoom){
-            while (countNbBedAvaible < persons.size()){
-                countNbBedAvaible = 0;
+
+        int countNbBedAvailable = 0;
+        if (persons.size() <= nbBedInRoom) {
+            while (countNbBedAvailable < persons.size()) {
+                countNbBedAvailable = 0;
                 arrivalDay = arrivalDay.plusDays(1);
-                for (Bed bed : allBeds){
-                    if (bed.getIdRoom() == room.getId() && bed.isAvailable(arrivalDay, arrivalDay.plusDays(nbDay))){
-                        countNbBedAvaible += 1;
+                for (Bed bed : allBeds) {
+                    if (bed.getIdRoom() == room.getId() && bed.isAvailable(arrivalDay, arrivalDay.plusDays(nbDay))) {
+                        countNbBedAvailable += 1;
                     }
                 }
             }
             return arrivalDay;
-        }else{
+        } else {
             return null;
         }
     }
 
-    public Room findStay(List<Person> persons, int nbDay){
-
+    /**
+     * Cherche la chambre disponible la plus tôt pour un groupe de personnes sur une durée donnée.
+     *
+     * @param persons Liste des personnes à héberger.
+     * @param nbDay   Durée du séjour en jours.
+     * @return La chambre la plus rapidement disponible ou null si aucune chambre ne convient.
+     */
+    public Room findStay(List<Person> persons, int nbDay) {
         List<Room> allRoom = roomDao.findAll();
         int selectRoom = 0;
         LocalDate nearestDate = findStayRoom(persons, nbDay, allRoom.get(0));
-        for (int i = 1; i < allRoom.size(); i++){
-            if (nearestDate != null){
+
+        for (int i = 1; i < allRoom.size(); i++) {
+            if (nearestDate != null) {
                 LocalDate compareDate = findStayRoom(persons, nbDay, allRoom.get(i));
-                if (compareDate != null){
-                    if (compareDate.isBefore(nearestDate)){
-                        selectRoom = i;
-                        nearestDate = compareDate;
-                    }
+                if (compareDate != null && compareDate.isBefore(nearestDate)) {
+                    selectRoom = i;
+                    nearestDate = compareDate;
                 }
-            }else{
+            } else {
                 nearestDate = findStayRoom(persons, nbDay, allRoom.get(i));
             }
         }
-        if (findStayRoom(persons, nbDay, allRoom.get(selectRoom)) != null){
+
+        if (findStayRoom(persons, nbDay, allRoom.get(selectRoom)) != null) {
             return allRoom.get(selectRoom);
-        }else{
+        } else {
             return null;
         }
     }
-    
-
 }

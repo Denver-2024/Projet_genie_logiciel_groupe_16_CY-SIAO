@@ -18,12 +18,21 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+/**
+ * View class for displaying the planning schedule UI components.
+ * Manages a table view showing stays over a 14-day period.
+ */
 public class PlanningView {
-    private TableView<StayRow> table;
-    private final int NUM_DAYS = 14;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM");
-    private VBox layout;
+    private TableView<StayRow> table; // Table displaying stay rows
+    private final int NUM_DAYS = 14; // Number of days to display in the schedule
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM"); // Date formatter for column headers
+    private VBox layout; // Layout container for the view
 
+    /**
+     * Constructs the PlanningView, setting up the table and loading stay data.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public PlanningView(ViewManager viewManager) {
         table = new TableView<>();
 
@@ -84,6 +93,11 @@ public class PlanningView {
         layout.setPadding(new Insets(20));
     }
 
+    /**
+     * Gets the root node of the planning view.
+     *
+     * @return The root VBox layout
+     */
     public Parent getView() {
         return layout;
     }

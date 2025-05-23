@@ -13,20 +13,42 @@ import java.util.List;
 
 public class PersonService {
 
+    //Data access layer for Person entities
     private final PersonDao personDao;
+    //Data access layer for Address entities  
     private AddressDao addressDao;
+    //Data access layer for Knows relationship
     private KnowsDao knowsDao;
 
+    /**
+     * Initializes a new instance of the PersonService class.
+     * The service is responsible for managing Person objects and their associations
+     * with addresses and other related entities. It uses data access objects
+     * (personDao, addressDao, knowsDao) to perform database operations.
+     */
     public PersonService() {
         this.personDao = new PersonDao();
         this.addressDao = new AddressDao();
         this.knowsDao = new KnowsDao();
     }
 
+    /**
+     * Retrieves all persons from the database
+     *
+     * @return List of all Person objects
+     * @throws SQLException if database error occurs
+     */
     public List<Person> getAllPersons() throws SQLException {
         return personDao.findAll();
     }
 
+    /**
+     * Finds a person by their ID and loads their addresses
+     *
+     * @param id The ID of the person to find
+     * @return The Person object if found, null otherwise
+     * @throws SQLException if database error occurs
+     */
     public Person getPersonById(int id) throws SQLException {
         Person person = personDao.findById(id);
         if (person != null) {
@@ -38,56 +60,89 @@ public class PersonService {
         return person;
     }
 
+    /**
+     * Finds all persons with the given first name
+     *
+     * @param firstName The first name to search for
+     * @return List of matching Person objects
+     * @throws SQLException if database error occurs
+     */
     public List<Person> getByFirstName(String firstName) throws SQLException {
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
-        for (Person p : persons){
-            if (p.getFirstName().equals(firstName)){
+        for (Person p : persons) {
+            if (p.getFirstName().equals(firstName)) {
                 personsName.add(p);
             }
         }
-        if (personsName.isEmpty()){
+        if (personsName.isEmpty()) {
             System.err.println("Error nobody with this first name : " + firstName);
         }
         return personsName;
     }
 
+    /**
+     * Finds all persons with the given last name
+     *
+     * @param lastName The last name to search for
+     * @return List of matching Person objects
+     * @throws SQLException if database error occurs
+     */
     public List<Person> getByLastName(String lastName) throws SQLException {
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
-        for (Person p : persons){
-            if (p.getLastName().equals(lastName)){
+        for (Person p : persons) {
+            if (p.getLastName().equals(lastName)) {
                 personsName.add(p);
             }
         }
-        if (personsName.isEmpty()){
+        if (personsName.isEmpty()) {
             System.err.println("Error nobody with this last name : " + lastName);
         }
         return personsName;
     }
 
+    /**
+     * Finds all persons with the given first and last name
+     *
+     * @param firstName The first name to search for
+     * @param lastName  The last name to search for
+     * @return List of matching Person objects
+     * @throws SQLException if database error occurs
+     */
     public List<Person> getByName(String firstName, String lastName) throws SQLException {
         List<Person> persons = new ArrayList<>();
         List<Person> personsName = new ArrayList<>();
         persons = getAllPersons();
-        for (Person p : persons){
-            if (p.getLastName().equals(lastName)  && p.getFirstName().equals(firstName)){
+        for (Person p : persons) {
+            if (p.getLastName().equals(lastName) && p.getFirstName().equals(firstName)) {
                 personsName.add(p);
             }
         }
-        if (personsName.isEmpty()){
+        if (personsName.isEmpty()) {
             System.err.println("Error nobody with this name : " + firstName + " " + lastName);
         }
         return personsName;
     }
 
+    /**
+     * Creates a new person record
+     *
+     * @param person The Person object to create
+     */
     public void createPerson(Person person) {
         // You could add validation logic here if needed
         personDao.createPerson(person);
     }
 
+    /**
+     * Updates an existing person record
+     *
+     * @param person The Person object to update
+     * @throws IllegalArgumentException if person ID is invalid
+     */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
             throw new IllegalArgumentException("Invalid ID for update.");
@@ -95,6 +150,11 @@ public class PersonService {
         personDao.updatePerson(person);
     }
 
+    /**
+     * Deletes a person by their ID
+     *
+     * @param id The ID of the person to delete
+     */
     public void deletePerson(int id) {
         personDao.deletePerson(id);
     }
@@ -108,6 +168,15 @@ public class PersonService {
                 && person2.getRestrictionType().isRespectedBy(person1);
     }
 */
+
+    /**
+     * Associates an address with a person
+     *
+     * @param personId The ID of the person
+     * @param address  The address to add
+     * @throws SQLException             if database error occurs
+     * @throws IllegalArgumentException if person not found
+     */
     public void addAddressToPerson(int personId, Address address) throws SQLException {
         Person person = getPersonById(personId);
         if (person == null) {

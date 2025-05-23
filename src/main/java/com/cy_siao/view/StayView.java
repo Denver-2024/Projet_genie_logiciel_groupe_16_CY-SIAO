@@ -15,10 +15,19 @@ import com.cy_siao.controller.gui.StayControllerFx;
 import com.cy_siao.view.ViewManager;
 import com.cy_siao.view.PlanningView;
 
+/**
+ * View class for displaying stay-related UI components.
+ * Loads the FXML layout and manages the associated controller.
+ */
 public class StayView {
-    private Parent view;
-    private StayControllerFx controller;
+    private Parent view; // Root node of the view
+    private StayControllerFx controller; // Controller for the stay view
 
+    /**
+     * Constructs the StayView, loading the FXML and setting up the controller.
+     *
+     * @param viewManager The ViewManager to handle view transitions
+     */
     public StayView(ViewManager viewManager) {
         this.controller = new StayControllerFx();
         controller.setViewManager(viewManager);
@@ -51,10 +60,20 @@ public class StayView {
         }
     }
 
+    /**
+     * Gets the root node of the stay view.
+     *
+     * @return The root Parent node
+     */
     public Parent getView() {
         return view;
     }
 
+    /**
+     * Gets the controller associated with this view.
+     *
+     * @return The StayControllerFx instance
+     */
     public StayControllerFx getController() {
         return controller;
     }

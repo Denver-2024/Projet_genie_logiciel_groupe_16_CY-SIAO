@@ -42,12 +42,11 @@ public class StayController {
         this.view = view;
         int option;
         do {
-            option = view.showStayMenu(); // à implémenter dans CLIView
+            option = view.showStayMenu();
             switch (option) {
                 case 1 -> assignStay();
                 case 2 -> unassignStay();
-                case 3 -> freeBed();
-                case 4 -> listAllStays();
+                case 3 -> listAllStays();
             }
         } while (option != 0);
     }

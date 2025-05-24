@@ -11,6 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service class that handles all person-related business logic including CRUD operations
+ *
+ */
 public class PersonService {
 
     //Data access layer for Person entities

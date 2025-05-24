@@ -25,23 +25,42 @@ public class RestrictionRoom {
         this.logicOperator = logicOperator.toUpperCase();
     }
 
-    // Getters & Setters
+    /**
+     * getter of idRoom
+     * @return the id of the Room
+     */
     public int getIdRoom() {
         return idRoom;
     }
 
+    /**
+     * Setter of id room
+     * @param idRoom new value of idRoom
+     */
     public void setIdRoom(int idRoom) {
         this.idRoom = idRoom;
     }
 
+    /**
+     * getter of idRestrictionType
+     * @return the id of the retsriction type
+     */
     public int getIdRestrictionType() {
         return idRestrictionType;
     }
 
+    /**
+     * setter of the restriction type
+     * @param idRestrictionType new value of id of the restriction type
+     */
     public void setIdRestrictionType(int idRestrictionType) {
         this.idRestrictionType = idRestrictionType;
     }
 
+    /**
+     * getter of logical operator
+     * @return can be AND or OR
+     */
     public String getLogicOperator() {
         return logicOperator;
     }
@@ -59,10 +78,18 @@ public class RestrictionRoom {
         this.logicOperator = logicOperator.toUpperCase();
     }
 
+    /**
+     * getter of restriction type
+     * @return restriction type
+     */
     public RestrictionType getRestrictionType() {
         return restrictionType;
     }
 
+    /**
+     * setter of restriction type
+     * @param restrictionType the new restriction type
+     */
     public void setRestrictionType(RestrictionType restrictionType) {
         this.restrictionType = restrictionType;
     }

@@ -24,6 +24,7 @@ public class Knows {
     }
 
     /**
+     * getter of idPerson
      * @return The ID of the person
      */
     public int getIdPerson() {
@@ -31,6 +32,7 @@ public class Knows {
     }
 
     /**
+     * setter of idPerson
      * @param idPerson The ID of the person to set
      */
     public void setIdPerson(int idPerson) {
@@ -38,6 +40,7 @@ public class Knows {
     }
 
     /**
+     * getter of adress return id of the adress
      * @return The ID of the address
      */
     public int getIdAddress() {
@@ -45,12 +48,17 @@ public class Knows {
     }
 
     /**
+     * Setter of adress
      * @param idAddress The ID of the address to set
      */
     public void setIdAddress(int idAddress) {
         this.idAddress = idAddress;
     }
 
+    /**
+     * Override to string of adress
+     * @return the id of the person and the id of the adress in string to print
+     */
     @Override
     public String toString() {
         return "Knows{" +

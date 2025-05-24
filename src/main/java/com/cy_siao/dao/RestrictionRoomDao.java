@@ -7,13 +7,24 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object class for managing restriction room in the database.
+ * Handles CRUD operations for restriction for the room.
+ */
 public class RestrictionRoomDao {
     private final DatabaseUtil databaseUtil;
-
+    
+    /**
+     * Constructor
+     */
     public RestrictionRoomDao() {
         this.databaseUtil = new DatabaseUtil();
     }
 
+    /**
+     * Add a restricrion at a room in the database
+     * @param restrictionRoom to add at the database
+     */
     public void create(RestrictionRoom restrictionRoom) {
         String sql = "INSERT INTO RestrictionRoom (IdRoom, IdRestrictionType, logicOperator) VALUES (?, ?, ?)";
         try (Connection connect = databaseUtil.getConnection();
@@ -27,6 +38,12 @@ public class RestrictionRoomDao {
         }
     }
 
+    /**
+     * Search a restriction with the id in this restriction
+     * @param roomId id of the room
+     * @param restrictionTypeId id of the restriction
+     * @return The restriction which link at the room and null if there is no restriction link at this room
+     */
     public RestrictionRoom findById(int roomId, int restrictionTypeId) {
         String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();
@@ -44,6 +61,10 @@ public class RestrictionRoomDao {
         return null;
     }
 
+    /**
+     * Get all restriction room 
+     * @return list of all restriction room of the database
+     */
     public List<RestrictionRoom> findAll() {
         List<RestrictionRoom> restrictionRooms = new ArrayList<>();
         String sql = "SELECT * FROM RestrictionRoom";
@@ -59,7 +80,11 @@ public class RestrictionRoomDao {
         return restrictionRooms;
     }
 
-
+    /**
+     * Get restriction room link at a room
+     * @param idRoom id of room
+     * @return the list of restriction link at this room
+     */
     public List<RestrictionRoom> findByIdRoom(int idRoom) {
         List<RestrictionRoom> restrictionRooms = new ArrayList<>();
         String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ?";
@@ -77,7 +102,10 @@ public class RestrictionRoomDao {
         return restrictionRooms;
     }
 
-
+    /**
+     * Modify a restriction room in database
+     * @param restrictionRoom restriction room at modify with modification
+     */
     public void update(RestrictionRoom restrictionRoom) {
         String sql = "UPDATE RestrictionRoom SET logic_operator = ? WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();
@@ -91,6 +119,12 @@ public class RestrictionRoomDao {
         }
     }
 
+    /**
+     * Delete a restriction room of the database
+     * @param roomId id of room link
+     * @param restrictionTypeId id of restriction link
+     * @return true if the delete was a success
+     */
     public boolean delete(int roomId, int restrictionTypeId) {
         String sql = "DELETE FROM RestrictionRoom WHERE IdRoom = ? AND IdRestrictionType = ?";
         try (Connection connect = databaseUtil.getConnection();
@@ -118,6 +152,12 @@ public class RestrictionRoomDao {
         return null;  
     }
 
+    /**
+     * Search room restriction in data base with id of room
+     * @param roomId the id of room
+     * @return the list of restriction link at this room
+     * @throws SQLException if there is an error with sql request
+     */
     public List<RestrictionRoom> findByRoomId(int roomId) throws SQLException {
         String sql = "SELECT * FROM RestrictionRoom WHERE IdRoom = ?";
         try( Connection conn = databaseUtil.getConnection();

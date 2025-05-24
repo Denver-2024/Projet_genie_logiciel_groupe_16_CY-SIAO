@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Class to see analysis on the beds
+ * 
+ */
 public class DashboardController {
 
     @FXML
@@ -84,7 +88,10 @@ public class DashboardController {
         this.viewManager = viewManager;
     }
 
-    // Handles the action when the back button is pressed.
+    /**
+     * Button to come back at the main menu
+     * 
+     */
     private void handleBackButton() {
         this.viewManager.showMainMenu();
     }

@@ -32,13 +32,13 @@ Then, for executing the Main file, you need to execute the following:<br/>
 
 That's it.</p>
 
-# Documentation
-
-You can find javadoc in open the folder "documentation", and open index.html 
-
 
 <p style="text-align: justify;"> Before staging/committing your changes, be sure to execute the following in order to not push the generated dependencies and target files into remote repository:<br/>
 
 ``mvn clean``<br/>
 
 </p>
+
+# Documentation
+
+You can find javadoc in open the folder "documentation", and open index.html 

@@ -16,8 +16,16 @@ import com.cy_siao.service.BedService;
 import com.cy_siao.service.PersonService;
 import com.cy_siao.util.DatabaseUtil;
 
+/**
+ * class which use to do sql request test and class test
+ */
 public class Main {
 
+    /**
+     * Test main method
+     * @param args args
+     * @throws SQLException if there is sql error
+     */
     public static void main(String[] args) throws SQLException {
 
         /*

@@ -15,6 +15,9 @@ public class GUIController {
         this.view = new GuiView(primaryStage, this);
     }
 
+    /**
+     * open menu view when launch the app
+     */
     public void startApplication() {
         view.showMainMenu();
     }

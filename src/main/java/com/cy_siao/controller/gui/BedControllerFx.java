@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the bed menu interface.
+ * Handles user interactions with beds.
+ */
 public class BedControllerFx implements Initializable {
 
     // Reference to the view manager for navigation

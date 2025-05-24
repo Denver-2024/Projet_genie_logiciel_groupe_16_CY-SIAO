@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object for managing Beds entities in the database
+ */
 public class BedDao {
     //Database utility instance for handling database connections
     private final DatabaseUtil databaseUtil;

@@ -23,7 +23,7 @@ public class App extends Application {
     /**
      * Main method of the app
      * @param args cli or gui for have command line interface or graphical user interface 
-     * @throws SQLException
+     * @throws SQLException if there is an error in sql request
      */
     public static void main(String[] args) throws SQLException {
         CLIController cliController = new CLIController();

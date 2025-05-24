@@ -78,44 +78,85 @@ public class RestrictionType {
     public RestrictionType() {
     }
 
-    // Getters
+    /**
+     * getter of id
+     * @return the id of the restriction in database
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * getter of the label
+     * @return the label of this restriction
+     */
     public String getLabel() {
         return label;
     }
 
+    /**
+     * getter of the gender restriction
+     * @return can be MALE FEMALE or null
+     */
     public Gender getGenderRestriction() {
         return genderRestriction;
     }
 
+    /**
+     * getter of the minimum age of the restriction
+     * @return the minimum age
+     */
     public Integer getMinAge() {
         return minAge;
     }
 
+    /**
+     * getter of the maximum age of the restriction
+     * @return the maximum age
+     */
     public Integer getMaxAge() {
         return maxAge;
     }
 
-    // Setters
+    /**
+     * setter of id for the restriction
+     * @param id can be recover from database
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Setter of a label for this restriction
+     * 
+     * @param label new label fot the restriction
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
+    /**
+     * setter of the gender restriction
+     * @param genderRestriction be MALE FEMALE or null
+     */
     public void setGenderRestriction(Gender genderRestriction) {
         this.genderRestriction = genderRestriction;
     }
 
+    /**
+     * Setter of minimum age for this restriction
+     * 
+     * @param minAge new value of minimum age
+     */
     public void setMinAge(Integer minAge) {
         this.minAge = minAge;
     }
 
+    /**
+     * Setter of maximum age for this restriction
+     * 
+     * @param maxAge new value of maximum age
+     */
     public void setMaxAge(Integer maxAge) {
         this.maxAge = maxAge;
     }

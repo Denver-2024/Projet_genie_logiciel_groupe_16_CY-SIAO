@@ -15,7 +15,6 @@ public class DatabaseUtil {
     /**
      * Connection to the database
      * @return The connection
-     * @throws SQLException Exception with the database
      */
     public static Connection getConnection() {
         Connection connection = null;

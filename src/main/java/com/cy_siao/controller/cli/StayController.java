@@ -12,6 +12,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller class for managing Stay-related CLI interactions.
+ * Handles user input and delegates operations to the StayService.
+ */
 public class StayController {
     // Service for stay-related operations
     private StayService stayService;

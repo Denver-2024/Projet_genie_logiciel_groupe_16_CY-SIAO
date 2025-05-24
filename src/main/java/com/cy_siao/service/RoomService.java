@@ -101,6 +101,11 @@ public class RoomService {
         }
     }
 
+    /**
+     * Connect bed to room after sql Request to have full object in room
+     * 
+     * @param listRoom list of beds to add in rooms
+     */
     public void connectBedToRoom(List<Room> listRoom) {
         List<Bed> allBed = bedDao.findAll();
         for (Bed bed : allBed) {

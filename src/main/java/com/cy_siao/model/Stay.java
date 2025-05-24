@@ -183,11 +183,20 @@ public class Stay {
     public void setDateDeparture(LocalDate dateDeparture) {
         this.dateDeparture = dateDeparture;
     }
-
+    /**
+     * getter of hasLeft which correspond if the person leave after his stay
+     * 
+     * @return hasLeft
+     */
     public boolean isHasLeft(){
         return hasLeft;
     }
 
+    /**
+     * Sets the value of hasLeft which correspond if the person leave after his stay
+     * 
+     * @param hasLeft new value of hasLeft
+     */
     public void setHasLeft(boolean hasLeft) {
         this.hasLeft = hasLeft;
     }
@@ -231,6 +240,11 @@ public class Stay {
         return !dateArrival.isBefore(today);
     }
 
+    /**
+     * Check if the person respect his stay
+     * 
+     * @return true if the person stay more day than is stay
+     */
     public boolean isInconsistent() {
         return !hasLeft && dateDeparture.isBefore(LocalDate.now());
     }

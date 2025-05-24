@@ -67,14 +67,27 @@ public class RestrictionRoom {
         this.restrictionType = restrictionType;
     }
 
+    /**
+     * getter of the room which is affected by the restriction
+     * @return the room of the restriction
+     */
     public Room getRoom() {
         return room;
     }
 
+    /**
+     * setter of the room
+     * @param room set the room which is affected by the restriction
+     */
     public void setRoom(Room room) {
         this.room = room;
     }
 
+    /**
+     * Override of the to string to print restrition
+     * 
+     * @return print restriction with details
+     */
     @Override
     public String toString() {
         return "RestrictionRoom{" +

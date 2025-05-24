@@ -121,11 +121,12 @@ public class StayService {
     }
 
     /**
-     * Supprime une assignation spécifique d’une personne à un lit.
+     * Remove a stay in the database.
      *
-     * @param person La personne.
-     * @param bed    Le lit.
-     * @return true si la désassignation a réussi.
+     * @param person .
+     * @param bed .
+     * @throws SQLException  error when we try to remove a stay
+     * @return true we remove the bed.
      */
     public boolean unassign(Person person, Bed bed) throws SQLException {
         if (isAssign(person, bed)) {
@@ -163,7 +164,11 @@ public class StayService {
         }
     }
 
-    // Connecte les séjours aux lits pour permettre le calcul de disponibilité.
+    /**
+     * Gather bed and stay because they are not linked after SQL request
+     * 
+     * @param listBed of bed we need to add in stay class
+     */
     public void connectStayToBed(List<Bed> listBed) {
         List<Stay> allStay = stayDao.findAll();
         for (Stay stay : allStay) {
@@ -175,7 +180,11 @@ public class StayService {
         }
     }
 
-    // Met à jour un séjour existant.
+    /**
+     * Update a stay
+     * 
+     * @param stay to update
+     */
     public void updateStay(Stay stay) {
         stayDao.update(stay);
     }

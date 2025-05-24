@@ -25,6 +25,10 @@ import java.util.ResourceBundle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for managing Stay-related GUI interactions.
+ * Handles user input and delegates operations to the StayService.
+ */
 public class StayControllerFx implements Initializable {
 
     // Reference to the view manager for navigation

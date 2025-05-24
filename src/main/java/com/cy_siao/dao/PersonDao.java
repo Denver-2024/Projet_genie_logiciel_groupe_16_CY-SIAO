@@ -23,7 +23,7 @@ public class PersonDao {
      * Creates a new person record in the database
      *
      * @param person The Person object to be created in the database
-     * @throws SQLException If database access error occurs
+     * 
      */
     public void createPerson(Person person) {
         StringBuilder sqlBuilder = new StringBuilder("INSERT INTO person (");
@@ -86,7 +86,7 @@ public class PersonDao {
      *
      * @param person The Person object containing updated information
      * @throws IllegalArgumentException If person ID is invalid
-     * @throws SQLException             If database access error occurs
+     * 
      */
     public void updatePerson(Person person) {
         if (person.getId() <= 0) {
@@ -143,7 +143,7 @@ public class PersonDao {
      *
      * @param id The ID of the person to retrieve
      * @return The Person object if found, null otherwise
-     * @throws SQLException If database access error occurs
+     * 
      */
     public Person findById(int id) {
         String sql = "SELECT * FROM person WHERE id = ?";
@@ -164,7 +164,7 @@ public class PersonDao {
      * Retrieves all Person records from the database with their associated addresses.
      *
      * @return List of Person objects with their addresses, empty list if none found
-     * @throws SQLException If database access error occurs
+     * 
      */
     public List<Person> findAll() {
         List<Person> persons = new ArrayList<>();
@@ -205,7 +205,6 @@ public class PersonDao {
      * Deletes a person record from the database
      *
      * @param id The ID of the person to delete
-     * @throws SQLException If database access error occurs
      * @return true if the delete is a success
      */
     public boolean deletePerson(int id) {

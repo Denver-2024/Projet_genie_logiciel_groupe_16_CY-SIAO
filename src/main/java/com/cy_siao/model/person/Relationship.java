@@ -112,6 +112,12 @@ public class Relationship {
 
     /**
      * Searches available beds matching criteria for the relationship group.
+     * @param gender of the person we want to match with bed
+     * @param age of the person we want to match with bed
+     * @param arrival date of the person for his stay
+     * @param departure date of the person for his stay
+     * @param rooms list of rooms where we search beds
+     * @return list of bed where we can place the person with this criteria
      */
     public List<Bed> searchAvailableBed(String gender, int age, LocalDate arrival, LocalDate departure, List<Room> rooms) {
         List<Bed> matchingBeds = new ArrayList<>();

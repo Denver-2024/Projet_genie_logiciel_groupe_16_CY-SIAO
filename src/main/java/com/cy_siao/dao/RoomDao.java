@@ -136,6 +136,12 @@ public class RoomDao {
         }
     }
 
+    /**
+     * SQL request to know how many bed are free in this room
+     * 
+     * @param id of room
+     * @return the number of bed avaible in this room
+     */
     public int restPlace(int id){
         String sql ="SELECT \n" +
                 "    r.Id AS room_id,\n" +

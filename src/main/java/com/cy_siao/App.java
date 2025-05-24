@@ -12,6 +12,10 @@ import com.cy_siao.view.ViewManager;
 
 import java.sql.SQLException;
 
+/**
+ * Class where we start the application
+ * can choose between cli or gui interface in arg when we launch
+ */
 public class App extends Application {
 
     private static boolean launchCLI = false;

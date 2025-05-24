@@ -5,6 +5,10 @@ import com.cy_siao.service.BedService;
 import com.cy_siao.service.RoomService;
 import com.cy_siao.view.CLIView;
 
+/**
+ * Controller class for managing Room-related CLI interactions.
+ * Handles user input and delegates operations to the RoomService.
+ */
 public class RoomController {
 
     // Service for bed-related operations

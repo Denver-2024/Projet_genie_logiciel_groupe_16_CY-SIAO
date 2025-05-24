@@ -11,6 +11,8 @@ public class CLIView {
     //Scanner for reading user input from command line
     private final Scanner scanner = new Scanner(System.in);
 
+    /** Main constructor */
+    public CLIView(){}
     /**
      * Displays the main menu and gets the user's choice.
      *

@@ -1,0 +1,10 @@
+com.cy_siao
+com.cy_siao.controller
+com.cy_siao.controller.cli
+com.cy_siao.controller.gui
+com.cy_siao.dao
+com.cy_siao.model
+com.cy_siao.model.person
+com.cy_siao.service
+com.cy_siao.util
+com.cy_siao.view

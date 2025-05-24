@@ -171,7 +171,7 @@ public class PersonControllerFx implements Initializable {
 
                 if (streetNumber > 0 && streetNumber < 1000000000 &&
                         streetName != null && !streetName.isEmpty() &&
-                        postalCode > 0 && postalCode < 100000 &&
+                        postalCode > 0 && postalCode < 1000000000 &&
                         cityName != null && !cityName.isEmpty()) {
 
                     Address address = new Address(streetNumber, streetName, postalCode, cityName);
@@ -194,7 +194,6 @@ public class PersonControllerFx implements Initializable {
                     cityNameField.clear();
 
                     personList.setAll(personService.getAllPersons());
-                    personTableView.refresh();
                     showAlert("Address added successfully");
                 } else {
                     showAlert("Please enter valid address details");
@@ -222,13 +221,12 @@ public class PersonControllerFx implements Initializable {
                 if (placeOfBirth != null && !placeOfBirth.isEmpty()) {
                     person.setPlaceOfBirth(placeOfBirth);
                 }
-                if (socialSecurityNumber != null && socialSecurityNumber.length() == 13) {
+                if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()) {
                     person.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
                 }
 
                 personService.createPerson(person);
                 personList.setAll(personService.getAllPersons());
-                personTableView.refresh();
 
                 firstNameField.clear();
                 lastNameField.clear();
@@ -238,12 +236,12 @@ public class PersonControllerFx implements Initializable {
                 socialSecurityNumberField.clear();
 
             } else {
-                showAlert("Please insert valid infos of the person");
+                showAlert("Veuillez entrer des informations valides pour la personne");
             }
         } catch (NumberFormatException e) {
-            showAlert("Age format invalid");
+            showAlert("Format d'âge invalide");
         } catch (SQLException e) {
-            showAlert("Error when trying to create person : " + e.getMessage());
+            showAlert("Erreur lors de la création de la personne : " + e.getMessage());
         }
     }
 
@@ -259,7 +257,7 @@ public class PersonControllerFx implements Initializable {
             String ageText = ageField.getText();
 
             if (ageText == null || ageText.trim().isEmpty()) {
-                showAlert("Age field cannot be empty");
+                showAlert("L'âge ne peut pas être vide");
                 return;
             }
 
@@ -281,17 +279,10 @@ public class PersonControllerFx implements Initializable {
                         selectedPerson.setPlaceOfBirth(placeOfBirth);
                     }
                     if (socialSecurityNumber != null && !socialSecurityNumber.isEmpty()) {
-                        if (socialSecurityNumber.length() == 13) {
-                            selectedPerson.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
-                        }
-                        else {
-                            showAlert("Social security number must be 13 digits");
-                        }
+                        selectedPerson.setSocialSecurityNumber(Long.parseLong(socialSecurityNumber));
                     }
-
                     personService.updatePerson(selectedPerson);
                     personList.set(personList.indexOf(selectedPerson), selectedPerson);
-                    personTableView.refresh();
                     firstNameField.clear();
                     lastNameField.clear();
                     ageField.clear();
@@ -299,13 +290,13 @@ public class PersonControllerFx implements Initializable {
                     placeOfBirthField.clear();
                     showAlert("Person updated successfully");
                 } else {
-                    showAlert("Please fill in correctly all the required fields");
+                    showAlert("Veuillez remplir tous les champs obligatoires correctement");
                 }
             } catch (NumberFormatException e) {
-                showAlert("Age format invalid. Please insert a valid integer age");
+                showAlert("Format d'âge invalide. Veuillez entrer un nombre entier valide.");
             }
         } else {
-            showAlert("Please select a person to be updated");
+            showAlert("Veuillez sélectionner une personne à mettre à jour");
         }
     }
 
@@ -323,7 +314,6 @@ public class PersonControllerFx implements Initializable {
             if (success){
                 showAlert("Success delete");
                 personList.remove(selectedPerson);
-                personTableView.refresh();
             }
             else{
                 showAlert("It is currently impossible to delete this data, it is probably being used elsewhere. Delete it below.");

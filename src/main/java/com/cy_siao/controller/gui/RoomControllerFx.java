@@ -92,7 +92,7 @@ public class RoomControllerFx implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Init Spinner
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 50,1);
         nbBedsMaxSpinner.setValueFactory(valueFactory);
 
         // Init ComboBox
@@ -102,7 +102,7 @@ public class RoomControllerFx implements Initializable {
         // Load Rooms
         List<Room> allRooms = roomService.getAllRooms();
         roomService.connectBedToRoom(allRooms);
-        ObservableList<Room> roomList = FXCollections.observableArrayList(allRooms);
+        roomList.setAll(allRooms);
         roomTableView.setItems(roomList);
 
         // Set Table Columns
@@ -152,6 +152,7 @@ public class RoomControllerFx implements Initializable {
             Room room = new Room(name, nbBedsMax);
             roomService.createRoom(room);
             roomList.add(room);
+            roomTableView.refresh();
 
         } catch (Exception e) {
             showAlert("Error adding room: " + e.getMessage());
@@ -255,6 +256,7 @@ public class RoomControllerFx implements Initializable {
             if (success){
                 showAlert("Success delete");
                 roomList.remove(selectedRoom);
+                roomTableView.refresh();
             }
             else{
                 showAlert("It is currently impossible to delete this data, it is probably being used elsewhere. Delete it below.");
